@@ -5,8 +5,8 @@ var keyBindings = {
     right: ['→', 'D'],
     // close: ['C'],
     // open: ['O'],
-    attack1: ['E'],
-    attack2: ['F'],
+    melee_attack: ['E'],
+    ranged_attack: ['F'],
     wait: ['space'],
     // cancel: ['ESC']
 };
@@ -35,7 +35,7 @@ for(var action in keyBindings){
 //     '#.......2.........+......#5#',
 //     '#.................#+########',
 //     '#.................+z...SSSU#',
-//     '#.................#z.......#',
+//     '#.................#z.i.....#',
 //     '#...hh............+..TTTT..#',
 //     '#..hTTh...........#z.Tha...#',
 //     '#...hh......h.....##########',
@@ -73,28 +73,29 @@ var mapCharToType = {
     'x': 'exit'
 };
 
-var entityCharToType = {
-    z: 'zombie'
-};
+// var entityCharToType = {
+//     z: 'zombie',
+//     i: 'slime'
+// };
 
-var furnitureCharToType = {
-    h: 'chair',
-    T: 'table',
-    S: 'shelves',
-    U: 'trashcan',
-    '-': 'box',
-    '+': 'door'
-};
+// var furnitureCharToType = {
+//     h: 'chair',
+//     T: 'table',
+//     S: 'shelves',
+//     U: 'trashcan',
+//     '-': 'box',
+//     '+': 'door'
+// };
 
-var itemsCharToType = {
-    '2': 'umbrella',
-    '3': 'folding_chair',
-    '4': 'meat_tenderizer',
-    '5': 'pointy_stick',
-    m: 'medkit',
-    b: 'bandage',
-    a: 'asprin',
-};
+// var itemsCharToType = {
+//     '2': 'umbrella',
+//     '3': 'folding_chair',
+//     '4': 'meat_tenderizer',
+//     '5': 'pointy_stick',
+//     m: 'medkit',
+//     b: 'bandage',
+//     a: 'asprin',
+// };
 
 var playerStartX = 24;
 var playerStartY = 7;
@@ -106,6 +107,9 @@ RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
 // create the game instance
 var game = new RL.Game(1);
 var mapData = game.generateMap(40,40,1);
+var entityCharToType = RL.Floor.Data[1].entityCharToType;
+var furnitureCharToType = RL.Floor.Data[1].furnitureCharToType;
+var itemsCharToType = RL.Floor.Data[1].itemsCharToType;
 
 game.updatePalette();
 
@@ -165,8 +169,7 @@ RL.Util.merge(game.player, statElements);
 
 game.player.renderHtml();
 
-game.furnitureManager.add(25, 7, 'chest');
-game.furnitureManager.add(25, 7, 'crate');
+// game.furnitureManager.add(25, 7, 'chest');
 
 game.map.each(function(val, x, y){
     if((x+1) % 5 === 0 && (y+1) % 5 === 0){

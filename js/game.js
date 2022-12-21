@@ -244,6 +244,18 @@
             return bspTree;
         },
 
+        addEntities: function(array){
+            let entityList = RL.Floor.Data[this.floorNumber].entityChars;
+            function replace_with_sample(char) {
+                if(char == '#')
+                    return '#';
+                if(char == '+')
+                    return '+';
+                return RL.Util.random_norm(entityList, entityList.length/2, 1);
+            }
+            RL.Util.apply2D(array, replace_with_sample);
+        },
+
         generateMap: function(height, width, difficulty){
             let mapData = [];
             var s = ['#'];
@@ -260,6 +272,7 @@
             mapData.push(t);
             mapData.unshift(t);
             mapData = this.bsp(mapData, 8);
+            this.addEntities(mapData);
             for(var k = mapData.length - 1; k>=0; k--){
                 mapData[k] = mapData[k].join('');
                 console.log(mapData[k]);
@@ -271,10 +284,10 @@
          * Updates tile colors to the preset colors for x floor
          */
         updatePalette: function(){
-            RL.Tile.Types['floor'].color = RL.Floor.Types[this.floorNumber].floorColor;
-            RL.Tile.Types['floor'].bgColor = RL.Floor.Types[this.floorNumber].floorBgColor;
-            RL.Tile.Types['wall'].color = RL.Floor.Types[this.floorNumber].wallColor;
-            RL.Tile.Types['wall'].bgColor = RL.Floor.Types[this.floorNumber].wallBgColor;
+            RL.Tile.Types['floor'].color = RL.Floor.Data[this.floorNumber].floorColor;
+            RL.Tile.Types['floor'].bgColor = RL.Floor.Data[this.floorNumber].floorBgColor;
+            RL.Tile.Types['wall'].color = RL.Floor.Data[this.floorNumber].wallColor;
+            RL.Tile.Types['wall'].bgColor = RL.Floor.Data[this.floorNumber].wallBgColor;
         },
         
     };

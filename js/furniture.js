@@ -323,6 +323,24 @@
                 RL.Actions.Resolvable.add(this, 'open');
                 RL.Actions.Resolvable.add(this, 'close');
             }
+        },
+        // Added by rio
+        bush: {
+            name: 'Bush',
+            hp: 1,
+            char: 'b',
+            color: 'green',
+            consoleColor: 'green',
+            charStrokeColor: '#000',
+            charStrokeWidth: 2,
+            pushable: true,
+            passable: false,
+            blocksLos: false,
+            init: function(){
+                RL.Actions.Resolvable.add(this, 'grab');
+                RL.Actions.Resolvable.add(this, 'push');
+                RL.Actions.Resolvable.add(this, 'melee_attack');
+            }
         }
     };
 

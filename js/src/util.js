@@ -194,32 +194,39 @@
         },
 
         /**
-         * Returns a random number from normally distributed x to y inclusive,
-         * with optional skew factor (larger number, eg 3, skews right, number closer to
-         * 0, eg 0.25, will skew left)
-         * https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
-         * @param {Number} min 
-         * @param {Number} max 
-         * @param {Number} skew 
-         * @return {Number}
+         * Randomly samples from normally distributed array given a mean and sd
+         * @param {Array} array 
+         * @param {Number} mean 
+         * @param {Number} stddev 
+         * @returns 
          */
-        randn_bm: function (min, max, skew) {
-            let u = 0, v = 0;
-            while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
-            while(v === 0) v = Math.random()
-            let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
-            
-            num = num / 10.0 + 0.5 // Translate to 0 -> 1
-            if (num > 1 || num < 0) 
-              num = randn_bm(min, max, skew) // resample between 0 and 1 if out of range
-            
-            else{
-              num = Math.pow(num, skew) // Skew
-              num *= max - min // Stretch to fill range
-              num += min // offset to min
+         random_norm: function(array, mean, stddev) {
+            // Generate a random number from a normal distribution
+            // using the Box-Muller transform
+            function randn_bm() {
+              let u = 0, v = 0;
+              while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+              while(v === 0) v = Math.random();
+              return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
             }
-            return num
-        },
+          
+            // Find the index of the character to sample
+            let index = Math.floor(mean + stddev * randn_bm());
+          
+            // Make sure the index is within the bounds of the array
+            index = Math.max(0, Math.min(index, array.length - 1));
+          
+            // Return the character at the randomly chosen index
+            return array[index];
+          },
+
+        apply2D: function(array, fn) {
+            for (let i = 0; i < array.length; i++) {
+              for (let j = 0; j < array[i].length; j++) {
+                array[i][j] = fn(array[i][j]);
+              }
+            }
+          },
     };
 
     root.RL.Util = Util;
