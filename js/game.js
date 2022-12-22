@@ -34,6 +34,10 @@
             if(!this.gameOver){
                 var result = this.player.update(action);
                 if(result){
+                    if(action == 'switch_skill'){
+                        this.queueDraw = false;
+                        return;
+                    }
 
                     this.entityManager.update();
                     this.player.updateFov();

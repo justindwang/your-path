@@ -9,6 +9,7 @@ var keyBindings = {
     ranged_attack: ['F'],
     wait: ['space'],
     // cancel: ['ESC']
+    switch_skill: ['tab'],
 };
 var controlsEL = document.getElementById('controls');
 var mapContainerEl = document.getElementById('map-container');
@@ -17,13 +18,13 @@ var consoleDirectionsEl = document.getElementById('console-directions');
 
 // building controls section of html style="color:red;"
 var controlsHtml = '';
-controlsHtml += '<div class="tr"><div class="td">Action</div> <div class="td" style="color:black;">MMMMM</div><div class="td">Keys</div></div>';
+controlsHtml += '<div class="tr"><div class="td_center_head">Action</div> <div class="td_tab">MMMMM</div><div class="td_center_head">Keys</div></div>';
 for(var action in keyBindings){
     controlsHtml += '<div class="tr">';
-    controlsHtml += '<div class="td">' + action + '</div>';
+    controlsHtml += '<div class="td_center">' + action + '</div>';
     controlsHtml += '<div class="td"></div>';
     var val = keyBindings[action];
-    controlsHtml += '<div class="td">';
+    controlsHtml += '<div class="td_center">';
     controlsHtml += val.join(', ');
     controlsHtml += '</div>';
     controlsHtml += '</div>';

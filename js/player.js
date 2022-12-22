@@ -8,7 +8,7 @@
 
         this.meleeWeapon = new RL.Item(this.game, 'fists');
         this.rangedWeapon = new RL.Item(this.game, 'rock');
-        this.skills = [new RL.Skill(this.game, 'pancake_torch')];
+        this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
@@ -71,7 +71,6 @@
         bleeds: true,
 
         update: function(action) {
-
             this.renderHtml();
             if(action === 'cancel'){
                 this.clearPendingAction();
@@ -109,6 +108,11 @@
             if(action === 'ranged_attack'){
                 return this.rangedAttack();
             }
+
+            if(action === 'switch_skill'){
+                return this.switchSkill();
+            }
+
             return false;
         },
 
@@ -238,6 +242,21 @@
             this.game.console.logSelectActionTarget(this.pendingActionName, this.actionTargets.getCurrent().value);
 
             return false;
+        },
+
+        // action
+        switchSkill: function(){
+            for(var i = 0; i< this.skills.length; i++){
+                if(this.skills[i].selected){
+                    this.skills[i].selected = false;
+                    if(i == this.skills.length - 1)
+                        this.skills[0].selected = true;
+                    else
+                        this.skills[i+1].selected = true;
+                    break;
+                }
+            }
+            return true;
         },
 
         actionAdjacentTargetSelect: function(action){
@@ -415,16 +434,17 @@
             if(this.skillsEl){
                 // building skills section of html
                 var skillsHtml = '';
-                console.log(this.skills[0].getConsoleName().description);
 
                 for(var i = 0; i< this.skills.length; i++){
                     var skillConsoleName = this.skills[i].getConsoleName();
-                    skillsHtml += '<div class="tr">';
-                    skillsHtml += '<div class="td">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">Effect: ';
-                    skillsHtml += skillConsoleName.description;
-                    skillsHtml += '</div></div><div class="tr"><div class="td_dark">\"';
-                    skillsHtml += skillConsoleName.tooltip;
-                    skillsHtml += '\"</div></div>';
+                    if(skillConsoleName.selected){
+                        skillsHtml += '<div class="tr"><div class="td_yellow">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
+                        skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark">\"' + skillConsoleName.tooltip + '\"</div></div>';
+                    }
+                    else{
+                        skillsHtml += '<div class="tr"><div class="td">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
+                        skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark">\"' + skillConsoleName.tooltip + '\"</div></div>';
+                    }
                 }
                 this.skillsEl.innerHTML = skillsHtml;
             }

@@ -38,13 +38,14 @@
             <div class="tr">
                 <span class="td">HP:</span>
                 <span class="td"><span id="stat-hp"></span>/<span id="stat-hp-max"></span></span>
-                <!-- <progress id="stat-hp-bar" value="100" max="100"></progress> -->
+                <span class="td_tab">MM</span>
                 <div class="progress1"><progress id="stat-hp-bar" value="75" max="100"></progress></div>
             </div>
 
             <div class="tr">
                 <span class="td">MP:</span>
                 <span class="td"><span id="stat-mp"></span>/<span id="stat-mp-max"></span></span>
+                <span class="td" style="color:black;">MM</span>
                 <div class="progress2"><progress id="stat-mp-bar" value="75" max="100"></progress></div>
             </div>
             
@@ -83,21 +84,16 @@
             </div>
 
             <h3>Skills</h3>
-            <!-- <div class="tr">
-                <div class="td">Pancake Torch</div>
-            </div>
-            <div class="tr">
-                <div class="td_dark">Effect: Heals half of one's HP immediately</div>
-            </div>
-            <div class="tr">
-                <div class="td_dark">"A cute pancake torch fights alongside you"</div>
-            </div> -->
             <div id="stat-skills" class="skills">
             </div>
 
             <h3>Controls</h3>
-            <div id="controls" class="controls"></div>
-
+            <div class="dropdown-controls">
+                <div class="td_dark">(show)</div>
+                <div class="dropdown-controls-content">
+                    <div id="controls" class="controls"></div>
+                </div>
+            </div>
         </div>
         <div id="console-directions" class="console-container"></div>
         <div id="console-container" class="console-container"></div>

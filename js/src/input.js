@@ -149,7 +149,7 @@
     */
     Input.Keys = {
         'BACKSPACE': 8,
-        'TAB': 9,
+        'tab': 9,
         'ENTER': 13,
         'PAUSE': 19,
         'CAPS': 20,

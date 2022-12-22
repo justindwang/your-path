@@ -48,13 +48,15 @@
         consoleColor: false,
         description: null,
         tooltip: null,
+        selected: false,
 
         getConsoleName: function(){
             return {
                 name: this.name,
                 description: this.description,
                 tooltip: this.tooltip,
-                color: this.consoleColor
+                color: this.consoleColor,
+                selected: this.selected,
             };
         },
     };
@@ -78,8 +80,18 @@
             consoleColor: RL.Util.COLORS.peach,
             description: 'Heals half of one\'s HP immediately',
             tooltip: 'A cute pancake torch fights alongside you',
+            selected: true,
             performEffect: function() {
                 this.game.player.heal(Math.floor(this.game.player.hpMax/2));
+            },
+        },
+        powerbuff_gorl: {
+            name: 'Powerbuff Gorl',
+            consoleColor: RL.Util.COLORS.carnation_pink,
+            description: 'Increases strength stat by 1~10 points on this floor\n',
+            tooltip: 'Feeling lucky?',
+            performEffect: function() {
+                this.game.player.strength += RL.Util.random(1,10);
             },
         },
     };
