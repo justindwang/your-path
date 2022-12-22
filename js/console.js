@@ -16,13 +16,35 @@
 
         logWait: function(entity){
             entity = this.wrap(entity);
-            this.log(entity + ' wait for a moment');
+            this.log(entity + ' waited for a moment');
         },
         logHeal: function(target, amount){
             target = this.wrap(target);
-            var healed = this.wrapStr('Healed', RL.Util.COLORS.teal);
+            var healed = this.wrapStr('healed', RL.Util.COLORS.teal);
             amount = this.wrapStr(amount + ' hp', RL.Util.COLORS.green);
             this.log(target + ' ' + healed + ' ' + amount);
+        },
+        logStatChange: function(entity, stat, amount){
+            entity = this.wrap(entity);
+            stat = this.wrapStr(stat, RL.Util.COLORS.gray_alt);
+            if (amount >= 0)
+                var verb = ' increased by ';
+            else
+                var verb = ' decreased by ';
+            amount = this.wrapStr(Math.abs(amount), RL.Util.COLORS.gray_alt);
+            var points = this.wrapStr('points', RL.Util.COLORS.gray_alt);
+            this.log(entity + '\'s ' + stat + verb + amount +' '+ points);
+        },
+        logUseSkill: function(entity, skill){
+            var skillName = this.wrap(skill);
+            // var skillCost = this.wrapStr(skill.mpCost + ' mp', RL.Util.COLORS.mp_blue);
+            entity = this.wrap(entity);
+            this.log(entity + ' used ' + skillName);
+        },
+        logCanNotUseSkill: function(entity, skill){
+            entity = this.wrap(entity);
+            skill = this.wrap(skill);
+            this.game.console.log(entity + ' does not have enough mp to use ' + skill);
         },
         logAttack: function(source, weapon, target){
 
@@ -128,6 +150,11 @@
             var verb = this.wrapStr(action, RL.Util.COLORS.blue);
             var directions = this.wrapStr('(ENTER to select, movement keys for prev/next target)', RL.Util.COLORS.blue_alt);
             this.log('Multiple ' + verb + ' targets found ' + directions);
+        },
+
+        logSwitchSkill: function(skill){
+            var skillName = this.wrap(skill);
+            this.log(skillName + ' is now equipped.');
         },
 
         wrap: function(obj){

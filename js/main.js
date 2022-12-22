@@ -10,6 +10,7 @@ var keyBindings = {
     wait: ['space'],
     // cancel: ['ESC']
     switch_skill: ['tab'],
+    use_skill: ['R'],
 };
 var controlsEL = document.getElementById('controls');
 var mapContainerEl = document.getElementById('map-container');

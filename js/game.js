@@ -35,6 +35,7 @@
                 var result = this.player.update(action);
                 if(result){
                     if(action == 'switch_skill'){
+                        this.player.renderHtml();
                         this.queueDraw = false;
                         return;
                     }

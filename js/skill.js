@@ -49,6 +49,7 @@
         description: null,
         tooltip: null,
         selected: false,
+        mpCost: null,
 
         getConsoleName: function(){
             return {
@@ -81,17 +82,21 @@
             description: 'Heals half of one\'s HP immediately',
             tooltip: 'A cute pancake torch fights alongside you',
             selected: true,
+            mpCost: 5,
             performEffect: function() {
                 this.game.player.heal(Math.floor(this.game.player.hpMax/2));
             },
+            
         },
         powerbuff_gorl: {
             name: 'Powerbuff Gorl',
             consoleColor: RL.Util.COLORS.carnation_pink,
             description: 'Increases strength stat by 1~10 points on this floor\n',
             tooltip: 'Feeling lucky?',
+            mpCost: 3,
             performEffect: function() {
-                this.game.player.strength += RL.Util.random(1,10);
+                this.game.player.statChange('strength', RL.Util.random(1,10));
+                // this.game.player.strength += RL.Util.random(1,10);
             },
         },
     };

@@ -112,6 +112,9 @@
             if(action === 'switch_skill'){
                 return this.switchSkill();
             }
+            if(action === 'use_skill'){
+                return this.useSkill();
+            }
 
             return false;
         },
@@ -249,10 +252,30 @@
             for(var i = 0; i< this.skills.length; i++){
                 if(this.skills[i].selected){
                     this.skills[i].selected = false;
-                    if(i == this.skills.length - 1)
+                    if(i == this.skills.length - 1){
                         this.skills[0].selected = true;
-                    else
+                        this.game.console.logSwitchSkill(this.skills[0]);
+                    }
+                    else{
                         this.skills[i+1].selected = true;
+                        this.game.console.logSwitchSkill(this.skills[i+1]);
+                    }
+                    break;
+                }
+            }
+            return true;
+        },
+        useSkill: function(){
+            for(var i = 0; i< this.skills.length; i++){
+                if(this.skills[i].selected){
+                    if(this.skills[i].mpCost <= this.mp){
+                        this.mp -= this.skills[i].mpCost;
+                        this.game.console.logUseSkill(this, this.skills[i]);
+                        this.skills[i].performEffect();
+                    }
+                    else{
+                        this.game.console.logCanNotUseSkill(this, this.skills[i]);
+                    }
                     break;
                 }
             }
@@ -396,6 +419,27 @@
             if(this.hp > this.hpMax){
                 this.hp = this.hpMax;
             }
+            this.game.console.logHeal(this, amount);
+        },
+
+        statChange: function(stat, amount){
+            switch(stat) {
+                case 'strength':
+                    this.strength += amount;
+                    break;
+                case 'agility':
+                    this.agility += amount;
+                    break;
+                case 'vitality':
+                    this.vitality += amount;
+                    break;
+                case 'intelligence':
+                    this.intelligence += amount;
+                    break;
+                default:
+                  break;
+            }
+            this.game.console.logStatChange(this, stat, amount);
         },
 
         renderHtml: function(){
