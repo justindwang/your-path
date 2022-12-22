@@ -14,58 +14,21 @@ var controlsEL = document.getElementById('controls');
 var mapContainerEl = document.getElementById('map-container');
 var consoleContainerEl = document.getElementById('console-container');
 var consoleDirectionsEl = document.getElementById('console-directions');
+
+// building controls section of html style="color:red;"
 var controlsHtml = '';
-controlsHtml += '<div class="tr"><div class="td">Action</div> <div class="td">Keys</div></div>';
+controlsHtml += '<div class="tr"><div class="td">Action</div> <div class="td" style="color:black;">MMMMM</div><div class="td">Keys</div></div>';
 for(var action in keyBindings){
     controlsHtml += '<div class="tr">';
     controlsHtml += '<div class="td">' + action + '</div>';
-
+    controlsHtml += '<div class="td"></div>';
     var val = keyBindings[action];
     controlsHtml += '<div class="td">';
     controlsHtml += val.join(', ');
     controlsHtml += '</div>';
     controlsHtml += '</div>';
 }
-
-    controlsEL.innerHTML = controlsHtml;
-
-// var mapData = [
-//     '############################',
-//     '#h................#........#',
-//     '#.......2.........+......#5#',
-//     '#.................#+########',
-//     '#.................+z...SSSU#',
-//     '#.................#z.i.....#',
-//     '#...hh............+..TTTT..#',
-//     '#..hTTh...........#z.Tha...#',
-//     '#...hh......h.....##########',
-//     '#.................#.......4#',
-//     '#...hh............#........#',
-//     '#..hTTh...........+...hh...#',
-//     '#...hh.........h..#...TT...#',
-//     '#.b...............#..hTTh..#',
-//     '#...hh.....------.#...TT...#',
-//     '#..hTTh....------.#..hTTh..#',
-//     '#...hh............#...TT...#',
-//     '#..........------.#..hTTh..#',
-//     '#..........------.#...TTm..#',
-//     '#.................+...hh...#',
-//     '#.................#........#',
-//     '#.................#.TTTTTTT#',
-//     '###+##########+#############',
-//     '#...zzzzzzz......3#........#',
-//     '#..z..............#........#',
-//     '#...z......zzzzzz.#........#',
-//     '#.................#........#',
-//     '#...zzzzzzz.......#........#',
-//     '##############+#############',
-//     '#...........#...#.#........#',
-//     '#...........#...#.#........#',
-//     '#...........##x##.#........#',
-//     '#.................#........#',
-//     '#.................#........#',
-//     '############################',
-// ];
+controlsEL.innerHTML = controlsHtml;
 
 var mapCharToType = {
     '#': 'wall',
@@ -73,32 +36,6 @@ var mapCharToType = {
     'x': 'exit'
 };
 
-// var entityCharToType = {
-//     z: 'zombie',
-//     i: 'slime'
-// };
-
-// var furnitureCharToType = {
-//     h: 'chair',
-//     T: 'table',
-//     S: 'shelves',
-//     U: 'trashcan',
-//     '-': 'box',
-//     '+': 'door'
-// };
-
-// var itemsCharToType = {
-//     '2': 'umbrella',
-//     '3': 'folding_chair',
-//     '4': 'meat_tenderizer',
-//     '5': 'pointy_stick',
-//     m: 'medkit',
-//     b: 'bandage',
-//     a: 'asprin',
-// };
-
-var playerStartX = 24;
-var playerStartY = 7;
 var rendererWidth = 25;
 var rendererHeight = 25;
 
@@ -106,25 +43,29 @@ RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
 
 // create the game instance
 var game = new RL.Game(1);
-var mapData = game.generateMap(40,40,1);
-var entityCharToType = RL.Floor.Data[1].entityCharToType;
-var furnitureCharToType = RL.Floor.Data[1].furnitureCharToType;
-var itemsCharToType = RL.Floor.Data[1].itemsCharToType;
+var mapData = game.generateMap(100,100,1);
 
+var floor1 = new RL.Floor(game, 1);
 game.updatePalette();
 
 game.map.loadTilesFromArrayString(mapData, mapCharToType, 'floor');
 
 game.setMapSize(game.map.width, game.map.height);
 
-game.entityManager.loadFromArrayString(mapData, entityCharToType);
-game.itemManager.loadFromArrayString(mapData, itemsCharToType);
-game.furnitureManager.loadFromArrayString(mapData, furnitureCharToType);
+game.entityManager.loadFromArrayString(mapData, floor1.entityCharToType);
+game.itemManager.loadFromArrayString(mapData, floor1.itemsCharToType);
+game.furnitureManager.loadFromArrayString(mapData, floor1.furnitureCharToType);
 
 // add input keybindings
 game.input.addBindings(keyBindings);
 
 // set player starting position
+let playerStartX = null;
+let playerStartY = null;
+do {
+    playerStartX = RL.Util.random(1, game.map.width-1);
+    playerStartY = RL.Util.random(1, game.map.height-1);
+} while (game.getObjectsAtPostion(playerStartX, playerStartY).length > 0 || game.map.get(playerStartX, playerStartY).name !='Floor');
 game.player.x = playerStartX;
 game.player.y = playerStartY;
 
@@ -153,8 +94,10 @@ var statElements = {
     titleEl: document.getElementById('stat-title'),
     hpEl: document.getElementById('stat-hp'),
     hpMaxEl: document.getElementById('stat-hp-max'),
+    hpBarEl: document.getElementById('stat-hp-bar'),
     mpEl: document.getElementById('stat-mp'),
     mpMaxEl: document.getElementById('stat-mp-max'),
+    mpBarEl: document.getElementById('stat-mp-bar'),
 
     strengthEl: document.getElementById('stat-strength'),
     vitalityEl: document.getElementById('stat-vitality'),
@@ -164,6 +107,7 @@ var statElements = {
     meleeWeaponStatsEl: document.getElementById('stat-melee-weapon-stats'),
     rangedWeaponNameEl: document.getElementById('stat-ranged-weapon-name'),
     rangedWeaponStatsEl: document.getElementById('stat-ranged-weapon-stats'),
+    skillsEl: document.getElementById('stat-skills'),
 };
 RL.Util.merge(game.player, statElements);
 

@@ -92,8 +92,8 @@
             consoleColor: RL.Util.COLORS.gray,
             floorColor: RL.Util.COLORS.carnation_pink,
             floorBgColor: RL.Util.COLORS.green,
-            wallColor: RL.Util.COLORS.light_brown,
-            wallBgColor: RL.Util.COLORS.brown,
+            wallColor: RL.Util.COLORS.brown,
+            wallBgColor: RL.Util.COLORS.light_brown,
             entityCharToType: {
                 i: 'slime'
             },

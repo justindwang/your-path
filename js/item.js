@@ -153,7 +153,7 @@
             getConsoleName: function(){
                 return {
                     name: this.name,
-                    stats: '[Damage: ' + this.damage + ', Range: ' + this.range + ']',
+                    stats: '[+' + this.damage + ' Attack, Range: ' + this.range + ']',
                     color: this.consoleColor
                 };
             }
@@ -176,7 +176,7 @@
             getConsoleName: function(){
                 return {
                     name: this.name,
-                    stats: '[Damage: ' + this.damage + ', Range: ' + this.range + ']',
+                    stats: '[+' + this.damage + ' Attack, Range: ' + this.range + ']',
                     color: this.consoleColor
                 };
             }
@@ -293,6 +293,15 @@
         // enemy weapons
         claws: makeMeleeWeapon({
             name: 'Claws',
+            color: false,
+            bgColor: false,
+            char: false,
+            damage: 1,
+            range: 1,
+        }),
+
+        goo: makeMeleeWeapon({
+            name: 'Goo',
             color: false,
             bgColor: false,
             char: false,

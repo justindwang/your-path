@@ -6,10 +6,10 @@
 
     <title>Your Path</title>
     <link href="css/main.css" rel="stylesheet">
-
 </head>
 
 <body>
+    <h1 align="center">Your Path</h1>
     <div class="page container">
 
         <div id="map-container" class="map-container"></div>
@@ -38,11 +38,14 @@
             <div class="tr">
                 <span class="td">HP:</span>
                 <span class="td"><span id="stat-hp"></span>/<span id="stat-hp-max"></span></span>
+                <!-- <progress id="stat-hp-bar" value="100" max="100"></progress> -->
+                <div class="progress1"><progress id="stat-hp-bar" value="75" max="100"></progress></div>
             </div>
 
             <div class="tr">
                 <span class="td">MP:</span>
                 <span class="td"><span id="stat-mp"></span>/<span id="stat-mp-max"></span></span>
+                <div class="progress2"><progress id="stat-mp-bar" value="75" max="100"></progress></div>
             </div>
             
             <h3>Stats</h3>
@@ -79,12 +82,21 @@
                 <span class="td" id="stat-ranged-weapon-stats"></span>
             </div>
 
-            <br>
+            <h3>Skills</h3>
+            <!-- <div class="tr">
+                <div class="td">Pancake Torch</div>
+            </div>
+            <div class="tr">
+                <div class="td_dark">Effect: Heals half of one's HP immediately</div>
+            </div>
+            <div class="tr">
+                <div class="td_dark">"A cute pancake torch fights alongside you"</div>
+            </div> -->
+            <div id="stat-skills" class="skills">
+            </div>
 
             <h3>Controls</h3>
-            <div id="controls" class="controls">
-
-            </div>
+            <div id="controls" class="controls"></div>
 
         </div>
         <div id="console-directions" class="console-container"></div>
@@ -135,6 +147,7 @@
 
         <script src="js/tile.js"></script>
         <script src="js/floor.js"></script>
+        <script src="js/skill.js"></script>
         <script src="js/main.js"></script>
 
 </body>

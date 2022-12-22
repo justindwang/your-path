@@ -8,6 +8,7 @@
 
         this.meleeWeapon = new RL.Item(this.game, 'fists');
         this.rangedWeapon = new RL.Item(this.game, 'rock');
+        this.skills = [new RL.Skill(this.game, 'pancake_torch')];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
@@ -45,6 +46,7 @@
 
         meleeWeapon: null,
         rangedWeapon: null,
+        skills: null,
 
         nameEl: null,
         levelEl: null,
@@ -52,14 +54,17 @@
         titleEl: null,
         hpEl: null,
         hpMaxEl: null,
+        hpBarEl: null,
         mpEl: null,
         mpMaxEl: null,
+        mpBarEl: null,
         strengthEl: null,
         vitalityEl: null,
         agilityEl: null,
         intelligenceEl: null,
         meleeWeaponEl: null,
         rangedWeaponEl: null,
+        skillsEl: null,
 
         pendingAction: false,
 
@@ -382,8 +387,14 @@
 
             this.hpEl.innerHTML = this.hp;
             this.hpMaxEl.innerHTML = this.hpMax;
+            this.hpBarEl.value = this.hp;
+            this.hpBarEl.max = this.hpMax;
+
             this.mpEl.innerHTML = this.mp;
             this.mpMaxEl.innerHTML = this.mpMax;
+            this.mpBarEl.value = this.mp;
+            this.mpBarEl.max = this.mpMax;
+
             this.strengthEl.innerHTML = this.strength;
             this.vitalityEl.innerHTML = this.vitality;
             this.agilityEl.innerHTML = this.agility;
@@ -398,6 +409,24 @@
                 var rangedWeaponConsoleName = this.rangedWeapon.getConsoleName();
                 this.rangedWeaponNameEl.innerHTML = rangedWeaponConsoleName.name;
                 this.rangedWeaponStatsEl.innerHTML = rangedWeaponConsoleName.stats;
+            }
+
+            
+            if(this.skillsEl){
+                // building skills section of html
+                var skillsHtml = '';
+                console.log(this.skills[0].getConsoleName().description);
+
+                for(var i = 0; i< this.skills.length; i++){
+                    var skillConsoleName = this.skills[i].getConsoleName();
+                    skillsHtml += '<div class="tr">';
+                    skillsHtml += '<div class="td">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">Effect: ';
+                    skillsHtml += skillConsoleName.description;
+                    skillsHtml += '</div></div><div class="tr"><div class="td_dark">\"';
+                    skillsHtml += skillConsoleName.tooltip;
+                    skillsHtml += '\"</div></div>';
+                }
+                this.skillsEl.innerHTML = skillsHtml;
             }
         },
 

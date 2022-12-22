@@ -254,6 +254,14 @@
                 return RL.Util.random_norm(entityList, entityList.length/2, 1);
             }
             RL.Util.apply2D(array, replace_with_sample);
+
+            let x = null;
+            let y = null;
+            do {
+                x = RL.Util.random(1, array[0].length-2);
+                y = RL.Util.random(1, array.length-2);
+            } while (array[x][y] != '.');
+            array[x][y] = 'x';
         },
 
         generateMap: function(height, width, difficulty){
@@ -271,7 +279,7 @@
             }
             mapData.push(t);
             mapData.unshift(t);
-            mapData = this.bsp(mapData, 8);
+            mapData = this.bsp(mapData, Math.floor(Math.log2(height*width))-1);
             this.addEntities(mapData);
             for(var k = mapData.length - 1; k>=0; k--){
                 mapData[k] = mapData[k].join('');

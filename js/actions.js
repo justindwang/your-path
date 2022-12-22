@@ -418,12 +418,12 @@
             canResolveAction: true,
             resolveAction: function(source, settings){
                 var result = settings.result;
-
-                this.takeDamage(result.damage);
+                var final_damage = result.damage + source.strength;
+                this.takeDamage(final_damage);
 
                 var weapon = {
                     name: result.weapon.name,
-                    damage: result.damage
+                    damage: final_damage
                 };
                 this.game.console.logAttack(source, weapon, this);
 
@@ -442,7 +442,7 @@
 
 
                 if(this.bleeds){
-                    var splatter = result.damage / 10;
+                    var splatter = final_damage / 10;
                     if(this.dead){
                         splatter *= 1.5;
                     }
@@ -455,12 +455,14 @@
             canResolveAction: true,
             resolveAction: function(source, settings){
                 var result = settings.result;
+                
+                var final_damage = result.damage + source.strength;
 
-                this.takeDamage(result.damage);
+                this.takeDamage(final_damage);
 
                 var weapon = {
                     name: result.weapon.name,
-                    damage: result.damage
+                    damage: final_damage
                 };
                 this.game.console.logAttack(source, weapon, this);
 
@@ -478,7 +480,7 @@
                 this.game.damageLayer.set(this.x, this.y, 1);
 
                 if(this.bleeds){
-                    var splatter = result.damage / 10;
+                    var splatter = final_damage / 10;
                     if(this.dead){
                         splatter *= 1.5;
                     }

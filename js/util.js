@@ -27,6 +27,7 @@
         brown: '#281c11',
         light_brown: '#513922',
         carnation_pink: '#ffa6c9',
+        peach: '#f6b26b',
     };
 
     root.RL.Util.COLORS = COLORS;

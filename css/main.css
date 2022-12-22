@@ -2584,8 +2584,18 @@ pre[class*="language-"] {
 }
 .td {
     display: table-cell;
-    padding: 0 3px;
+    padding: 0 0 3px;
+    color: #9a9090;
 }
+.td_dark {
+  display: table-cell;
+  padding: 0 0 3px;
+  color: #575353;
+  font-size: 10px;
+}
+
+
+
 .map-container {
     float:left;
 }
@@ -2666,4 +2676,43 @@ pre[class*="language-"] {
 
 .controls {
     font-size: 12px;
+}
+.skills {
+  font-size: 12px;
+}
+
+progress {
+  background-color: rgb(203, 198, 198);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  width: 125px;
+  height: 6px;
+}
+progress::-webkit-progress-bar {
+  background-color: rgb(203, 198, 198);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.progress1 progress::-webkit-progress-value {
+  background-color: #9a2828;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+.progress1 progress::-moz-progress-bar {
+  background-color: #9a2828;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.progress2 progress::-webkit-progress-value {
+  background-color: #4932b9;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.progress2 progress::-moz-progress-bar {
+  background-color: #4932b9;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
