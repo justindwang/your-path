@@ -113,6 +113,7 @@
         takeDamage: function(amount) {
             this.hp -= amount;
             if(this.hp <= 0) {
+                this.color = RL.Util.COLORS.hp_red;
                 this.dead = true;
             }
         },

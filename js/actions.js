@@ -417,6 +417,8 @@
         melee_attack: {
             canResolveAction: true,
             resolveAction: function(source, settings){
+                if(this.dead)
+                    return false;
                 var result = settings.result;
                 var final_damage = result.damage + source.strength;
                 this.takeDamage(final_damage);
@@ -457,6 +459,8 @@
         ranged_attack: {
             canResolveAction: true,
             resolveAction: function(source, settings){
+                if(this.dead)
+                    return false;
                 var result = settings.result;
                 
                 var final_damage = result.damage + source.strength;
