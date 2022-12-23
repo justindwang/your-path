@@ -26,7 +26,21 @@
         floorNumber: null,
 
         game_update: function(){
-            console.log('pls work man');
+            if(!this.gameOver){
+                this.entityManager.update();
+                this.player.updateFov();
+
+                this.lighting.update();
+                this.renderer.draw();
+
+                this.smashLayer.reset();
+                this.damageLayer.reset();
+                if(this.player.dead){
+                    console.log('game over');
+                }
+                this.furnitureManager.update();
+            }
+            this.queueDraw = false;
         },
 
         /**
@@ -44,7 +58,7 @@
                         return;
                     }
 
-                    this.entityManager.update();
+                    // this.entityManager.update();
                     this.player.updateFov();
 
                     this.lighting.update();
@@ -217,7 +231,7 @@
                     //vertical split
                     let x = RL.Util.random(x1+1, x2-1);
                     let h = y2-y1;
-                    while(x == Math.floor((x1+x2)/2))
+                    while(x == Math.floor((x1+x2)/2) || x == Math.floor((x1+x2)/2) + 1)
                         x = RL.Util.random(x1 + 1, x2 - 1);
                     if((x-x1)/h < 0.45 || (x2-x)/h < 0.45){
                         stack.push(partition);
@@ -235,7 +249,7 @@
                     //horizontal split
                     let y = RL.Util.random(y1 + 1, y2 - 1);
                     let w = x2-x1;
-                    while(y == Math.floor((y != (y1+y2)/2)))
+                    while(y == Math.floor((y != (y1+y2)/2)) || y == Math.floor((y != (y1+y2)/2)) + 1)
                         y = RL.Util.random(y1 + 1, y2 - 1);
                     if( (y-y1)/w < 0.45 || (y2-y)/w < 0.45){
                         stack.push(partition);

@@ -127,7 +127,7 @@ game.map.each(function(val, x, y){
 });
 
 game.start();
-// setInterval(function(){
-//     this.game.game_update();
-// }, 1000);
+setInterval(function(){
+    this.game.game_update();
+}, 1000);
 

@@ -147,9 +147,11 @@
         },
 
         logSelectActionTarget: function(action, target){
-            var verb = this.wrapStr(action, RL.Util.COLORS.blue);
-            var targetName = this.wrap(target);
-            this.log(verb + ' ' + targetName + '?');
+            if(!target.dead){
+                var verb = this.wrapStr(action, RL.Util.COLORS.blue);
+                var targetName = this.wrap(target);
+                this.log(verb + ' ' + targetName + '?');
+            }
         },
         logMultipleActionTargetsFound: function(action){
             var verb = this.wrapStr(action, RL.Util.COLORS.blue);
