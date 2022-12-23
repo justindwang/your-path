@@ -20,20 +20,18 @@
         },
         logHeal: function(target, amount){
             target = this.wrap(target);
-            var healed = this.wrapStr('healed', RL.Util.COLORS.teal);
-            amount = this.wrapStr(amount + ' hp', RL.Util.COLORS.green);
-            this.log(target + ' ' + healed + ' ' + amount);
+            amount = this.wrapStr(amount, RL.Util.COLORS.hp_red);
+            this.log(target + ' healed ' + amount + ' hp');
         },
         logStatChange: function(entity, stat, amount){
             entity = this.wrap(entity);
-            stat = this.wrapStr(stat, RL.Util.COLORS.gray_alt);
+            stat = this.wrapStr(stat, RL.Util.COLORS.stat_yellow);
             if (amount >= 0)
                 var verb = ' increased by ';
             else
                 var verb = ' decreased by ';
-            amount = this.wrapStr(Math.abs(amount), RL.Util.COLORS.gray_alt);
-            var points = this.wrapStr('points', RL.Util.COLORS.gray_alt);
-            this.log(entity + '\'s ' + stat + verb + amount +' '+ points);
+            amount = this.wrapStr(Math.abs(amount), RL.Util.COLORS.stat_yellow);
+            this.log(entity + '\'s ' + stat + verb + amount +' points');
         },
         logUseSkill: function(entity, skill){
             var skillName = this.wrap(skill);
@@ -46,19 +44,26 @@
             skill = this.wrap(skill);
             this.game.console.log(entity + ' does not have enough mp to use ' + skill);
         },
+        logLevelUp: function(level){
+            var playerName = this.wrap(this.game.player);
+            level = this.wrapStr(level, RL.Util.COLORS.exp_green);
+            this.log(playerName + ' grew to level ' + level);
+            this.log(playerName + '\'s stats increased by '+ this.wrapStr('1', RL.Util.COLORS.stat_yellow));
+        },
         logAttack: function(source, weapon, target){
 
             var weaponName = this.wrapStr(weapon.name);
             var weaponDamage = this.wrapStr(weapon.damage, RL.Util.COLORS.red_alt);
+            var targetExp = this.wrapStr(target.exp, RL.Util.COLORS.exp_green);
             var sourceName = this.wrap(source);
             var targetName = this.wrap(target);
 
-            var msg = '' + sourceName + ' hits ' + targetName + ' with ' + weaponName + ' dealing ' + weaponDamage + ' damage';
+            var msg = '' + sourceName + ' hit ' + targetName + ' with ' + weaponName + ' for ' + weaponDamage + ' damage';
             if(target.dead){
                 if(target instanceof RL.Furniture){
-                    msg += this.wrapStr(' Destroying It', RL.Util.COLORS.red_alt);
+                    msg += 'and ' + this.wrapStr('destroyed', RL.Util.COLORS.red_alt) + ' it';
                 } else {
-                    msg += this.wrapStr(' Killing It', RL.Util.COLORS.red_alt);
+                    msg += ', ' + this.wrapStr('killed', RL.Util.COLORS.red_alt) + ' it, and gained ' + targetExp + ' exp';
                 }
             }
             this.log(msg);

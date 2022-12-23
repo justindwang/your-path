@@ -87,7 +87,7 @@
         1: {
             name: 'Field of Dawn',
             entities: ['slime', 'floor', 'floor', 'floor', 'bush', 'crate'],
-            entityChars: ['i', '.', '.', '.', 'b', '-'],
+            entityChars: ['s', '.', '.', '.', 'b', '-'],
             entityColors: [RL.Util.COLORS.blue, RL.Util.COLORS.light_blue, RL.Util.COLORS.green, RL.Util.COLORS.green, RL.Util.COLORS.dark_green, RL.Util.COLORS.brown],
             consoleColor: RL.Util.COLORS.gray,
             floorColor: RL.Util.COLORS.carnation_pink,
@@ -95,7 +95,7 @@
             wallColor: RL.Util.COLORS.brown,
             wallBgColor: RL.Util.COLORS.light_brown,
             entityCharToType: {
-                i: 'slime'
+                s: 'slime'
             },
             furnitureCharToType: {
                 b: 'bush',

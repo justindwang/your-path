@@ -29,6 +29,9 @@
         carnation_pink: '#ffa6c9',
         peach: '#f6b26b',
         mp_blue: '#4932b9',
+        exp_green: '#77dd77',
+        hp_red: '#9a2828',
+        stat_yellow: '#FDFD96',
     };
 
     root.RL.Util.COLORS = COLORS;

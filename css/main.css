@@ -2745,6 +2745,18 @@ progress::-webkit-progress-bar {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
+.progress3 progress::-webkit-progress-value {
+  background-color: #77dd77;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.progress3 progress::-moz-progress-bar {
+  background-color: #77dd77;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
 .dropdown-controls {
   position: relative;
   display: inline-block;
@@ -2759,5 +2771,3 @@ progress::-webkit-progress-bar {
 }
 
 .dropdown-controls:hover .dropdown-controls-content {display: block;}
-
-/* .dropdown:hover .dropbtn {background-color: #3e8e41;} */

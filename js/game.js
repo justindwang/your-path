@@ -25,6 +25,10 @@
 
         floorNumber: null,
 
+        game_update: function(){
+            console.log('pls work man');
+        },
+
         /**
         * Handles user input actions.
         * @method onKeyAction
@@ -158,7 +162,7 @@
                 return;
             }
 
-            console.log('click', tile.x, tile.y);
+            // console.log('click', tile.x, tile.y);
 
             if(!this.player.fov.get(tile.x, tile.y)){
                 return;
@@ -288,7 +292,6 @@
             this.addEntities(mapData);
             for(var k = mapData.length - 1; k>=0; k--){
                 mapData[k] = mapData[k].join('');
-                console.log(mapData[k]);
             }
             return mapData;
         },
@@ -304,7 +307,7 @@
         },
         
     };
-
+    
     RL.Util.merge(NewGame.prototype, proto);
     RL.Util.merge(NewGame.prototype, newGamePrototype);
 

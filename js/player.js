@@ -35,6 +35,7 @@
         title: 'None',
         
         exp: 0,
+        expForNext: 9,
         hp: 20,
         hpMax: 20,
         mp: 10,
@@ -440,6 +441,20 @@
                   break;
             }
             this.game.console.logStatChange(this, stat, amount);
+        },
+
+        gainExp: function(expGain){
+            this.exp += expGain;
+            if(this.exp >= this.expForNext){
+                this.exp -= this.expForNext;
+                this.level++;
+                this.expForNext = RL.Util.exptoNextLevel(this.level);
+                this.strength++;
+                this.intelligence++;
+                this.vitality++;
+                this.agility++;
+                this.game.console.logLevelUp(this.level);
+            }
         },
 
         renderHtml: function(){

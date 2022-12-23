@@ -425,7 +425,10 @@
                     name: result.weapon.name,
                     damage: final_damage
                 };
+
                 this.game.console.logAttack(source, weapon, this);
+                if(this.game.player == source)
+                    source.gainExp(this.exp);
 
                 var smash = {
                     source: source,
@@ -464,7 +467,10 @@
                     name: result.weapon.name,
                     damage: final_damage
                 };
+                
                 this.game.console.logAttack(source, weapon, this);
+                if(this.game.player == source)
+                    source.gainExp(this.exp);
 
                 var smash = {
                     source: source,

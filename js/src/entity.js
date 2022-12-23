@@ -99,6 +99,8 @@
 
         strength: null,
 
+        exp: null,
+
         /**
         * Determines if this entity has been killed and needs to be removed.
         * @property dead
@@ -421,6 +423,7 @@
             hp: 3,
             hpMax: 3,
             strength: 0,
+            exp: 2,
             maxTurnsWithoutStumble: 10,
             hordePushBonus: 0,
             initialize: function() {
@@ -435,7 +438,7 @@
         }),
         slime: makeNonSeekingMeleeEntity({
             name: 'Slime',
-            char: 'i',
+            char: 's',
             color: RL.Util.COLORS.blue,
             bgColor: false,
             charStrokeColor: '#000',
@@ -447,6 +450,7 @@
             hp: 1,
             hpMax: 1,
             strength: 0,
+            exp: 2,
             hordePushBonus: 0,
             initialize: function() {
                 this.meleeWeapon = new RL.Item(this.game, 'goo');

@@ -227,6 +227,10 @@
               }
             }
           },
+        
+        exptoNextLevel: function(level){
+            return Math.floor(5*((level+1)**3)/4 - 5*(level**3)/4);
+        }
     };
 
     root.RL.Util = Util;
