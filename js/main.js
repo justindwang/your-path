@@ -20,7 +20,10 @@ var consoleDirectionsEl = document.getElementById('console-directions');
 // building controls section of html style="color:red;"
 var controlsHtml = '';
 controlsHtml += '<div class="tr"><div class="td_center_head">Action</div> <div class="td_tab">MMMMM</div><div class="td_center_head">Keys</div></div>';
+controlsHtml += '<div class="tr"><div class="td_center">move</div> <div class="td"></div> <div class="td_center"> WASD </div></div>';
 for(var action in keyBindings){
+    if(action == 'up' || action == 'down' || action == 'left' || action == 'right')
+        continue;
     controlsHtml += '<div class="tr">';
     controlsHtml += '<div class="td_center">' + action + '</div>';
     controlsHtml += '<div class="td"></div>';
