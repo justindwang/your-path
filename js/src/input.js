@@ -139,7 +139,38 @@
         */
         stopListening: function(){
             document.removeEventListener('keydown', this);
-        }
+        },
+
+        // added by rio
+        prInventoryClicked: function() {
+            var inv = document.getElementById("inventory-window");
+            var shop = document.getElementById("shop-window");
+            var stats = document.getElementById("stats-window");
+            inv.style.display = "block";
+            shop.style.display = "none";
+            stats.style.display = "none";
+            console.log('bruh');
+        },
+
+        prShopClicked: function() {
+            var inv = document.getElementById("inventory-window");
+            var shop = document.getElementById("shop-window");
+            var stats = document.getElementById("stats-window");
+            inv.style.display = "none";
+            shop.style.display = "block";
+            stats.style.display = "none";
+            console.log('bruh');
+        },
+
+        prStatsClicked: function() {
+            var inv = document.getElementById("inventory-window");
+            var shop = document.getElementById("shop-window");
+            var stats = document.getElementById("stats-window");
+            inv.style.display = "none";
+            shop.style.display = "none";
+            stats.style.display = "block";
+            console.log('bruh');
+        },
     };
 
     /**

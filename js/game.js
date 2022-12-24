@@ -52,7 +52,7 @@
             if(!this.gameOver){
                 var result = this.player.update(action);
                 if(result){
-                    if(action == 'switch_skill'){
+                    if(action == 'switch_skill' || action == 'use_skill'){
                         this.player.renderHtml();
                         this.queueDraw = false;
                         return;
@@ -169,7 +169,6 @@
         },
 
         onClick: function(x, y){
-
             var coords = this.renderer.mouseToTileCoords(x, y),
                 tile = this.map.get(coords.x, coords.y);
             if(!tile){

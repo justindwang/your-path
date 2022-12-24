@@ -115,8 +115,8 @@ var statElements = {
     skillsEl: document.getElementById('stat-skills'),
 };
 RL.Util.merge(game.player, statElements);
-
 game.player.renderHtml();
+game.menu.startListening();
 
 // game.furnitureManager.add(25, 7, 'chest');
 

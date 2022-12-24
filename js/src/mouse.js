@@ -104,6 +104,8 @@
             el.removeEventListener('mouseleave', this);
             el.removeEventListener('click', this);
         }
+
+
     };
 
     root.RL.Mouse = Mouse;

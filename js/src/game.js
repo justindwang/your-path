@@ -30,6 +30,8 @@
 
         var el = this.renderer.canvas;
         this.mouse.startListening(el);
+        this.menu = new RL.Menu(this);
+        
     };
 
     Game.prototype = {
@@ -76,6 +78,8 @@
         * @type Player
         */
         player: null,
+
+        menu: null,
 
         /**
         * The current input.

@@ -10,8 +10,8 @@
             this.directionsEl.innerHTML = '';
         },
         directionsSelectActionTarget: function(action){
-            var verb = this.wrapStr(action, RL.Util.COLORS.blue);
-            this.directionsEl.innerHTML = this.wrapStr('(ENTER to select, movement keys for prev/next target, esc or other to cancel)', RL.Util.COLORS.blue_alt);
+            // var verb = this.wrapStr(action, RL.Util.COLORS.blue);
+            // this.directionsEl.innerHTML = this.wrapStr('(ENTER to select, movement keys for prev/next target, esc or other to cancel)', RL.Util.COLORS.blue_alt);
         },
 
         logWait: function(entity){
@@ -61,7 +61,7 @@
             var msg = '' + sourceName + ' hit ' + targetName + ' with ' + weaponName + ' for ' + weaponDamage + ' damage';
             if(target.dead){
                 if(target instanceof RL.Furniture){
-                    msg += 'and ' + this.wrapStr('destroyed', RL.Util.COLORS.red_alt) + ' it';
+                    msg += ' and ' + this.wrapStr('destroyed', RL.Util.COLORS.red_alt) + ' it';
                 } else {
                     msg += ', ' + this.wrapStr('killed', RL.Util.COLORS.red_alt) + ' it, and gained ' + targetExp + ' exp';
                 }
@@ -147,11 +147,11 @@
         },
 
         logSelectActionTarget: function(action, target){
-            if(!target.dead){
-                var verb = this.wrapStr(action, RL.Util.COLORS.blue);
-                var targetName = this.wrap(target);
-                this.log(verb + ' ' + targetName + '?');
-            }
+            // if(!target.dead){
+            //     var verb = this.wrapStr(action, RL.Util.COLORS.blue);
+            //     var targetName = this.wrap(target);
+            //     this.log(verb + ' ' + targetName + '?');
+            // }
         },
         logMultipleActionTargetsFound: function(action){
             var verb = this.wrapStr(action, RL.Util.COLORS.blue);
