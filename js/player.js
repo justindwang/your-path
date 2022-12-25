@@ -9,6 +9,7 @@
         this.meleeWeapon = new RL.Item(this.game, 'fists');
         this.rangedWeapon = new RL.Item(this.game, 'rock');
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
+        this.inventory = [new RL.Item(this.game, 'tiny_potion'), new RL.Item(this.game, 'goo'), new RL.Item(this.game, 'fists'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'slime_goo')];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
@@ -47,6 +48,7 @@
 
         meleeWeapon: null,
         rangedWeapon: null,
+        inventory: null,
         skills: null,
 
         nameEl: null,

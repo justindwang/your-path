@@ -15,9 +15,10 @@
         this.x = x;
         this.y = y;
         this.type = type;
-
         var typeData = Item.Types[type];
         RL.Util.merge(this, typeData);
+        this.color = RL.Util.mapRankToColor(this.rank);
+        this.consoleColor = this.color;
     };
 
     Item.prototype = {
@@ -82,6 +83,18 @@
         charStrokeColor: '#000',
         charStrokeWidth: 2,
         consoleColor: RL.Util.COLORS.blue_alt,
+        group: null,
+        rank: 'F',
+
+        stat1: null,
+        stat2: null,
+        stat3: null,
+
+        stat1Modifier: null,
+        stat2Modifier: null,
+        stat3Modifier: null,
+
+
 
         /**
          * Checks if this item can be attached to an entity.
@@ -113,6 +126,7 @@
 
     var Defaults = {
         healing: {
+            group: 'healing',
             consoleColor: 'pink',
             canAttachTo: function(entity){
                 if(this.game.player !== entity){
@@ -133,9 +147,13 @@
                     name: this.name + ' [+' + this.healAmount + ' HP]',
                     color: this.consoleColor
                 };
-            }
+            },
+            getStats: function(){
+                return 'Heals ' + this.healAmount + ' HP';
+            },
         },
         meleeWeapon: {
+            group: 'weapon',
             canAttachTo: function(entity){
                 if(this.game.player !== entity){
                     return false;
@@ -153,12 +171,41 @@
             getConsoleName: function(){
                 return {
                     name: this.name,
-                    stats: '[+' + this.damage + ' Attack, Range: ' + this.range + ']',
+                    rank: this.rank,
+                    stats: this.getStats(),
                     color: this.consoleColor
                 };
+            },
+            getStats: function(){
+                var msg = '';
+                if(this.stat1Modifier){
+                    if(this.stat1Modifier >= 0)
+                        msg += '+';
+                    else
+                        msg += '-';
+                    msg += this.stat1Modifier + ' ' + this.stat1;
+                }
+                if(this.stat2){
+                    msg += ', ';
+                    if(this.stat2Modifier >= 0)
+                        msg += '+';
+                    else
+                        msg += '-';
+                    msg += this.stat2Modifier + ' ' + this.stat2;
+                }
+                if(this.stat3){
+                    msg += ', ';
+                    if(this.stat3Modifier >= 0)
+                        msg += '+';
+                    else
+                        msg += '-';
+                    msg += this.stat3Modifier + ' ' + this.stat3;
+                }
+                return msg;
             }
         },
         rangedWeapon: {
+            group: 'weapon',
             canAttachTo: function(entity){
                 if(this.game.player !== entity){
                     return false;
@@ -176,11 +223,44 @@
             getConsoleName: function(){
                 return {
                     name: this.name,
-                    stats: '[+' + this.damage + ' Attack, Range: ' + this.range + ']',
+                    stats: this.getStats(),
                     color: this.consoleColor
                 };
+            },
+            getStats: function(){
+                var msg = '';
+                if(this.stat1){
+                    if(this.stat1Modifier >= 0)
+                        msg += '+';
+                    else
+                        msg += '-';
+                    msg += this.stat1Modifier + ' ' + this.stat1;
+                }
+                if(this.stat2){
+                    msg += ', ';
+                    if(this.stat2Modifier >= 0)
+                        msg += '+';
+                    else
+                        msg += '-';
+                    msg += this.stat2Modifier + ' ' + this.stat2;
+                }
+                if(this.stat3){
+                    msg += ', ';
+                    if(this.stat3Modifier >= 0)
+                        msg += '+';
+                    else
+                        msg += '-';
+                    msg += this.stat3Modifier + ' ' + this.stat3;
+                }
+                return msg;
+            },
+        },
+        material: {
+            group: 'material',
+            getStats: function(){
+                return 'Material';
             }
-        }
+        },
     };
 
     RL.Util.merge(Item.prototype, RL.Mixins.TileDraw);
@@ -197,6 +277,10 @@
     var makeRangedWeapon = function(obj){
         return RL.Util.merge(obj, Defaults.rangedWeapon);
     };
+    
+    var makeMaterial = function(obj){
+        return RL.Util.merge(obj, Defaults.material);
+    }
 
     /**
     * Describes different types of tiles. Used by the Item constructor 'type' param.
@@ -218,187 +302,51 @@
     Item.Types = {
 
         // healing items
-        bandaid: makeHealingItem({
-            name: 'Bandaid',
-            color: '#fff',
-            bgColor: false,
-            char: "'",
-            healAmount: 1,
-        }),
-        disinfectant: makeHealingItem({
-            name: 'Disinfectant',
-            color: '#fff',
-            bgColor: false,
-            char: ",",
-            healAmount: 2,
-        }),
-        bandage: makeHealingItem({
-            name: 'Bandage',
-            color: '#fff',
-            bgColor: false,
-            char: 'o',
-            healAmount: 3,
-        }),
-        icy_hot: makeHealingItem({
-            name: 'Icy Hot',
-            color: '#fff',
-            bgColor: false,
-            char: '[',
-            healAmount: 4,
-        }),
-        medical_tape: makeHealingItem({
-            name: 'Medical Tape',
-            color: '#fff',
-            bgColor: false,
-            char: '~',
+        tiny_potion: makeHealingItem({
+            name: 'Tiny Potion',
+            char: "p",
+            rank: 'F',
             healAmount: 5,
         }),
-        asprin: makeHealingItem({
-            name: 'Asprin',
-            color: '#fff',
-            bgColor: false,
-            char: ':',
-            healAmount: 6,
-        }),
-        stitch_kit: makeHealingItem({
-            name: 'Stitch Kit',
-            color: '#fff',
-            bgColor: false,
-            char: '\\',
-            healAmount: 7,
-        }),
-        medkit: makeHealingItem({
-            name: 'Medkit',
-            color: 'red',
-            bgColor: '#fff',
-            char: '+',
-            healAmount: 8,
-        }),
-        rx_pain_killers: makeHealingItem({
-            name: 'Rx Pain Killers',
-            color: 'red',
-            bgColor: '#fff',
-            char: ';',
-            healAmount: 9,
-        }),
-        quik_clot: makeHealingItem({
-            name: 'Quik Clot',
-            color: 'red',
-            bgColor: '#fff',
-            char: '!',
-            healAmount: 10,
-        }),
-
 
         // enemy weapons
-        claws: makeMeleeWeapon({
-            name: 'Claws',
-            color: false,
-            bgColor: false,
-            char: false,
-            damage: 1,
-            range: 1,
-        }),
-
         goo: makeMeleeWeapon({
             name: 'Goo',
-            color: false,
-            bgColor: false,
-            char: false,
-            damage: 1,
+            char: 'g',
+            rank: 'F',
+            stat1: 'Str',
+            stat1Modifier: 1,
             range: 1,
         }),
 
         // melee weapons
         fists: makeMeleeWeapon({
             name: 'Fists',
-            damage: 1,
+            char: 'f',
+            rank: 'F',
+            stat1: 'Str',
+            stat1Modifier: 1,
             range: 1,
         }),
-        umbrella: makeMeleeWeapon({
-            name: 'Umbrella',
-            color: '#2c97de',
-            bgColor: false,
-            char: '☂',
-            damage: 2,
-            range: 1,
-        }),
-        folding_chair: makeMeleeWeapon({
-            name: 'Folding Chair',
-            color: '#9c56b8',
-            bgColor: false,
-            char: '}',
-            damage: 3,
-            range: 1,
-        }),
-        meat_tenderizer: makeMeleeWeapon({
-            name: 'Meat Tenderizer',
-            color: '#9c56b8',
-            bgColor: false,
-            char: '}',
-            damage: 4,
-            range: 1,
-        }),
-        pointy_stick: makeMeleeWeapon({
-            name: 'Rusty Dagger',
-            color: 'brown',
-            bgColor: false,
-            char: '/',
-            damage: 5,
-            range: 1,
-        }),
-        wooden_baseball_bat: makeMeleeWeapon({
-            name: 'Wooden Baseball Bat',
-            color: 'brown',
-            bgColor: false,
-            char: '_',
-            damage: 6,
-            range: 1,
-        }),
-        crowbar: makeMeleeWeapon({
-            name: 'Crowbar',
-            color: 'red',
-            bgColor: false,
-            char: '~',
-            damage: 7,
-            range: 1,
-        }),
-        shovel: makeMeleeWeapon({
-            name: 'Shovel',
-            color: 'tan',
-            bgColor: false,
-            char: 'T',
-            damage: 8,
-            range: 1,
-        }),
-        fire_axe: makeMeleeWeapon({
-            name: 'Fire Axe',
-            color: 'red',
-            bgColor: false,
-            char: 'r',
-            damage: 9,
-            range: 1,
-        }),
-        chainsaw: makeMeleeWeapon({
-            name: 'Chainsaw',
-            color: 'red',
-            bgColor: false,
-            char: '*',
-            damage: 10,
-            range: 1,
-        }),
-
 
         // ranged weapons
         rock: makeRangedWeapon({
             name: 'Rock',
-            color: '#808080',
             char: 'r',
-            damage: 2,
-            range: 4,
+            rank: 'E',
+            stat1: 'Str',
+            stat1Modifier: 2,
+            stat2: 'Agi',
+            stat2Modifier: 1,
+            range: 2,
         }),
 
-
+        // material
+        slime_goo: makeMaterial({
+            name: 'Slime Goo',
+            char: 's',
+            rank: 'C',
+        }),
 
     };
 

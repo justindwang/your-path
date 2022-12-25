@@ -31,6 +31,7 @@
         var el = this.renderer.canvas;
         this.mouse.startListening(el);
         this.menu = new RL.Menu(this);
+        this.menu.renderInventory(this.player.inventory);
         
     };
 

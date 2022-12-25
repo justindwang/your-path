@@ -32,6 +32,15 @@
         exp_green: '#77dd77',
         hp_red: '#9a2828',
         stat_yellow: '#FDFD96',
+
+        S_brown: '#a52a2a',
+        A_orchid: '#da70d6',
+        B_darkolivegreen: '#556b2f',
+        C_cadetblue: '#5f9ea0',
+        D_paleturquoise: '#afeeee',
+        E_goldenrod: '#daa520',
+        F_peachpuff: "#ffdab9",
+
     };
 
     root.RL.Util.COLORS = COLORS;

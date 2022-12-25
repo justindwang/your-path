@@ -230,7 +230,19 @@
         
         exptoNextLevel: function(level){
             return Math.floor(5*((level+1)**3)/4 - 5*(level**3)/4);
-        }
+        },
+        mapRankToColor: function(rank){
+            switch(rank){
+                case 'S': return RL.Util.COLORS.S_brown;
+                case 'A': return RL.Util.COLORS.A_orchid;
+                case 'B': return RL.Util.COLORS.B_darkolivegreen;
+                case 'C': return RL.Util.COLORS.C_cadetblue;
+                case 'D': return RL.Util.COLORS.D_paleturquoise;
+                case 'E': return RL.Util.COLORS.E_goldenrod;
+                case 'F': return RL.Util.COLORS.F_peachpuff;
+                default: return RL.Util.COLORS.F_peachpuff;
+            }
+        },
     };
 
     root.RL.Util = Util;

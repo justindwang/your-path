@@ -321,24 +321,6 @@
         }
     };
 
-    performableActions.zombie_melee_attack = RL.Util.merge({}, performableActions.melee_attack);
-
-    RL.Util.merge(performableActions.zombie_melee_attack, {
-            performAction: function(target, settings){
-                var damage = this.meleeWeapon.damage;
-                var targetIsFurniture = target instanceof RL.Furniture;
-                if(targetIsFurniture && this.hordePushBonus){
-                    damage += this.hordePushBonus;
-                    this.hordePushBonus = 0;
-                }
-                return {
-                    damage: damage,
-                    weapon: this.meleeWeapon
-                };
-            },
-        }
-    );
-
     var resolvableActions = {
         grab: {
             canResolveAction: true,
@@ -420,12 +402,11 @@
                 if(this.dead)
                     return false;
                 var result = settings.result;
-                var final_damage = result.damage + source.strength;
-                this.takeDamage(final_damage);
+                this.takeDamage(source.strength);
 
                 var weapon = {
                     name: result.weapon.name,
-                    damage: final_damage
+                    damage: source.strength
                 };
 
                 this.game.console.logAttack(source, weapon, this);
@@ -447,7 +428,7 @@
 
 
                 if(this.bleeds){
-                    var splatter = final_damage / 10;
+                    var splatter = source.strength / 10;
                     if(this.dead){
                         splatter *= 1.5;
                     }
@@ -462,14 +443,12 @@
                 if(this.dead)
                     return false;
                 var result = settings.result;
-                
-                var final_damage = result.damage + source.strength;
 
-                this.takeDamage(final_damage);
+                this.takeDamage(source.strength);
 
                 var weapon = {
                     name: result.weapon.name,
-                    damage: final_damage
+                    damage: source.strength
                 };
                 
                 this.game.console.logAttack(source, weapon, this);
@@ -490,7 +469,7 @@
                 this.game.damageLayer.set(this.x, this.y, 1);
 
                 if(this.bleeds){
-                    var splatter = final_damage / 10;
+                    var splatter = source.strength / 10;
                     if(this.dead){
                         splatter *= 1.5;
                     }
