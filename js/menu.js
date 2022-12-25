@@ -14,13 +14,13 @@
         game: null,
 
         startListening: function(){
-            var inventoryButtonEl = document.getElementById('pr-inventory');
-            var shopButtonEl = document.getElementById('pr-shop');
-            var statsButtonEl = document.getElementById('pr-stats');
- 
-            inventoryButtonEl.addEventListener('click', this.displayInventoryMenu);
-            shopButtonEl.addEventListener('click', this.displayShopMenu);
-            statsButtonEl.addEventListener('click', this.displayStatsMenu);
+            document.getElementById('pr-inventory').addEventListener('click', this.displayInventoryMenu);
+            document.getElementById('pr-shop').addEventListener('click', this.displayShopMenu);
+            document.getElementById('pr-stats').addEventListener('click', this.displayStatsMenu);
+
+            document.getElementById('inventory-foot-type').addEventListener('click', this.sortInventoryType('type'));
+            document.getElementById('inventory-foot-rarity').addEventListener('click', this.sortInventoryRarity('rarity'));
+            document.getElementById('inventory-foot-name').addEventListener('click', this.sortInventoryName('name'));
         },
 
         displayInventoryMenu: function(){
@@ -63,6 +63,42 @@
             inventoryWindowEl.style.opacity = 0;
             shopWindowEl.style.opacity = 0;
             statsWindowEl.style.opacity = 1;
+        },
+        
+        sortInventoryType: function(){
+            var toSort = this.game.player.inventory;
+            for(var i = 0; i<toSort.length; i++){
+                console.log(toSort[i].name);
+            }
+            sorted = RL.Util.sortArrayOfObjects(toSort, 'group');
+            for(var j = 0; j<sorted.length; j++){
+                console.log(sorted[i].name);
+            }
+            this.renderInventory(sorted);
+        },
+
+        sortInventoryRarity: function(){
+            var toSort = this.game.player.inventory;
+            for(var i = 0; i<toSort.length; i++){
+                console.log(toSort[i].name);
+            }
+            sorted = RL.Util.sortArrayOfObjects(toSort, 'rank');
+            for(var j = 0; j<sorted.length; j++){
+                console.log(sorted[i].name);
+            }
+            this.renderInventory(sorted);
+        },
+
+        sortInventoryName: function(){
+            var toSort = this.game.player.inventory;
+            for(var i = 0; i<toSort.length; i++){
+                console.log(toSort[i].name);
+            }
+            sorted = RL.Util.sortArrayOfObjects(toSort, 'name');
+            for(var j = 0; j<sorted.length; j++){
+                console.log(sorted[i].name);
+            }
+            this.renderInventory(sorted);
         },
 
         renderInventory: function(inventory){

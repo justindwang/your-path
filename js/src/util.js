@@ -243,6 +243,9 @@
                 default: return RL.Util.COLORS.F_peachpuff;
             }
         },
+        sortArrayOfObjects: function(arr, key) {
+            return arr.sort((a, b) => (a[key] > b[key] ? 1 : -1));
+        },
     };
 
     root.RL.Util = Util;

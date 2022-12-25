@@ -2710,6 +2710,15 @@ pre[class*="language-"] {
   background-color: #7f8c8d;
 }
 
+/* rio */
+.wh100 { width:100%; height:100%}
+.abs0 { position: absolute; left: 0; top: 0;}
+.abs50 {position: absolute; left: 50%; top: 50%;}
+.abs100 {position: absolute; left: 0; top: 0; width: 100%; height: 100%}
+.abs-center { position:absolute; left:50%; top:50%; transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); -moz-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); -o-transform: (-50%,-50%);}
+.on {visibility:visible; opacity: 1}
+.off {visibility: hidden; opacity: 0}
+
 .controls {
     font-size: 12px;
 }
@@ -2813,23 +2822,27 @@ progress::-webkit-progress-bar {
 #inventory-head h3{ font-size: 18px; float: left; color:#e5e5e5; }
 
 #inventory-body {width: 100%; height: calc(100% - 55px);padding: 10px 0;}
-.inventory-item {width: 100%; height: 50px;}
+.inventory-item {width: 100%; height: 50px; z-index: 3; padding-bottom: 4px; }
+.inventory-item:active { transform: translateY(3px); }
+.inventory-item::after, .inventory-item::before { box-sizing: border-box; border-radius: 3px; }
+
 .inventory-item:not(:last-child) {margin-bottom: 10px;}
 .inventory-item-icon {background: rgba(87,83,83,0.25); width:50px; height:100%; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px; float:left; }
-.inventory-item-icon img{width:60%; margin-left: 20%; margin-top: 20%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
+.inventory-item-icon img{padding-bottom: 4px; width:60%; margin-left: 20%; margin-top: 20%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
 .inventory-item-info {width: calc(100%-50px); height: 100%; float:left}
 .inventory-item-info h4 {font-size: 13px; padding-left: 20px; box-sizing: border-box; position: relative;}
 
 #inventory-foot { width: 100%; height: 15px; padding-top: 5px; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.2);}
+#inventory-foot p {float:right; font-size: 11px;}
+#inventory-foot span {float:right; font-size: 11px;}
 #inventory-foot p:nth-of-type(1){float:left; font-size: 12px;}
-#inventory-foot p:nth-of-type(2){float:right; font-size: 11px;}
 
 
 /* Inventory window */
-#inventory-window { background:#000; visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: 100%; top: 340%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+#inventory-window { visibility: hidden; opacity: 0;background:#000; width: 300px; height: 400px; position: absolute; left: 100%; top: 340%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
 /* Shop window */
-#shop-window { background:#000; visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: 100%; top: 225%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+#shop-window { visibility: hidden; opacity: 0;background:#000; width: 300px; height: 400px; position: absolute; left: 100%; top: 225%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
 /* Stats window */
-#stats-window {  background:#000; visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: 100%; top: 108%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+#stats-window { visibility: hidden; opacity: 0; background:#000; width: 300px; height: 400px; position: absolute; left: 100%; top: 108%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
