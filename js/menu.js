@@ -66,18 +66,30 @@
         },
         
         sortInventoryType: function(){
+            document.getElementById('inventory-foot-type').style.color = '#e5e5e5';
+            document.getElementById('inventory-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('inventory-foot-name').style.color = '#ffffff33';
+
             var toSort = this.game.player.inventory;
             this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'group');
             this.renderInventory();
         },
 
         sortInventoryRarity: function(){
+            document.getElementById('inventory-foot-type').style.color = '#ffffff33';
+            document.getElementById('inventory-foot-rarity').style.color = '#e5e5e5';
+            document.getElementById('inventory-foot-name').style.color = '#ffffff33';
+
             var toSort = this.game.player.inventory;
             this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'rank');
             this.renderInventory();
         },
 
         sortInventoryName: function(){
+            document.getElementById('inventory-foot-type').style.color = '#ffffff33';
+            document.getElementById('inventory-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('inventory-foot-name').style.color = '#e5e5e5';
+
             var toSort = this.game.player.inventory;
             this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'name');
             this.renderInventory();
