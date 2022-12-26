@@ -14,6 +14,7 @@
 
         var skillData = Skill.Data[type];
         RL.Util.merge(this, skillData);
+        this.color = RL.Util.mapRankToColor(this.rank);
 
         if(this.init){
             this.init();
@@ -45,7 +46,7 @@
         */
         name: null,
 
-        consoleColor: false,
+        color: null,
         description: null,
         tooltip: null,
         selected: false,
@@ -56,7 +57,7 @@
                 name: this.name,
                 description: this.description,
                 tooltip: this.tooltip,
-                color: this.consoleColor,
+                color: this.color,
                 selected: this.selected,
             };
         },
@@ -78,7 +79,7 @@
     Skill.Data = {
         pancake_torch: {
             name: 'Pancake Torch',
-            consoleColor: RL.Util.COLORS.peach,
+            rank: 'B',
             description: 'Heals half of one\'s HP immediately',
             tooltip: 'A cute pancake torch fights alongside you',
             selected: true,
@@ -90,7 +91,7 @@
         },
         powerbuff_gorl: {
             name: 'Powerbuff Gorl',
-            consoleColor: RL.Util.COLORS.carnation_pink,
+            rank: 'B',
             description: 'Increases strength stat by 1~10 points on this floor\n',
             tooltip: 'Feeling lucky?',
             mpCost: 3,

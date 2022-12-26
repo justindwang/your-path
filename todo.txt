@@ -1,7 +1,7 @@
 Your Path Todo:
 
 - generalize melee/ranged weapon into one action (done? might be buggy)
-- combine color and console color for items to match rarity
+- combine color and console color for items to match rarity (done)
 - apply stat modifiers from items
 - UI for equipping/changing weapons
 - Loot tables for mobs

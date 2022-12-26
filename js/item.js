@@ -18,7 +18,6 @@
         var typeData = Item.Types[type];
         RL.Util.merge(this, typeData);
         this.color = RL.Util.mapRankToColor(this.rank);
-        this.consoleColor = this.color;
     };
 
     Item.prototype = {
@@ -82,7 +81,6 @@
         bgColor: false,
         charStrokeColor: '#000',
         charStrokeWidth: 2,
-        consoleColor: RL.Util.COLORS.blue_alt,
         group: null,
         rank: 'F',
 
@@ -118,7 +116,7 @@
         getConsoleName: function(){
             return {
                 name: this.name,
-                color: this.consoleColor,
+                color: this.color,
             };
         },
     };
@@ -127,7 +125,6 @@
     var Defaults = {
         healing: {
             group: 'healing',
-            consoleColor: 'pink',
             canAttachTo: function(entity){
                 if(this.game.player !== entity){
                     return false;
@@ -145,7 +142,7 @@
             getConsoleName: function(){
                 return {
                     name: this.name + ' [+' + this.healAmount + ' HP]',
-                    color: this.consoleColor
+                    color: this.color
                 };
             },
             getStats: function(){
@@ -173,7 +170,7 @@
                     name: this.name,
                     stats: this.getStats(),
                     range: this.range,
-                    color: this.consoleColor
+                    color: this.color
                 };
             },
             getStats: function(){

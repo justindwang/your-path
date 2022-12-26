@@ -467,7 +467,7 @@
 
             if(this.weapon){
                 var weaponConsoleName = this.weapon.getConsoleName();
-                this.weaponNameEl.innerHTML = weaponConsoleName.name + ':';
+                this.weaponNameEl.innerHTML = weaponConsoleName.name + ' - ';
                 this.weaponStatsEl.innerHTML = weaponConsoleName.stats;
                 this.weaponRangeEl.innerHTML = weaponConsoleName.range;
             }
