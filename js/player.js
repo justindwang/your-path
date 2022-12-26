@@ -6,20 +6,17 @@
     var NewPlayer = function Player(game){
         proto.constructor.call(this, game);
 
-        this.meleeWeapon = new RL.Item(this.game, 'fists');
-        this.rangedWeapon = new RL.Item(this.game, 'rock');
+        this.weapon = new RL.Item(this.game, 'rock');
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        // this.inventory = [new RL.Item(this.game, 'tiny_potion')]
         this.inventory = [new RL.Item(this.game, 'tiny_potion'), new RL.Item(this.game, 'goo'), new RL.Item(this.game, 'fists'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'slime_goo')];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
         RL.Actions.Performable.add(this, 'grab');
         RL.Actions.Performable.add(this, 'push');
-        RL.Actions.Performable.add(this, 'melee_attack');
-        RL.Actions.Performable.add(this, 'ranged_attack');
+        RL.Actions.Performable.add(this, 'attack');
 
-        RL.Actions.Resolvable.add(this, 'melee_attack');
+        RL.Actions.Resolvable.add(this, 'attack');
 
     };
 
@@ -47,8 +44,7 @@
         agility: 1,
         intelligence: 1,
 
-        meleeWeapon: null,
-        rangedWeapon: null,
+        weapon: null,
         inventory: null,
         skills: null,
 
@@ -66,8 +62,7 @@
         vitalityEl: null,
         agilityEl: null,
         intelligenceEl: null,
-        meleeWeaponEl: null,
-        rangedWeaponEl: null,
+        weaponEl: null,
         skillsEl: null,
 
         pendingAction: false,
@@ -105,12 +100,8 @@
                 return this.open();
             }
 
-            if(action === 'melee_attack'){
-                return this.meleeAttack();
-            }
-
-            if(action === 'ranged_attack'){
-                return this.rangedAttack();
+            if(action === 'attack'){
+                return this.attack();
             }
 
             if(action === 'switch_skill'){
@@ -180,7 +171,7 @@
             if(!entity){
                 return false;
             }
-            return this.performAction('melee_attack', entity);
+            return this.performAction('attack', entity);
         },
 
         moveOpen: function(x, y){
@@ -222,15 +213,8 @@
             return this.actionAdjacentTargetSelect('open');
         },
 
-        // action
-        meleeAttack: function(){
-            this.pendingActionName = 'melee_attack';
-            return this.actionAdjacentTargetSelect('melee_attack');
-        },
-
-        // action
-        rangedAttack: function(){
-            this.pendingActionName = 'ranged_attack';
+        attack: function(){
+            this.pendingActionName = 'attack';
 
             var targets = this.getTargetsForAction(this.pendingActionName);
             if(!targets.length){
@@ -481,17 +465,12 @@
             this.agilityEl.innerHTML = this.agility;
             this.intelligenceEl.innerHTML = this.intelligence;
 
-            if(this.meleeWeaponNameEl){
-                var meleeWeaponConsoleName = this.meleeWeapon.getConsoleName();
-                this.meleeWeaponNameEl.innerHTML = meleeWeaponConsoleName.name;
-                this.meleeWeaponStatsEl.innerHTML = meleeWeaponConsoleName.stats;
+            if(this.weapon){
+                var weaponConsoleName = this.weapon.getConsoleName();
+                this.weaponNameEl.innerHTML = weaponConsoleName.name + ':';
+                this.weaponStatsEl.innerHTML = weaponConsoleName.stats;
+                this.weaponRangeEl.innerHTML = weaponConsoleName.range;
             }
-            if(this.rangedWeapon){
-                var rangedWeaponConsoleName = this.rangedWeapon.getConsoleName();
-                this.rangedWeaponNameEl.innerHTML = rangedWeaponConsoleName.name;
-                this.rangedWeaponStatsEl.innerHTML = rangedWeaponConsoleName.stats;
-            }
-
             
             if(this.skillsEl){
                 // building skills section of html

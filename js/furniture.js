@@ -198,81 +198,6 @@
     * @static
     */
     Furniture.Types = {
-        chair: {
-            name: 'Chair',
-            hp: 4,
-            char: 'h',
-            color: RL.Util.COLORS.orange,
-            consoleColor: RL.Util.COLORS.orange_alt,
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
-            passable: false,
-            init: function(){
-                RL.Actions.Resolvable.add(this, 'grab');
-                RL.Actions.Resolvable.add(this, 'push');
-                RL.Actions.Resolvable.add(this, 'melee_attack');
-                // RL.Actions.Resolvable.add(this, 'ranged_attack');
-            }
-        },
-        trashcan: {
-            name: 'Trashcan',
-            hp: 1,
-            char: 'U',
-            color: RL.Util.COLORS.green,
-            consoleColor: RL.Util.COLORS.green_alt,
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
-            passable: false,
-            init: function(){
-                RL.Actions.Resolvable.add(this, 'grab');
-                RL.Actions.Resolvable.add(this, 'push');
-            }
-        },
-        shelves: {
-            name: 'Shelves',
-            hp: 5,
-            char: '▤',
-            color: 'tan',
-            consoleColor: 'tan',
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
-            passable: false,
-            init: function(){
-                RL.Actions.Resolvable.add(this, 'grab');
-                RL.Actions.Resolvable.add(this, 'push');
-                RL.Actions.Resolvable.add(this, 'melee_attack');
-                RL.Actions.Resolvable.add(this, 'ranged_attack');
-            }
-        },
-        table: {
-            name: 'Table',
-            char: 'T',
-            color: RL.Util.COLORS.purple,
-            consoleColor: RL.Util.COLORS.purple_alt,
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
-            passable: false,
-            init: function(){
-                RL.Actions.Resolvable.add(this, 'melee_attack');
-                // RL.Actions.Resolvable.add(this, 'ranged_attack');
-            }
-        },
-        box: {
-            name: 'Box',
-            hp: 6,
-            char: '☒',
-            color: RL.Util.COLORS.yellow,
-            consoleColor: RL.Util.COLORS.yellow_alt,
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
-            passable: false,
-            init: function(){
-                RL.Actions.Resolvable.add(this, 'grab');
-                RL.Actions.Resolvable.add(this, 'push');
-                RL.Actions.Resolvable.add(this, 'melee_attack');
-                // RL.Actions.Resolvable.add(this, 'ranged_attack');
-            }
-        },
         door: {
             name: 'Door',
             hp: 5,
@@ -288,8 +213,7 @@
                 RL.Actions.Resolvable.add(this, 'open');
                 RL.Actions.Resolvable.add(this, 'close');
 
-                RL.Actions.Resolvable.add(this, 'melee_attack');
-                // RL.Actions.Resolvable.add(this, 'ranged_attack');
+                RL.Actions.Resolvable.add(this, 'attack');
             }
         },
         chest: {
@@ -339,7 +263,7 @@
             init: function(){
                 RL.Actions.Resolvable.add(this, 'grab');
                 RL.Actions.Resolvable.add(this, 'push');
-                RL.Actions.Resolvable.add(this, 'melee_attack');
+                RL.Actions.Resolvable.add(this, 'attack');
             }
         }
     };

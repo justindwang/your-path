@@ -256,33 +256,20 @@
             }
         },
 
-        melee_attack: {
+        attack: {
             canPerformAction: function(target, settings){
-                if(!this.meleeWeapon){
-                    this.game.console.log('you do not have a melee weapon');
-                    return false;
-                }
-                return true;
-            },
-            canPerformActionOnTarget: true,
-            performAction: function(target, settings){
-                return {
-                    damage: this.meleeWeapon.damage,
-                    weapon: this.meleeWeapon
-                };
-            },
-            getTargetsForAction: makeAdjacentTargetsFinder('melee_attack')
-        },
-
-        ranged_attack: {
-            canPerformAction: function(target, settings){
-                if(!this.rangedWeapon){
-                    this.game.console.log('you do not have a ranged weapon');
+                if(!this.weapon){
+                    this.game.console.log('you do not have a weapon');
                     return false;
                 }
                 return true;
             },
             canPerformActionOnTarget: function(target, settings){
+                // if this is a mob
+                if(!this.fov)
+                    return true;
+                
+                // if this is a player
                 if(!this.fov.get(target.x, target.y)){
                     return false;
                 }
@@ -291,17 +278,17 @@
             },
             performAction: function(target, settings){
                 return {
-                    damage: this.rangedWeapon.damage,
-                    weapon: this.rangedWeapon
+                    damage: this.weapon.damage,
+                    weapon: this.weapon
                 };
             },
             getTargetsForAction: function(settings){
                 var _this = this;
                 var validTargetsSettings = {
-                    range: this.rangedWeapon.range,
+                    range: this.weapon.range,
                     limitToFov: true,
                     filter: function(target){
-                        return _this.canPerformActionOnTarget('ranged_attack', target, settings);
+                        return _this.canPerformActionOnTarget('attack', target, settings);
                     }
                 };
                 var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
@@ -315,7 +302,7 @@
             canPerformAction: true,
             canPerformActionOnTarget: true,
             performAction: function(source, settings){
-                settings.hordePushBonus = this.meleeWeapon.damage + this.hordePushBonus;
+                settings.hordePushBonus = this.weapon.damage + this.hordePushBonus;
                 return true;
             }
         }
@@ -395,49 +382,7 @@
                 return true;
             }
         },
-
-        melee_attack: {
-            canResolveAction: true,
-            resolveAction: function(source, settings){
-                if(this.dead)
-                    return false;
-                var result = settings.result;
-                this.takeDamage(source.strength);
-
-                var weapon = {
-                    name: result.weapon.name,
-                    damage: source.strength
-                };
-
-                this.game.console.logAttack(source, weapon, this);
-                if(this.game.player == source)
-                    source.gainExp(this.exp);
-
-                var smash = {
-                    source: source,
-                    target: this,
-                    type: 'melee_attack',
-                    targetX: this.x,
-                    targetY: this.y,
-                    sourceX: source.x,
-                    sourceY: source.y
-                };
-                this.game.smashLayer.set(source.x, source.y, smash);
-
-
-
-
-                if(this.bleeds){
-                    var splatter = source.strength / 10;
-                    if(this.dead){
-                        splatter *= 1.5;
-                    }
-                    this.game.splatter(this.x, this.y, splatter);
-                }
-                return true;
-            },
-        },
-        ranged_attack: {
+        attack: {
             canResolveAction: true,
             resolveAction: function(source, settings){
                 if(this.dead)
@@ -458,7 +403,7 @@
                 var smash = {
                     source: source,
                     target: this,
-                    type: 'ranged_attack',
+                    type: 'attack',
                     targetX: this.x,
                     targetY: this.y,
                     sourceX: source.x,

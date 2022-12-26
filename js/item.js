@@ -118,7 +118,7 @@
         getConsoleName: function(){
             return {
                 name: this.name,
-                color: this.consoleColor
+                color: this.consoleColor,
             };
         },
     };
@@ -152,78 +152,27 @@
                 return 'Heals ' + this.healAmount + ' HP';
             },
         },
-        meleeWeapon: {
+        weapon: {
             group: 'weapon',
             canAttachTo: function(entity){
                 if(this.game.player !== entity){
                     return false;
                 }
-                if(this.damage < entity.meleeWeapon.damage){
-                    this.game.console.logCanNotPickupWeapon(entity, entity.meleeWeapon, this);
+                if(this.damage < entity.weapon.damage){
+                    this.game.console.logCanNotPickupWeapon(entity, entity.weapon, this);
                     return false;
                 }
                 return true;
             },
             attachTo: function(entity){
                 Item.prototype.attachTo.call(this, entity);
-                entity.meleeWeapon = this;
-            },
-            getConsoleName: function(){
-                return {
-                    name: this.name,
-                    rank: this.rank,
-                    stats: this.getStats(),
-                    color: this.consoleColor
-                };
-            },
-            getStats: function(){
-                var msg = '';
-                if(this.stat1Modifier){
-                    if(this.stat1Modifier >= 0)
-                        msg += '+';
-                    else
-                        msg += '-';
-                    msg += this.stat1Modifier + ' ' + this.stat1;
-                }
-                if(this.stat2){
-                    msg += ', ';
-                    if(this.stat2Modifier >= 0)
-                        msg += '+';
-                    else
-                        msg += '-';
-                    msg += this.stat2Modifier + ' ' + this.stat2;
-                }
-                if(this.stat3){
-                    msg += ', ';
-                    if(this.stat3Modifier >= 0)
-                        msg += '+';
-                    else
-                        msg += '-';
-                    msg += this.stat3Modifier + ' ' + this.stat3;
-                }
-                return msg;
-            }
-        },
-        rangedWeapon: {
-            group: 'weapon',
-            canAttachTo: function(entity){
-                if(this.game.player !== entity){
-                    return false;
-                }
-                if(this.damage < entity.rangedWeapon.damage){
-                    this.game.console.logCanNotPickupWeapon(entity, entity.rangedWeapon, this);
-                    return false;
-                }
-                return true;
-            },
-            attachTo: function(entity){
-                Item.prototype.attachTo.call(this, entity);
-                entity.rangedWeapon = this;
+                entity.weapon = this;
             },
             getConsoleName: function(){
                 return {
                     name: this.name,
                     stats: this.getStats(),
+                    range: this.range,
                     color: this.consoleColor
                 };
             },
@@ -270,12 +219,8 @@
         return RL.Util.merge(obj, Defaults.healing);
     };
 
-    var makeMeleeWeapon = function(obj){
-        return RL.Util.merge(obj, Defaults.meleeWeapon);
-    };
-
-    var makeRangedWeapon = function(obj){
-        return RL.Util.merge(obj, Defaults.rangedWeapon);
+    var makeWeapon = function(obj){
+        return RL.Util.merge(obj, Defaults.weapon);
     };
     
     var makeMaterial = function(obj){
@@ -310,7 +255,7 @@
         }),
 
         // enemy weapons
-        goo: makeMeleeWeapon({
+        goo: makeWeapon({
             name: 'Goo',
             char: 'g',
             rank: 'F',
@@ -320,7 +265,7 @@
         }),
 
         // melee weapons
-        fists: makeMeleeWeapon({
+        fists: makeWeapon({
             name: 'Fists',
             char: 'f',
             rank: 'F',
@@ -330,7 +275,7 @@
         }),
 
         // ranged weapons
-        rock: makeRangedWeapon({
+        rock: makeWeapon({
             name: 'Rock',
             char: 'r',
             rank: 'E',

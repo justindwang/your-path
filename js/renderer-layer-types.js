@@ -126,11 +126,7 @@
                             offsetY,
                             smashChar = '✹',
                             smashColor = 'rgba(255, 255, 255, 0.75)';
-                        if(smash.type === 'melee_attack'){
-                            offsetX = (smash.targetX - smash.sourceX) * 0.5;
-                            offsetY = (smash.targetY - smash.sourceY) * 0.5;
-                        }
-                        else if(smash.type === 'ranged_attack'){
+                        if(smash.type === 'attack'){
 
                             var vx = (smash.targetX - smash.sourceX);
                             var vy = (smash.targetY - smash.sourceY);

@@ -5,8 +5,8 @@ var keyBindings = {
     right: ['→', 'D'],
     // close: ['C'],
     // open: ['O'],
-    melee_attack: ['E'],
-    ranged_attack: ['F'],
+    attack: ['E'],
+    // ranged_attack: ['F'],
     wait: ['space'],
     // cancel: ['ESC']
     switch_skill: ['tab'],
@@ -108,10 +108,9 @@ var statElements = {
     vitalityEl: document.getElementById('stat-vitality'),
     agilityEl: document.getElementById('stat-agility'),
     intelligenceEl: document.getElementById('stat-intelligence'),
-    meleeWeaponNameEl: document.getElementById('stat-melee-weapon-name'),
-    meleeWeaponStatsEl: document.getElementById('stat-melee-weapon-stats'),
-    rangedWeaponNameEl: document.getElementById('stat-ranged-weapon-name'),
-    rangedWeaponStatsEl: document.getElementById('stat-ranged-weapon-stats'),
+    weaponNameEl: document.getElementById('stat-weapon-name'),
+    weaponStatsEl: document.getElementById('stat-weapon-stats'),
+    weaponRangeEl: document.getElementById('stat-weapon-range'),
     skillsEl: document.getElementById('stat-skills'),
 };
 RL.Util.merge(game.player, statElements);

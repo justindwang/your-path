@@ -312,7 +312,7 @@
                 this.updatePlayerLastSeen();
 
                 if(this.isAdjacent(this.game.player.x, this.game.player.y)) {
-                    return this.performAction('melee_attack', this.game.player);
+                    return this.performAction('attack', this.game.player);
                 }
 
                 var destination;
@@ -325,10 +325,10 @@
                         if(destination) {
                             var _this = this;
                             var furniture = this.game.furnitureManager.getFirst(destination.x, destination.y, function(furniture) {
-                                return !furniture.passable && _this.canPerformActionOnTarget('melee_attack', furniture);
+                                return !furniture.passable && _this.canPerformActionOnTarget('attack', furniture);
                             });
 
-                            if(furniture && this.performAction('melee_attack', furniture)) {
+                            if(furniture && this.performAction('attack', furniture)) {
                                 return true;
                             }
 
@@ -374,7 +374,7 @@
                 this.turnsSinceStumble++;
 
                 if(this.isAdjacent(this.game.player.x, this.game.player.y)) 
-                    return this.performAction('melee_attack', this.game.player);
+                    return this.performAction('attack', this.game.player);
 
                 var destination = this.getRandomAdjacentTile();
 
@@ -428,12 +428,11 @@
             maxTurnsWithoutStumble: 10,
             hordePushBonus: 0,
             initialize: function() {
-                this.meleeWeapon = new RL.Item(this.game, 'claws');
-                RL.Actions.Resolvable.add(this, 'ranged_attack');
-                RL.Actions.Resolvable.add(this, 'melee_attack');
+                this.weapon = new RL.Item(this.game, 'claws');
+                RL.Actions.Resolvable.add(this, 'attack');
                 RL.Actions.Resolvable.add(this, 'horde_push_bonus');
 
-                RL.Actions.Performable.add(this, 'melee_attack');
+                RL.Actions.Performable.add(this, 'attack');
                 RL.Actions.Performable.add(this, 'horde_push_bonus');
             },
         }),
@@ -454,12 +453,11 @@
             exp: 2,
             hordePushBonus: 0,
             initialize: function() {
-                this.meleeWeapon = new RL.Item(this.game, 'goo');
-                RL.Actions.Resolvable.add(this, 'ranged_attack');
-                RL.Actions.Resolvable.add(this, 'melee_attack');
+                this.weapon = new RL.Item(this.game, 'goo');
+                RL.Actions.Resolvable.add(this, 'attack');
                 RL.Actions.Resolvable.add(this, 'horde_push_bonus');
 
-                RL.Actions.Performable.add(this, 'melee_attack');
+                RL.Actions.Performable.add(this, 'attack');
                 RL.Actions.Performable.add(this, 'horde_push_bonus');
             },
         }),

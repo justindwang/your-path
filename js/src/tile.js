@@ -165,14 +165,6 @@
             passable: false,
             blocksLos: true
         },
-        // light: {
-        //     name: 'Light',
-        //     char: '+',
-        //     color: '#fff',
-        //     bgColor: '#333',
-        //     passable: false,
-        //     blocksLos: false
-        // },
         door: {
             name: 'Door',
             char: '+',

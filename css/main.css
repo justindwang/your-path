@@ -2832,7 +2832,7 @@ progress::-webkit-progress-bar {
 .inventory-item-info {width: calc(100%-50px); height: 100%; float:left}
 .inventory-item-info h4 {font-size: 13px; padding-left: 20px; box-sizing: border-box; position: relative;}
 
-#inventory-foot { width: 100%; height: 15px; padding-top: 5px; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.2);}
+#inventory-foot { width: 100%; height: 15px; padding-top: 5px; box-sizing: border-box; border-top: 1px solid #ffffff33;}
 #inventory-foot p {float:right; font-size: 11px;}
 #inventory-foot span {float:right; font-size: 11px;}
 #inventory-foot p:nth-of-type(1){float:left; font-size: 12px;}
