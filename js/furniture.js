@@ -108,6 +108,8 @@
 
         dead: false,
 
+        exp: 0,
+
         actions: null,
 
         takeDamage: function(amount){
