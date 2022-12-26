@@ -246,6 +246,15 @@
         sortArrayOfObjects: function(arr, key) {
             return arr.sort((a, b) => (a[key] > b[key] ? 1 : -1));
         },
+        mapAbbrToStat: function(abbr){
+            switch(abbr){
+                case 'Str': return 'strength';
+                case 'Agi': return 'agility';
+                case 'Int': return 'intelligence';
+                case 'Vit': return 'vitality';
+                default: return 'error';
+            }
+        }
     };
 
     root.RL.Util = Util;

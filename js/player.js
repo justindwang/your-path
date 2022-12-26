@@ -7,6 +7,7 @@
         proto.constructor.call(this, game);
 
         this.weapon = new RL.Item(this.game, 'rock');
+        this.applyWeaponStats();
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
         this.inventory = [new RL.Item(this.game, 'tiny_potion'), new RL.Item(this.game, 'goo'), new RL.Item(this.game, 'fists'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'slime_goo')];
 
@@ -17,7 +18,6 @@
         RL.Actions.Performable.add(this, 'attack');
 
         RL.Actions.Resolvable.add(this, 'attack');
-
     };
 
     var newPlayerPrototype = {
@@ -442,6 +442,24 @@
                 this.agility++;
                 this.game.console.logLevelUp(this.level);
             }
+        },
+
+        applyWeaponStats: function(){
+            if(this.weapon.stat1)
+                this[RL.Util.mapAbbrToStat(this.weapon.stat1)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat1)] + this.weapon.stat1Modifier);
+            if(this.weapon.stat2)
+                this[RL.Util.mapAbbrToStat(this.weapon.stat2)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat2)] + this.weapon.stat2Modifier);
+            if(this.weapon.stat3)
+                this[RL.Util.mapAbbrToStat(this.weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat3)] + this.weapon.stat3Modifier);
+        },
+
+        removeWeaponStats: function(){
+            if(this.weapon.stat1)
+                this[RL.Util.mapAbbrToStat(this.weapon.stat1)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat1)] - this.weapon.stat1Modifier);
+            if(this.weapon.stat2)
+                this[RL.Util.mapAbbrToStat(this.weapon.stat2)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat2)] - this.weapon.stat2Modifier);
+            if(this.weapon.stat3)
+                this[RL.Util.mapAbbrToStat(this.weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat3)] - this.weapon.stat3Modifier);
         },
 
         renderHtml: function(){

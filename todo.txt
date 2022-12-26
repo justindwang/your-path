@@ -2,7 +2,7 @@ Your Path Todo:
 
 - generalize melee/ranged weapon into one action (done? might be buggy)
 - combine color and console color for items to match rarity (done)
-- apply stat modifiers from items
+- apply stat modifiers from items (done)
 - UI for equipping/changing weapons
 - Loot tables for mobs
 - add item from canvas/shop into inventory
@@ -13,3 +13,4 @@ Your Path Todo:
 
 - design more mobs/floors
 - revamp door generation / fix bug where door is blocked by a wall
+- add luck stat
