@@ -18,9 +18,9 @@
             document.getElementById('pr-shop').addEventListener('click', this.displayShopMenu);
             document.getElementById('pr-stats').addEventListener('click', this.displayStatsMenu);
 
-            document.getElementById('inventory-foot-type').addEventListener('click', this.sortInventoryType('type'));
-            document.getElementById('inventory-foot-rarity').addEventListener('click', this.sortInventoryRarity('rarity'));
-            document.getElementById('inventory-foot-name').addEventListener('click', this.sortInventoryName('name'));
+            document.getElementById('inventory-foot-type').addEventListener('click', () => {this.sortInventoryType()});
+            document.getElementById('inventory-foot-rarity').addEventListener('click', () => {this.sortInventoryRarity()});
+            document.getElementById('inventory-foot-name').addEventListener('click', () => {this.sortInventoryName()});
         },
 
         displayInventoryMenu: function(){
@@ -67,42 +67,53 @@
         
         sortInventoryType: function(){
             var toSort = this.game.player.inventory;
-            for(var i = 0; i<toSort.length; i++){
-                console.log(toSort[i].name);
-            }
-            sorted = RL.Util.sortArrayOfObjects(toSort, 'group');
-            for(var j = 0; j<sorted.length; j++){
-                console.log(sorted[i].name);
-            }
-            this.renderInventory(sorted);
+            this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'group');
+            this.renderInventory();
         },
 
         sortInventoryRarity: function(){
             var toSort = this.game.player.inventory;
-            for(var i = 0; i<toSort.length; i++){
-                console.log(toSort[i].name);
-            }
-            sorted = RL.Util.sortArrayOfObjects(toSort, 'rank');
-            for(var j = 0; j<sorted.length; j++){
-                console.log(sorted[i].name);
-            }
-            this.renderInventory(sorted);
+            this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'rank');
+            this.renderInventory();
         },
 
         sortInventoryName: function(){
             var toSort = this.game.player.inventory;
-            for(var i = 0; i<toSort.length; i++){
-                console.log(toSort[i].name);
-            }
-            sorted = RL.Util.sortArrayOfObjects(toSort, 'name');
-            for(var j = 0; j<sorted.length; j++){
-                console.log(sorted[i].name);
-            }
-            this.renderInventory(sorted);
+            this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'name');
+            this.renderInventory();
         },
 
-        renderInventory: function(inventory){
+        initInventory: function(){
+            var inventory = this.game.player.inventory;
             var wrap = document.getElementById('inventory-body');
+            var icon = '';
+            var color = '';
+            var html = '';
+            
+            for(var i = 0; i<inventory.length; i++){
+                switch(inventory[i].group) {
+                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
+                    case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
+                }
+                switch(inventory[i].rank){
+                    case 'S': color = '<span style="color:brown">'; break;
+                    case 'A': color = '<span style="color:orchid">'; break;
+                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'C': color = '<span style="color:cadetblue">'; break;
+                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'E': color = '<span style="color:goldenrod">'; break;
+                    case 'F': color = '<span style="color:peachpuff">'; break;
+                }
+
+                html += '<div class="inventory-item"><div class="inventory-item-icon">' + icon + '</div><div class="inventory-item-info"><h4>' + color + inventory[i].name + ' - ' + inventory[i].rank +'</span> <br> <span>' + inventory[i].getStats() + '</span></h4></div></div>';
+            }
+            wrap.innerHTML = html;
+        },
+
+        renderInventory: function(){
+            var inventory = this.game.player.inventory;
+            var wrap = document.getElementById('mCSB_1_container');
             var icon = '';
             var color = '';
             var html = '';
