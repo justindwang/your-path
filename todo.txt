@@ -5,7 +5,7 @@ Your Path Todo:
 - apply stat modifiers from items (done)
 - UI for equipping/changing weapons (done)
 - change item attaching mechanic to add to inventory (done)
-- remove entities from canvas when killed
+- remove entities from canvas when killed (done)
 - revamp door generation / fix bug where door is blocked by a wall
 - ui to stay/go to next floor when reaching exit
 

@@ -397,8 +397,11 @@
                 };
                 
                 this.game.console.logAttack(source, weapon, this);
-                if(this.game.player == source)
-                    source.gainExp(this.exp);
+                if(this.dead){
+                    this.game.entityManager.remove(this);
+                    if(this.game.player)
+                        source.gainExp(this.exp);
+                }
 
                 var smash = {
                     source: source,

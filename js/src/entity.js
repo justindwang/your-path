@@ -460,8 +460,8 @@
             consoleColor: RL.Util.COLORS.blue,
 
             maxTurnsWithoutStumble: 3,
-            hp: 1,
-            hpMax: 1,
+            hp: 10,
+            hpMax: 10,
             strength: 0,
             exp: 2,
             hordePushBonus: 0,
