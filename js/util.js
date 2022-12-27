@@ -28,6 +28,8 @@
         light_brown: '#513922',
         carnation_pink: '#ffa6c9',
         peach: '#f6b26b',
+        forest_green: '#014421',
+        oak_brown: '#806517',
         mp_blue: '#4932b9',
         exp_green: '#77dd77',
         hp_red: '#9a2828',

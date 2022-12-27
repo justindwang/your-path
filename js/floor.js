@@ -95,15 +95,30 @@
             wallColor: RL.Util.COLORS.brown,
             wallBgColor: RL.Util.COLORS.light_brown,
             entityCharToType: {
-                s: 'slime'
-            },
+                s: 'slime'},
             furnitureCharToType: {
                 b: 'bush',
                 '+': 'door',
-                '-': 'crate',
-            },
-            itemsCharToType: {
-            },
+                '-': 'crate',},
+            itemsCharToType: {},
+        },
+        2: {
+            name: 'The Great Forest',
+            entities: ['wolf', 'floor', 'floor', 'floor', 'shrub', 'oak_tree', 'crate'],
+            entityChars: ['w', '.', '.', '.', 'm', 'T', '-'],
+            consoleColor: RL.Util.COLORS.green,
+            floorColor: RL.Util.COLORS.gray,
+            floorBgColor: RL.Util.COLORS.forest_green,
+            wallColor: RL.Util.COLORS.light_brown,
+            wallBgColor: RL.Util.COLORS.oak_brown,
+            entityCharToType: {
+                w: 'wolf'},
+            furnitureCharToType: {
+                m: 'shrub',
+                '+': 'door',
+                T: 'oak_tree',
+                '-': 'crate'},
+            itemsCharToType: {},
         },
     };
 

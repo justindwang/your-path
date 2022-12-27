@@ -254,7 +254,26 @@
                 case 'Vit': return 'vitality';
                 default: return 'error';
             }
-        }
+        },
+        renderControlsHtml: function(controlsEL, keyBindings){
+            var controlsHtml = '';
+            controlsHtml += '<div class="tr"><div class="td_center_head">Action</div> <div class="td_tab">MMMMM</div><div class="td_center_head">Keys</div></div>';
+            controlsHtml += '<div class="tr"><div class="td_center">move</div> <div class="td"></div> <div class="td_center"> WASD </div></div>';
+            for(var action in keyBindings){
+                if(action == 'up' || action == 'down' || action == 'left' || action == 'right')
+                    continue;
+                controlsHtml += '<div class="tr">';
+                controlsHtml += '<div class="td_center">' + action + '</div>';
+                controlsHtml += '<div class="td"></div>';
+                var val = keyBindings[action];
+                controlsHtml += '<div class="td_center">';
+                controlsHtml += val.join(', ');
+                controlsHtml += '</div>';
+                controlsHtml += '</div>';
+            }
+            controlsEL.innerHTML = controlsHtml;
+
+        },
     };
 
     root.RL.Util = Util;

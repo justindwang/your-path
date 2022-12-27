@@ -15,25 +15,8 @@ var keyBindings = {
 var controlsEL = document.getElementById('controls');
 var mapContainerEl = document.getElementById('map-container');
 var consoleContainerEl = document.getElementById('console-container');
-var consoleDirectionsEl = document.getElementById('console-directions');
-
-// building controls section of html style="color:red;"
-var controlsHtml = '';
-controlsHtml += '<div class="tr"><div class="td_center_head">Action</div> <div class="td_tab">MMMMM</div><div class="td_center_head">Keys</div></div>';
-controlsHtml += '<div class="tr"><div class="td_center">move</div> <div class="td"></div> <div class="td_center"> WASD </div></div>';
-for(var action in keyBindings){
-    if(action == 'up' || action == 'down' || action == 'left' || action == 'right')
-        continue;
-    controlsHtml += '<div class="tr">';
-    controlsHtml += '<div class="td_center">' + action + '</div>';
-    controlsHtml += '<div class="td"></div>';
-    var val = keyBindings[action];
-    controlsHtml += '<div class="td_center">';
-    controlsHtml += val.join(', ');
-    controlsHtml += '</div>';
-    controlsHtml += '</div>';
-}
-controlsEL.innerHTML = controlsHtml;
+var consoleDirectionsEl = document.getElementById('console-directions');x
+RL.Util.renderControlsHtml(controlsEL, keyBindings);
 
 var mapCharToType = {
     '#': 'wall',
@@ -116,8 +99,6 @@ var statElements = {
 RL.Util.merge(game.player, statElements);
 game.player.renderHtml();
 game.menu.startListening();
-
-// game.furnitureManager.add(25, 7, 'chest');
 
 game.map.each(function(val, x, y){
     if((x+1) % 5 === 0 && (y+1) % 5 === 0){
