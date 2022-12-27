@@ -15,7 +15,7 @@ var keyBindings = {
 var controlsEL = document.getElementById('controls');
 var mapContainerEl = document.getElementById('map-container');
 var consoleContainerEl = document.getElementById('console-container');
-var consoleDirectionsEl = document.getElementById('console-directions');x
+var consoleDirectionsEl = document.getElementById('console-directions');
 RL.Util.renderControlsHtml(controlsEL, keyBindings);
 
 var mapCharToType = {
