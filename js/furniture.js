@@ -267,8 +267,39 @@
             passable: false,
             blocksLos: false,
             init: function(){
-                RL.Actions.Resolvable.add(this, 'grab');
                 RL.Actions.Resolvable.add(this, 'push');
+                RL.Actions.Resolvable.add(this, 'attack');
+            }
+        },
+
+        shrub: {
+            name: 'Shrub',
+            hp: 5,
+            char: 'm',
+            color: RL.Util.COLORS.green,
+            consoleColor: RL.Util.COLORS.green,
+            charStrokeColor: '#000',
+            charStrokeWidth: 2,
+            pushable: true,
+            passable: false,
+            blocksLos: false,
+            init: function(){
+                RL.Actions.Resolvable.add(this, 'push');
+                RL.Actions.Resolvable.add(this, 'attack');
+            }
+        },
+        oak_tree:{
+            name: 'Oak Tree',
+            hp: 15,
+            char: 'T',
+            color: RL.Util.COLORS.golden_oak,
+            consoleColor: RL.Util.COLORS.golden_oak,
+            charStrokeColor: '#000',
+            charStrokeWidth: 2,
+            pushable: false,
+            passable: false,
+            blocksLos: true,
+            init: function(){
                 RL.Actions.Resolvable.add(this, 'attack');
             }
         }

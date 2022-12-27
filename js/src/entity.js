@@ -429,30 +429,6 @@
     * @static
     */
     Entity.Types = {
-        zombie: makeSeekingMeleeEntity({
-            name: 'Zombie',
-            char: 'z',
-            color: RL.Util.COLORS.red,
-            bgColor: false,
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
-            consoleColor: RL.Util.COLORS.red_alt,
-            hp: 3,
-            hpMax: 3,
-            strength: 0,
-            exp: 2,
-            maxTurnsWithoutStumble: 10,
-            hordePushBonus: 0,
-            initialize: function() {
-                this.weapon = new RL.Item(this.game, 'claws');
-                this.applyWeaponStats(this.weapon);
-                RL.Actions.Resolvable.add(this, 'attack');
-                RL.Actions.Resolvable.add(this, 'horde_push_bonus');
-
-                RL.Actions.Performable.add(this, 'attack');
-                RL.Actions.Performable.add(this, 'horde_push_bonus');
-            },
-        }),
         slime: makeNonSeekingMeleeEntity({
             name: 'Slime',
             char: 's',
@@ -478,6 +454,30 @@
                 RL.Actions.Performable.add(this, 'attack');
                 RL.Actions.Performable.add(this, 'horde_push_bonus');
 
+            },
+        }),
+        wolf: makeSeekingMeleeEntity({
+            name: 'Wolf',
+            char: 'w',
+            color: RL.Util.COLORS.dark_gray,
+            bgColor: false,
+            charStrokeColor: '#000',
+            charStrokeWidth: 2,
+            consoleColor: RL.Util.COLORS.dark_gray,
+            hp: 20,
+            hpMax: 20,
+            strength: 2,
+            exp: 5,
+            maxTurnsWithoutStumble: 10,
+            hordePushBonus: 0,
+            initialize: function() {
+                this.weapon = new RL.Item(this.game, 'claws');
+                this.applyWeaponStats(this.weapon);
+                RL.Actions.Resolvable.add(this, 'attack');
+                RL.Actions.Resolvable.add(this, 'horde_push_bonus');
+
+                RL.Actions.Performable.add(this, 'attack');
+                RL.Actions.Performable.add(this, 'horde_push_bonus');
             },
         }),
     };

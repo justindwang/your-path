@@ -99,7 +99,9 @@
         move: function(x, y, object) {
             var existing = this.get(object.x, object.y);
             if(existing !== object || this.objects.indexOf(object) === -1){
-                throw new Error({error: 'Attempting to move object not in Object manager', x: x, y: y, object: object});
+                // throw new Error({error: 'Attempting to move object not in Object manager', x: x, y: y, object: object});
+                console.log('moving object not in object manager');
+                return;
             }
             this.map.remove(object.x, object.y);
             object.x = x;

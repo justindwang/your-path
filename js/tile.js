@@ -97,7 +97,8 @@
                 if(this.game.player !== entity)
                     return;
                 this.game.console.logExit(entity);
-                this.game.gameOver = true;
+                // this.game.gameOver = true;
+                this.game.goToFloor(this.game.floor.number + 1);
             }
         };
 

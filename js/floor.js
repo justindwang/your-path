@@ -104,15 +104,15 @@
         },
         2: {
             name: 'The Great Forest',
-            entities: ['wolf', 'floor', 'floor', 'floor', 'shrub', 'oak_tree', 'crate'],
-            entityChars: ['w', '.', '.', '.', 'm', 'T', '-'],
+            entities: ['wolf', 'floor', 'floor', 'floor', 'shrub', 'oak_tree', 'wolf'],
+            entityChars: ['w', '.', '.', '.', 'm', 'T', 'w'],
             consoleColor: RL.Util.COLORS.green,
             floorColor: RL.Util.COLORS.gray,
             floorBgColor: RL.Util.COLORS.forest_green,
             wallColor: RL.Util.COLORS.light_brown,
             wallBgColor: RL.Util.COLORS.oak_brown,
             entityCharToType: {
-                w: 'wolf'},
+                w: 'wolf',},
             furnitureCharToType: {
                 m: 'shrub',
                 '+': 'door',

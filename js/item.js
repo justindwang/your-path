@@ -240,6 +240,14 @@
             stat1Modifier: 1,
             range: 1,
         }),
+        claws: makeWeapon({
+            name: 'Claws',
+            char: 'c',
+            rank: 'F',
+            stat1: 'Str',
+            stat1Modifier: 1,
+            range: 1,
+        }),
 
         // melee weapons
         fists: makeWeapon({

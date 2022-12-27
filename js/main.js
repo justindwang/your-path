@@ -12,68 +12,6 @@ var keyBindings = {
     switch_skill: ['tab'],
     use_skill: ['R'],
 };
-var controlsEL = document.getElementById('controls');
-var mapContainerEl = document.getElementById('map-container');
-var consoleContainerEl = document.getElementById('console-container');
-var consoleDirectionsEl = document.getElementById('console-directions');
-RL.Util.renderControlsHtml(controlsEL, keyBindings);
-
-var mapCharToType = {
-    '#': 'wall',
-    '.': 'floor',
-    'x': 'exit'
-};
-
-var rendererWidth = 25;
-var rendererHeight = 25;
-
-RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
-
-// create the game instance
-var game = new RL.Game(1);
-var mapData = game.generateMap(100,100,1);
-
-var floor1 = new RL.Floor(game, 1);
-game.updatePalette();
-
-game.map.loadTilesFromArrayString(mapData, mapCharToType, 'floor');
-
-game.setMapSize(game.map.width, game.map.height);
-
-game.entityManager.loadFromArrayString(mapData, floor1.entityCharToType);
-game.itemManager.loadFromArrayString(mapData, floor1.itemsCharToType);
-game.furnitureManager.loadFromArrayString(mapData, floor1.furnitureCharToType);
-
-// add input keybindings
-game.input.addBindings(keyBindings);
-
-// set player starting position
-let playerStartX = null;
-let playerStartY = null;
-do {
-    playerStartX = RL.Util.random(1, game.map.width-1);
-    playerStartY = RL.Util.random(1, game.map.height-1);
-} while (game.getObjectsAtPostion(playerStartX, playerStartY).length > 0 || game.map.get(playerStartX, playerStartY).name !='Floor');
-game.player.x = playerStartX;
-game.player.y = playerStartY;
-
-game.renderer.resize(rendererWidth, rendererHeight);
-
-game.renderer.layers = [
-    new RL.RendererLayer(game, 'map',       {draw: false,   mergeWithPrevLayer: false}),
-
-    new RL.RendererLayer(game, 'furniture', {draw: false,   mergeWithPrevLayer: true}),
-    new RL.RendererLayer(game, 'item',      {draw: false,   mergeWithPrevLayer: true}),
-    new RL.RendererLayer(game, 'entity',    {draw: false,   mergeWithPrevLayer: true}),
-    new RL.RendererLayer(game, 'damage',    {draw: false,   mergeWithPrevLayer: true}),
-
-    new RL.RendererLayer(game, 'lighting',  {draw: true,    mergeWithPrevLayer: false}),
-    new RL.RendererLayer(game, 'fov',       {draw: true,    mergeWithPrevLayer: false}),
-];
-
-mapContainerEl.appendChild(game.renderer.canvas);
-consoleContainerEl.appendChild(game.console.el);
-game.console.directionsEl = document.getElementById('console-directions');
 
 var statElements = {
     nameEl: document.getElementById('stat-name'),
@@ -96,18 +34,61 @@ var statElements = {
     weaponRangeEl: document.getElementById('stat-weapon-range'),
     skillsEl: document.getElementById('stat-skills'),
 };
+
+var controlsEL = document.getElementById('controls');
+var mapContainerEl = document.getElementById('map-container');
+var consoleContainerEl = document.getElementById('console-container');
+var consoleDirectionsEl = document.getElementById('console-directions');
+RL.Util.renderControlsHtml(controlsEL, keyBindings);
+
+var mapCharToType = {
+    '#': 'wall',
+    '.': 'floor',
+    'x': 'exit'
+};
+
+var mapHeight = 100;
+var mapWidth = 100;
+var rendererHeight = 25;
+var rendererWidth = 25;
+
+RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
+
+// create the game instance
+var game = new RL.Game(mapHeight, mapWidth, rendererHeight, rendererWidth);
+game.renderer.resize(game.rendererWidth, game.rendererHeight);
+game.renderer.layers = [
+    new RL.RendererLayer(game, 'map',       {draw: false,   mergeWithPrevLayer: false}),
+
+    new RL.RendererLayer(game, 'furniture', {draw: false,   mergeWithPrevLayer: true}),
+    new RL.RendererLayer(game, 'item',      {draw: false,   mergeWithPrevLayer: true}),
+    new RL.RendererLayer(game, 'entity',    {draw: false,   mergeWithPrevLayer: true}),
+    new RL.RendererLayer(game, 'damage',    {draw: false,   mergeWithPrevLayer: true}),
+
+    new RL.RendererLayer(game, 'lighting',  {draw: true,    mergeWithPrevLayer: false}),
+    new RL.RendererLayer(game, 'fov',       {draw: true,    mergeWithPrevLayer: false}),
+];
+
+game.input.addBindings(keyBindings);
 RL.Util.merge(game.player, statElements);
 game.player.renderHtml();
 game.menu.startListening();
+game.console.directionsEl = document.getElementById('console-directions');
+mapContainerEl.appendChild(game.renderer.canvas);
+consoleContainerEl.appendChild(game.console.el);
 
-game.map.each(function(val, x, y){
-    if((x+1) % 5 === 0 && (y+1) % 5 === 0){
-        var tile = game.map.get(x, y);
-        if(tile.type !== 'wall'){
-            game.lighting.set(x, y, 100, 100, 100);
-        }
-    }
-});
+game.loadFloor();
+
+// var mapData = game.generateMap();
+// game.updatePalette();
+
+// game.map.loadTilesFromArrayString(mapData, mapCharToType, 'floor');
+// game.setMapSize(game.mapWidth, game.mapHeight);
+// game.entityManager.loadFromArrayString(mapData, game.floor.entityCharToType);
+// game.itemManager.loadFromArrayString(mapData, game.floor.itemsCharToType);
+// game.furnitureManager.loadFromArrayString(mapData, game.floor.furnitureCharToType);
+// game.generatePlayerStartPosition();
+// game.setLighting(5);
 
 game.start();
 setInterval(function(){

@@ -14,6 +14,10 @@ Todo:
 - revamp door generation / fix bug where door is blocked by a wall (done)
 - ui to stay/go to next floor when reaching exit
 - display floor name
+- remove grab functionality
+- keep target if object is not an entity
+- bug with seekingmeleeentity uncaught error object manager move
+- fast travel to different floors
 
 - Loot tables for mobs
 - add mob item drops onto canvas

@@ -3,13 +3,17 @@
 
     var proto = RL.Game.prototype;
 
-    var NewGame = function Game(floorNumber){
+    var NewGame = function Game(mapHeight, mapWidth, rendererHeight, rendererWidth){
         proto.constructor.call(this);
         this.furnitureManager = new RL.MultiObjectManager(this, RL.Furniture);
         this.itemManager = new RL.ObjectManager(this, RL.Item);
         this.smashLayer = new RL.Array2d();
         this.damageLayer = new RL.Array2d();
-        this.floorNumber = floorNumber;
+        this.mapHeight = mapHeight;
+        this.mapWidth = mapWidth;
+        this.rendererHeight = rendererHeight;
+        this.rendererWidth = rendererWidth;
+        this.floor = new RL.Floor(this, 1);
     };
 
     var newGamePrototype = {
@@ -23,7 +27,12 @@
 
         damageLayer: null,
 
-        floorNumber: null,
+        floor: null,
+
+        mapHeight: null,
+        mapWidth: null,
+        rendererHeight: null,
+        rendererWidth: null,
 
         game_update: function(){
             if(!this.gameOver){
@@ -275,7 +284,7 @@
         },
 
         addEntities: function(array){
-            let entityList = RL.Floor.Data[this.floorNumber].entityChars;
+            let entityList = this.floor.entityChars;
             function replace_with_sample(char) {
                 if(char == '#')
                     return '#';
@@ -294,22 +303,22 @@
             array[x][y] = 'x';
         },
 
-        generateMap: function(height, width, difficulty){
+        generateMap: function(){
             let mapData = [];
             var s = ['#'];
             var t = ['#','#'];
-            for(var i = width-3; i>=0; i--){
+            for(var i = this.mapWidth-3; i>=0; i--){
                 s.push('.');
                 t.push('#');
             }
             s.push('#');
-            for(var j = height-3; j>=0; j--){
+            for(var j = this.mapHeight-3; j>=0; j--){
                 var ss = [...s];
                 mapData.push(ss);
             }
             mapData.push(t);
             mapData.unshift(t);
-            mapData = this.bsp(mapData, Math.floor(Math.log2(height*width))-1);
+            mapData = this.bsp(mapData, Math.floor(Math.log2(this.mapHeight*this.mapWidth))-1);
             this.addEntities(mapData);
             for(var k = mapData.length - 1; k>=0; k--){
                 mapData[k] = mapData[k].join('');
@@ -321,10 +330,62 @@
          * Updates tile colors to the preset colors for x floor
          */
         updatePalette: function(){
-            RL.Tile.Types['floor'].color = RL.Floor.Data[this.floorNumber].floorColor;
-            RL.Tile.Types['floor'].bgColor = RL.Floor.Data[this.floorNumber].floorBgColor;
-            RL.Tile.Types['wall'].color = RL.Floor.Data[this.floorNumber].wallColor;
-            RL.Tile.Types['wall'].bgColor = RL.Floor.Data[this.floorNumber].wallBgColor;
+            RL.Tile.Types['floor'].color = this.floor.floorColor;
+            RL.Tile.Types['floor'].bgColor = this.floor.floorBgColor;
+            RL.Tile.Types['wall'].color = this.floor.wallColor;
+            RL.Tile.Types['wall'].bgColor = this.floor.wallBgColor;
+        },
+
+        generatePlayerStartPosition: function(){
+            let playerStartX = null;
+            let playerStartY = null;
+            do {
+                playerStartX = RL.Util.random(1, this.map.width-1);
+                playerStartY = RL.Util.random(1, this.map.height-1);
+            } while (this.getObjectsAtPostion(playerStartX, playerStartY).length > 0 || this.map.get(playerStartX, playerStartY).name !='Floor');
+            this.player.x = playerStartX;
+            this.player.y = playerStartY;
+        },
+        setLighting: function(interval){
+            var _this = this;
+            _this.map.each(function(val, x, y){
+                if((x+1) % interval === 0 && (y+1) % interval === 0){
+                    var tile = _this.map.get(x, y);
+                    if(tile.type !== 'wall'){
+                        _this.lighting.set(x, y, 100, 100, 100);
+                    }
+                }
+            });
+            
+        },
+
+        loadFloor: function(){
+            var mapData = this.generateMap();
+            this.updatePalette();
+
+            this.map.loadTilesFromArrayString(mapData, mapCharToType, 'floor');
+            this.setMapSize(this.mapWidth, this.mapHeight);
+            this.entityManager.loadFromArrayString(mapData, this.floor.entityCharToType);
+            this.itemManager.loadFromArrayString(mapData, this.floor.itemsCharToType);
+            this.furnitureManager.loadFromArrayString(mapData, this.floor.furnitureCharToType);
+            this.generatePlayerStartPosition();
+            this.setLighting(5);
+        },
+
+        goToFloor: function(number){
+            if(RL.Floor.Data[number]){
+                this.floor = new RL.Floor(this, number);
+                this.furnitureManager = new RL.MultiObjectManager(this, RL.Furniture);
+                this.itemManager = new RL.ObjectManager(this, RL.Item);
+                this.smashLayer = new RL.Array2d();
+                this.damageLayer = new RL.Array2d();
+                this.entityManager = new RL.ObjectManager(this, RL.Entity);
+                this.loadFloor();
+                this.start();
+            }
+            else{
+                console.log('This is the last floor');
+            }
         },
         
     };
