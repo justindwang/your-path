@@ -87,6 +87,11 @@
             item = this.wrap(item);
             this.log(entity + ' equipped ' + item);
         },
+        logAddToInventory: function(entity, item){
+            entity = this.wrap(entity);
+            item = this.wrap(item);
+            this.log(item + ' was added to '+ entity + '\'s inventory');
+        },
         logHeal: function(target, amount){
             target = this.wrap(target);
             amount = this.wrapStr(amount, RL.Util.COLORS.hp_red);

@@ -40,6 +40,7 @@
                 }
                 this.furnitureManager.update();
             }
+            this.player.renderHtml();
             this.queueDraw = false;
         },
 

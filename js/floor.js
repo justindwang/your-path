@@ -86,8 +86,8 @@
     Floor.Data = {
         1: {
             name: 'Field of Dawn',
-            entities: ['slime', 'floor', 'floor', 'floor', 'bush', 'crate'],
-            entityChars: ['s', '.', '.', '.', 'b', '-'],
+            entities: ['slime', 'floor', 'floor', 'floor', 'bush',],
+            entityChars: ['s', '.', '.', '.', 'b'],
             // entityColors: [RL.Util.COLORS.blue, RL.Util.COLORS.light_blue, RL.Util.COLORS.green, RL.Util.COLORS.green, RL.Util.COLORS.dark_green, RL.Util.COLORS.brown],
             consoleColor: RL.Util.COLORS.gray,
             floorColor: RL.Util.COLORS.carnation_pink,

@@ -466,9 +466,8 @@
             var item = this.inventory[slotNum];
             if(item.group == 'healing'){
                 if(this.hp >= this.hpMax)
-                    this.game.console.logCanNotHeal();
+                    this.game.console.logCanNotHeal(item);
                 else{
-                    this.game.console.logHeal(this, item.healAmount);
                     this.heal(item.healAmount);
                     this.inventory.splice(slotNum, 1);
                 }

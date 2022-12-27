@@ -162,6 +162,12 @@
             this.itemConfirmIndex = -1;
         },
 
+        addToInventory: function(item){
+            this.game.player.inventory.push(item);
+            this.renderInventory();
+            
+        },
+
         renderInventory: function(){
             var inventory = this.game.player.inventory;
             var wrap = document.getElementById('mCSB_1_container');

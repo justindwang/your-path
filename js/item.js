@@ -101,7 +101,10 @@
          * @return {Bool}
          */
         canAttachTo: function(entity){
-
+            if(this.game.player !== entity){
+                return false;
+            }
+            return true;
         },
 
         /**
@@ -110,7 +113,8 @@
          * @param {Entity} entity
          */
         attachTo: function(entity){
-            this.game.console.logPickUp(entity, this);
+            this.game.console.logAddToInventory(entity, this);
+            this.game.menu.addToInventory(this);
         },
 
         getConsoleName: function(){
@@ -125,20 +129,6 @@
     var Defaults = {
         healing: {
             group: 'healing',
-            canAttachTo: function(entity){
-                if(this.game.player !== entity){
-                    return false;
-                }
-                if(entity.hp >= entity.hpMax){
-                    this.game.console.logCanNotUseHealing(entity, this);
-                    return false;
-                }
-                return true;
-            },
-            attachTo: function(entity){
-                this.game.console.logHeal(entity, this);
-                entity.heal(this.healAmount);
-            },
             getConsoleName: function(){
                 return {
                     name: this.name,
@@ -151,20 +141,6 @@
         },
         weapon: {
             group: 'weapon',
-            canAttachTo: function(entity){
-                if(this.game.player !== entity){
-                    return false;
-                }
-                if(this.damage < entity.weapon.damage){
-                    this.game.console.logCanNotPickupWeapon(entity, entity.weapon, this);
-                    return false;
-                }
-                return true;
-            },
-            attachTo: function(entity){
-                Item.prototype.attachTo.call(this, entity);
-                entity.weapon = this;
-            },
             getConsoleName: function(){
                 return {
                     name: this.name,
