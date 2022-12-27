@@ -240,7 +240,10 @@
                     else{
                         for (var k = y2; k >= y1; k--)
                             bspTree[x][k] = '#';
-                        bspTree[x][Math.floor((y1+y2)/2)] = '+';
+                        var mid = Math.floor((y1+y2)/2);
+                        bspTree[x][mid - 1] = '+';
+                        bspTree[x][mid] = '+';
+                        bspTree[x][mid + 1] = '+';
                         stack.unshift([x1,y1, x-1, y2]);
                         stack.unshift([x+1,y1, x2, y2]);
                     }
@@ -258,7 +261,11 @@
                     else{
                         for (var j = x2; j >= x1; j--)
                             bspTree[j][y] = '#';
-                        bspTree[Math.floor((x1+x2)/2)][y] = '+';
+                        var mid = Math.floor((x1+x2)/2);
+                        bspTree[mid - 1][y] = '+';
+                        bspTree[mid][y] = '+';
+                        bspTree[mid + 1][y] = '+';
+
                         stack.unshift([x1,y1, x2, y-1]);
                         stack.unshift([x1,y+1, x2, y2]);    
                     }

@@ -69,6 +69,10 @@
 
         bleeds: true,
 
+        getClass: function(){
+            return 'player';
+        },
+
         update: function(action) {
             this.renderHtml();
             if(action === 'cancel'){

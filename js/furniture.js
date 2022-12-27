@@ -112,6 +112,10 @@
 
         actions: null,
 
+        getClass: function(){
+            return 'furniture';
+        },
+
         takeDamage: function(amount){
             this.hp -= amount;
             if (this.hp <= 0) {

@@ -114,6 +114,10 @@
 
         playerLastSeen: false,
 
+        getClass: function(){
+            return 'entity';
+        },
+
         takeDamage: function(amount) {
             this.hp -= amount;
             if(this.hp <= 0) {

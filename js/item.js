@@ -123,6 +123,10 @@
                 color: this.color,
             };
         },
+
+        getClass: function(){
+            return 'item';
+        },
     };
 
 
