@@ -99,6 +99,10 @@
 
         strength: null,
 
+        agility: 0,
+        vitality: 0,
+        intelligence: 0,
+
         exp: null,
 
         /**
@@ -282,6 +286,14 @@
             aStar.compute(this.x, this.y, computeCallback);
             return path;
         },
+        applyWeaponStats: function(weapon){
+            if(weapon.stat1)
+                this[RL.Util.mapAbbrToStat(weapon.stat1)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat1)] + weapon.stat1Modifier);
+            if(weapon.stat2)
+                this[RL.Util.mapAbbrToStat(weapon.stat2)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat2)] + weapon.stat2Modifier);
+            if(weapon.stat3)
+                this[RL.Util.mapAbbrToStat(weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat3)] + weapon.stat3Modifier);
+        },
     };
 
     var Defaults = {
@@ -429,6 +441,7 @@
             hordePushBonus: 0,
             initialize: function() {
                 this.weapon = new RL.Item(this.game, 'claws');
+                this.applyWeaponStats(this.weapon);
                 RL.Actions.Resolvable.add(this, 'attack');
                 RL.Actions.Resolvable.add(this, 'horde_push_bonus');
 
@@ -454,11 +467,13 @@
             hordePushBonus: 0,
             initialize: function() {
                 this.weapon = new RL.Item(this.game, 'goo');
+                this.applyWeaponStats(this.weapon);
                 RL.Actions.Resolvable.add(this, 'attack');
                 RL.Actions.Resolvable.add(this, 'horde_push_bonus');
 
                 RL.Actions.Performable.add(this, 'attack');
                 RL.Actions.Performable.add(this, 'horde_push_bonus');
+
             },
         }),
     };

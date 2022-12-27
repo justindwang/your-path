@@ -18,11 +18,6 @@
             entity = this.wrap(entity);
             this.log(entity + ' waited for a moment');
         },
-        logHeal: function(target, amount){
-            target = this.wrap(target);
-            amount = this.wrapStr(amount, RL.Util.COLORS.hp_red);
-            this.log(target + ' healed ' + amount + ' hp');
-        },
         logStatChange: function(entity, stat, amount){
             entity = this.wrap(entity);
             stat = this.wrapStr(stat, RL.Util.COLORS.stat_yellow);
@@ -87,18 +82,20 @@
             item = this.wrap(item);
             this.log(entity + ' picked up a ' + item);
         },
-        logPickUpHealing: function(entity, item){
-            entity = this.wrap(entity);
-            var consoleData = item.getConsoleName();
-            var name = this.wrapStr(item.name,  consoleData.color);
-            var healing = this.wrapStr('healing', 'teal');
-            var hp = this.wrapStr(item.healAmount + 'HP', RL.Util.COLORS.green);
-            this.log(entity + ' picked up a ' + name + ' ' + healing + ' ' + hp);
-        },
-        logCanNotPickupHealing: function(entity, item){
+        logEquipItem: function(entity, item){
             entity = this.wrap(entity);
             item = this.wrap(item);
-            this.game.console.log(entity + ' sees a ' + item + ' but has no use for it right now.');
+            this.log(entity + ' equipped ' + item);
+        },
+        logHeal: function(target, amount){
+            target = this.wrap(target);
+            amount = this.wrapStr(amount, RL.Util.COLORS.hp_red);
+            this.log(target + ' healed ' + amount + ' hp');
+        },
+        logCanNotHeal: function(item){
+            // entity = this.wrap(entity);
+            item = this.wrap(item);
+            this.game.console.log(item + ' had no effect.');
         },
         logCanNotPickupWeapon: function(entity, currentWeapon, item){
             var currentItem = this.wrap(currentWeapon);
@@ -162,6 +159,18 @@
         logSwitchSkill: function(skill){
             var skillName = this.wrap(skill);
             this.log(skillName + ' is now equipped.');
+        },
+
+        logAskConfirmHeal: function(item){
+            this.log('Use ' + this.wrap(item) + '? (Click again to confirm.)');
+        },
+
+        logAskConfirmEquip: function(item){
+            this.log('Equip ' + this.wrap(item) + '? (Click again to confirm.)');
+        },
+
+        loginspectMaterial: function(item){
+            this.log('You have selected: ' + this.wrap(item));
         },
 
         wrap: function(obj){

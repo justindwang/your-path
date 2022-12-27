@@ -13,6 +13,9 @@
 
         game: null,
 
+        // itemConfirm: false,
+        itemConfirmIndex: -1,
+
         startListening: function(){
             document.getElementById('pr-inventory').addEventListener('click', this.displayInventoryMenu);
             document.getElementById('pr-shop').addEventListener('click', this.displayShopMenu);
@@ -21,6 +24,16 @@
             document.getElementById('inventory-foot-type').addEventListener('click', () => {this.sortInventoryType()});
             document.getElementById('inventory-foot-rarity').addEventListener('click', () => {this.sortInventoryRarity()});
             document.getElementById('inventory-foot-name').addEventListener('click', () => {this.sortInventoryName()});
+
+            this.addInventoryListeners();
+        },
+
+        addInventoryListeners: function(){
+            var inventory = this.game.player.inventory;
+            for(let i = 0; i<inventory.length; i++){
+                let item = document.getElementById('inventory-item-' + i);
+                item.addEventListener('click', () => {this.itemClicked(i)});
+            }
         },
 
         displayInventoryMenu: function(){
@@ -118,9 +131,35 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="inventory-item"><div class="inventory-item-icon">' + icon + '</div><div class="inventory-item-info"><h4>' + color + inventory[i].name + ' - ' + inventory[i].rank +'</span> <br> <span>' + inventory[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="inventory-item" id="inventory-item-'+ i + '"><div class="inventory-item-icon">' + icon + '</div><div class="inventory-item-info"><h4>' + color + inventory[i].name + ' - ' + inventory[i].rank +'</span> <br> <span>' + inventory[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
+        },
+
+        itemClicked: function(slotNum){
+            var inventory = this.game.player.inventory;
+            var group = inventory[slotNum].group;
+
+            if (slotNum == this.itemConfirmIndex){
+                if (group != 'material'){
+                    this.game.player.useItem(slotNum);
+                    this.renderInventory();
+                }
+                this.clearClickData();
+            }
+            else{
+                this.itemConfirmIndex = slotNum;
+                if(group=='healing')
+                    this.game.console.logAskConfirmHeal(inventory[slotNum]);
+                else if (group == 'weapon')
+                    this.game.console.logAskConfirmEquip(inventory[slotNum]);
+                else
+                    this.game.console.loginspectMaterial(inventory[slotNum]);
+            }
+        },
+        
+        clearClickData: function(){
+            this.itemConfirmIndex = -1;
         },
 
         renderInventory: function(){
@@ -146,9 +185,11 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="inventory-item"><div class="inventory-item-icon">' + icon + '</div><div class="inventory-item-info"><h4>' + color + inventory[i].name + ' - ' + inventory[i].rank +'</span> <br> <span>' + inventory[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="inventory-item" id="inventory-item-'+ i + '"><div class="inventory-item-icon">' + icon + '</div><div class="inventory-item-info"><h4>' + color + inventory[i].name + ' - ' + inventory[i].rank +'</span> <br> <span>' + inventory[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
+            this.addInventoryListeners();
+            this.clearClickData();
         }, 
     };
 

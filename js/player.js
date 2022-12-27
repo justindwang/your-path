@@ -7,7 +7,7 @@
         proto.constructor.call(this, game);
 
         this.weapon = new RL.Item(this.game, 'rock');
-        this.applyWeaponStats();
+        this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
         this.inventory = [new RL.Item(this.game, 'tiny_potion'), new RL.Item(this.game, 'goo'), new RL.Item(this.game, 'fists'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'slime_goo')];
 
@@ -444,22 +444,45 @@
             }
         },
 
-        applyWeaponStats: function(){
-            if(this.weapon.stat1)
-                this[RL.Util.mapAbbrToStat(this.weapon.stat1)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat1)] + this.weapon.stat1Modifier);
-            if(this.weapon.stat2)
-                this[RL.Util.mapAbbrToStat(this.weapon.stat2)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat2)] + this.weapon.stat2Modifier);
-            if(this.weapon.stat3)
-                this[RL.Util.mapAbbrToStat(this.weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat3)] + this.weapon.stat3Modifier);
+        applyWeaponStats: function(weapon){
+            if(weapon.stat1)
+                this[RL.Util.mapAbbrToStat(weapon.stat1)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat1)] + weapon.stat1Modifier);
+            if(weapon.stat2)
+                this[RL.Util.mapAbbrToStat(weapon.stat2)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat2)] + weapon.stat2Modifier);
+            if(weapon.stat3)
+                this[RL.Util.mapAbbrToStat(weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat3)] + weapon.stat3Modifier);
         },
 
-        removeWeaponStats: function(){
-            if(this.weapon.stat1)
-                this[RL.Util.mapAbbrToStat(this.weapon.stat1)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat1)] - this.weapon.stat1Modifier);
-            if(this.weapon.stat2)
-                this[RL.Util.mapAbbrToStat(this.weapon.stat2)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat2)] - this.weapon.stat2Modifier);
-            if(this.weapon.stat3)
-                this[RL.Util.mapAbbrToStat(this.weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(this.weapon.stat3)] - this.weapon.stat3Modifier);
+        removeWeaponStats: function(weapon){
+            if(weapon.stat1)
+                this[RL.Util.mapAbbrToStat(weapon.stat1)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat1)] - weapon.stat1Modifier);
+            if(weapon.stat2)
+                this[RL.Util.mapAbbrToStat(weapon.stat2)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat2)] - weapon.stat2Modifier);
+            if(weapon.stat3)
+                this[RL.Util.mapAbbrToStat(weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat3)] - weapon.stat3Modifier);
+        },
+
+        useItem: function(slotNum){
+            var item = this.inventory[slotNum];
+            if(item.group == 'healing'){
+                if(this.hp >= this.hpMax)
+                    this.game.console.logCanNotHeal();
+                else{
+                    this.game.console.logHeal(this, item.healAmount);
+                    this.heal(item.healAmount);
+                    this.inventory.splice(slotNum, 1);
+                }
+            }
+            else if(item.group == 'weapon'){
+                this.game.console.logEquipItem(this, item);
+                var currWeapon = this.weapon;
+                this.weapon = item;
+                this.inventory.splice(slotNum, 1);
+                this.inventory.splice(slotNum, 0, currWeapon);
+                this.removeWeaponStats(currWeapon);
+                this.applyWeaponStats(item);
+            }
+            this.renderHtml();
         },
 
         renderHtml: function(){
@@ -485,9 +508,10 @@
 
             if(this.weapon){
                 var weaponConsoleName = this.weapon.getConsoleName();
-                this.weaponNameEl.innerHTML = weaponConsoleName.name + ' - ';
+                this.weaponNameEl.innerHTML = weaponConsoleName.name;
                 this.weaponStatsEl.innerHTML = weaponConsoleName.stats;
                 this.weaponRangeEl.innerHTML = weaponConsoleName.range;
+                document.getElementById('stat-weapon-name').style.color = weaponConsoleName.color;
             }
             
             if(this.skillsEl){

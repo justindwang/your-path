@@ -130,18 +130,18 @@
                     return false;
                 }
                 if(entity.hp >= entity.hpMax){
-                    this.game.console.logCanNotPickupHealing(entity, this);
+                    this.game.console.logCanNotUseHealing(entity, this);
                     return false;
                 }
                 return true;
             },
             attachTo: function(entity){
-                this.game.console.logPickUpHealing(entity, this);
+                this.game.console.logHeal(entity, this);
                 entity.heal(this.healAmount);
             },
             getConsoleName: function(){
                 return {
-                    name: this.name + ' [+' + this.healAmount + ' HP]',
+                    name: this.name,
                     color: this.color
                 };
             },
