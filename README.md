@@ -5,28 +5,31 @@ A roguelike game for the browser written in js using [js-roguelike-skeleton](htt
 
 Todo:
 
-# design more mobs/floors/skills/items
+## design more mobs/floors/skills/items
+## implement classes/jobs
 <details>
 <summary>(done)</summary>
 <br>
 - generalize melee/ranged weapon into one action (might be buggy)
+<br>
 - combine color and console color for items to match rarity
-- apply stat modifiers from items 
-- UI for equipping/changing weapons 
-- change item attaching mechanic to add to inventory
-- remove entities from canvas when killed 
-- revamp door generation / fix bug where door is blocked by a wall
-- ui to stay/go to next floor when reaching exit 
-- display floor name
-- remove grab functionality 
-- keep target if object is not an entity
-- change smash layer to show damage numbers 
-- remove horde push bonus 
-- remove wait action 
-- change entity randomization function to % rates
-- bug with seekingmeleeentity uncaught error object manager move (done for now)
-- floor info when reaching new floor - display mobs/items and rarity (common, uncommon, rare, very rare)
-    - mapping function for percent chance to rarity
+<br>
+- apply stat modifiers from items <br>
+- UI for equipping/changing weapons <br>
+- change item attaching mechanic to add to inventory<br>
+- remove entities from canvas when killed <br>
+- revamp door generation / fix bug where door is blocked by a wall<br>
+- ui to stay/go to next floor when reaching exit <br>
+- display floor name<br>
+- remove grab functionality <br>
+- keep target if object is not an entity<br>
+- change smash layer to show damage numbers <br>
+- remove horde push bonus <br>
+- remove wait action <br>
+- change entity randomization function to % rates<br>
+- bug with seekingmeleeentity uncaught error object manager move (done for now)<br>
+- floor info when reaching new floor - display mobs/items and rarity (common, uncommon, rare, very rare)<br>
+    - mapping function for percent chance to rarity<br>
 </details>
 
 - Loot tables for mobs
