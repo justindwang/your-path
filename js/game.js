@@ -370,6 +370,7 @@
             this.furnitureManager.loadFromArrayString(mapData, this.floor.furnitureCharToType);
             this.generatePlayerStartPosition();
             this.setLighting(5);
+            this.console.logCurrentFloor(this.floor);
         },
 
         goToFloor: function(number){

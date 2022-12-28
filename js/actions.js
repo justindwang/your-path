@@ -220,42 +220,6 @@
             getTargetsForAction: makeAdjacentTargetsFinder('push')
         },
 
-        grab: {
-            canPerformAction: true,
-            canPerformActionOnTarget: true,
-            performAction: function(target, settings){
-                if(this.grabTarget){
-                    this.game.console.logGrabLetGo(this, this.grabTarget);
-                    this.grabTarget = false;
-                    return false;
-                }
-
-                this.grabTarget = target;
-                this.game.console.logGrab(this, target);
-            },
-            getTargetsForAction: function(settings){
-                if(this.grabTarget){
-                    return [{
-                        x: this.grabTarget.x,
-                        y: this.grabTarget.y,
-                        value: this.grabTarget,
-                    }];
-                }
-                var _this = this;
-                var validTargetsSettings = {
-                    range: 1,
-                    limitToFov: false,
-                    limitToNonDiagonalAdjacent: true,
-                    filter: function(target){
-                        return _this.canPerformActionOnTarget('grab', target, settings);
-                    }
-                };
-                var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
-                var result = validTargetsFinder.getValidTargets();
-                return result;
-            }
-        },
-
         attack: {
             canPerformAction: function(target, settings){
                 if(!this.weapon){
@@ -309,10 +273,6 @@
     };
 
     var resolvableActions = {
-        grab: {
-            canResolveAction: true,
-            resolveAction: true,
-        },
         open: {
             initialize: function(){
                 this.open = false;

@@ -13,13 +13,16 @@ Todo:
 - remove entities from canvas when killed (done)
 - revamp door generation / fix bug where door is blocked by a wall (done)
 - ui to stay/go to next floor when reaching exit (done)
-- display floor name
+- display floor name (done)
 - remove grab functionality
 - keep target if object is not an entity
 - bug with seekingmeleeentity uncaught error object manager move
 - fast travel to different floors
+- floor info when reaching new floor - display mobs/items and rarity (abundant, common, uncommon, rare, very rare)
+    - mapping function for percent chance to rarity
 
 - Loot tables for mobs
+- change entity randomization function to % rates
 - add mob item drops onto canvas
 - add item from shop into inventory
 - SHOP/stats

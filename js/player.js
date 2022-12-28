@@ -13,7 +13,6 @@
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
-        RL.Actions.Performable.add(this, 'grab');
         RL.Actions.Performable.add(this, 'push');
         RL.Actions.Performable.add(this, 'attack');
 
@@ -92,10 +91,6 @@
                 return this.wait();
             }
 
-            if(action === 'grab'){
-                return this.grab();
-            }
-
             if(action === 'close'){
                 return this.close();
             }
@@ -135,19 +130,6 @@
 
             if(this.canMoveTo(x, y)){
 
-                // move grab target or let go
-                if(this.grabTarget){
-                    var grabTargetToX = this.grabTarget.x + offset.x,
-                        grabTargetToY = this.grabTarget.y + offset.y,
-                        pullingToPlayer = (this.x === grabTargetToX && this.y === grabTargetToY);
-
-                    if(pullingToPlayer || this.grabTarget.canMoveTo(grabTargetToX, grabTargetToY)){
-                        this.grabTarget.moveTo(grabTargetToX, grabTargetToY);
-                    } else {
-                        this.game.console.logGrabLetGo(this, this.grabTarget);
-                        this.grabTarget = false;
-                    }
-                }
                 this.moveTo(x, y);
                 return true;
 
@@ -203,15 +185,6 @@
         wait: function(){
             this.game.console.logWait(this);
             return true;
-        },
-
-        // action
-        grab: function(){
-            this.pendingActionName = 'grab';
-            if(this.grabTarget){
-                return this.performAction('grab', this.grabTarget);
-            }
-            return this.actionAdjacentTargetSelect('grab');
         },
 
         // action

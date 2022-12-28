@@ -108,16 +108,6 @@
             item = this.wrap(item);
             this.game.console.log(entity + ' sees a ' + item + ' but it is not as good as ' + currentItem);
         },
-        logGrab: function(entity, furniture){
-            var entityName = this.wrap(entity);
-            var furnitureName = this.wrap(furniture);
-            this.log(entityName + ' grabs ' + furnitureName);
-        },
-        logGrabLetGo: function(entity, furniture){
-            var entityName = this.wrap(entity);
-            var furnitureName = this.wrap(furniture);
-            this.log(entityName + ' lets go of ' + furnitureName);
-        },
         logDied: function(entity){
             var entityName = this.wrap(entity);
             this.log(entityName + ' ' + this.wrapStr('died.', RL.Util.COLORS.red_alt));
@@ -176,6 +166,9 @@
 
         loginspectMaterial: function(item){
             this.log('You have selected: ' + this.wrap(item));
+        },
+        logCurrentFloor: function(floor){
+            this.log('Currently on: Floor '+ floor.number + ' - ' + floor.name);
         },
 
         wrap: function(obj){
