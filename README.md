@@ -15,10 +15,10 @@ Todo:
 - ui to stay/go to next floor when reaching exit (done)
 - display floor name (done)
 - remove grab functionality (done)
-- keep target if object is not an entity
-- change smash layer to show damage numbers
-- remove horde push bonus
-- remove wait action
+- keep target if object is not an entity (done)
+- change smash layer to show damage numbers (done)
+- remove horde push bonus (done)
+- remove wait action (done)
 - bug with seekingmeleeentity uncaught error object manager move
 - fast travel to different floors
 - floor info when reaching new floor - display mobs/items and rarity (abundant, common, uncommon, rare, very rare)

@@ -87,10 +87,6 @@
                 return this.move(action);
             }
 
-            if(action === 'wait'){
-                return this.wait();
-            }
-
             if(action === 'close'){
                 return this.close();
             }
@@ -179,12 +175,6 @@
                 return false;
             }
             return this.performAction('open', furniture);
-        },
-
-        // action
-        wait: function(){
-            this.game.console.logWait(this);
-            return true;
         },
 
         // action

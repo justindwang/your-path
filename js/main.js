@@ -7,7 +7,6 @@ var keyBindings = {
     // open: ['O'],
     attack: ['E'],
     // ranged_attack: ['F'],
-    wait: ['space'],
     // cancel: ['ESC']
     switch_skill: ['tab'],
     use_skill: ['R'],

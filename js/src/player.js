@@ -168,11 +168,6 @@
                 return this.move(moveToX, moveToY);
             }
 
-            if(action === 'wait'){
-                this.wait();
-                return true;
-            }
-
             return false;
         },
 
@@ -201,14 +196,6 @@
                 }
             }
             return false;
-        },
-
-        /**
-        * Wait action.
-        * @method wait
-        */
-        wait: function(){
-            this.game.console.log('You wait for a moment.');
         },
 
     };

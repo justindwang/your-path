@@ -309,7 +309,6 @@
 
             update: function() {
                 var result = this._update();
-                this.hordePushBonus = 0;
                 return result;
             },
             /**
@@ -347,11 +346,6 @@
                             if(furniture && this.performAction('attack', furniture)) {
                                 return true;
                             }
-
-                            var entity = this.game.entityManager.get(destination.x, destination.y);
-                            if(entity && this.performAction('horde_push_bonus', entity)) {
-                                return true;
-                            }
                         }
                     }
                 }
@@ -374,7 +368,6 @@
 
             update: function() {
                 var result = this._update();
-                this.hordePushBonus = 0;
                 return result;
             },
             /**
@@ -444,15 +437,12 @@
             hpMax: 10,
             strength: 0,
             exp: 2,
-            hordePushBonus: 0,
             initialize: function() {
                 this.weapon = new RL.Item(this.game, 'goo');
                 this.applyWeaponStats(this.weapon);
                 RL.Actions.Resolvable.add(this, 'attack');
-                RL.Actions.Resolvable.add(this, 'horde_push_bonus');
 
                 RL.Actions.Performable.add(this, 'attack');
-                RL.Actions.Performable.add(this, 'horde_push_bonus');
 
             },
         }),
@@ -469,15 +459,12 @@
             strength: 2,
             exp: 5,
             maxTurnsWithoutStumble: 10,
-            hordePushBonus: 0,
             initialize: function() {
                 this.weapon = new RL.Item(this.game, 'claws');
                 this.applyWeaponStats(this.weapon);
                 RL.Actions.Resolvable.add(this, 'attack');
-                RL.Actions.Resolvable.add(this, 'horde_push_bonus');
 
                 RL.Actions.Performable.add(this, 'attack');
-                RL.Actions.Performable.add(this, 'horde_push_bonus');
             },
         }),
     };

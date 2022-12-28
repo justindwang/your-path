@@ -259,17 +259,6 @@
                 return validTargetsFinder.getValidTargets();
             }
         },
-        horde_push_bonus: {
-            initialize: function(){
-                this.hordePushBonus = 0;
-            },
-            canPerformAction: true,
-            canPerformActionOnTarget: true,
-            performAction: function(source, settings){
-                settings.hordePushBonus = this.weapon.damage + this.hordePushBonus;
-                return true;
-            }
-        }
     };
 
     var resolvableActions = {
@@ -391,16 +380,6 @@
                 return true;
             },
         },
-        horde_push_bonus: {
-            initialize: function(){
-                this.hordePushBonus = 0;
-            },
-            canResolveAction: true,
-            resolveAction: function(source, settings){
-                this.hordePushBonus += settings.hordePushBonus;
-                return true;
-            }
-        }
     };
 
 

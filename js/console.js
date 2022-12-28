@@ -13,11 +13,6 @@
             // var verb = this.wrapStr(action, RL.Util.COLORS.blue);
             // this.directionsEl.innerHTML = this.wrapStr('(ENTER to select, movement keys for prev/next target, esc or other to cancel)', RL.Util.COLORS.blue_alt);
         },
-
-        logWait: function(entity){
-            entity = this.wrap(entity);
-            this.log(entity + ' waited for a moment');
-        },
         logStatChange: function(entity, stat, amount){
             entity = this.wrap(entity);
             stat = this.wrapStr(stat, RL.Util.COLORS.stat_yellow);
