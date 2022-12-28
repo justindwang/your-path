@@ -212,7 +212,7 @@
             }
         },
         damage: {
-            mergeWithPrevLayer: true,
+            // mergeWithPrevLayer: true,
             draw: false,
             getTileData: function(x, y, prevTileData){
                 if(!this.game){
@@ -224,13 +224,14 @@
                 if(damage){
                     return {
                         after: {
-                            char: '*',
+                            char: this.game.player.strength,
                             color: 'rgba(190, 5, 25, 1)',
-                            charStrokeWidth: 1,
+                            charStrokeWidth: 2,
+                            fontSize: RL.Util.mapDamageToFontSize(this.game.player.strength.toString().length),
                             // charStrokeColor: 'rgba(250, 0, 0, 1)',
                             // color: 'rgba(255,255,255,0.5)',
-                            offsetX: -0.1 * this.game.renderer.tileSize,
-                            offsetY: -0.1 * this.game.renderer.tileSize
+                            // offsetX: -0.1 * this.game.renderer.tileSize,
+                            // offsetY: -0.1 * this.game.renderer.tileSize
                         }
                     };
                 }

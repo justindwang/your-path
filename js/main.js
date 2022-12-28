@@ -58,15 +58,18 @@ RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
 var game = new RL.Game(mapHeight, mapWidth, rendererHeight, rendererWidth);
 game.renderer.resize(game.rendererWidth, game.rendererHeight);
 game.renderer.layers = [
+   
     new RL.RendererLayer(game, 'map',       {draw: false,   mergeWithPrevLayer: false}),
-
+    
+    
     new RL.RendererLayer(game, 'furniture', {draw: false,   mergeWithPrevLayer: true}),
     new RL.RendererLayer(game, 'item',      {draw: false,   mergeWithPrevLayer: true}),
     new RL.RendererLayer(game, 'entity',    {draw: false,   mergeWithPrevLayer: true}),
-    new RL.RendererLayer(game, 'damage',    {draw: false,   mergeWithPrevLayer: true}),
+    new RL.RendererLayer(game, 'damage',    {draw: false,   mergeWithPrevLayer: true}), 
 
     new RL.RendererLayer(game, 'lighting',  {draw: true,    mergeWithPrevLayer: false}),
     new RL.RendererLayer(game, 'fov',       {draw: true,    mergeWithPrevLayer: false}),
+    
 ];
 
 game.input.addBindings(keyBindings);

@@ -274,6 +274,14 @@
             controlsEL.innerHTML = controlsHtml;
 
         },
+
+        mapDamageToFontSize(numDigits){
+            switch(numDigits){
+                case 1: return 16;
+                case 2: return 12;
+                case 3: return 10;
+            }
+        }
     };
 
     root.RL.Util = Util;

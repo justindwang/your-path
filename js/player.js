@@ -363,7 +363,11 @@
                 this.clearPendingAction();
                 return true;
             }
-            this.clearPendingAction();
+            var target = this.actionTargets.getCurrent().value;
+            
+            // Target selection stays for nonmoving furniture
+            if (target.getClass() == 'entity')
+                this.clearPendingAction();
             return false;
         },
 

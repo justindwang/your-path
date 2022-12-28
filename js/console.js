@@ -53,12 +53,12 @@
             var sourceName = this.wrap(source);
             var targetName = this.wrap(target);
 
-            var msg = '' + sourceName + ' hit ' + targetName + ' with ' + weaponName + ' for ' + weaponDamage + ' damage';
+            var msg = '' + sourceName + ' hit ' + targetName;
             if(target.dead){
                 if(target instanceof RL.Furniture){
-                    msg += ' and ' + this.wrapStr('destroyed', RL.Util.COLORS.red_alt) + ' it';
+                    msg = '' + sourceName + ' destroyed ' + targetName;
                 } else {
-                    msg += ', ' + this.wrapStr('killed', RL.Util.COLORS.red_alt) + ' it, and gained ' + targetExp + ' exp';
+                    msg = '' + sourceName + ' killed ' + targetName + ' and gained ' + targetExp + ' exp';
                 }
             }
             this.log(msg);

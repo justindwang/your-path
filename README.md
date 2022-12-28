@@ -14,8 +14,11 @@ Todo:
 - revamp door generation / fix bug where door is blocked by a wall (done)
 - ui to stay/go to next floor when reaching exit (done)
 - display floor name (done)
-- remove grab functionality
+- remove grab functionality (done)
 - keep target if object is not an entity
+- change smash layer to show damage numbers
+- remove horde push bonus
+- remove wait action
 - bug with seekingmeleeentity uncaught error object manager move
 - fast travel to different floors
 - floor info when reaching new floor - display mobs/items and rarity (abundant, common, uncommon, rare, very rare)
