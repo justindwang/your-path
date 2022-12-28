@@ -12,7 +12,7 @@ Todo:
 - change item attaching mechanic to add to inventory (done)
 - remove entities from canvas when killed (done)
 - revamp door generation / fix bug where door is blocked by a wall (done)
-- ui to stay/go to next floor when reaching exit
+- ui to stay/go to next floor when reaching exit (done)
 - display floor name
 - remove grab functionality
 - keep target if object is not an entity
@@ -37,3 +37,4 @@ Todo:
 - add multiplayer
 - revamp ui to show item/skill ranks and/or range
 - explore aoe damage
+- add bosses

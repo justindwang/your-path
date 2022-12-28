@@ -47,8 +47,8 @@ var mapCharToType = {
     'x': 'exit'
 };
 
-var mapHeight = 100;
-var mapWidth = 100;
+var mapHeight = 40;
+var mapWidth = 40;
 var rendererHeight = 25;
 var rendererWidth = 25;
 

@@ -58,6 +58,11 @@
             this.bindings[keyCode] = action;
         },
 
+        unbindAction: function(keyName) {
+            var keyCode = Input.Keys[keyName];
+            delete this.bindings[keyCode];
+        },
+
         /**
         * Converts a user input key code to an action bound to that key or false if none is bound.
         * @method getActionFromKeyCode
@@ -94,6 +99,16 @@
                 for (var i = 0; i < keys.length; i++) {
                     var key = keys[i];
                     this.bindAction(action, key);
+                }
+            }
+        },
+
+        removeBindings: function(bindings) {
+            for (var action in bindings) {
+                var keys = bindings[action];
+                for (var i = 0; i < keys.length; i++) {
+                    var key = keys[i];
+                    this.unbindAction(key);
                 }
             }
         },

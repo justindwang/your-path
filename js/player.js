@@ -114,7 +114,16 @@
             if(action === 'use_skill'){
                 return this.useSkill();
             }
-
+            if(action === 'same_floor'){
+                if(this.game.map.get(this.x, this.y).name == 'Exit')
+                    this.game.goToFloor(this.game.floor.number);
+                return;
+            }
+            if(action === 'next_floor'){
+                if(this.game.map.get(this.x, this.y).name == 'Exit')
+                    this.game.goToFloor(this.game.floor.number + 1);
+                return;
+            }
             return false;
         },
 

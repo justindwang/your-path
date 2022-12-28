@@ -122,9 +122,9 @@
             var entityName = this.wrap(entity);
             this.log(entityName + ' ' + this.wrapStr('died.', RL.Util.COLORS.red_alt));
         },
-        logExit: function(entity){
+        logExitReached: function(entity){
             var entityName = this.wrap(entity);
-            this.log(entityName + ' made it to the Exit. Level complete.');
+            this.log(entityName + ' made it to the gate. Proceed to next floor? (Y/N)');
         },
         logClose: function(entity, furniture){
             var entityName = this.wrap(entity);

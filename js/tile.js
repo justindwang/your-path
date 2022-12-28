@@ -96,9 +96,13 @@
             onEntityEnter: function(entity){
                 if(this.game.player !== entity)
                     return;
-                this.game.console.logExit(entity);
-                // this.game.gameOver = true;
-                this.game.goToFloor(this.game.floor.number + 1);
+                this.game.console.logExitReached(entity);
+                var y_n_exit = {
+                    next_floor: ['Y'],
+                    same_floor: ['N'],};
+                this.game.input.addBindings(y_n_exit);
+                
+
             }
         };
 

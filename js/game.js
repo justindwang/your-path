@@ -374,7 +374,12 @@
 
         goToFloor: function(number){
             if(RL.Floor.Data[number]){
+                var y_n_exit = {
+                    next_floor: ['Y'],
+                    same_floor: ['N'],};
+                this.input.removeBindings(y_n_exit);
                 this.floor = new RL.Floor(this, number);
+                this.map = new RL.Map(this);
                 this.furnitureManager = new RL.MultiObjectManager(this, RL.Furniture);
                 this.itemManager = new RL.ObjectManager(this, RL.Item);
                 this.smashLayer = new RL.Array2d();
