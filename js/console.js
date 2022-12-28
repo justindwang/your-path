@@ -163,7 +163,8 @@
             this.log('You have selected: ' + this.wrap(item));
         },
         logCurrentFloor: function(floor){
-            this.log('Currently on: Floor '+ floor.number + ' - ' + floor.name);
+            this.log('Floor '+ floor.number + ': ' + floor.name);
+            this.log('Floor Info: ' + this.game.floor.getEntityRarities());
         },
 
         wrap: function(obj){

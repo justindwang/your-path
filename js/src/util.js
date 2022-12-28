@@ -307,7 +307,19 @@
                 return keys[i];
               }
             }
-          }
+          },
+
+          mapRateToRarity(rate){
+            if(rate >= 0.05)
+                return 'Common';
+            if(rate >= 0.01)
+                return 'Uncommon';
+            if(rate >= 0.001)
+                return 'Rare';
+            if(rate >= 0.0001)
+                return 'Very Rare';
+            return 'Common';
+          },
     };
 
     root.RL.Util = Util;

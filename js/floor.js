@@ -45,11 +45,8 @@
         */
         name: null,
 
-        // The entities that can appear on this floor [unlucky to lucky]
+        // The entities that can appear on this floor
         entities: null,
-        
-        // The colors of the entities that can appear on this floor (same mapping as entities)
-        entityColors: null,
 
         // enemy list
         // enemies: null,
@@ -61,6 +58,9 @@
         wallColors: null,
 
         doorColors: null,
+        entityCharToType: null,
+        furnitureCharToType: null,
+        itemsCharToType: null,
 
         getConsoleName: function(){
             return {
@@ -68,6 +68,32 @@
                 color: this.consoleColor
             };
         },
+
+        getEntityRarities: function(){
+            var string = ''
+            var first = true;
+            for (const [key, value] of Object.entries(this.entityCharToType)) {
+                if(first)
+                    first = false;
+                else
+                    string += ', '
+                var rarity = RL.Util.mapRateToRarity(this.entities[key]);
+                var name = RL.Entity.Types[value].name;
+                string += name + ' - ' + rarity;
+            }
+            first = true;
+            for (const [key, value] of Object.entries(this.itemsCharToType)) {
+                if(first)
+                    first = false;
+                else
+                    string += ', '
+                var rarity = RL.Util.mapRateToRarity(this.entities[key]);
+                var name = RL.Entity.Types[value].name;
+                string += name + ' - ' + rarity;
+            }
+            return string;
+        },
+        
     };
 
     /**
@@ -91,6 +117,8 @@
                 '.': 0.75,
                 'b': 0.2,
                 's': 0.05,
+                // '.': 0.999,
+                // 's': 0.001,
             },
             consoleColor: RL.Util.COLORS.gray,
             floorColor: RL.Util.COLORS.carnation_pink,
@@ -101,8 +129,7 @@
                 s: 'slime'},
             furnitureCharToType: {
                 b: 'bush',
-                '+': 'door',
-                '-': 'crate',},
+                '+': 'door',},
             itemsCharToType: {},
         },
         2: {
@@ -124,8 +151,7 @@
             furnitureCharToType: {
                 m: 'shrub',
                 '+': 'door',
-                T: 'oak_tree',
-                '-': 'crate'},
+                T: 'oak_tree',},
             itemsCharToType: {},
         },
     };

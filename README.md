@@ -5,26 +5,32 @@ A roguelike game for the browser written in js using [js-roguelike-skeleton](htt
 
 Todo:
 
-- generalize melee/ranged weapon into one action (done? might be buggy)
-- combine color and console color for items to match rarity (done)
-- apply stat modifiers from items (done)
-- UI for equipping/changing weapons (done)
-- change item attaching mechanic to add to inventory (done)
-- remove entities from canvas when killed (done)
-- revamp door generation / fix bug where door is blocked by a wall (done)
-- ui to stay/go to next floor when reaching exit (done)
-- display floor name (done)
-- remove grab functionality (done)
-- keep target if object is not an entity (done)
-- change smash layer to show damage numbers (done)
-- remove horde push bonus (done)
-- remove wait action (done)
-- change entity randomization function to % rates (done)
-- bug with seekingmeleeentity uncaught error object manager move (done?)
-- floor info when reaching new floor - display mobs/items and rarity (abundant, common, uncommon, rare, very rare)
+# design more mobs/floors/skills/items
+<details>
+<summary>(done)</summary>
+<br>
+- generalize melee/ranged weapon into one action (might be buggy)
+- combine color and console color for items to match rarity
+- apply stat modifiers from items 
+- UI for equipping/changing weapons 
+- change item attaching mechanic to add to inventory
+- remove entities from canvas when killed 
+- revamp door generation / fix bug where door is blocked by a wall
+- ui to stay/go to next floor when reaching exit 
+- display floor name
+- remove grab functionality 
+- keep target if object is not an entity
+- change smash layer to show damage numbers 
+- remove horde push bonus 
+- remove wait action 
+- change entity randomization function to % rates
+- bug with seekingmeleeentity uncaught error object manager move (done for now)
+- floor info when reaching new floor - display mobs/items and rarity (common, uncommon, rare, very rare)
     - mapping function for percent chance to rarity
+</details>
 
 - Loot tables for mobs
+- items from chests/crates
 - add mob item drops onto canvas
 - add item from shop into inventory
 - SHOP/stats
@@ -34,7 +40,6 @@ Todo:
 - mp regeneration mechanic
 
 - implement shop item mechanics
-- design more mobs/floors/skills
 - fast travel to different floors
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
