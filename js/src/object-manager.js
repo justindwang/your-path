@@ -101,6 +101,11 @@
             if(existing !== object || this.objects.indexOf(object) === -1){
                 // throw new Error({error: 'Attempting to move object not in Object manager', x: x, y: y, object: object});
                 console.log('moving object not in object manager');
+                console.log(existing);
+                console.log(object);
+                console.log(this.objects.indexOf(object));
+                console.log(existing !== object);
+                this.game.gameOver=true;
                 return;
             }
             this.map.remove(object.x, object.y);

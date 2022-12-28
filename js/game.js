@@ -284,16 +284,17 @@
         },
 
         addEntities: function(array){
-            let entityList = this.floor.entityChars;
+            var _this = this;
             function replace_with_sample(char) {
                 if(char == '#')
                     return '#';
                 if(char == '+')
                     return '+';
-                return RL.Util.random_norm(entityList, entityList.length/2, 1);
+                return RL.Util.getRandomEntity(_this.floor.entities);
             }
             RL.Util.apply2D(array, replace_with_sample);
 
+            // adding gate at random
             let x = null;
             let y = null;
             do {

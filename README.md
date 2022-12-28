@@ -19,13 +19,12 @@ Todo:
 - change smash layer to show damage numbers (done)
 - remove horde push bonus (done)
 - remove wait action (done)
-- bug with seekingmeleeentity uncaught error object manager move
-- fast travel to different floors
+- change entity randomization function to % rates (done)
+- bug with seekingmeleeentity uncaught error object manager move (done?)
 - floor info when reaching new floor - display mobs/items and rarity (abundant, common, uncommon, rare, very rare)
     - mapping function for percent chance to rarity
 
 - Loot tables for mobs
-- change entity randomization function to % rates
 - add mob item drops onto canvas
 - add item from shop into inventory
 - SHOP/stats
@@ -36,6 +35,7 @@ Todo:
 
 - implement shop item mechanics
 - design more mobs/floors/skills
+- fast travel to different floors
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
     - from stats page / achievements
@@ -44,3 +44,4 @@ Todo:
 - revamp ui to show item/skill ranks and/or range
 - explore aoe damage
 - add bosses
+- add saving mechanic

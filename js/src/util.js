@@ -281,7 +281,33 @@
                 case 2: return 12;
                 case 3: return 10;
             }
-        }
+        },
+
+        // Takes entity-probability pairs and returns a random entity based on the probability distribution
+        getRandomEntity: function(dict) {
+            const keys = Object.keys(dict);
+          
+            // Next, we'll create an array of the probabilities corresponding to each key
+            const probabilities = keys.map(key => dict[key]);
+          
+            // Then, we'll create a new array of the cumulative probabilities, which will be used to determine which key to return
+            const cumulativeProbabilities = [];
+            let cumulativeProbability = 0;
+            for (const probability of probabilities) {
+              cumulativeProbability += probability;
+              cumulativeProbabilities.push(cumulativeProbability);
+            }
+          
+            // Now we'll generate a random number between 0 and 1
+            const randomNumber = Math.random();
+          
+            // Finally, we'll iterate through the cumulative probabilities array and return the key corresponding to the first cumulative probability that is greater than the random number
+            for (let i = 0; i < cumulativeProbabilities.length; i++) {
+              if (randomNumber < cumulativeProbabilities[i]) {
+                return keys[i];
+              }
+            }
+          }
     };
 
     root.RL.Util = Util;

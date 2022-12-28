@@ -86,9 +86,12 @@
     Floor.Data = {
         1: {
             name: 'Field of Dawn',
-            entities: ['slime', 'floor', 'floor', 'floor', 'bush', 'floor'],
-            entityChars: ['s', '.', '.', '.', 'b', '.'],
-            // entityColors: [RL.Util.COLORS.blue, RL.Util.COLORS.light_blue, RL.Util.COLORS.green, RL.Util.COLORS.green, RL.Util.COLORS.dark_green, RL.Util.COLORS.brown],
+            // entities: ['slime', 'floor', 'floor', 'floor', 'bush', 'floor'],
+            entities: {
+                '.': 0.75,
+                'b': 0.2,
+                's': 0.05,
+            },
             consoleColor: RL.Util.COLORS.gray,
             floorColor: RL.Util.COLORS.carnation_pink,
             floorBgColor: RL.Util.COLORS.green,
@@ -104,8 +107,13 @@
         },
         2: {
             name: 'The Great Forest',
-            entities: ['wolf', 'floor', 'floor', 'floor', 'shrub', 'oak_tree', 'wolf'],
-            entityChars: ['w', '.', '.', '.', 'm', 'T', 'w'],
+            // entities: ['wolf', 'floor', 'floor', 'floor', 'shrub', 'oak_tree', 'wolf'],
+            entities: {
+                '.': 0.65,
+                'm': 0.2,
+                'T': 0.1,
+                'w': 0.05,
+            },
             consoleColor: RL.Util.COLORS.green,
             floorColor: RL.Util.COLORS.gray,
             floorBgColor: RL.Util.COLORS.forest_green,

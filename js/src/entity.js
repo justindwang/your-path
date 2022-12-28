@@ -334,20 +334,22 @@
                 if(this.playerLastSeen) {
                     destination = this.getNextPathTile(this.playerLastSeen.x, this.playerLastSeen.y);
 
-                    if(!destination) {
-                        // get next path tile ignoring furniture and entities
-                        destination = this.getNextPathTile(this.playerLastSeen.x, this.playerLastSeen.y, true);
-                        if(destination) {
-                            var _this = this;
-                            var furniture = this.game.furnitureManager.getFirst(destination.x, destination.y, function(furniture) {
-                                return !furniture.passable && _this.canPerformActionOnTarget('attack', furniture);
-                            });
+                    // if(!destination) {
+                    //     // get next path tile ignoring furniture and entities
+                    //     destination = this.getNextPathTile(this.playerLastSeen.x, this.playerLastSeen.y, true);
+                    //     if(destination) {
+                    //         var _this = this;
+                    //         var furniture = this.game.furnitureManager.getFirst(destination.x, destination.y, function(furniture) {
+                    //             return !furniture.passable && _this.canPerformActionOnTarget('attack', furniture);
+                    //         });
 
-                            if(furniture && this.performAction('attack', furniture)) {
-                                return true;
-                            }
-                        }
-                    }
+                    //         if(furniture && this.performAction('attack', furniture)) 
+                    //             return true;
+                    //         var entity = this.game.entityManager.get(destination.x, destination.y);
+                    //         if(entity) 
+                    //             return true;
+                    //     }
+                    // }
                 }
 
                 if(!destination) {
