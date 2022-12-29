@@ -34,6 +34,8 @@
         rendererHeight: null,
         rendererWidth: null,
 
+        paused: false,
+
         game_update: function(){
             if(!this.gameOver){
                 this.entityManager.update();
@@ -290,7 +292,7 @@
                     return '#';
                 if(char == '+')
                     return '+';
-                return RL.Util.getRandomEntity(_this.floor.entities);
+                return RL.Util.getRandomFromRate(_this.floor.entities);
             }
             RL.Util.apply2D(array, replace_with_sample);
 

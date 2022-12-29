@@ -74,7 +74,9 @@
         * @property char
         * @type String
         */
-        char: '@',
+        char: '🧑',
+
+        fontSize: 12,
 
         /**
         * The color of the character displayed when rendering this player.

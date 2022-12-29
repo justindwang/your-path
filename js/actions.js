@@ -348,8 +348,15 @@
                 this.game.console.logAttack(source, weapon, this);
                 if(this.dead){
                     if (this.getClass() == 'entity'){
+                        var loot = this.generateLoot();
+                        if (loot != 'nothing'){
+                            loot = new RL.Item(this.game, loot);
+                            var entity_x = this.x;
+                            var entity_y = this.y;
+                            this.game.itemManager.add(entity_x, entity_y, loot);
+                        }
                         this.game.entityManager.remove(this);
-                        if(this.game.player)
+                        if(this.game.player == source)
                             source.gainExp(this.exp);
                     }
                     else if (this.getClass() == 'furniture'){

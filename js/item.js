@@ -79,8 +79,8 @@
         * @type String|bool
         */
         bgColor: false,
-        charStrokeColor: '#000',
-        charStrokeWidth: 2,
+        charStrokeColor: '#5A5A5A',
+        charStrokeWidth: 1,
         group: null,
         rank: 'F',
 
@@ -145,6 +145,8 @@
         },
         weapon: {
             group: 'weapon',
+            char: '🔪',
+            fontSize: 12,
             getConsoleName: function(){
                 return {
                     name: this.name,
@@ -183,6 +185,9 @@
         },
         material: {
             group: 'material',
+            charStrokeWidth: 1,
+            char: '✨',
+            fontSize: 12,
             getStats: function(){
                 return 'Material';
             }
@@ -234,18 +239,16 @@
         // enemy weapons
         goo: makeWeapon({
             name: 'Goo',
-            char: 'g',
             rank: 'F',
             stat1: 'Str',
             stat1Modifier: 1,
             range: 1,
         }),
-        claws: makeWeapon({
-            name: 'Claws',
-            char: 'c',
-            rank: 'F',
+        wolf_fang: makeWeapon({
+            name: 'Wolf Fang',
+            rank: 'E',
             stat1: 'Str',
-            stat1Modifier: 1,
+            stat1Modifier: 2,
             range: 1,
         }),
 
@@ -274,9 +277,13 @@
         // material
         slime_goo: makeMaterial({
             name: 'Slime Goo',
-            char: 's',
-            rank: 'C',
+            rank: 'F',
         }),
+
+        wolf_fur: makeMaterial({
+            name: 'Wolf Fur',
+            rank: 'F',
+        })
 
     };
 

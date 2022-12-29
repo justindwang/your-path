@@ -87,6 +87,8 @@
         bgColor: false,
 
         consoleColor: false,
+        
+        fontSize: 15,
 
         pushable: false,
 

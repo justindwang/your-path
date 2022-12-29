@@ -30,12 +30,13 @@ Todo:
 - bug with seekingmeleeentity uncaught error object manager move (done for now)<br>
 - floor info when reaching new floor - display mobs/items and rarity (common, uncommon, rare, very rare)<br>
     - mapping function for percent chance to rarity<br>
+- Loot tables for mobs<br>
+- add mob item drops onto canvas<br>
 </details>
 
-- Loot tables for mobs
 - items from chests/crates
-- add mob item drops onto canvas
 - add item from shop into inventory
+- add aggro range for mobs
 - SHOP/stats
 - implement money system
 - add functionality to intelligence, agility, and vitality stats

@@ -93,6 +93,8 @@
 
         consoleColor: false,
 
+        fontSize: 15,
+
         hp: null,
 
         hpMax: null,
@@ -361,6 +363,9 @@
                     return true;
                 }
             },
+            generateLoot: function(){
+                return RL.Util.getRandomFromRate(this.loot);
+            },
         },
         nonSeekingMeleeEntity: {
             playerLastSeen: false,
@@ -393,6 +398,9 @@
                     this.moveTo(destination.x, destination.y);
                     return true;
                 }
+            },
+            generateLoot: function(){
+                return RL.Util.getRandomFromRate(this.loot);
             },
         },
     };
@@ -447,6 +455,10 @@
                 RL.Actions.Performable.add(this, 'attack');
 
             },
+            loot: {
+                // nothing: 0.75,
+                slime_goo: 1,
+            },
         }),
         wolf: makeSeekingMeleeEntity({
             name: 'Wolf',
@@ -458,15 +470,20 @@
             consoleColor: RL.Util.COLORS.dark_gray,
             hp: 20,
             hpMax: 20,
-            strength: 2,
+            strength: 1,
             exp: 5,
             maxTurnsWithoutStumble: 10,
             initialize: function() {
-                this.weapon = new RL.Item(this.game, 'claws');
+                this.weapon = new RL.Item(this.game, 'wolf_fang');
                 this.applyWeaponStats(this.weapon);
                 RL.Actions.Resolvable.add(this, 'attack');
 
                 RL.Actions.Performable.add(this, 'attack');
+            },
+            loot: {
+                // nothing: 0.75,
+                // wolf_fur: 0.2,
+                wolf_fang: 1
             },
         }),
     };

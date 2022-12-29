@@ -283,8 +283,8 @@
             }
         },
 
-        // Takes entity-probability pairs and returns a random entity based on the probability distribution
-        getRandomEntity: function(dict) {
+        // Takes item-probability pairs and returns a random item based on the probability distribution
+        getRandomFromRate: function(dict) {
             const keys = Object.keys(dict);
           
             // Next, we'll create an array of the probabilities corresponding to each key
