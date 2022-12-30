@@ -91,6 +91,9 @@
         */
         bgColor: false,
 
+        charStrokeColor: '#000',
+        charStrokeWidth: 2,
+
         consoleColor: false,
 
         fontSize: 15,
@@ -300,6 +303,9 @@
             if(weapon.stat3)
                 this[RL.Util.mapAbbrToStat(weapon.stat3)] = Math.max(0, this[RL.Util.mapAbbrToStat(weapon.stat3)] + weapon.stat3Modifier);
         },
+        generateLoot: function(){
+            return RL.Util.getRandomFromRate(this.loot);
+        },
     };
 
     var Defaults = {
@@ -363,9 +369,6 @@
                     return true;
                 }
             },
-            generateLoot: function(){
-                return RL.Util.getRandomFromRate(this.loot);
-            },
         },
         nonSeekingMeleeEntity: {
             playerLastSeen: false,
@@ -398,9 +401,6 @@
                     this.moveTo(destination.x, destination.y);
                     return true;
                 }
-            },
-            generateLoot: function(){
-                return RL.Util.getRandomFromRate(this.loot);
             },
         },
     };
@@ -436,10 +436,6 @@
             name: 'Slime',
             char: 's',
             color: RL.Util.COLORS.blue,
-            bgColor: false,
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
-
             consoleColor: RL.Util.COLORS.blue,
 
             maxTurnsWithoutStumble: 3,
@@ -456,17 +452,14 @@
 
             },
             loot: {
-                // nothing: 0.75,
-                slime_goo: 1,
+                nothing: 0.75,
+                slime_goo: 0.25,
             },
         }),
         wolf: makeSeekingMeleeEntity({
             name: 'Wolf',
             char: 'w',
             color: RL.Util.COLORS.dark_gray,
-            bgColor: false,
-            charStrokeColor: '#000',
-            charStrokeWidth: 2,
             consoleColor: RL.Util.COLORS.dark_gray,
             hp: 20,
             hpMax: 20,
@@ -481,9 +474,9 @@
                 RL.Actions.Performable.add(this, 'attack');
             },
             loot: {
-                // nothing: 0.75,
-                // wolf_fur: 0.2,
-                wolf_fang: 1
+                nothing: 0.75,
+                wolf_fur: 0.2,
+                wolf_fang: 0.05
             },
         }),
     };

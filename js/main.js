@@ -4,7 +4,7 @@ var keyBindings = {
     left: ['←', 'A'],
     right: ['→', 'D'],
     // close: ['C'],
-    // open: ['O'],
+    open: ['O'],
     attack: ['E'],
     // ranged_attack: ['F'],
     // cancel: ['ESC']

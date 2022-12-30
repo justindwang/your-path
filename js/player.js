@@ -9,7 +9,7 @@
         this.weapon = new RL.Item(this.game, 'rock');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        this.inventory = [new RL.Item(this.game, 'tiny_potion'), new RL.Item(this.game, 'goo'), new RL.Item(this.game, 'fists'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'slime_goo')];
+        this.inventory = [new RL.Item(this.game, 'tiny_hp_potion'), new RL.Item(this.game, 'goo'), new RL.Item(this.game, 'fists'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'rock'), new RL.Item(this.game, 'slime_goo')];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');

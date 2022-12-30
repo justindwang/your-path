@@ -221,7 +221,7 @@
                 RL.Actions.Resolvable.add(this, 'open');
                 RL.Actions.Resolvable.add(this, 'close');
 
-                RL.Actions.Resolvable.add(this, 'attack');
+                // RL.Actions.Resolvable.add(this, 'attack');
             }
         },
         chest: {
@@ -243,17 +243,17 @@
         crate: {
             name: 'Crate',
             hp: 5,
-            char: '-',
+            char: '📦',
             color: 'yellow',
             consoleColor: 'yellow',
             charStrokeColor: '#000',
             charStrokeWidth: 2,
+            fontSize: 12,
             pushable: false,
-            passable: true,
+            passable: false,
             blocksLos: false,
             init: function(){
                 RL.Actions.Resolvable.add(this, 'open');
-                RL.Actions.Resolvable.add(this, 'close');
             }
         },
         // Added by rio

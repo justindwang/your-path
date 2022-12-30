@@ -270,11 +270,21 @@
                 return !this.open;
             },
             resolveAction: function(source, settings){
-                this.passable = true;
-                this.blocksLos = false;
-                this.open = true;
-                this.char = "'";
-                return true;
+                if(this.type == 'door'){
+                    this.passable = true;
+                    this.blocksLos = false;
+                    this.open = true;
+                    this.char = "'";
+                    return true;
+                }
+                else if(this.type == 'crate'){
+                    this.game.furnitureManager.remove(this);
+                    var loot = new RL.Item(this.game, this.game.generateCrateLoot(this.game.floor.crateLoot));
+                    var crate_x = this.x;
+                    var crate_y = this.y;
+                    this.game.itemManager.add(crate_x, crate_y, loot);
+                    return true;
+                }
             },
         },
         close: {
@@ -347,12 +357,13 @@
                 
                 this.game.console.logAttack(source, weapon, this);
                 if(this.dead){
+                    var entity_x = this.x;
+                    var entity_y = this.y;
                     if (this.getClass() == 'entity'){
+                    
                         var loot = this.generateLoot();
-                        if (loot != 'nothing'){
+                        if (loot != 'nothing' && !this.game.itemManager.get(entity_x, entity_y)){
                             loot = new RL.Item(this.game, loot);
-                            var entity_x = this.x;
-                            var entity_y = this.y;
                             this.game.itemManager.add(entity_x, entity_y, loot);
                         }
                         this.game.entityManager.remove(this);

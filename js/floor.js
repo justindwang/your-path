@@ -81,7 +81,6 @@
                 var name = RL.Entity.Types[value].name;
                 string += name + ' - ' + rarity;
             }
-            first = true;
             for (const [key, value] of Object.entries(this.itemsCharToType)) {
                 if(first)
                     first = false;
@@ -89,6 +88,17 @@
                     string += ', '
                 var rarity = RL.Util.mapRateToRarity(this.entities[key]);
                 var name = RL.Entity.Types[value].name;
+                string += name + ' - ' + rarity;
+            }
+            for (const [key, value] of Object.entries(this.furnitureCharToType)) {
+                if(value != 'crate')
+                    continue;
+                if(first)
+                    first = false;
+                else
+                    string += ', '
+                var rarity = RL.Util.mapRateToRarity(this.entities[key]);
+                var name = RL.Furniture.Types[value].name;
                 string += name + ' - ' + rarity;
             }
             return string;
@@ -112,11 +122,11 @@
     Floor.Data = {
         1: {
             name: 'Field of Dawn',
-            // entities: ['slime', 'floor', 'floor', 'floor', 'bush', 'floor'],
             entities: {
-                '.': 0.75,
+                '.': 0.749,
                 'b': 0.2,
                 's': 0.05,
+                '-': 0.001,
                 // '.': 0.999,
                 // 's': 0.001,
             },
@@ -129,17 +139,24 @@
                 s: 'slime'},
             furnitureCharToType: {
                 b: 'bush',
-                '+': 'door',},
+                '+': 'door',
+                '-': 'crate',},
             itemsCharToType: {},
+            crateLoot: {
+                F: 0.5,
+                E: 0.4,
+                D: 0.09,
+                C: 0.01
+            }
         },
         2: {
             name: 'The Great Forest',
-            // entities: ['wolf', 'floor', 'floor', 'floor', 'shrub', 'oak_tree', 'wolf'],
             entities: {
-                '.': 0.65,
+                '.': 0.649,
                 'm': 0.2,
                 'T': 0.1,
                 'w': 0.05,
+                '-': 0.001
             },
             consoleColor: RL.Util.COLORS.green,
             floorColor: RL.Util.COLORS.gray,
@@ -151,8 +168,15 @@
             furnitureCharToType: {
                 m: 'shrub',
                 '+': 'door',
-                T: 'oak_tree',},
+                T: 'oak_tree',
+                '-': 'crate',},
             itemsCharToType: {},
+            crateLoot: {
+                F: 0.5,
+                E: 0.4,
+                D: 0.09,
+                C: 0.01
+            }
         },
     };
 

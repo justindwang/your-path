@@ -4,9 +4,6 @@ Your Path
 A roguelike game for the browser written in js using [js-roguelike-skeleton](https://github.com/unstoppablecarl/js-roguelike-skeleton) built on top of [Escape-from-Ecma-Labs](https://github.com/unstoppablecarl/escape-from-ecma-labs)
 
 Todo:
-
-## design more mobs/floors/skills/items
-## implement classes/jobs
 <details>
 <summary>(done)</summary>
 <br>
@@ -32,9 +29,12 @@ Todo:
     - mapping function for percent chance to rarity<br>
 - Loot tables for mobs<br>
 - add mob item drops onto canvas<br>
+- floors now have crates that drop items <br>
 </details>
 
-- items from chests/crates
+## design more mobs/floors/skills/items
+## implement classes/jobs
+
 - add item from shop into inventory
 - add aggro range for mobs
 - SHOP/stats
@@ -54,3 +54,4 @@ Todo:
 - explore aoe damage
 - add bosses
 - add saving mechanic
+- add personalization ui (e.g. job/name selection)

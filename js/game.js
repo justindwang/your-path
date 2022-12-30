@@ -396,6 +396,19 @@
                 console.log('This is the last floor');
             }
         },
+        generateCrateLoot: function(rates){
+            var rank = RL.Util.getRandomFromRate(rates);
+            var pool = this.getItemOfRank(rank);
+            return RL.Util.selectRandomElement(pool);
+        },
+        getItemOfRank: function(rank){
+            var pool = [];
+            for (const [key, value] of Object.entries(RL.Item.Types)) {
+                if(value.rank == rank)
+                    pool.push(key);
+            }
+            return pool;
+        },
         
     };
     

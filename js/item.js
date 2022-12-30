@@ -133,6 +133,8 @@
     var Defaults = {
         healing: {
             group: 'healing',
+            char: '🩹',
+            fontSize: 12,
             getConsoleName: function(){
                 return {
                     name: this.name,
@@ -207,31 +209,12 @@
     
     var makeMaterial = function(obj){
         return RL.Util.merge(obj, Defaults.material);
-    }
+    };
 
-    /**
-    * Describes different types of tiles. Used by the Item constructor 'type' param.
-    *
-    *     Item.Types = {
-    *         floor: {
-    *            name: 'Floor',
-    *            char: '.',
-    *            color: '#333',
-    *            bgColor: '#111',
-    *            blocksLos: false
-    *         },
-    *         // ...
-    *     }
-    *
-    * @class Item.Types
-    * @static
-    */
     Item.Types = {
-
         // healing items
-        tiny_potion: makeHealingItem({
-            name: 'Tiny Potion',
-            char: "p",
+        tiny_hp_potion: makeHealingItem({
+            name: 'Tiny HP Potion',
             rank: 'F',
             healAmount: 5,
         }),
@@ -255,7 +238,6 @@
         // melee weapons
         fists: makeWeapon({
             name: 'Fists',
-            char: 'f',
             rank: 'F',
             stat1: 'Str',
             stat1Modifier: 1,
@@ -265,7 +247,6 @@
         // ranged weapons
         rock: makeWeapon({
             name: 'Rock',
-            char: 'r',
             rank: 'E',
             stat1: 'Str',
             stat1Modifier: 2,
@@ -283,8 +264,45 @@
         wolf_fur: makeMaterial({
             name: 'Wolf Fur',
             rank: 'F',
-        })
+        }),
 
+        // fillin rank items
+        stinger: makeWeapon({
+            name: 'Stinger',
+            rank: 'D',
+            stat1: 'Str',
+            stat1Modifier: 5,
+            stat2: 'Agi',
+            stat2Modifier: 2,
+            range: 1,
+        }),
+        hp_potion: makeHealingItem({
+            name: 'HP Potion',
+            rank: 'C',
+            healAmount: 20,
+        }),
+        secret_rocks: makeMaterial({
+            name: 'Secret Rocks',
+            rank: 'B',
+        }),
+        whip_of_fortune: makeWeapon({
+            name: 'Whip of Fortune',
+            rank: 'A',
+            stat1: 'Str',
+            stat1Modifier: 100,
+            stat2: 'Int',
+            stat2Modifier: 50,
+            range: 3,
+        }),
+        barans_blades: makeWeapon({
+            name: 'Baran\'s Blades',
+            rank: 'S',
+            stat1: 'Str',
+            stat1Modifier: 220,
+            stat2: 'Agi',
+            stat2Modifier: 100,
+            range: 1,
+        }),
     };
 
 

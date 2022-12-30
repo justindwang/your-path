@@ -309,7 +309,7 @@
             }
           },
 
-          mapRateToRarity(rate){
+          mapRateToRarity: function(rate){
             if(rate >= 0.05)
                 return 'Common';
             if(rate >= 0.01)
@@ -320,6 +320,13 @@
                 return 'Very Rare';
             return 'Common';
           },
+
+          selectRandomElement: function(array) {
+            // Generate a random index between 0 and the length of the array
+            const randomIndex = Math.floor(Math.random() * array.length);
+            // Return the element at the random index
+            return array[randomIndex];
+          }
     };
 
     root.RL.Util = Util;
