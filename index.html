@@ -39,6 +39,12 @@
             </div>
 
             <div class="tr">
+                <span class="td">Gold:</span>
+                <span class="td_tab"></span>
+                <span class="td"><span id="stat-gold"></span></span>
+            </div>
+
+            <div class="tr">
                 <span class="td">HP:</span>
                 <span class="td_tab"></span>
                 <span class="td"><span id="stat-hp"></span>/<span id="stat-hp-max"></span></span>
@@ -114,13 +120,13 @@
                     <p>Inventory</p>
                 </div>
                 <div id="inventory-window">
-                    <div id="inventory-head">
+                    <div class="menu-head">
                         <h3>Your Items</h3>
                     </div>
-                    <div class="mCustomScrollbar" id="inventory-body">
+                    <div class="mCustomScrollbar menu-body" id="inventory-body">
                     
                     </div>
-                    <div id="inventory-foot">
+                    <div class="menu-foot">
                         <p>Order by:</p>
                         <span id="inventory-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="inventory-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="inventory-foot-name">Name </span>
                     </div>
@@ -134,54 +140,15 @@
                     <p>Shop</p>
                 </div>
                 <div id="shop-window">
-                    <div id="inventory-head">
+                    <div class="menu-head">
                         <h3>For Sale</h3>
                     </div>
-                    <div  class="mCustomScrollbar" id="inventory-body">
-                        <div class="inventory-item">
-                            <div class="inventory-item-icon">
-                                <img src="assets/icons/weapon.png"/>
-                            </div>
-                            <div class="inventory-item-info">
-                                <h4> <span style="color:#da70d6">Rusty Bow - F</span> <br> <span>+0 Str, +1 Range</span></h4>
-                            </div>
-                        </div>
-                        <div class="inventory-item">
-                            <div class="inventory-item-icon">
-                                <img src="assets/icons/heal.png"/>
-                            </div>
-                            <div class="inventory-item-info">
-                                <h4> <span style="color:#5f9ea0">Potion - C</span> <br> <span>(Heals 20 HP)</span></h4>
-                            </div>
-                        </div>
-                        <div class="inventory-item">
-                            <div class="inventory-item-icon">
-                                <img src="assets/icons/drops.png"/>
-                            </div>
-                            <div class="inventory-item-info">
-                                <h4> <span style="color:#556b2f">Secret Rocks - B </span> <br> <span>Material</span></h4>
-                            </div>
-                        </div>
-                        <div class="inventory-item">
-                            <div class="inventory-item-icon">
-                                <img src="assets/icons/weapon.png"/>
-                            </div>
-                            <div class="inventory-item-info">
-                                <h4> <span style="color:#a52a2a">Baran's Blades - S</span> <br> <span>+220 Str, +100 Agi</span></h4>
-                            </div>
-                        </div>
-                        <div class="inventory-item">
-                            <div class="inventory-item-icon">
-                                <img src="assets/icons/weapon.png"/>
-                            </div>
-                            <div class="inventory-item-info">
-                                <h4> <span style="color:goldenrod">Ninja Stars - E </span> <br> <span>+2 Str, +2 Range</span></h4>
-                            </div>
-                        </div>
+                    <div  class="mCustomScrollbar menu-body" id="shop-body">
+                        
                     </div>
-                    <div id="inventory-foot">
+                    <div class="menu-foot">
                         <p>Order by:</p>
-                        <p>Recent | Rarity | Name</p>
+                        <span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>
                     </div>
                 </div>
             </div>
@@ -197,7 +164,7 @@
                     <div id="inventory-head">
                         <h3>All Stats</h3>
                     </div>
-                    <div class="mCustomScrollbar" id="inventory-body">
+                    <div class="mCustomScrollbar menu-body" id="stats-body">
                         <div class="inventory-item">
                             <div class="inventory-item-icon">
                                 <img src="assets/icons/weapon.png"/>

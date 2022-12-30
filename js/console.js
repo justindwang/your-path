@@ -159,12 +159,28 @@
             this.log('Equip ' + this.wrap(item) + '? (Click again to confirm.)');
         },
 
-        loginspectMaterial: function(item){
+        logInspectMaterial: function(item){
             this.log('You have selected: ' + this.wrap(item));
         },
         logCurrentFloor: function(floor){
             this.log('Floor '+ floor.number + ': ' + floor.name);
             this.log('Floor Info: ' + this.game.floor.getEntityRarities());
+        },
+        logPurchasedItem: function(item){
+            var playerName = this.wrap(this.game.player);
+            var amount = item.cost;
+            item = this.wrap(item);
+            this.log(playerName + ' purchased ' + item + ' for ' + amount + ' gold');
+        },
+
+        logNotEnoughMoney: function(item){
+            var playerName = this.wrap(this.game.player);
+            item = this.wrap(item);
+            this.log(playerName + ' does not have enough gold to purchase ' + item);
+        },
+
+        logAskPurchase: function(item){
+            this.log('Purchase ' + this.wrap(item) + ' for '+ item.cost + ' gold? (Click again to confirm.)');
         },
 
         wrap: function(obj){

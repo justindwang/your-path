@@ -83,6 +83,7 @@
         charStrokeWidth: 1,
         group: null,
         rank: 'F',
+        cost: 0,
 
         stat1: null,
         stat2: null,
@@ -217,6 +218,7 @@
             name: 'Tiny HP Potion',
             rank: 'F',
             healAmount: 5,
+            cost: 10,
         }),
 
         // enemy weapons
@@ -226,6 +228,7 @@
             stat1: 'Str',
             stat1Modifier: 1,
             range: 1,
+            cost: 10,
         }),
         wolf_fang: makeWeapon({
             name: 'Wolf Fang',
@@ -233,6 +236,7 @@
             stat1: 'Str',
             stat1Modifier: 2,
             range: 1,
+            cost: 100,
         }),
 
         // melee weapons
@@ -242,6 +246,7 @@
             stat1: 'Str',
             stat1Modifier: 1,
             range: 1,
+            cost: 10,
         }),
 
         // ranged weapons
@@ -253,17 +258,20 @@
             stat2: 'Agi',
             stat2Modifier: 1,
             range: 2,
+            cost: 100,
         }),
 
         // material
         slime_goo: makeMaterial({
             name: 'Slime Goo',
             rank: 'F',
+            cost: 5,
         }),
 
         wolf_fur: makeMaterial({
             name: 'Wolf Fur',
             rank: 'F',
+            cost: 5,
         }),
 
         // fillin rank items
@@ -275,15 +283,18 @@
             stat2: 'Agi',
             stat2Modifier: 2,
             range: 1,
+            cost: 500,
         }),
         hp_potion: makeHealingItem({
             name: 'HP Potion',
             rank: 'C',
             healAmount: 20,
+            cost: 1000,
         }),
         secret_rocks: makeMaterial({
             name: 'Secret Rocks',
             rank: 'B',
+            cost: 2000,
         }),
         whip_of_fortune: makeWeapon({
             name: 'Whip of Fortune',
@@ -293,6 +304,7 @@
             stat2: 'Int',
             stat2Modifier: 50,
             range: 3,
+            cost: 5000,
         }),
         barans_blades: makeWeapon({
             name: 'Baran\'s Blades',
@@ -302,6 +314,7 @@
             stat2: 'Agi',
             stat2Modifier: 100,
             range: 1,
+            cost: 10000,
         }),
     };
 

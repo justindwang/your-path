@@ -326,7 +326,22 @@
             const randomIndex = Math.floor(Math.random() * array.length);
             // Return the element at the random index
             return array[randomIndex];
-          }
+          },
+
+          addCommas: function(number) {
+            var str = number.toString();
+            var charArray = str.split('');
+            var formatted = [];
+            var counter = 0;
+            for (var i = charArray.length - 1; i >= 0; i--) {
+              counter++;
+              formatted.unshift(charArray[i]);
+              if (counter % 3 === 0 && i !== 0) {
+                formatted.unshift(',');
+              }
+            }
+            return formatted.join('');
+          },
     };
 
     root.RL.Util = Util;

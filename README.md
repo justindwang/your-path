@@ -30,15 +30,17 @@ Todo:
 - Loot tables for mobs<br>
 - add mob item drops onto canvas<br>
 - floors now have crates that drop items <br>
+- items can now be purchased from shop <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- add item from shop into inventory
+
 - add aggro range for mobs
 - SHOP/stats
 - implement money system
+    - sell items from inventory
 - add functionality to intelligence, agility, and vitality stats
 - add luck stat
 - mp regeneration mechanic

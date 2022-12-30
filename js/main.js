@@ -17,6 +17,7 @@ var statElements = {
     levelEl: document.getElementById('stat-level'),
     jobEl: document.getElementById('stat-job'),
     titleEl: document.getElementById('stat-title'),
+    goldEl: document.getElementById('stat-gold'),
     hpEl: document.getElementById('stat-hp'),
     hpMaxEl: document.getElementById('stat-hp-max'),
     hpBarEl: document.getElementById('stat-hp-bar'),

@@ -32,6 +32,7 @@
         this.mouse.startListening(el);
         this.menu = new RL.Menu(this);
         this.menu.initInventory();
+        this.menu.initShop();
         
     };
 

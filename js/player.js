@@ -34,6 +34,9 @@
         
         exp: 0,
         expForNext: 9,
+
+        gold: 100000,
+
         hp: 20,
         hpMax: 20,
         mp: 10,
@@ -51,6 +54,7 @@
         levelEl: null,
         jobEl: null,
         titleEl: null,
+        goldEl: null,
         hpEl: null,
         hpMaxEl: null,
         hpBarEl: null,
@@ -456,7 +460,9 @@
                 this.game.console.logEquipItem(this, item);
                 var currWeapon = this.weapon;
                 this.weapon = item;
+                // remove weapon from inventory
                 this.inventory.splice(slotNum, 1);
+                // add current weapon to inventory
                 this.inventory.splice(slotNum, 0, currWeapon);
                 this.removeWeaponStats(currWeapon);
                 this.applyWeaponStats(item);
@@ -469,6 +475,7 @@
             this.levelEl.innerHTML = this.level;
             this.jobEl.innerHTML = this.job;
             this.titleEl.innerHTML = this.title;
+            this.goldEl.innerHTML = RL.Util.addCommas(this.gold);
 
             this.hpEl.innerHTML = this.hp;
             this.hpMaxEl.innerHTML = this.hpMax;
