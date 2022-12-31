@@ -9,7 +9,7 @@
     * @constructor
     */
     var Game = function Game() {
-
+        
         // un-populated instance of Array2d
         this.map = new RL.Map(this);
         this.entityManager = new RL.ObjectManager(this, RL.Entity);
@@ -34,7 +34,6 @@
         this.menu.initInventory();
         this.menu.initShop();
         this.menu.initStats();
-        
     };
 
     Game.prototype = {

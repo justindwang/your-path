@@ -131,6 +131,7 @@
             if(this.canMoveTo(x, y)){
 
                 this.moveTo(x, y);
+                RL.Util.arrFind(this.game.menu.stats, 'tiles_traveled').increment();
                 return true;
 
             } else {
@@ -239,6 +240,7 @@
                     if(this.skills[i].mpCost <= this.mp){
                         this.mp -= this.skills[i].mpCost;
                         this.game.console.logUseSkill(this, this.skills[i]);
+                        RL.Util.arrFind(this.game.menu.stats, 'skills_used').increment();
                         this.skills[i].performEffect();
                     }
                     else{
@@ -392,6 +394,7 @@
                 this.hp = this.hpMax;
             }
             this.game.console.logHeal(this, amount);
+            RL.Util.arrFind(this.game.menu.stats, 'hp_healed').incrementBy(amount);
         },
 
         statChange: function(stat, amount){

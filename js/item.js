@@ -150,6 +150,11 @@
             group: 'weapon',
             char: '🔪',
             fontSize: 12,
+            attachTo: function(entity){
+                this.game.console.logAddToInventory(entity, this);
+                this.game.menu.addToInventory(this);
+                RL.Util.arrFind(this.game.menu.stats, 'weapons_collected').increment();
+            },
             getConsoleName: function(){
                 return {
                     name: this.name,

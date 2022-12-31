@@ -278,6 +278,7 @@
                     return true;
                 }
                 else if(this.type == 'crate'){
+                    RL.Util.arrFind(this.game.menu.stats, 'crates_opened').increment();
                     this.game.furnitureManager.remove(this);
                     var loot = new RL.Item(this.game, this.game.generateCrateLoot(this.game.floor.crateLoot));
                     var crate_x = this.x;
@@ -367,11 +368,14 @@
                             this.game.itemManager.add(entity_x, entity_y, loot);
                         }
                         this.game.entityManager.remove(this);
-                        if(this.game.player == source)
+                        if(this.game.player == source){
                             source.gainExp(this.exp);
+                            RL.Util.arrFind(this.game.menu.stats, 'enemies_killed').increment();
+                        }
                     }
                     else if (this.getClass() == 'furniture'){
                         this.game.furnitureManager.remove(this);
+                        RL.Util.arrFind(this.game.menu.stats, 'objects_destroyed').increment();
                     }
                 }
 

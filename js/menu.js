@@ -244,7 +244,7 @@
 
         initializeAllStats: function(){
             var list = [];
-            for (const [key, value] of Object.entries(RL.Stat.Types)) {
+            for (const [key, value] of Object.entries(RL.Stat.List)) {
                 var temp = new RL.Stat(this.game, key);
                 list.push(temp);
             }

@@ -52,6 +52,7 @@
                 this.furnitureManager.update();
             }
             this.player.renderHtml();
+            this.menu.renderStats();
             this.queueDraw = false;
         },
 
@@ -66,6 +67,7 @@
                 if(result){
                     if(action == 'switch_skill' || action == 'use_skill'){
                         this.player.renderHtml();
+                        this.menu.renderStats();
                         this.queueDraw = false;
                         return;
                     }
@@ -89,6 +91,7 @@
                 this.furnitureManager.update();
             }
             this.queueDraw = false;
+            this.menu.renderStats();
         },
 
         setMapSize: function(width, height){

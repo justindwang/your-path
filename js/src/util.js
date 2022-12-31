@@ -342,6 +342,16 @@
             }
             return formatted.join('');
           },
+
+          // Searches an array of objects using a key and returns the object with the matching key
+          arrFind: function(arr, key){
+            for(var i = 0; i< arr.length; i++){
+                if (arr[i].key == key)
+                    return arr[i];
+            }
+            console.log('error key not found');
+            return false;
+          },
     };
 
     root.RL.Util = Util;

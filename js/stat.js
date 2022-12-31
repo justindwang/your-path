@@ -1,10 +1,10 @@
 (function(root) {
     'use strict';
 
-    var Stat = function Stat(game, type) {
+    var Stat = function Stat(game, key) {
         this.game = game;
-        this.type = type;
-        var typeData = Stat.Types[type];
+        this.key = key;
+        var typeData = Stat.List[key];
         RL.Util.merge(this, typeData);
         this.color = RL.Util.mapRankToColor(this.rank);
     };
@@ -52,6 +52,12 @@
     var Defaults = {
         counter: {
             count: 0,
+            increment: function(){
+                this.count++;
+            },
+            incrementBy: function(amount){
+                this.count += amount;
+            },
             getStats: function(){
                 return this.count;
             },
@@ -62,7 +68,7 @@
         return RL.Util.merge(obj, Defaults.counter);
     };
 
-    Stat.Types = {
+    Stat.List = {
         tiles_traveled: makeCounterStat({
             name: 'Tiles Traveled',
             group: 'misc',
@@ -83,26 +89,6 @@
             group: 'combat',
             rank: 'F',
         }),
-        slimes_killed: makeCounterStat({
-            name: 'Slimes Killed',
-            group: 'combat',
-            rank: 'F',
-        }),
-        wolves_killed: makeCounterStat({
-            name: 'Wolves Killed',
-            group: 'combat',
-            rank: 'F',
-        }),
-        bushes_destroyed: makeCounterStat({
-            name: 'Bushes Destroyed',
-            group: 'combat',
-            rank: 'F',
-        }),
-        trees_destroyed: makeCounterStat({
-            name: 'Trees Destroyed',
-            group: 'combat',
-            rank: 'F',
-        }),
         weapons_collected: makeCounterStat({
             name: 'Weapons Collected',
             group: 'combat',
@@ -113,6 +99,11 @@
             group: 'healing',
             rank: 'E'
         }),
+        skills_used: makeCounterStat({
+            name: 'Skills Used',
+            group: 'misc',
+            rank: 'E'
+        })
     };
     
 
