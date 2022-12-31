@@ -1,9 +1,13 @@
 (function(root) {
     'use strict';
 
+    /*
+    * Menu class that manages inventory, shop, and stats UI
+    */
     var Menu = function Menu(game) {
         this.game = game;
         this.shop = [new RL.Item(this.game, 'stinger'), new RL.Item(this.game, 'hp_potion'), new RL.Item(this.game, 'hp_potion'), new RL.Item(this.game, 'secret_rocks'), new RL.Item(this.game, 'whip_of_fortune'), new RL.Item(this.game, 'barans_blades')];
+        this.stats = this.initializeAllStats();
         if(this.init){
             this.init();
         }
@@ -14,7 +18,9 @@
 
         game: null,
 
-        shop: null,
+        shop: [],
+
+        stats: [],
 
         inventoryItemConfirmIndex: -1,
         shopItemConfirmIndex: -1,
@@ -31,6 +37,10 @@
             document.getElementById('shop-foot-type').addEventListener('click', () => {this.sortShopType()});
             document.getElementById('shop-foot-rarity').addEventListener('click', () => {this.sortShopRarity()});
             document.getElementById('shop-foot-name').addEventListener('click', () => {this.sortShopName()});
+
+            document.getElementById('stats-foot-type').addEventListener('click', () => {this.sortStatsType()});
+            document.getElementById('stats-foot-rarity').addEventListener('click', () => {this.sortStatsRarity()});
+            document.getElementById('stats-foot-name').addEventListener('click', () => {this.sortStatsName()});
 
             this.addInventoryListeners();
             this.addShopListeners();
@@ -128,7 +138,7 @@
             document.getElementById('shop-foot-rarity').style.color = '#ffffff33';
             document.getElementById('shop-foot-name').style.color = '#ffffff33';
 
-            this.game.player.inventory = RL.Util.sortArrayOfObjects(this.shop, 'group');
+            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'group');
             this.renderShop();
         },
 
@@ -137,7 +147,7 @@
             document.getElementById('shop-foot-rarity').style.color = '#e5e5e5';
             document.getElementById('shop-foot-name').style.color = '#ffffff33';
 
-            this.game.player.inventory = RL.Util.sortArrayOfObjects(this.shop, 'rank');
+            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'rank');
             this.renderShop();
         },
 
@@ -146,9 +156,37 @@
             document.getElementById('shop-foot-rarity').style.color = '#ffffff33';
             document.getElementById('shop-foot-name').style.color = '#e5e5e5';
 
-            this.game.player.inventory = RL.Util.sortArrayOfObjects(this.shop, 'name');
+            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'name');
             this.renderShop();
         },
+
+        sortStatsType: function(){
+            document.getElementById('stats-foot-type').style.color = '#e5e5e5';
+            document.getElementById('stats-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('stats-foot-name').style.color = '#ffffff33';
+
+            this.stats = RL.Util.sortArrayOfObjects(this.stats, 'group');
+            this.renderStats();
+        },
+
+        sortStatsRarity: function(){
+            document.getElementById('stats-foot-type').style.color = '#ffffff33';
+            document.getElementById('stats-foot-rarity').style.color = '#e5e5e5';
+            document.getElementById('stats-foot-name').style.color = '#ffffff33';
+
+            this.stats = RL.Util.sortArrayOfObjects(this.stats, 'rank');
+            this.renderStats();
+        },
+
+        sortStatsName: function(){
+            document.getElementById('stats-foot-type').style.color = '#ffffff33';
+            document.getElementById('stats-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('stats-foot-name').style.color = '#e5e5e5';
+
+            this.stats = RL.Util.sortArrayOfObjects(this.stats, 'name');
+            this.renderStats();
+        },
+
         inventoryItemClicked: function(slotNum){
             var inventory = this.game.player.inventory;
             var group = inventory[slotNum].group;
@@ -203,6 +241,16 @@
             this.game.player.inventory.push(item);
             this.renderInventory();
         },
+
+        initializeAllStats: function(){
+            var list = [];
+            for (const [key, value] of Object.entries(RL.Stat.Types)) {
+                var temp = new RL.Stat(this.game, key);
+                list.push(temp);
+            }
+            return list;
+        },
+
         initInventory: function(){
             var inventory = this.game.player.inventory;
             var wrap = document.getElementById('inventory-body');
@@ -312,6 +360,59 @@
             }
             wrap.innerHTML = html;
             this.addShopListeners();
+            this.clearClickData();
+        }, 
+        initStats: function(){
+            var wrap = document.getElementById('stats-body');
+            var icon = '';
+            var color = '';
+            var html = '';
+            
+            for(var i = 0; i<this.stats.length; i++){
+                switch(this.stats[i].group) {
+                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'combat': icon = '<img src="assets/icons/weapon.png"/>'; break;
+                    case 'misc': icon = '<img src="assets/icons/stats.png"/>'; break;
+                }
+                switch(this.stats[i].rank){
+                    case 'S': color = '<span style="color:brown">'; break;
+                    case 'A': color = '<span style="color:orchid">'; break;
+                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'C': color = '<span style="color:cadetblue">'; break;
+                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'E': color = '<span style="color:goldenrod">'; break;
+                    case 'F': color = '<span style="color:peachpuff">'; break;
+                }
+
+                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' - ' + this.stats[i].rank +'</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
+            }
+            wrap.innerHTML = html;
+        },
+        renderStats: function(){
+            var wrap = document.getElementById('mCSB_3_container');
+            var icon = '';
+            var color = '';
+            var html = '';
+            
+            for(var i = 0; i< this.stats.length; i++){
+                switch(this.stats[i].group) {
+                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'combat': icon = '<img src="assets/icons/weapon.png"/>'; break;
+                    case 'misc': icon = '<img src="assets/icons/stats.png"/>'; break;
+                }
+                switch(this.stats[i].rank){
+                    case 'S': color = '<span style="color:brown">'; break;
+                    case 'A': color = '<span style="color:orchid">'; break;
+                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'C': color = '<span style="color:cadetblue">'; break;
+                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'E': color = '<span style="color:goldenrod">'; break;
+                    case 'F': color = '<span style="color:peachpuff">'; break;
+                }
+
+                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' - ' + this.stats[i].rank +'</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
+            }
+            wrap.innerHTML = html;
             this.clearClickData();
         }, 
     };

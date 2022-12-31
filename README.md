@@ -32,12 +32,13 @@ Todo:
 - floors can have crates that drop items <br>
 - items can be purchased from shop <br>
 - aggro range for mobs can be set <br>
+- added stats/achievements tab <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- implement stats/achievements tab
+- implement stat tracking mechanic
 - implement money system
     - sell items from inventory
 - add functionality to intelligence, agility, and vitality stats
