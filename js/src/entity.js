@@ -309,7 +309,7 @@
     };
 
     var Defaults = {
-        seekingMeleeEntity: {
+        MeleeEntity: {
             playerLastSeen: false,
             turnsSinceStumble: 0,
             bleeds: true,
@@ -339,7 +339,8 @@
                 }
 
                 var destination;
-                if(this.playerLastSeen) {
+                var distance = RL.Util.getDistance(this.x, this.y, this.game.player.x, this.game.player.y);
+                if(this.playerLastSeen && this.aggroRange>=distance) {
                     destination = this.getNextPathTile(this.playerLastSeen.x, this.playerLastSeen.y);
 
                     // if(!destination) {
@@ -407,8 +408,8 @@
 
     RL.Util.merge(Entity.prototype, RL.Mixins.TileDraw);
 
-    var makeSeekingMeleeEntity = function(obj){
-        return RL.Util.merge(obj, Defaults.seekingMeleeEntity);
+    var makeMeleeEntity = function(obj){
+        return RL.Util.merge(obj, Defaults.MeleeEntity);
     };
 
     var makeNonSeekingMeleeEntity = function(obj){
@@ -432,7 +433,7 @@
     * @static
     */
     Entity.Types = {
-        slime: makeNonSeekingMeleeEntity({
+        slime: makeMeleeEntity({
             name: 'Slime',
             char: 's',
             color: RL.Util.COLORS.blue,
@@ -443,6 +444,7 @@
             hpMax: 10,
             strength: 0,
             exp: 2,
+            aggroRange: 0,
             initialize: function() {
                 this.weapon = new RL.Item(this.game, 'goo');
                 this.applyWeaponStats(this.weapon);
@@ -456,7 +458,7 @@
                 slime_goo: 0.25,
             },
         }),
-        wolf: makeSeekingMeleeEntity({
+        wolf: makeMeleeEntity({
             name: 'Wolf',
             char: 'w',
             color: RL.Util.COLORS.dark_gray,
@@ -466,6 +468,7 @@
             strength: 1,
             exp: 5,
             maxTurnsWithoutStumble: 10,
+            aggroRange: 3,
             initialize: function() {
                 this.weapon = new RL.Item(this.game, 'wolf_fang');
                 this.applyWeaponStats(this.weapon);

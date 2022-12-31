@@ -29,16 +29,15 @@ Todo:
     - mapping function for percent chance to rarity<br>
 - Loot tables for mobs<br>
 - add mob item drops onto canvas<br>
-- floors now have crates that drop items <br>
-- items can now be purchased from shop <br>
+- floors can have crates that drop items <br>
+- items can be purchased from shop <br>
+- aggro range for mobs can be set <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-
-- add aggro range for mobs
-- SHOP/stats
+- implement stats/achievements tab
 - implement money system
     - sell items from inventory
 - add functionality to intelligence, agility, and vitality stats
@@ -57,3 +56,4 @@ Todo:
 - add bosses
 - add saving mechanic
 - add personalization ui (e.g. job/name selection)
+- explore rendering images instead of characters on canvas
