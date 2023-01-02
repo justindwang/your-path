@@ -246,6 +246,9 @@
         sortArrayOfObjects: function(arr, key) {
             return arr.sort((a, b) => (a[key] > b[key] ? 1 : -1));
         },
+        sortInventoryByKey: function(arr, key) {
+            return arr.sort((a, b) => (a[0][key] > b[0][key] ? 1 : -1));
+        },
         mapAbbrToStat: function(abbr){
             switch(abbr){
                 case 'Str': return 'strength';

@@ -39,6 +39,7 @@ Todo:
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
+- add item stacking to shop ui and internally as item instance variable
 - implement money system
     - sell items from inventory
 - add functionality to intelligence, agility, and vitality stats
@@ -50,7 +51,6 @@ Todo:
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
     - from stats page / achievements
-- add item stacking to shop ui and internally as item instance variable
 - add multiplayer
 - revamp ui to show item/skill ranks and/or range
 - explore aoe damage

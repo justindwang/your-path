@@ -109,7 +109,7 @@
             document.getElementById('inventory-foot-name').style.color = '#ffffff33';
 
             var toSort = this.game.player.inventory;
-            this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'group');
+            this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'group');
             this.renderInventory();
         },
 
@@ -119,7 +119,7 @@
             document.getElementById('inventory-foot-name').style.color = '#ffffff33';
 
             var toSort = this.game.player.inventory;
-            this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'rank');
+            this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'rank');
             this.renderInventory();
         },
 
@@ -129,7 +129,7 @@
             document.getElementById('inventory-foot-name').style.color = '#e5e5e5';
 
             var toSort = this.game.player.inventory;
-            this.game.player.inventory = RL.Util.sortArrayOfObjects(toSort, 'name');
+            this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'name');
             this.renderInventory();
         },
 
@@ -256,15 +256,16 @@
             var wrap = document.getElementById('inventory-body');
             var icon = '';
             var color = '';
+            var amount = '';
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                switch(inventory[i].group) {
+                switch(inventory[i][0].group) {
                     case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
                     case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
                     case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
                 }
-                switch(inventory[i].rank){
+                switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:darkolivegreen">'; break;
@@ -274,7 +275,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i].name + ' - ' + inventory[i].rank +'</span> <br> <span>' + inventory[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' (' + inventory[i][0].rank +')</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
             }
             wrap.innerHTML = html;
         },
@@ -287,12 +288,12 @@
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                switch(inventory[i].group) {
+                switch(inventory[i][0].group) {
                     case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
                     case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
                     case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
                 }
-                switch(inventory[i].rank){
+                switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:darkolivegreen">'; break;
@@ -302,7 +303,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i].name + ' - ' + inventory[i].rank +'</span> <br> <span>' + inventory[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' (' + inventory[i][0].rank +')</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
             }
             wrap.innerHTML = html;
             this.addInventoryListeners();
@@ -330,7 +331,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' (' + this.shop[i].rank +')</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
         },
@@ -356,7 +357,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' (' + this.shop[i].rank +')</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
             this.addShopListeners();
@@ -384,7 +385,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' - ' + this.stats[i].rank +'</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' (' + this.stats[i].rank +')</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
         },
@@ -410,7 +411,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' - ' + this.stats[i].rank +'</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' (' + this.stats[i].rank +')</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
             this.clearClickData();
