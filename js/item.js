@@ -198,7 +198,14 @@
             fontSize: 12,
             getStats: function(){
                 return 'Material';
-            }
+            },
+            getConsoleName: function(){
+                return {
+                    name: this.name,
+                    stats: this.getStats(),
+                    color: this.color
+                };
+            },
         },
     };
 

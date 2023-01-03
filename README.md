@@ -34,12 +34,12 @@ Todo:
 - aggro range for mobs can be set <br>
 - added stats/achievements tab <br>
 - implemented basic stat tracking mechanic <br>
+- add item stacking to shop ui and internally as item instance variable <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- add item stacking to shop ui and internally as item instance variable
 - implement money system
     - sell items from inventory
 - add functionality to intelligence, agility, and vitality stats

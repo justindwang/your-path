@@ -9,7 +9,7 @@
         this.weapon = new RL.Item(this.game, 'rock');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        this.inventory = [[new RL.Item(this.game, 'tiny_hp_potion'),100], [new RL.Item(this.game, 'goo'),322], [new RL.Item(this.game, 'fists'),4], [new RL.Item(this.game, 'rock'),7], [new RL.Item(this.game, 'rock'),22], [new RL.Item(this.game, 'slime_goo'),10]];
+        this.inventory = [[new RL.Item(this.game, 'tiny_hp_potion'),2], [new RL.Item(this.game, 'goo'),1], [new RL.Item(this.game, 'fists'),1], [new RL.Item(this.game, 'rock'),1], [new RL.Item(this.game, 'slime_goo'),1]];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
@@ -450,23 +450,29 @@
         },
 
         useItem: function(slotNum){
-            var item = this.inventory[slotNum];
+            var item = this.inventory[slotNum][0];
+            var amount = this.inventory[slotNum][1];
             if(item.group == 'healing'){
                 if(this.hp >= this.hpMax)
                     this.game.console.logCanNotHeal(item);
                 else{
                     this.heal(item.healAmount);
-                    this.inventory.splice(slotNum, 1);
+                    if(amount>1)
+                        this.inventory[slotNum][1]--;
+                    else
+                        this.inventory.splice(slotNum, 1);
                 }
             }
             else if(item.group == 'weapon'){
                 this.game.console.logEquipItem(this, item);
                 var currWeapon = this.weapon;
                 this.weapon = item;
-                // remove weapon from inventory
-                this.inventory.splice(slotNum, 1);
+                if(amount>1)
+                    this.inventory[slotNum][1]--;
+                else
+                    this.inventory.splice(slotNum, 1);
                 // add current weapon to inventory
-                this.inventory.splice(slotNum, 0, currWeapon);
+                this.game.menu.addToInventory(currWeapon);
                 this.removeWeaponStats(currWeapon);
                 this.applyWeaponStats(item);
             }

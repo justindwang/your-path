@@ -189,7 +189,7 @@
 
         inventoryItemClicked: function(slotNum){
             var inventory = this.game.player.inventory;
-            var group = inventory[slotNum].group;
+            var group = inventory[slotNum][0].group;
 
             if (slotNum == this.inventoryItemConfirmIndex){
                 if (group != 'material'){
@@ -201,11 +201,11 @@
             else{
                 this.inventoryItemConfirmIndex = slotNum;
                 if(group=='healing')
-                    this.game.console.logAskConfirmHeal(inventory[slotNum]);
+                    this.game.console.logAskConfirmHeal(inventory[slotNum][0]);
                 else if (group == 'weapon')
-                    this.game.console.logAskConfirmEquip(inventory[slotNum]);
+                    this.game.console.logAskConfirmEquip(inventory[slotNum][0]);
                 else
-                    this.game.console.logInspectMaterial(inventory[slotNum]);
+                    this.game.console.logInspectMaterial(inventory[slotNum][0]);
             }
         },
 
@@ -238,7 +238,12 @@
         },
 
         addToInventory: function(item){
-            this.game.player.inventory.push(item);
+            var inv = this.game.player.inventory;
+            var found = RL.Util.arrFindInventory(inv, item);
+            if(found)
+                found[1]++;
+            else
+                inv.push([item,1]);
             this.renderInventory();
         },
 
@@ -307,7 +312,6 @@
             }
             wrap.innerHTML = html;
             this.addInventoryListeners();
-            this.clearClickData();
         }, 
         initShop: function(){
             var wrap = document.getElementById('shop-body');
@@ -361,7 +365,6 @@
             }
             wrap.innerHTML = html;
             this.addShopListeners();
-            this.clearClickData();
         }, 
         initStats: function(){
             var wrap = document.getElementById('stats-body');
@@ -414,7 +417,6 @@
                 html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' (' + this.stats[i].rank +')</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
-            this.clearClickData();
         }, 
     };
 
