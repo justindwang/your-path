@@ -29,6 +29,7 @@ var statElements = {
     vitalityEl: document.getElementById('stat-vitality'),
     agilityEl: document.getElementById('stat-agility'),
     intelligenceEl: document.getElementById('stat-intelligence'),
+    luckEl: document.getElementById('stat-luck'),
     weaponNameEl: document.getElementById('stat-weapon-name'),
     weaponStatsEl: document.getElementById('stat-weapon-stats'),
     weaponRangeEl: document.getElementById('stat-weapon-range'),

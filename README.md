@@ -36,15 +36,16 @@ Todo:
 - implemented basic stat tracking mechanic <br>
 - add item stacking to shop ui and internally as item instance variable <br>
 - added gold system and ability to sell items <br>
+- added luck stat and crit chance <br>
+- added vitality and intelligence mp gain and hp gain formulas <br>
+- agility now increases dodge chance <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- add functionality to intelligence, agility, and vitality stats
-- add luck stat
-- mp regeneration mechanic
 
+- mp regeneration mechanic
 - implement shop item mechanics
 - fast travel to different floors
 - design skill learning mechanic 
@@ -57,3 +58,5 @@ Todo:
 - add saving mechanic
 - add personalization ui (e.g. job/name selection)
 - explore rendering images instead of characters on canvas
+- handle post game over functionality/bugs
+- make crits stand out more

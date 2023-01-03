@@ -45,6 +45,7 @@
         vitality: 1,
         agility: 1,
         intelligence: 1,
+        luck: 1,
 
         weapon: null,
         inventory: null,
@@ -65,6 +66,7 @@
         vitalityEl: null,
         agilityEl: null,
         intelligenceEl: null,
+        luckEl: null,
         weaponEl: null,
         skillsEl: null,
 
@@ -423,6 +425,16 @@
                 this.exp -= this.expForNext;
                 this.level++;
                 this.expForNext = RL.Util.exptoNextLevel(this.level);
+                var hpGain = this.hpGainFromVit();
+                var mpGain = this.mpGainFromInt();
+                this.hp += hpGain;
+                this.mp += mpGain;
+                this.hpMax += hpGain;
+                this.mpMax += mpGain;
+                if(this.hp > this.hpMax)
+                    this.hp = this.hpMax;
+                if(this.mp > this.mpMax)
+                    this.mp = this.mpMax;
                 this.strength++;
                 this.intelligence++;
                 this.vitality++;
@@ -479,6 +491,29 @@
             this.renderHtml();
         },
 
+        hpGainFromVit: function(){
+           return Math.floor(1234 * Math.tanh(0.001 * this.vitality));
+        },
+
+        mpGainFromInt: function(){
+            return Math.floor(1234 * Math.tanh(0.0005 * this.intelligence));
+        },
+
+        attemptDodge: function(entityStrength){
+            var points = this.agility - entityStrength;
+            if(points<= 0)
+                return false;
+            return points >= RL.Util.random(1,100);
+        },
+
+        attemptCrit: function(){
+            var adjustedLuck = Math.floor(this.luck - (this.game.floor.number/4));
+            if(adjustedLuck <= 0)
+                return false;
+            var points = Math.floor(100 * (-0.00007*adjustedLuck*adjustedLuck + 0.017*adjustedLuck - 0.00177));
+            return points >= RL.Util.random(1,100);
+        },
+
         renderHtml: function(){
             this.nameEl.innerHTML = this.name;
             this.levelEl.innerHTML = this.level;
@@ -500,6 +535,7 @@
             this.vitalityEl.innerHTML = this.vitality;
             this.agilityEl.innerHTML = this.agility;
             this.intelligenceEl.innerHTML = this.intelligence;
+            this.luckEl.innerHTML = this.luck;
 
             if(this.weapon){
                 var weaponConsoleName = this.weapon.getConsoleName();

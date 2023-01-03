@@ -38,7 +38,7 @@
             var playerName = this.wrap(this.game.player);
             level = this.wrapStr(level, RL.Util.COLORS.exp_green);
             this.log(playerName + ' grew to level ' + level);
-            this.log(playerName + '\'s stats increased by '+ this.wrapStr('1', RL.Util.COLORS.stat_yellow));
+            this.log(playerName + '\'s stats grew');
         },
         logAttack: function(source, weapon, target){
 
@@ -191,7 +191,9 @@
         logAskSell: function(item){
             this.log('Sell ' + this.wrap(item) + ' for '+ item.cost + ' gold? (Click again to confirm.)');
         },
-
+        logDodge: function(target, source){
+            this.log(this.wrap(target) + ' dodged ' + this.wrap(source) + '\'s attack');
+        },
         wrap: function(obj){
             var data = obj.getConsoleName();
             var str = data.name;

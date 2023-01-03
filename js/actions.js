@@ -349,11 +349,27 @@
                     return false;
                 var result = settings.result;
 
-                this.takeDamage(source.strength);
+                if(this == this.game.player){
+                    if (this.game.player.attemptDodge(source.strength)){
+                        this.game.console.logDodge(this, source);
+                        return true;
+                    }
+                }
+                var finalDamage = 0;
+                if(source == this.game.player){
+                    if(this.game.player.attemptCrit())
+                        finalDamage = Math.floor(2.5 * source.strength);
+                    else
+                        finalDamage = source.strength;
+                }
+                else
+                    finalDamage = source.strength;
+                
+                this.takeDamage(finalDamage);
 
                 var weapon = {
                     name: result.weapon.name,
-                    damage: source.strength
+                    damage: finalDamage
                 };
                 
                 this.game.console.logAttack(source, weapon, this);
@@ -390,7 +406,7 @@
                 };
 
                 this.game.smashLayer.set(source.x, source.y, smash);
-                this.game.damageLayer.set(this.x, this.y, 1);
+                this.game.damageLayer.set(this.x, this.y, finalDamage);
 
                 if(this.bleeds){
                     var splatter = source.strength / 10;

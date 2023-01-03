@@ -218,7 +218,7 @@
                 if(damage){
                     return {
                         after: {
-                            char: this.game.player.strength,
+                            char: damage,
                             color: 'rgba(190, 5, 25, 1)',
                             charStrokeWidth: 2,
                             fontSize: RL.Util.mapDamageToFontSize(this.game.player.strength.toString().length),

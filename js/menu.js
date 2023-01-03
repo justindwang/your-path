@@ -155,60 +155,54 @@
         },
 
         sortShopType: function(){
+            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'group');
+            this.renderShop();
             document.getElementById('shop-foot-type').style.color = '#e5e5e5';
             document.getElementById('shop-foot-rarity').style.color = '#ffffff33';
             document.getElementById('shop-foot-name').style.color = '#ffffff33';
-
-            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'group');
-            this.renderShop();
         },
 
         sortShopRarity: function(){
+            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'rank');
+            this.renderShop();
             document.getElementById('shop-foot-type').style.color = '#ffffff33';
             document.getElementById('shop-foot-rarity').style.color = '#e5e5e5';
             document.getElementById('shop-foot-name').style.color = '#ffffff33';
-
-            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'rank');
-            this.renderShop();
         },
 
         sortShopName: function(){
+            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'name');
+            this.renderShop();
             document.getElementById('shop-foot-type').style.color = '#ffffff33';
             document.getElementById('shop-foot-rarity').style.color = '#ffffff33';
             document.getElementById('shop-foot-name').style.color = '#e5e5e5';
-
-            this.shop = RL.Util.sortArrayOfObjects(this.shop, 'name');
-            this.renderShop();
         },
 
         sortShopSellType: function(){
-            document.getElementById('shop-sell-foot-type').style.color = '#e5e5e5';
-            document.getElementById('shop-sell-foot-rarity').style.color = '#ffffff33';
-            document.getElementById('shop-sell-foot-name').style.color = '#ffffff33';
-
             var toSort = this.game.player.inventory;
             this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'group');
             this.renderShopSell();
+            document.getElementById('shop-sell-foot-type').style.color = '#e5e5e5';
+            document.getElementById('shop-sell-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-name').style.color = '#ffffff33';
         },
 
         sortShopSellRarity: function(){
-            document.getElementById('shop-sell-foot-type').style.color = '#ffffff33';
-            document.getElementById('shop-sell-foot-rarity').style.color = '#e5e5e5';
-            document.getElementById('shop-sell-foot-name').style.color = '#ffffff33';
-
             var toSort = this.game.player.inventory;
             this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'rank');
             this.renderShopSell();
+            document.getElementById('shop-sell-foot-type').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-rarity').style.color = '#e5e5e5';
+            document.getElementById('shop-sell-foot-name').style.color = '#ffffff33';
         },
 
         sortShopSellName: function(){
-            document.getElementById('shop-sell-foot-type').style.color = '#ffffff33';
-            document.getElementById('shop-sell-foot-rarity').style.color = '#ffffff33';
-            document.getElementById('shop-sell-foot-name').style.color = '#e5e5e5';
-
             var toSort = this.game.player.inventory;
             this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'name');
             this.renderShopSell();
+            document.getElementById('shop-sell-foot-type').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-name').style.color = '#e5e5e5';
         },
 
         sortStatsType: function(){
