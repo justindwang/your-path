@@ -78,8 +78,6 @@
 
         fontSize: 12,
 
-        font: 'Segoe UI',
-
         /**
         * The color of the character displayed when rendering this player.
         * @property color

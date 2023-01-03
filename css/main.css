@@ -2503,12 +2503,6 @@ tbody.collapse.in {
   src: url('../fonts/DejaVuSansMono.eot');
   src: url('../fonts/DejaVuSansMono.eot?#iefix') format('eot'), url('../fonts/DejaVuSansMono.woff') format('woff'), url('../fonts/DejaVuSansMono.ttf') format('truetype');
 }
-@font-face {
-  font-family: 'Segoe UI Regular';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../fonts/Segoe UI.woff') format('woff');
-}
 b,
 strong {
   font-weight: bold;
@@ -2856,3 +2850,10 @@ progress::-webkit-progress-bar {
 
 /* Stats window */
 #stats-window { visibility: hidden; opacity: 0; background:#000; width: 300px; height: 400px; position: absolute; left: 100%; top: 108%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+
+.emoji {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -.1em;
+}
