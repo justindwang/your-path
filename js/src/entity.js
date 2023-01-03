@@ -437,7 +437,8 @@
     Entity.Types = {
         slime: makeMeleeEntity({
             name: 'Slime',
-            char: 's',
+            // char: 's',
+            sprite: 'slime',
             color: RL.Util.COLORS.blue,
             consoleColor: RL.Util.COLORS.blue,
 
@@ -462,7 +463,8 @@
         }),
         wolf: makeMeleeEntity({
             name: 'Wolf',
-            char: 'w',
+            // char: 'w',
+            sprite: 'wolf',
             color: RL.Util.COLORS.dark_gray,
             consoleColor: RL.Util.COLORS.dark_gray,
             hp: 20,

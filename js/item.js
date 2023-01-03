@@ -135,6 +135,7 @@
         healing: {
             group: 'healing',
             char: '🩹',
+            sprite: 'healing',
             fontSize: 12,
             getConsoleName: function(){
                 return {
@@ -149,6 +150,7 @@
         weapon: {
             group: 'weapon',
             char: '🔪',
+            sprite: 'weapon',
             fontSize: 12,
             attachTo: function(entity){
                 this.game.console.logAddToInventory(entity, this);
@@ -195,6 +197,7 @@
             group: 'material',
             charStrokeWidth: 1,
             char: '✨',
+            sprite: 'material',
             fontSize: 12,
             getStats: function(){
                 return 'Material';

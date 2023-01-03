@@ -340,6 +340,7 @@
             RL.Tile.Types['floor'].bgColor = this.floor.floorBgColor;
             RL.Tile.Types['wall'].color = this.floor.wallColor;
             RL.Tile.Types['wall'].bgColor = this.floor.wallBgColor;
+            // RL.Tile.Types['exit'].bgColor = this.floor.floorBgColor;
         },
 
         generatePlayerStartPosition: function(){

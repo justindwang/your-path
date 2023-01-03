@@ -37,6 +37,7 @@
                     textBaseline:       this.textBaseline,
                     offsetX:            this.offsetX,
                     offsetY:            this.offsetY,
+                    sprite:             this.sprite,
                 };
             },
         }

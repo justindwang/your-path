@@ -151,7 +151,7 @@
     Tile.Types = {
         floor: {
             name: 'Floor',
-            char: '.',
+            // char: '.',
             color: '#444',
             bgColor: '#222',
             passable: true,
@@ -159,7 +159,7 @@
         },
         wall: {
             name: 'Wall',
-            char: '#',
+            // char: '#',
             color: '#777',
             bgColor: '#2e2e2e',
             passable: false,
@@ -167,7 +167,8 @@
         },
         door: {
             name: 'Door',
-            char: '+',
+            // char: '+',
+            sprite: 'player',
             color: 'yellow',
             bgColor: '#222',
             passable: false,

@@ -291,9 +291,14 @@
             if(tileData.before !== void 0){
                 this.drawTileToCanvas(originalX, originalY, tileData.before, ctx);
             }
-
-            if(tileData.char && tileData.color){
-
+            var imgX = x * (this.tileSize) + (this.tileSize * 0.5) + (tileData.offsetX || 0);
+            var imgY = y * (this.tileSize) + (this.tileSize * 0.5) + (tileData.offsetY || 0);
+            if(tileData.sprite){
+                ctx.drawImage(RL.Sprites[tileData.sprite], imgX - this.tileSize/2, imgY - this.tileSize/2, this.tileSize, this.tileSize);
+            }
+            else if(tileData.char && tileData.color){
+                // if (/\p{Extended_Pictographic}/u.test(tileData.char))
+                //     console.log('got an emoji '+ tileData.char);
                 if(tileData.mask){
                     ctx.save();
                     ctx.beginPath();
@@ -330,12 +335,14 @@
                         textY+1
                     );
                 }
-
+                
                 ctx.fillText(
                     tileData.char,
                     textX,
                     textY
                 );
+                
+                
 
                 if(tileData.mask){
                     ctx.restore();

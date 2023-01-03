@@ -74,7 +74,9 @@
         * @property char
         * @type String
         */
-        char: '🧑',
+        // char: '🧑',
+
+        sprite: 'player',
 
         fontSize: 12,
 

@@ -94,8 +94,15 @@ game.loadFloor();
 // game.generatePlayerStartPosition();
 // game.setLighting(5);
 
-game.start();
-setInterval(function(){
-    this.game.game_update();
-}, 1000);
+RL.Sprites.loadSprites();
+
+window.onload = () => {
+    game.start();
+    setInterval(function(){
+        this.game.game_update();
+    }, 1000);
+};
+
+
+
 

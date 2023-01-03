@@ -39,6 +39,7 @@ Todo:
 - added luck stat and crit chance <br>
 - added vitality and intelligence mp gain and hp gain formulas <br>
 - agility now increases dodge chance <br>
+- added sprites to canvas <br>
 </details>
 
 ## design more mobs/floors/skills/items

@@ -87,6 +87,7 @@
     root.RL.Tile.Types.exit = {
             name: 'Exit',
             char: 'X',
+            // sprite: 'exit',
             color: RL.Util.COLORS.red,
             consoleColor: RL.Util.COLORS.red_alt,
             charStrokeColor: '#000',
