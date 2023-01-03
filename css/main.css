@@ -2503,6 +2503,12 @@ tbody.collapse.in {
   src: url('../fonts/DejaVuSansMono.eot');
   src: url('../fonts/DejaVuSansMono.eot?#iefix') format('eot'), url('../fonts/DejaVuSansMono.woff') format('woff'), url('../fonts/DejaVuSansMono.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Segoe UI Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/Segoe UI.woff') format('woff');
+}
 b,
 strong {
   font-weight: bold;

@@ -97,6 +97,8 @@
         consoleColor: false,
 
         fontSize: 15,
+        
+        font: 'Segoe UI',
 
         hp: null,
 

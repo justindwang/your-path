@@ -44,7 +44,6 @@ Todo:
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-
 - mp regeneration mechanic
 - implement shop item mechanics
 - fast travel to different floors
@@ -60,3 +59,4 @@ Todo:
 - explore rendering images instead of characters on canvas
 - handle post game over functionality/bugs
 - make crits stand out more
+- fix bug/feature? where you can push furniture onto items

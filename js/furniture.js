@@ -90,6 +90,8 @@
         
         fontSize: 15,
 
+        font: 'Segoe UI',
+
         pushable: false,
 
         /**

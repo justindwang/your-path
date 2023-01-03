@@ -26,6 +26,8 @@
         shopItemConfirmIndex: -1,
         shopSellItemConfirmIndex: -1,
 
+        buyOrSell: 'buy',
+
         startListening: function(){
             document.getElementById('pr-inventory').addEventListener('click', this.displayInventoryMenu);
             document.getElementById('pr-shop').addEventListener('click', this.displayShopMenu);
@@ -307,7 +309,8 @@
             else
                 inv.push([item,1]);
             this.renderInventory();
-            this.renderShopSell();
+            if(this.buyOrSell == 'sell')
+                this.renderShopSell();
         },
         
         removeFromInventory: function(item){
@@ -418,6 +421,7 @@
             document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>';
         },
         renderShop: function(){
+            this.buyOrSell = 'buy';
             document.getElementById('shop-sell').style.color = '#ffffff33';
             document.getElementById('shop-buy').style.color = '#e5e5e5';
             var wrap = document.getElementById('mCSB_2_container');
@@ -449,6 +453,7 @@
             this.addShopSortListeners();
         }, 
         renderShopSell: function(){
+            this.buyOrSell = 'sell';
             document.getElementById('shop-buy').style.color = '#ffffff33';
             document.getElementById('shop-sell').style.color = '#e5e5e5';
             var wrap = document.getElementById('mCSB_2_container');
