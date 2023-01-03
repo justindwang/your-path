@@ -24,6 +24,7 @@
 
         inventoryItemConfirmIndex: -1,
         shopItemConfirmIndex: -1,
+        shopSellItemConfirmIndex: -1,
 
         startListening: function(){
             document.getElementById('pr-inventory').addEventListener('click', this.displayInventoryMenu);
@@ -34,16 +35,16 @@
             document.getElementById('inventory-foot-rarity').addEventListener('click', () => {this.sortInventoryRarity()});
             document.getElementById('inventory-foot-name').addEventListener('click', () => {this.sortInventoryName()});
 
-            document.getElementById('shop-foot-type').addEventListener('click', () => {this.sortShopType()});
-            document.getElementById('shop-foot-rarity').addEventListener('click', () => {this.sortShopRarity()});
-            document.getElementById('shop-foot-name').addEventListener('click', () => {this.sortShopName()});
-
             document.getElementById('stats-foot-type').addEventListener('click', () => {this.sortStatsType()});
             document.getElementById('stats-foot-rarity').addEventListener('click', () => {this.sortStatsRarity()});
             document.getElementById('stats-foot-name').addEventListener('click', () => {this.sortStatsName()});
 
+            document.getElementById('shop-buy').addEventListener('click', () => {this.renderShop()});
+            document.getElementById('shop-sell').addEventListener('click', () => {this.renderShopSell()});
+
             this.addInventoryListeners();
             this.addShopListeners();
+            this.addShopSortListeners();
         },
 
         addInventoryListeners: function(){
@@ -59,6 +60,26 @@
                 let item = document.getElementById('shop-item-' + i);
                 item.addEventListener('click', () => {this.shopItemClicked(i)});
             }
+        },
+
+        addShopSellListeners: function(){
+            var inventory = this.game.player.inventory;
+            for(let i = 0; i<inventory.length; i++){
+                let item = document.getElementById('shop-sell-item-' + i);
+                item.addEventListener('click', () => {this.shopSellItemClicked(i)});
+            }
+        },
+
+        addShopSortListeners: function(){
+            document.getElementById('shop-foot-type').addEventListener('click', () => {this.sortShopType()});
+            document.getElementById('shop-foot-rarity').addEventListener('click', () => {this.sortShopRarity()});
+            document.getElementById('shop-foot-name').addEventListener('click', () => {this.sortShopName()});
+        },
+
+        addShopSellSortListeners: function(){
+            document.getElementById('shop-sell-foot-type').addEventListener('click', () => {this.sortShopSellType()});
+            document.getElementById('shop-sell-foot-rarity').addEventListener('click', () => {this.sortShopSellRarity()});
+            document.getElementById('shop-sell-foot-name').addEventListener('click', () => {this.sortShopSellName()});
         },
 
         displayInventoryMenu: function(){
@@ -160,6 +181,36 @@
             this.renderShop();
         },
 
+        sortShopSellType: function(){
+            document.getElementById('shop-sell-foot-type').style.color = '#e5e5e5';
+            document.getElementById('shop-sell-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-name').style.color = '#ffffff33';
+
+            var toSort = this.game.player.inventory;
+            this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'group');
+            this.renderShopSell();
+        },
+
+        sortShopSellRarity: function(){
+            document.getElementById('shop-sell-foot-type').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-rarity').style.color = '#e5e5e5';
+            document.getElementById('shop-sell-foot-name').style.color = '#ffffff33';
+
+            var toSort = this.game.player.inventory;
+            this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'rank');
+            this.renderShopSell();
+        },
+
+        sortShopSellName: function(){
+            document.getElementById('shop-sell-foot-type').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-rarity').style.color = '#ffffff33';
+            document.getElementById('shop-sell-foot-name').style.color = '#e5e5e5';
+
+            var toSort = this.game.player.inventory;
+            this.game.player.inventory = RL.Util.sortInventoryByKey(toSort, 'name');
+            this.renderShopSell();
+        },
+
         sortStatsType: function(){
             document.getElementById('stats-foot-type').style.color = '#e5e5e5';
             document.getElementById('stats-foot-rarity').style.color = '#ffffff33';
@@ -231,10 +282,27 @@
                 this.game.console.logAskPurchase(item);
             }
         },
+
+        shopSellItemClicked: function(slotNum){
+            var item = this.game.player.inventory[slotNum][0];
+            if (slotNum == this.shopSellItemConfirmIndex){
+                this.game.player.gold += item.cost;
+                this.removeFromInventory(item);
+                this.game.console.logSoldItem(item);
+                this.game.player.renderHtml();
+                this.renderShopSell();
+                this.clearClickData();
+            }
+            else{
+                this.shopSellItemConfirmIndex = slotNum;
+                this.game.console.logAskSell(item);
+            }
+        },
         
         clearClickData: function(){
             this.inventoryItemConfirmIndex = -1;
             this.shopItemConfirmIndex = -1;
+            this.shopSellItemConfirmIndex = -1;
         },
 
         addToInventory: function(item){
@@ -244,6 +312,21 @@
                 found[1]++;
             else
                 inv.push([item,1]);
+            this.renderInventory();
+            this.renderShopSell();
+        },
+        
+        removeFromInventory: function(item){
+            var inv = this.game.player.inventory;
+            for(var i = 0; i< inv.length; i++){
+                if (inv[i][0].type == item.type){
+                    if(inv[i][1] > 1)
+                        inv[i][1]--;
+                    else
+                        inv.splice(i, 1);
+                }
+            }
+            this.renderShopSell();
             this.renderInventory();
         },
 
@@ -338,8 +421,11 @@
                 html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' (' + this.shop[i].rank +')</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
+            document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>';
         },
         renderShop: function(){
+            document.getElementById('shop-sell').style.color = '#ffffff33';
+            document.getElementById('shop-buy').style.color = '#e5e5e5';
             var wrap = document.getElementById('mCSB_2_container');
             var icon = '';
             var color = '';
@@ -364,8 +450,42 @@
                 html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' (' + this.shop[i].rank +')</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
+            document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>';
             this.addShopListeners();
+            this.addShopSortListeners();
         }, 
+        renderShopSell: function(){
+            document.getElementById('shop-buy').style.color = '#ffffff33';
+            document.getElementById('shop-sell').style.color = '#e5e5e5';
+            var wrap = document.getElementById('mCSB_2_container');
+            var inventory = this.game.player.inventory;
+            var icon = '';
+            var color = '';
+            var html = '';
+            
+            for(var i = 0; i<inventory.length; i++){
+                switch(inventory[i][0].group) {
+                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
+                    case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
+                }
+                switch(inventory[i][0].rank){
+                    case 'S': color = '<span style="color:brown">'; break;
+                    case 'A': color = '<span style="color:orchid">'; break;
+                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'C': color = '<span style="color:cadetblue">'; break;
+                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'E': color = '<span style="color:goldenrod">'; break;
+                    case 'F': color = '<span style="color:peachpuff">'; break;
+                }
+
+                html += '<div class="menu-item" id="shop-sell-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' (' + inventory[i][0].rank +')</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
+            }
+            wrap.innerHTML = html;
+            document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-sell-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-sell-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-sell-foot-name">Name </span>';
+            this.addShopSellListeners();
+            this.addShopSellSortListeners();
+        },
         initStats: function(){
             var wrap = document.getElementById('stats-body');
             var icon = '';

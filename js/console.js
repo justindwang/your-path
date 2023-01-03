@@ -172,7 +172,12 @@
             item = this.wrap(item);
             this.log(playerName + ' purchased ' + item + ' for ' + amount + ' gold');
         },
-
+        logSoldItem: function(item){
+            var playerName = this.wrap(this.game.player);
+            var amount = item.cost;
+            item = this.wrap(item);
+            this.log(playerName + ' sold ' + item + ' for ' + amount + ' gold');
+        },
         logNotEnoughMoney: function(item){
             var playerName = this.wrap(this.game.player);
             item = this.wrap(item);
@@ -181,6 +186,10 @@
 
         logAskPurchase: function(item){
             this.log('Purchase ' + this.wrap(item) + ' for '+ item.cost + ' gold? (Click again to confirm.)');
+        },
+
+        logAskSell: function(item){
+            this.log('Sell ' + this.wrap(item) + ' for '+ item.cost + ' gold? (Click again to confirm.)');
         },
 
         wrap: function(obj){

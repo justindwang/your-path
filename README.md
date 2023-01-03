@@ -35,13 +35,12 @@ Todo:
 - added stats/achievements tab <br>
 - implemented basic stat tracking mechanic <br>
 - add item stacking to shop ui and internally as item instance variable <br>
+- added gold system and ability to sell items <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- implement money system
-    - sell items from inventory
 - add functionality to intelligence, agility, and vitality stats
 - add luck stat
 - mp regeneration mechanic
