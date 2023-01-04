@@ -79,8 +79,6 @@
         * @type String|bool
         */
         bgColor: false,
-        charStrokeColor: '#5A5A5A',
-        charStrokeWidth: 1,
         group: null,
         rank: 'F',
         cost: 0,
@@ -134,7 +132,6 @@
     var Defaults = {
         healing: {
             group: 'healing',
-            fontSize: 12,
             getConsoleName: function(){
                 return {
                     name: this.name,
@@ -145,11 +142,21 @@
                 return 'Heals ' + this.healAmount + ' HP';
             },
         },
+        mp_recovery: {
+            group: 'mp_recovery',
+            getConsoleName: function(){
+                return {
+                    name: this.name,
+                    color: this.color
+                };
+            },
+            getStats: function(){
+                return 'Recovers ' + this.healAmount + ' MP';
+            },
+        },
         weapon: {
             group: 'weapon',
-            char: '🔪',
             sprite: 'weapon',
-            fontSize: 12,
             attachTo: function(entity){
                 this.game.console.logAddToInventory(entity, this);
                 this.game.menu.addToInventory(this);
@@ -193,10 +200,7 @@
         },
         material: {
             group: 'material',
-            charStrokeWidth: 1,
-            char: '✨',
             sprite: 'material',
-            fontSize: 12,
             getStats: function(){
                 return 'Material';
             },
@@ -217,6 +221,10 @@
         return RL.Util.merge(obj, Defaults.healing);
     };
 
+    var makeMpRecoveryItem = function(obj){
+        return RL.Util.merge(obj, Defaults.mp_recovery);
+    };
+
     var makeWeapon = function(obj){
         return RL.Util.merge(obj, Defaults.weapon);
     };
@@ -229,7 +237,14 @@
         // healing items
         tiny_hp_potion: makeHealingItem({
             name: 'Tiny HP Potion',
-            sprite: 'potion',
+            sprite: 'hp_potion',
+            rank: 'F',
+            healAmount: 5,
+            cost: 10,
+        }),
+        tiny_mp_potion: makeMpRecoveryItem({
+            name: 'Tiny MP Potion',
+            sprite: 'mp_potion',
             rank: 'F',
             healAmount: 5,
             cost: 10,

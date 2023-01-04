@@ -98,7 +98,9 @@
                 var keys = bindings[action];
                 for (var i = 0; i < keys.length; i++) {
                     var key = keys[i];
-                    this.bindAction(action, key);
+                    var keyCode = Input.Keys[key];
+                    if(!this.bindings.hasOwnProperty(keyCode))
+                        this.bindAction(action, key);
                 }
             }
         },
@@ -108,7 +110,9 @@
                 var keys = bindings[action];
                 for (var i = 0; i < keys.length; i++) {
                     var key = keys[i];
-                    this.unbindAction(key);
+                    var keyCode = Input.Keys[key];
+                    if(this.bindings.hasOwnProperty(keyCode))
+                        this.unbindAction(key);
                 }
             }
         },

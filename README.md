@@ -40,14 +40,13 @@ Todo:
 - added vitality and intelligence mp gain and hp gain formulas <br>
 - agility now increases dodge chance <br>
 - added sprites to canvas <br>
+- clean up unneeded chars/colors <br>
+- - mp regeneration mechanic <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- clean up unneeded chars/colors
-- let blood clean up over time
-- mp regeneration mechanic -> potions
 - implement shop item mechanics
 - fast travel to different floors
 - design skill learning mechanic 
@@ -63,3 +62,4 @@ Todo:
 - handle post game over functionality/bugs
 - make crits stand out more
 - fix bug/feature? where you can push furniture onto items
+- add buffs

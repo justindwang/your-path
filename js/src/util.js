@@ -283,7 +283,19 @@
                 case 1: return 16;
                 case 2: return 12;
                 case 3: return 10;
+                default: return 10;
             }
+        },
+
+        mapDamageTo3Digits: function(number){
+            if (number < 1000) 
+                return number.toString();
+            let exponent = Math.floor(Math.log10(number));
+            let mantissa = number / Math.pow(10, exponent);
+            let mantissaString = mantissa.toFixed(0);
+            if (mantissa % 1 === 0) 
+                mantissaString = mantissa.toString();
+            return `${mantissaString}e${exponent}`;
         },
 
         // Takes item-probability pairs and returns a random item based on the probability distribution

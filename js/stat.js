@@ -99,6 +99,11 @@
             group: 'healing',
             rank: 'E'
         }),
+        mp_restored: makeCounterStat({
+            name: 'MP restored',
+            group: 'healing',
+            rank: 'E'
+        }),
         skills_used: makeCounterStat({
             name: 'Skills Used',
             group: 'misc',

@@ -19,6 +19,8 @@
     var newGamePrototype = {
         constructor: NewGame,
 
+        maxRetries: 50,
+
         itemManager: null,
 
         furnitureManager: null,
@@ -230,6 +232,8 @@
         },
 
         bsp: function(array, max_iter){
+            let vert_retries = 0;
+            let hori_retries = 0;
             let n_iter = 0;
             let bspTree = [...array];
             let stack = [];
@@ -248,8 +252,12 @@
                     //vertical split
                     let x = RL.Util.random(x1+1, x2-1);
                     let h = y2-y1;
-                    while(x == Math.floor((x1+x2)/2) || x == Math.floor((x1+x2)/2) + 1)
+                    while(x == Math.floor((x1+x2)/2) || x == Math.floor((x1+x2)/2) + 1){
+                        vert_retries++;
+                        if(vert_retries > this.maxRetries)
+                            return bspTree;
                         x = RL.Util.random(x1 + 1, x2 - 1);
+                    }
                     if((x-x1)/h < 0.45 || (x2-x)/h < 0.45){
                         stack.push(partition);
                         n_iter--;
@@ -269,8 +277,12 @@
                     //horizontal split
                     let y = RL.Util.random(y1 + 1, y2 - 1);
                     let w = x2-x1;
-                    while(y == Math.floor((y != (y1+y2)/2)) || y == Math.floor((y != (y1+y2)/2)) + 1)
+                    while(y == Math.floor((y != (y1+y2)/2)) || y == Math.floor((y != (y1+y2)/2)) + 1){
+                        hori_retries++;
+                        if(hori_retries > this.maxRetries)
+                            return bspTree;
                         y = RL.Util.random(y1 + 1, y2 - 1);
+                    }
                     if( (y-y1)/w < 0.45 || (y2-y)/w < 0.45){
                         stack.push(partition);
                         n_iter--;
@@ -313,7 +325,7 @@
         },
 
         generateMap: function(){
-            let mapData = [];
+            var mapData = [];
             var s = ['#'];
             var t = ['#','#'];
             for(var i = this.mapWidth-3; i>=0; i--){
@@ -372,7 +384,6 @@
         loadFloor: function(){
             var mapData = this.generateMap();
             this.updatePalette();
-
             this.map.loadTilesFromArrayString(mapData, mapCharToType, 'floor');
             this.setMapSize(this.mapWidth, this.mapHeight);
             this.entityManager.loadFromArrayString(mapData, this.floor.entityCharToType);

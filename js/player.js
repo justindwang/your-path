@@ -6,10 +6,10 @@
     var NewPlayer = function Player(game){
         proto.constructor.call(this, game);
 
-        this.weapon = new RL.Item(this.game, 'rock');
+        this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        this.inventory = [[new RL.Item(this.game, 'tiny_hp_potion'),2], [new RL.Item(this.game, 'goo'),1], [new RL.Item(this.game, 'fists'),1], [new RL.Item(this.game, 'rock'),1], [new RL.Item(this.game, 'slime_goo'),1]];
+        this.inventory = [];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
@@ -35,7 +35,7 @@
         exp: 0,
         expForNext: 9,
 
-        gold: 100000,
+        gold: 0,
 
         hp: 20,
         hpMax: 20,
@@ -114,12 +114,12 @@
             if(action === 'same_floor'){
                 if(this.game.map.get(this.x, this.y).name == 'Exit')
                     this.game.goToFloor(this.game.floor.number);
-                return;
+                return true;
             }
             if(action === 'next_floor'){
                 if(this.game.map.get(this.x, this.y).name == 'Exit')
                     this.game.goToFloor(this.game.floor.number + 1);
-                return;
+                return true;
             }
             return false;
         },
@@ -399,6 +399,15 @@
             RL.Util.arrFind(this.game.menu.stats, 'hp_healed').incrementBy(amount);
         },
 
+        restoreMp: function(amount){
+            this.mp += amount;
+            if(this.mp > this.mpMax){
+                this.mp = this.mpMax;
+            }
+            this.game.console.logRestoreMp(this, amount);
+            RL.Util.arrFind(this.game.menu.stats, 'mp_restored').incrementBy(amount);
+        },
+
         statChange: function(stat, amount){
             switch(stat) {
                 case 'strength':
@@ -469,6 +478,17 @@
                     this.game.console.logCanNotHeal(item);
                 else{
                     this.heal(item.healAmount);
+                    if(amount>1)
+                        this.inventory[slotNum][1]--;
+                    else
+                        this.inventory.splice(slotNum, 1);
+                }
+            }
+            else if(item.group == 'mp_recovery'){
+                if(this.mp >= this.mpMax)
+                    this.game.console.logCanNotHeal(item);
+                else{
+                    this.restoreMp(item.healAmount);
                     if(amount>1)
                         this.inventory[slotNum][1]--;
                     else

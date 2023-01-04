@@ -69,23 +69,7 @@
         */
         y: null,
 
-        /**
-        * The character displayed when rendering this player.
-        * @property char
-        * @type String
-        */
-        // char: '🧑',
-
         sprite: 'player',
-
-        fontSize: 12,
-
-        /**
-        * The color of the character displayed when rendering this player.
-        * @property color
-        * @type String|bool
-        */
-        color: '#fff',
 
         /**
         * The background color the character displayed when rendering this player.

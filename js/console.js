@@ -92,6 +92,11 @@
             amount = this.wrapStr(amount, RL.Util.COLORS.hp_red);
             this.log(target + ' healed ' + amount + ' hp');
         },
+        logRestoreMp: function(target, amount){
+            target = this.wrap(target);
+            amount = this.wrapStr(amount, RL.Util.COLORS.mp_blue);
+            this.log(target + ' restored ' + amount + ' mp');
+        },
         logCanNotHeal: function(item){
             // entity = this.wrap(entity);
             item = this.wrap(item);

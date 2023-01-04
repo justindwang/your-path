@@ -6,7 +6,7 @@
     */
     var Menu = function Menu(game) {
         this.game = game;
-        this.shop = [new RL.Item(this.game, 'stinger'), new RL.Item(this.game, 'hp_potion'), new RL.Item(this.game, 'hp_potion'), new RL.Item(this.game, 'secret_rocks'), new RL.Item(this.game, 'whip_of_fortune'), new RL.Item(this.game, 'barans_blades')];
+        this.shop = [new RL.Item(this.game, 'tiny_hp_potion'), new RL.Item(this.game, 'tiny_mp_potion'), new RL.Item(this.game, 'hp_potion'), new RL.Item(this.game, 'secret_rocks'), new RL.Item(this.game, 'whip_of_fortune'), new RL.Item(this.game, 'barans_blades')];
         this.stats = this.initializeAllStats();
         if(this.init){
             this.init();
@@ -247,7 +247,7 @@
             }
             else{
                 this.inventoryItemConfirmIndex = slotNum;
-                if(group=='healing')
+                if(group=='healing' || group == 'mp_recovery')
                     this.game.console.logAskConfirmHeal(inventory[slotNum][0]);
                 else if (group == 'weapon')
                     this.game.console.logAskConfirmEquip(inventory[slotNum][0]);
@@ -261,7 +261,7 @@
             if (slotNum == this.shopItemConfirmIndex){
                 if(this.game.player.gold >= item.cost){
                     this.game.player.gold -= item.cost;
-                    this.shop.splice(slotNum, 1);
+                    // this.shop.splice(slotNum, 1);
                     this.addToInventory(item);
                     this.game.console.logPurchasedItem(item);
                     this.game.player.renderHtml();
@@ -347,6 +347,7 @@
             for(var i = 0; i<inventory.length; i++){
                 switch(inventory[i][0].group) {
                     case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
                     case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
                     case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
                 }
@@ -375,6 +376,7 @@
             for(var i = 0; i<inventory.length; i++){
                 switch(inventory[i][0].group) {
                     case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
                     case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
                     case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
                 }
@@ -402,6 +404,7 @@
             for(var i = 0; i< this.shop.length; i++){
                 switch(this.shop[i].group) {
                     case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
                     case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
                     case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
                 }
@@ -432,6 +435,7 @@
             for(var i = 0; i< this.shop.length; i++){
                 switch(this.shop[i].group) {
                     case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
                     case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
                     case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
                 }
@@ -465,6 +469,7 @@
             for(var i = 0; i<inventory.length; i++){
                 switch(inventory[i][0].group) {
                     case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
+                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
                     case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
                     case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
                 }

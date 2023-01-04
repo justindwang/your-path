@@ -12,9 +12,13 @@
             crate.src = 'assets/sprites/crate.png';
             this.crate = crate;
         
-            const potion = new Image();
-            potion.src = 'assets/sprites/potion.png';
-            this.potion = potion;
+            const hp_potion = new Image();
+            hp_potion.src = 'assets/sprites/hp_potion.png';
+            this.hp_potion = hp_potion;
+
+            const mp_potion = new Image();
+            mp_potion.src = 'assets/sprites/mp_potion.png';
+            this.mp_potion = mp_potion;
         
             const material = new Image();
             material.src = 'assets/sprites/material.png';

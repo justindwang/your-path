@@ -437,9 +437,7 @@
     Entity.Types = {
         slime: makeMeleeEntity({
             name: 'Slime',
-            // char: 's',
             sprite: 'slime',
-            color: RL.Util.COLORS.blue,
             consoleColor: RL.Util.COLORS.blue,
 
             maxTurnsWithoutStumble: 3,
@@ -463,9 +461,7 @@
         }),
         wolf: makeMeleeEntity({
             name: 'Wolf',
-            // char: 'w',
             sprite: 'wolf',
-            color: RL.Util.COLORS.dark_gray,
             consoleColor: RL.Util.COLORS.dark_gray,
             hp: 20,
             hpMax: 20,
@@ -488,7 +484,6 @@
         }),
         goblin: makeMeleeEntity({
             name: 'Goblin',
-            // char: 'w',
             sprite: 'goblin',
             consoleColor: RL.Util.COLORS.green,
             hp: 30,
@@ -511,7 +506,6 @@
         }),
         goblin_king: makeMeleeEntity({
             name: 'Goblin King',
-            // char: 'w',
             sprite: 'goblin_king',
             consoleColor: RL.Util.COLORS.dark_green,
             hp: 100,
