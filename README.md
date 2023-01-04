@@ -3,7 +3,6 @@ Your Path
 
 A roguelike game for the browser written in js using [js-roguelike-skeleton](https://github.com/unstoppablecarl/js-roguelike-skeleton) built on top of [Escape-from-Ecma-Labs](https://github.com/unstoppablecarl/escape-from-ecma-labs)
 
-Todo:
 <details>
 <summary>(done)</summary>
 <br>
@@ -43,12 +42,13 @@ Todo:
 - clean up unneeded chars/colors <br>
 - mp regeneration mechanic <br>
 - shop items are now randomly generated each floor <br>
+- added fast travel and special items <br>
 </details>
 
-## design more mobs/floors/skills/items
-## implement classes/jobs
+Todo:
+### design more mobs/floors/skills/items
+### implement classes/jobs
 
-- fast travel to different floors
 - add stat allocation ui
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory

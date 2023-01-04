@@ -424,7 +424,7 @@
         getItemOfRank: function(rank){
             var pool = [];
             for (const [key, value] of Object.entries(RL.Item.Types)) {
-                if(value.rank == rank && value.group!='material')
+                if(value.rank == rank && value.group!='material' && value.group!='special')
                     pool.push(key);
             }
             return pool;
