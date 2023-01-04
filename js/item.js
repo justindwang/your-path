@@ -354,6 +354,16 @@
             rank: 'B',
             cost: 2000,
         }),
+        desolation: makeWeapon({
+            name: 'Desolation',
+            rank: 'B',
+            stat1: 'Vit',
+            stat1Modifier: 75,
+            stat2: 'Str',
+            stat2Modifier: 10,
+            range: 1,
+            cost: 2000,
+        }),
         whip_of_fortune: makeWeapon({
             name: 'Whip of Fortune',
             rank: 'A',
@@ -373,6 +383,22 @@
             stat2Modifier: 100,
             range: 1,
             cost: 10000,
+        }),
+        excalibur: makeWeapon({
+            name: 'Excalibur',
+            rank: 'S',
+            stat1: 'Str',
+            stat1Modifier: 400,
+            range: 1,
+            cost: 15000,
+        }),
+        heavens_arrow: makeWeapon({
+            name: 'Heaven\'s Arrow',
+            rank: 'S',
+            stat1: 'Str',
+            stat1Modifier: 50,
+            range: 10,
+            cost: 15000,
         }),
     };
 

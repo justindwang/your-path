@@ -41,7 +41,7 @@
         hpMax: 20,
         mp: 10,
         mpMax: 10,
-        strength: 1,
+        strength: 100,
         vitality: 1,
         agility: 1,
         intelligence: 1,

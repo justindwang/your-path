@@ -408,6 +408,8 @@
                 this.damageLayer = new RL.Array2d();
                 this.entityManager = new RL.ObjectManager(this, RL.Entity);
                 this.loadFloor();
+                this.menu.generateShop();
+                this.menu.renderShop();
                 this.start();
             }
             else{
@@ -427,7 +429,10 @@
             }
             return pool;
         },
-        
+        randomItemOfRank: function(rank){
+            var pool = this.getItemOfRank(rank);
+            return RL.Util.selectRandomElement(pool);
+        },
     };
     
     RL.Util.merge(NewGame.prototype, proto);

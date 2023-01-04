@@ -6,11 +6,11 @@
     */
     var Menu = function Menu(game) {
         this.game = game;
-        this.shop = [new RL.Item(this.game, 'tiny_hp_potion'), new RL.Item(this.game, 'tiny_mp_potion'), new RL.Item(this.game, 'hp_potion'), new RL.Item(this.game, 'secret_rocks'), new RL.Item(this.game, 'whip_of_fortune'), new RL.Item(this.game, 'barans_blades')];
+        this.shop = [];
+        this.generateShop();
         this.stats = this.initializeAllStats();
-        if(this.init){
+        if(this.init)
             this.init();
-        }
     };
 
     Menu.prototype = {
@@ -27,6 +27,17 @@
         shopSellItemConfirmIndex: -1,
 
         buyOrSell: 'buy',
+
+        generateShop: function(){
+            let temp = [new RL.Item(this.game, 'tiny_hp_potion'), new RL.Item(this.game, 'tiny_mp_potion')];
+            temp.push(new RL.Item(this.game, this.game.randomItemOfRank('E')));
+            temp.push(new RL.Item(this.game, this.game.randomItemOfRank('D')));
+            temp.push(new RL.Item(this.game, this.game.randomItemOfRank('C')));
+            temp.push(new RL.Item(this.game, this.game.randomItemOfRank('B')));
+            temp.push(new RL.Item(this.game, this.game.randomItemOfRank('A')));
+            temp.push(new RL.Item(this.game, this.game.randomItemOfRank('S')));
+            this.shop = temp;
+        },
 
         startListening: function(){
             document.getElementById('pr-inventory').addEventListener('click', this.displayInventoryMenu);

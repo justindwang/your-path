@@ -32,8 +32,8 @@
         this.mouse.startListening(el);
         this.menu = new RL.Menu(this);
         this.menu.initInventory();
-        this.menu.initShop();
         this.menu.initStats();
+        this.menu.initShop();
     };
 
     Game.prototype = {

@@ -41,13 +41,13 @@ Todo:
 - agility now increases dodge chance <br>
 - added sprites to canvas <br>
 - clean up unneeded chars/colors <br>
-- - mp regeneration mechanic <br>
+- mp regeneration mechanic <br>
+- shop items are now randomly generated each floor <br>
 </details>
 
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- implement shop item mechanics
 - fast travel to different floors
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
