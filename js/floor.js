@@ -87,7 +87,7 @@
                 else
                     string += ', '
                 var rarity = RL.Util.mapRateToRarity(this.entities[key]);
-                var name = RL.Entity.Types[value].name;
+                var name = RL.Item.Types[value].name;
                 string += name + ' - ' + rarity;
             }
             for (const [key, value] of Object.entries(this.furnitureCharToType)) {
@@ -121,7 +121,7 @@
     */
     Floor.Data = {
         1: {
-            name: 'Field of Dawn',
+            name: 'Rolling Meadows',
             entities: {
                 '.': 0.749,
                 'b': 0.2,
@@ -143,10 +143,10 @@
                 '-': 'crate',},
             itemsCharToType: {},
             crateLoot: {
-                F: 0.5,
-                E: 0.4,
-                D: 0.09,
-                C: 0.01
+                F: 0.4,
+                E: 0.3,
+                D: 0.25,
+                C: 0.05
             }
         },
         2: {
@@ -166,16 +166,52 @@
             entityCharToType: {
                 w: 'wolf',},
             furnitureCharToType: {
-                m: 'shrub',
+                m: 'leaf_pile',
                 '+': 'door',
                 T: 'oak_tree',
                 '-': 'crate',},
             itemsCharToType: {},
             crateLoot: {
-                F: 0.5,
-                E: 0.4,
-                D: 0.09,
-                C: 0.01
+                F: 0.4,
+                E: 0.3,
+                D: 0.25,
+                C: 0.05
+            }
+        },
+        3: {
+            name: 'The Caverns',
+            entities: {
+                '.': 0.443,
+                'g': 0.2,
+                'b': 0.15,
+                'm': 0.1,
+                'w': 0.1,
+                's': 0.005,
+                'k': 0.001,
+                '-': 0.001
+            },
+            consoleColor: RL.Util.COLORS.cave_floor,
+            floorColor: RL.Util.COLORS.cave_floor,
+            floorBgColor: RL.Util.COLORS.cave_floor,
+            wallColor: RL.Util.COLORS.cave_wall,
+            wallBgColor: RL.Util.COLORS.cave_wall,
+            entityCharToType: {
+                g: 'goblin',
+                k: 'goblin_king',},
+            furnitureCharToType: {
+                b: 'boulder',
+                '+': 'door',
+                m: 'mud',
+                w: 'puddle',
+                '-': 'crate',},
+            itemsCharToType: {
+                s: 'mushroom',
+            },
+            crateLoot: {
+                F: 0.4,
+                E: 0.3,
+                D: 0.25,
+                C: 0.05
             }
         },
     };

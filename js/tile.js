@@ -32,6 +32,7 @@
             if(this.blood === this._cachedBlood){
                 return {
                     char: this._cachedTileData.char,
+                    sprite: this._cachedTileData.sprite,
                     color: this._cachedTileData.color,
                     bgColor: this._cachedTileData.bgColor
                 };
@@ -41,6 +42,7 @@
             var color = tileData.color;
             var bgColor = tileData.bgColor;
             var char = tileData.char;
+            var sprite = tileData.sprite;
 
             if(this.blood > 0){
                 var intensity = Math.floor(this.blood * 200);
@@ -62,12 +64,14 @@
             }
 
             tileData.char = char;
+            tileData.sprite = sprite;
             tileData.color = color;
             tileData.bgColor = bgColor;
 
             this._cachedBlood = this.blood;
             this._cachedTileData = {
                 char: tileData.char,
+                sprite: tileData.sprite,
                 color: tileData.color,
                 bgColor: tileData.bgColor
             };
@@ -86,8 +90,8 @@
 
     root.RL.Tile.Types.exit = {
             name: 'Exit',
-            char: 'X',
-            // sprite: 'exit',
+            // char: 'X',
+            sprite: 'exit',
             color: RL.Util.COLORS.red,
             consoleColor: RL.Util.COLORS.red_alt,
             charStrokeColor: '#000',

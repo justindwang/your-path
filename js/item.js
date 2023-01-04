@@ -134,8 +134,6 @@
     var Defaults = {
         healing: {
             group: 'healing',
-            char: '🩹',
-            sprite: 'healing',
             fontSize: 12,
             getConsoleName: function(){
                 return {
@@ -231,9 +229,17 @@
         // healing items
         tiny_hp_potion: makeHealingItem({
             name: 'Tiny HP Potion',
+            sprite: 'potion',
             rank: 'F',
             healAmount: 5,
             cost: 10,
+        }),
+        mushroom: makeHealingItem({
+            name: 'Mushroom',
+            sprite: 'mushroom',
+            rank: 'F',
+            healAmount: 3,
+            cost: 5,
         }),
 
         // enemy weapons
@@ -252,6 +258,22 @@
             stat1Modifier: 2,
             range: 1,
             cost: 100,
+        }),
+        rusty_dagger: makeWeapon({
+            name: 'Rusty Dagger',
+            rank: 'F',
+            stat1: 'Agi',
+            stat1Modifier: 1,
+            range: 1,
+            cost: 10,
+        }),
+        kings_resent: makeWeapon({
+            name: 'King\'s Resent',
+            rank: 'C',
+            stat1: 'Str',
+            stat1Modifier: 10,
+            range: 1,
+            cost: 1000
         }),
 
         // melee weapons
@@ -287,6 +309,12 @@
             name: 'Wolf Fur',
             rank: 'F',
             cost: 5,
+        }),
+
+        coin_stash: makeMaterial({
+            name: 'Coin Stash',
+            rank: 'E',
+            cost: 200,
         }),
 
         // fillin rank items

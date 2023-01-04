@@ -48,8 +48,8 @@ var mapCharToType = {
     'x': 'exit'
 };
 
-var mapHeight = 40;
-var mapWidth = 40;
+var mapHeight = 25;
+var mapWidth = 25;
 var rendererHeight = 25;
 var rendererWidth = 25;
 
@@ -82,17 +82,6 @@ mapContainerEl.appendChild(game.renderer.canvas);
 consoleContainerEl.appendChild(game.console.el);
 
 game.loadFloor();
-
-// var mapData = game.generateMap();
-// game.updatePalette();
-
-// game.map.loadTilesFromArrayString(mapData, mapCharToType, 'floor');
-// game.setMapSize(game.mapWidth, game.mapHeight);
-// game.entityManager.loadFromArrayString(mapData, game.floor.entityCharToType);
-// game.itemManager.loadFromArrayString(mapData, game.floor.itemsCharToType);
-// game.furnitureManager.loadFromArrayString(mapData, game.floor.furnitureCharToType);
-// game.generatePlayerStartPosition();
-// game.setLighting(5);
 
 RL.Sprites.loadSprites();
 

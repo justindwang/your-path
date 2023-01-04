@@ -132,6 +132,9 @@
             if(this.entityManager.get(x, y)){
                 return false;
             }
+            // nothing besides player can move to exit
+            if(entity != this.player && this.map.get(x,y).type == 'exit')
+                return false;
             return true;
         },
         entityMoveTo: function(entity, x, y){
@@ -340,7 +343,7 @@
             RL.Tile.Types['floor'].bgColor = this.floor.floorBgColor;
             RL.Tile.Types['wall'].color = this.floor.wallColor;
             RL.Tile.Types['wall'].bgColor = this.floor.wallBgColor;
-            // RL.Tile.Types['exit'].bgColor = this.floor.floorBgColor;
+            RL.Tile.Types['exit'].bgColor = this.floor.floorBgColor;
         },
 
         generatePlayerStartPosition: function(){
@@ -408,7 +411,7 @@
         getItemOfRank: function(rank){
             var pool = [];
             for (const [key, value] of Object.entries(RL.Item.Types)) {
-                if(value.rank == rank)
+                if(value.rank == rank && value.group!='material')
                     pool.push(key);
             }
             return pool;

@@ -209,7 +209,8 @@
         door: {
             name: 'Door',
             hp: 5,
-            char: '+',
+            // char: '+',
+            sprite: 'door',
             color: 'yellow',
             consoleColor: 'yellow',
             charStrokeColor: '#000',
@@ -276,26 +277,27 @@
             }
         },
 
-        shrub: {
-            name: 'Shrub',
+        leaf_pile: {
+            name: 'Leaf Pile',
             hp: 5,
-            char: 'm',
+            // char: 'm',
+            sprite: 'leaf_pile',
             color: RL.Util.COLORS.green,
             consoleColor: RL.Util.COLORS.green,
             charStrokeColor: '#000',
             charStrokeWidth: 2,
-            pushable: true,
-            passable: false,
+            pushable: false,
+            passable: true,
             blocksLos: false,
             init: function(){
-                RL.Actions.Resolvable.add(this, 'push');
                 RL.Actions.Resolvable.add(this, 'attack');
             }
         },
         oak_tree:{
             name: 'Oak Tree',
             hp: 15,
-            char: 'T',
+            // char: 'T',
+            sprite: 'oak_tree',
             color: RL.Util.COLORS.golden_oak,
             consoleColor: RL.Util.COLORS.golden_oak,
             charStrokeColor: '#000',
@@ -306,7 +308,49 @@
             init: function(){
                 RL.Actions.Resolvable.add(this, 'attack');
             }
-        }
+        },
+        boulder:{
+            name: 'Boulder',
+            hp: 30,
+            sprite: 'boulder',
+            consoleColor: RL.Util.COLORS.gray,
+            charStrokeColor: '#000',
+            charStrokeWidth: 2,
+            pushable: false,
+            passable: false,
+            blocksLos: true,
+            init: function(){
+                RL.Actions.Resolvable.add(this, 'attack');
+            }
+        },
+        mud:{
+            name: 'Mud',
+            hp: 1,
+            sprite: 'mud',
+            consoleColor: RL.Util.COLORS.brown,
+            charStrokeColor: '#000',
+            charStrokeWidth: 2,
+            pushable: false,
+            passable: true,
+            blocksLos: false,
+            init: function(){
+            }
+        },
+        puddle:{
+            name: 'Puddle',
+            hp: 1,
+            sprite: 'puddle',
+            consoleColor: RL.Util.COLORS.dirty_water,
+            charStrokeColor: '#000',
+            charStrokeWidth: 2,
+            pushable: false,
+            passable: false,
+            blocksLos: false,
+            init: function(){
+                RL.Actions.Resolvable.add(this, 'attack');
+            }
+        },
+        
     };
 
     root.RL.Furniture = Furniture;

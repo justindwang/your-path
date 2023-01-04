@@ -32,6 +32,9 @@
         oak_brown: '#806517',
         dark_gray: '#5A5A5A',
         golden_oak: '#bb8141',
+        dirty_water: '#d0eee1',
+        cave_floor: '#ab946f',
+        cave_wall: '#1e202a',
 
         mp_blue: '#4932b9',
         exp_green: '#77dd77',

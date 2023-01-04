@@ -167,8 +167,7 @@
         },
         door: {
             name: 'Door',
-            // char: '+',
-            sprite: 'player',
+            char: '+',
             color: 'yellow',
             bgColor: '#222',
             passable: false,

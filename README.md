@@ -45,7 +45,9 @@ Todo:
 ## design more mobs/floors/skills/items
 ## implement classes/jobs
 
-- mp regeneration mechanic
+- clean up unneeded chars/colors
+- let blood clean up over time
+- mp regeneration mechanic -> potions
 - implement shop item mechanics
 - fast travel to different floors
 - design skill learning mechanic 

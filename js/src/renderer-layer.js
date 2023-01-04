@@ -143,7 +143,7 @@
         map: {
             merge: true,
             cancelTileDrawWhenNotFound: true,
-            // draw: true,
+            draw: true,
             getTileData: function(x, y){
 
                 if(!this.game){

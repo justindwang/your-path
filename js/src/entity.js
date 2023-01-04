@@ -486,6 +486,51 @@
                 wolf_fang: 0.05
             },
         }),
+        goblin: makeMeleeEntity({
+            name: 'Goblin',
+            // char: 'w',
+            sprite: 'goblin',
+            consoleColor: RL.Util.COLORS.green,
+            hp: 30,
+            hpMax: 30,
+            strength: 5,
+            exp: 10,
+            maxTurnsWithoutStumble: 25,
+            aggroRange: 5,
+            initialize: function() {
+                this.weapon = new RL.Item(this.game, 'rusty_dagger');
+                RL.Actions.Resolvable.add(this, 'attack');
+
+                RL.Actions.Performable.add(this, 'attack');
+            },
+            loot: {
+                nothing: 0.75,
+                rusty_dagger: 0.2,
+                coin_stash: 0.05
+            },
+        }),
+        goblin_king: makeMeleeEntity({
+            name: 'Goblin King',
+            // char: 'w',
+            sprite: 'goblin_king',
+            consoleColor: RL.Util.COLORS.dark_green,
+            hp: 100,
+            hpMax: 100,
+            strength: 10,
+            exp: 100,
+            maxTurnsWithoutStumble: 10,
+            aggroRange: 0,
+            initialize: function() {
+                this.weapon = new RL.Item(this.game, 'kings_resent');
+                RL.Actions.Resolvable.add(this, 'attack');
+
+                RL.Actions.Performable.add(this, 'attack');
+            },
+            loot: {
+                kings_resent: 0.5,
+                coin_stash: 0.5
+            },
+        }),
     };
 
     root.RL.Entity = Entity;

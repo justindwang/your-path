@@ -3,16 +3,6 @@
 
     var Sprites = {
 
-        player: null,
-        crate: null,
-        healing: null,
-        weapon: null,
-        material: null,
-        bush: null,
-        slime: null,
-        wolf: null,
-        exit: null,
-
         loadSprites: function() {
             const player = new Image();
             player.src = 'assets/sprites/boy.png';
@@ -22,9 +12,9 @@
             crate.src = 'assets/sprites/crate.png';
             this.crate = crate;
         
-            const healing = new Image();
-            healing.src = 'assets/sprites/healing.png';
-            this.healing = healing;
+            const potion = new Image();
+            potion.src = 'assets/sprites/potion.png';
+            this.potion = potion;
         
             const material = new Image();
             material.src = 'assets/sprites/material.png';
@@ -49,6 +39,46 @@
             const exit = new Image();
             exit.src = 'assets/sprites/exit.png';
             this.exit = exit;
+
+            const oak_tree = new Image();
+            oak_tree.src = 'assets/sprites/oak_tree.png';
+            this.oak_tree = oak_tree;
+
+            const leaf_pile = new Image();
+            leaf_pile.src = 'assets/sprites/leaf_pile.png';
+            this.leaf_pile = leaf_pile;
+
+            const door = new Image();
+            door.src = 'assets/sprites/door.png';
+            this.door = door;
+
+            const door_open = new Image();
+            door_open.src = 'assets/sprites/door_open.png';
+            this.door_open = door_open;
+
+            const goblin = new Image();
+            goblin.src = 'assets/sprites/goblin.png';
+            this.goblin = goblin;
+
+            const goblin_king = new Image();
+            goblin_king.src = 'assets/sprites/goblin_king.png';
+            this.goblin_king = goblin_king;
+
+            const boulder = new Image();
+            boulder.src = 'assets/sprites/boulder.png';
+            this.boulder = boulder;
+
+            const mud = new Image();
+            mud.src = 'assets/sprites/mud.png';
+            this.mud = mud;
+
+            const puddle = new Image();
+            puddle.src = 'assets/sprites/puddle.png';
+            this.puddle = puddle;
+
+            const mushroom = new Image();
+            mushroom.src = 'assets/sprites/mushroom.png';
+            this.mushroom = mushroom;
         },
     };
     

@@ -274,7 +274,7 @@
                     this.passable = true;
                     this.blocksLos = false;
                     this.open = true;
-                    this.char = "'";
+                    this.sprite = 'door_open';
                     return true;
                 }
                 else if(this.type == 'crate'){
