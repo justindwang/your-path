@@ -9,7 +9,7 @@
         this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        this.inventory = [];
+        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
@@ -74,6 +74,8 @@
 
         bleeds: true,
 
+        highestFloor: 1,
+
         getClass: function(){
             return 'player';
         },
@@ -117,6 +119,8 @@
                 return true;
             }
             if(action === 'next_floor'){
+                if( this.game.floor.number + 1 > this.highestFloor)
+                    this.highestFloor = this.game.floor.number + 1;
                 if(this.game.map.get(this.x, this.y).name == 'Exit')
                     this.game.goToFloor(this.game.floor.number + 1);
                 return true;
@@ -475,7 +479,7 @@
             var amount = this.inventory[slotNum][1];
             if(item.group == 'healing'){
                 if(this.hp >= this.hpMax)
-                    this.game.console.logCanNotHeal(item);
+                    this.game.console.logNoEffect(item);
                 else{
                     this.heal(item.healAmount);
                     if(amount>1)
@@ -486,7 +490,7 @@
             }
             else if(item.group == 'mp_recovery'){
                 if(this.mp >= this.mpMax)
-                    this.game.console.logCanNotHeal(item);
+                    this.game.console.logNoEffect(item);
                 else{
                     this.restoreMp(item.healAmount);
                     if(amount>1)
@@ -507,6 +511,9 @@
                 this.game.menu.addToInventory(currWeapon);
                 this.removeWeaponStats(currWeapon);
                 this.applyWeaponStats(item);
+            }
+            else if(item.group == 'special'){
+                item.performUse();
             }
             this.renderHtml();
         },

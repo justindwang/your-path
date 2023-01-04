@@ -373,6 +373,17 @@
             }
             return false;
           },
+          mapGroupToIcon: function(group){
+            switch(group) {
+                case 'healing': return '<img src="assets/icons/heal.png"/>';
+                case 'mp_recovery': return '<img src="assets/icons/heal.png"/>';
+                case 'weapon': return '<img src="assets/icons/weapon.png"/>';
+                case 'material': return '<img src="assets/icons/drops.png"/>';
+                case 'special': return '<img src="assets/icons/special.png"/>';
+                case 'combat': return '<img src="assets/icons/weapon.png"/>';
+                case 'misc': return '<img src="assets/icons/stats.png"/>';
+            }
+          },
     };
 
     root.RL.Util = Util;

@@ -49,6 +49,7 @@ Todo:
 ## implement classes/jobs
 
 - fast travel to different floors
+- add stat allocation ui
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
     - from stats page / achievements

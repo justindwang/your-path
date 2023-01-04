@@ -212,6 +212,17 @@
                 };
             },
         },
+        special: {
+            group: 'special',
+            // sprite: 'material',
+            getConsoleName: function(){
+                return {
+                    name: this.name,
+                    stats: this.getStats(),
+                    color: this.color
+                };
+            },
+        },
     };
 
     RL.Util.merge(Item.prototype, RL.Mixins.TileDraw);
@@ -231,6 +242,9 @@
     
     var makeMaterial = function(obj){
         return RL.Util.merge(obj, Defaults.material);
+    };
+    var makeSpecialItem = function(obj){
+        return RL.Util.merge(obj, Defaults.special);
     };
 
     Item.Types = {
@@ -330,6 +344,39 @@
             name: 'Coin Stash',
             rank: 'E',
             cost: 200,
+        }),
+
+        // special items
+        ascension_crystal: makeSpecialItem({
+            name: 'Ascension Crystal',
+            rank: 'A',
+            cost: 0,
+            getStats: function(){
+                return 'For traversing floors';
+            },
+            performUse: function(){
+                if(this.game.floor.number < this.game.player.highestFloor)
+                    this.game.goToFloor(this.game.floor.number + 1);
+                else
+                    this.game.console.logNoEffect(this);
+                console.log('bro?');
+            },
+        }),
+
+        descension_crystal: makeSpecialItem({
+            name: 'Descension Crystal',
+            rank: 'A',
+            cost: 0,
+            getStats: function(){
+                return 'For traversing floors';
+            },
+            performUse: function(){
+                if(this.game.floor.number > 1)
+                    this.game.goToFloor(this.game.floor.number - 1);
+                else
+                    this.game.console.logNoEffect(this);
+                console.log('bro?');
+            },
         }),
 
         // fillin rank items

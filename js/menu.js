@@ -258,8 +258,8 @@
             }
             else{
                 this.inventoryItemConfirmIndex = slotNum;
-                if(group=='healing' || group == 'mp_recovery')
-                    this.game.console.logAskConfirmHeal(inventory[slotNum][0]);
+                if(group=='healing' || group == 'mp_recovery' || group == 'special')
+                    this.game.console.logAskConfirmUse(inventory[slotNum][0]);
                 else if (group == 'weapon')
                     this.game.console.logAskConfirmEquip(inventory[slotNum][0]);
                 else
@@ -292,13 +292,17 @@
 
         shopSellItemClicked: function(slotNum){
             var item = this.game.player.inventory[slotNum][0];
+            if(item.group == 'special'){
+                this.game.console.log('Special items can\'t be sold');
+                return;
+            }
             if (slotNum == this.shopSellItemConfirmIndex){
+                this.clearClickData();
                 this.game.player.gold += item.cost;
                 this.removeFromInventory(item);
                 this.game.console.logSoldItem(item);
                 this.game.player.renderHtml();
                 this.renderShopSell();
-                this.clearClickData();
             }
             else{
                 this.shopSellItemConfirmIndex = slotNum;
@@ -352,16 +356,10 @@
             var wrap = document.getElementById('inventory-body');
             var icon = '';
             var color = '';
-            var amount = '';
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                switch(inventory[i][0].group) {
-                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
-                    case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
-                }
+                icon = RL.Util.mapGroupToIcon(inventory[i][0].group);
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -385,12 +383,7 @@
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                switch(inventory[i][0].group) {
-                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
-                    case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
-                }
+                icon = RL.Util.mapGroupToIcon(inventory[i][0].group);
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -413,12 +406,7 @@
             var html = '';
             
             for(var i = 0; i< this.shop.length; i++){
-                switch(this.shop[i].group) {
-                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
-                    case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
-                }
+                icon = RL.Util.mapGroupToIcon(this.shop[i].group);
                 switch(this.shop[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -444,12 +432,7 @@
             var html = '';
             
             for(var i = 0; i< this.shop.length; i++){
-                switch(this.shop[i].group) {
-                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
-                    case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
-                }
+                icon = RL.Util.mapGroupToIcon(this.shop[i].group);
                 switch(this.shop[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -478,12 +461,7 @@
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                switch(inventory[i][0].group) {
-                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'mp_recovery': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'weapon': icon = '<img src="assets/icons/weapon.png"/>'; break;
-                    case 'material': icon = '<img src="assets/icons/drops.png"/>'; break;
-                }
+                icon = RL.Util.mapGroupToIcon(inventory[i][0].group);
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -508,11 +486,7 @@
             var html = '';
             
             for(var i = 0; i<this.stats.length; i++){
-                switch(this.stats[i].group) {
-                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'combat': icon = '<img src="assets/icons/weapon.png"/>'; break;
-                    case 'misc': icon = '<img src="assets/icons/stats.png"/>'; break;
-                }
+                icon = RL.Util.mapGroupToIcon(this.stats[i].group);
                 switch(this.stats[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -534,11 +508,7 @@
             var html = '';
             
             for(var i = 0; i< this.stats.length; i++){
-                switch(this.stats[i].group) {
-                    case 'healing': icon = '<img src="assets/icons/heal.png"/>'; break;
-                    case 'combat': icon = '<img src="assets/icons/weapon.png"/>'; break;
-                    case 'misc': icon = '<img src="assets/icons/stats.png"/>'; break;
-                }
+                icon = RL.Util.mapGroupToIcon(this.stats[i].group);
                 switch(this.stats[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;

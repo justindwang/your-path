@@ -97,7 +97,7 @@
             amount = this.wrapStr(amount, RL.Util.COLORS.mp_blue);
             this.log(target + ' restored ' + amount + ' mp');
         },
-        logCanNotHeal: function(item){
+        logNoEffect: function(item){
             // entity = this.wrap(entity);
             item = this.wrap(item);
             this.game.console.log(item + ' had no effect.');
@@ -156,7 +156,7 @@
             this.log(skillName + ' is now equipped.');
         },
 
-        logAskConfirmHeal: function(item){
+        logAskConfirmUse: function(item){
             this.log('Use ' + this.wrap(item) + '? (Click again to confirm.)');
         },
 
