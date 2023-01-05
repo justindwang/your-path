@@ -535,7 +535,7 @@
             var player = this.game.player;
             var html = '';
             var weaponConsoleName = player.weapon.getConsoleName();
-            html += '<div class="tr"><div class="td">[Name: ' + this.game.console.wrap(player.weapon) + ']</div></div><div class="tr"><div class="td">Weapon Rank: '+ weaponConsoleName.rank + '</div></div><div class="tr"><div class="td">Modifiers: ' + weaponConsoleName.stats + '</div></div><div class="tr"><div class="td">Range: ' + weaponConsoleName.range+'</div></div>';
+            html += '<div class="weapon-icon"><img src="assets/sprites/' + weaponConsoleName.sprite + '.png"/></div><div class="newline"></div><div class="tr"><div class="td_weapon" >[Name: ' + this.game.console.wrap(player.weapon) + ']</div></div><div class="tr"><div class="td_weapon">Weapon Rank: '+ weaponConsoleName.rank + '</div></div><div class="tr"><div class="td_weapon">Modifiers: ' + weaponConsoleName.stats + '</div></div><div class="tr"><div class="td_weapon">Range: ' + weaponConsoleName.range+'</div></div>';
             wrap.innerHTML = html;
         },
 
@@ -548,7 +548,7 @@
             
             var html = '';
             var weaponConsoleName = player.weapon.getConsoleName();
-            html += 'Weapon Name: ' + weaponConsoleName.name + '<br>Stat Modifiers: ' + weaponConsoleName.stats + '<br>Range: ' + weaponConsoleName.range;
+            html += '<div class="weapon-icon"><img src="assets/sprites/' + weaponConsoleName.sprite + '.png"/></div><div class="newline"></div><div class="tr"><div class="td_weapon">[Name: ' + this.game.console.wrap(player.weapon) + ']</div></div><div class="tr"><div class="td_weapon">Weapon Rank: '+ weaponConsoleName.rank + '</div></div><div class="tr"><div class="td_weapon">Modifiers: ' + weaponConsoleName.stats + '</div></div><div class="tr"><div class="td_weapon">Range: ' + weaponConsoleName.range+'</div></div>';
             wrap.innerHTML = html;
             
         },

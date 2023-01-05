@@ -156,7 +156,6 @@
         },
         weapon: {
             group: 'weapon',
-            sprite: 'weapon',
             attachTo: function(entity){
                 this.game.console.logAddToInventory(entity, this);
                 this.game.menu.addToInventory(this);
@@ -168,7 +167,8 @@
                     rank: this.rank,
                     stats: this.getStats(),
                     range: this.range,
-                    color: this.color
+                    color: this.color,
+                    sprite: this.sprite,
                 };
             },
             getStats: function(){
@@ -275,6 +275,7 @@
         // enemy weapons
         goo: makeWeapon({
             name: 'Goo',
+            sprite: 'weapon',
             rank: 'F',
             stat1: 'Str',
             stat1Modifier: 1,
@@ -283,6 +284,7 @@
         }),
         wolf_fang: makeWeapon({
             name: 'Wolf Fang',
+            sprite: 'wolf_fang',
             rank: 'E',
             stat1: 'Str',
             stat1Modifier: 2,
@@ -291,6 +293,7 @@
         }),
         rusty_dagger: makeWeapon({
             name: 'Rusty Dagger',
+            sprite: 'rusty_dagger',
             rank: 'F',
             stat1: 'Agi',
             stat1Modifier: 1,
@@ -299,6 +302,7 @@
         }),
         kings_resent: makeWeapon({
             name: 'King\'s Resent',
+            sprite: 'weapon',
             rank: 'C',
             stat1: 'Str',
             stat1Modifier: 10,
@@ -309,6 +313,7 @@
         // melee weapons
         fists: makeWeapon({
             name: 'Fists',
+            sprite: 'fists',
             rank: 'F',
             stat1: 'Str',
             stat1Modifier: 1,
@@ -319,6 +324,7 @@
         // ranged weapons
         rock: makeWeapon({
             name: 'Rock',
+            sprite: 'weapon',
             rank: 'E',
             stat1: 'Str',
             stat1Modifier: 2,
@@ -383,6 +389,7 @@
         // fillin rank items
         stinger: makeWeapon({
             name: 'Stinger',
+            sprite: 'weapon',
             rank: 'D',
             stat1: 'Str',
             stat1Modifier: 5,
@@ -404,6 +411,7 @@
         }),
         desolation: makeWeapon({
             name: 'Desolation',
+            sprite: 'weapon',
             rank: 'B',
             stat1: 'Vit',
             stat1Modifier: 75,
@@ -414,6 +422,7 @@
         }),
         whip_of_fortune: makeWeapon({
             name: 'Whip of Fortune',
+            sprite: 'weapon',
             rank: 'A',
             stat1: 'Str',
             stat1Modifier: 100,
@@ -424,6 +433,7 @@
         }),
         barans_blades: makeWeapon({
             name: 'Baran\'s Blades',
+            sprite: 'weapon',
             rank: 'S',
             stat1: 'Str',
             stat1Modifier: 220,
@@ -434,6 +444,7 @@
         }),
         excalibur: makeWeapon({
             name: 'Excalibur',
+            sprite: 'weapon',
             rank: 'S',
             stat1: 'Str',
             stat1Modifier: 400,
@@ -442,6 +453,7 @@
         }),
         heavens_arrow: makeWeapon({
             name: 'Heaven\'s Arrow',
+            sprite: 'weapon',
             rank: 'S',
             stat1: 'Str',
             stat1Modifier: 50,

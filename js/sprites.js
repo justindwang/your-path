@@ -83,6 +83,18 @@
             const mushroom = new Image();
             mushroom.src = 'assets/sprites/mushroom.png';
             this.mushroom = mushroom;
+
+            const fists = new Image();
+            fists.src = 'assets/sprites/fists.png';
+            this.fists = fists;
+
+            const wolf_fang = new Image();
+            wolf_fang.src = 'assets/sprites/wolf_fang.png';
+            this.wolf_fang = wolf_fang;
+
+            const rusty_dagger = new Image();
+            rusty_dagger.src = 'assets/sprites/rusty_dagger.png';
+            this.rusty_dagger = rusty_dagger;
         },
     };
     

@@ -9,7 +9,7 @@
         this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
+        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1], [new RL.Item(this.game, 'rusty_dagger'),1]];
 
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
@@ -511,6 +511,7 @@
                 this.game.menu.addToInventory(currWeapon);
                 this.removeWeaponStats(currWeapon);
                 this.applyWeaponStats(item);
+                this.game.menu.renderWeapon();
             }
             else if(item.group == 'special'){
                 item.performUse();
