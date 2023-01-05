@@ -67,8 +67,6 @@
         agilityEl: null,
         intelligenceEl: null,
         luckEl: null,
-        weaponEl: null,
-        skillsEl: null,
 
         pendingAction: false,
 
@@ -238,6 +236,8 @@
                     break;
                 }
             }
+            if(this.game.menu.weaponOrSkills == 'skills')
+                this.game.menu.renderSkills();
             return true;
         },
         useSkill: function(){
@@ -542,53 +542,25 @@
         },
 
         renderHtml: function(){
-            this.nameEl.innerHTML = this.name;
-            this.levelEl.innerHTML = this.level;
-            this.jobEl.innerHTML = this.job;
-            this.titleEl.innerHTML = this.title;
-            this.goldEl.innerHTML = RL.Util.addCommas(this.gold);
+            this.nameEl.innerHTML = 'Name: ' + this.name;
+            this.levelEl.innerHTML = 'Level: ' + this.level;
+            this.jobEl.innerHTML = 'Job: ' + this.job;
+            this.titleEl.innerHTML = 'Title: ' + this.title;
+            this.goldEl.innerHTML = 'Gold: ' + RL.Util.addCommas(this.gold);
 
-            this.hpEl.innerHTML = this.hp;
-            this.hpMaxEl.innerHTML = this.hpMax;
+            this.hpEl.innerHTML = 'HP: ' + this.hp + '/' + this.hpMax;
             this.hpBarEl.value = this.hp;
             this.hpBarEl.max = this.hpMax;
 
-            this.mpEl.innerHTML = this.mp;
-            this.mpMaxEl.innerHTML = this.mpMax;
+            this.mpEl.innerHTML = 'MP: ' + this.mp + '/' + this.mpMax;
             this.mpBarEl.value = this.mp;
             this.mpBarEl.max = this.mpMax;
 
-            this.strengthEl.innerHTML = this.strength;
-            this.vitalityEl.innerHTML = this.vitality;
-            this.agilityEl.innerHTML = this.agility;
-            this.intelligenceEl.innerHTML = this.intelligence;
-            this.luckEl.innerHTML = this.luck;
-
-            if(this.weapon){
-                var weaponConsoleName = this.weapon.getConsoleName();
-                this.weaponNameEl.innerHTML = weaponConsoleName.name;
-                this.weaponStatsEl.innerHTML = weaponConsoleName.stats;
-                this.weaponRangeEl.innerHTML = weaponConsoleName.range;
-                document.getElementById('stat-weapon-name').style.color = weaponConsoleName.color;
-            }
-            
-            if(this.skillsEl){
-                // building skills section of html
-                var skillsHtml = '';
-
-                for(var i = 0; i< this.skills.length; i++){
-                    var skillConsoleName = this.skills[i].getConsoleName();
-                    if(skillConsoleName.selected){
-                        skillsHtml += '<div class="tr"><div class="td_yellow">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
-                        skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark">\"' + skillConsoleName.tooltip + '\"</div></div>';
-                    }
-                    else{
-                        skillsHtml += '<div class="tr"><div class="td">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
-                        skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark">\"' + skillConsoleName.tooltip + '\"</div></div>';
-                    }
-                }
-                this.skillsEl.innerHTML = skillsHtml;
-            }
+            this.strengthEl.innerHTML = 'Strength: ' + this.strength;
+            this.vitalityEl.innerHTML = 'Vitality: ' + this.vitality;
+            this.agilityEl.innerHTML = 'Agility: ' + this.agility;
+            this.intelligenceEl.innerHTML = 'Intelligence: ' + this.intelligence;
+            this.luckEl.innerHTML = 'Luck: ' + this.luck;
         },
 
         getConsoleName: function(){

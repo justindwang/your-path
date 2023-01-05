@@ -27,6 +27,7 @@
         shopSellItemConfirmIndex: -1,
 
         buyOrSell: 'buy',
+        weaponOrSkills: 'weapon',
 
         generateShop: function(){
             let temp = [new RL.Item(this.game, 'tiny_hp_potion'), new RL.Item(this.game, 'tiny_mp_potion')];
@@ -54,6 +55,9 @@
 
             document.getElementById('shop-buy').addEventListener('click', () => {this.renderShop()});
             document.getElementById('shop-sell').addEventListener('click', () => {this.renderShopSell()});
+
+            document.getElementById('skill-weapon').addEventListener('click', () => {this.renderWeapon()});
+            document.getElementById('skill-skills').addEventListener('click', () => {this.renderSkills()});
 
             this.addInventoryListeners();
             this.addShopListeners();
@@ -370,14 +374,14 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' (' + inventory[i][0].rank +')</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
+                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' - ​' + inventory[i][0].rank +'</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
             }
             wrap.innerHTML = html;
         },
 
         renderInventory: function(){
             var inventory = this.game.player.inventory;
-            var wrap = document.getElementById('mCSB_1_container');
+            var wrap = document.getElementById('mCSB_2_container');
             var icon = '';
             var color = '';
             var html = '';
@@ -394,7 +398,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' (' + inventory[i][0].rank +')</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
+                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' - ​' + inventory[i][0].rank +'</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
             }
             wrap.innerHTML = html;
             this.addInventoryListeners();
@@ -417,7 +421,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' (' + this.shop[i].rank +')</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ​' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
             document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>';
@@ -426,7 +430,7 @@
             this.buyOrSell = 'buy';
             document.getElementById('shop-sell').style.color = '#ffffff33';
             document.getElementById('shop-buy').style.color = '#e5e5e5';
-            var wrap = document.getElementById('mCSB_2_container');
+            var wrap = document.getElementById('mCSB_3_container');
             var icon = '';
             var color = '';
             var html = '';
@@ -443,7 +447,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' (' + this.shop[i].rank +')</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
             document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>';
@@ -454,7 +458,7 @@
             this.buyOrSell = 'sell';
             document.getElementById('shop-buy').style.color = '#ffffff33';
             document.getElementById('shop-sell').style.color = '#e5e5e5';
-            var wrap = document.getElementById('mCSB_2_container');
+            var wrap = document.getElementById('mCSB_3_container');
             var inventory = this.game.player.inventory;
             var icon = '';
             var color = '';
@@ -472,7 +476,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="shop-sell-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' (' + inventory[i][0].rank +')</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
+                html += '<div class="menu-item" id="shop-sell-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' - ​' + inventory[i][0].rank +'</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
             }
             wrap.innerHTML = html;
             document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-sell-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-sell-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-sell-foot-name">Name </span>';
@@ -497,12 +501,12 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' (' + this.stats[i].rank +')</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' - ​' + this.stats[i].rank +'</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
         },
         renderStats: function(){
-            var wrap = document.getElementById('mCSB_3_container');
+            var wrap = document.getElementById('mCSB_4_container');
             var icon = '';
             var color = '';
             var html = '';
@@ -519,10 +523,58 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' (' + this.stats[i].rank +')</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' - ​' + this.stats[i].rank +'</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
-        }, 
+        },
+
+        initWeapon: function(){
+            document.getElementById('skill-weapon').style.color = '#e5e5e5';
+            document.getElementById('skill-skills').style.color = '#ffffff33';
+            var wrap = document.getElementById('skill-body');
+            var player = this.game.player;
+            var html = '';
+            var weaponConsoleName = player.weapon.getConsoleName();
+            html += '<div class="tr"><div class="td">[Name: ' + this.game.console.wrap(player.weapon) + ']</div></div><div class="tr"><div class="td">Weapon Rank: '+ weaponConsoleName.rank + '</div></div><div class="tr"><div class="td">Modifiers: ' + weaponConsoleName.stats + '</div></div><div class="tr"><div class="td">Range: ' + weaponConsoleName.range+'</div></div>';
+            wrap.innerHTML = html;
+        },
+
+        renderWeapon: function(){
+            this.weaponOrSkills = 'weapon';
+            document.getElementById('skill-weapon').style.color = '#e5e5e5';
+            document.getElementById('skill-skills').style.color = '#ffffff33';
+            var wrap = document.getElementById('mCSB_1_container');
+            var player = this.game.player;
+            
+            var html = '';
+            var weaponConsoleName = player.weapon.getConsoleName();
+            html += 'Weapon Name: ' + weaponConsoleName.name + '<br>Stat Modifiers: ' + weaponConsoleName.stats + '<br>Range: ' + weaponConsoleName.range;
+            wrap.innerHTML = html;
+            
+        },
+
+        renderSkills: function(){
+            this.weaponOrSkills = 'skills';
+            document.getElementById('skill-weapon').style.color = '#ffffff33';
+            document.getElementById('skill-skills').style.color = '#e5e5e5';
+            var wrap = document.getElementById('mCSB_1_container');
+            var player = this.game.player;
+            
+            var skillsHtml = '';
+
+            for(var i = 0; i< player.skills.length; i++){
+                var skillConsoleName = player.skills[i].getConsoleName();
+                if(skillConsoleName.selected){
+                    skillsHtml += '<div class="tr"><div class="td_yellow">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
+                    skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark"></div></div>';
+                }
+                else{
+                    skillsHtml += '<div class="tr"><div class="td">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
+                    skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark"></div></div>';
+                }
+            }
+            wrap.innerHTML = skillsHtml;
+        },
     };
 
     root.RL.Menu = Menu;

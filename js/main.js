@@ -30,10 +30,6 @@ var statElements = {
     agilityEl: document.getElementById('stat-agility'),
     intelligenceEl: document.getElementById('stat-intelligence'),
     luckEl: document.getElementById('stat-luck'),
-    weaponNameEl: document.getElementById('stat-weapon-name'),
-    weaponStatsEl: document.getElementById('stat-weapon-stats'),
-    weaponRangeEl: document.getElementById('stat-weapon-range'),
-    skillsEl: document.getElementById('stat-skills'),
 };
 
 var controlsEL = document.getElementById('controls');

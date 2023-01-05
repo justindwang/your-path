@@ -165,6 +165,7 @@
             getConsoleName: function(){
                 return {
                     name: this.name,
+                    rank: this.rank,
                     stats: this.getStats(),
                     range: this.range,
                     color: this.color

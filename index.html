@@ -13,103 +13,75 @@
     <div class="page container">
         <div id="map-container" class="map-container"></div>
         <div class="stats-container">
-            <h3>Character Info</h3>
-            <div class="tr">
-                <span class="td">Name:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-name"></span></span>
-            </div>
+            <div id="status-window">
+                <h3>Status</h3>
+                <div class="character-info-section"> 
+                    <div class="tr">
+                        <span class="td" id="stat-name"></span>
+                        <span class="td_tab_medium"></span>
+                        <span class="td" id="stat-job"></span>
+                    </div>
 
-            <div class="tr">
-                <span class="td">Level:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-level"></span></span>
-            </div>
+                    <div class="tr">
+                        <span class="td" id="stat-level"></span>
+                        <span class="td_tab_medium"></span>
+                        <span class="td" id="stat-title"></span>
+                    </div>
 
-            <div class="tr">
-                <span class="td">Job:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-job"></span></span>
-            </div>
+                    <div class="tr">
+                        <span class="td" id="stat-gold"></span>
+                    </div>
+                </div>
+                <div class="character-info-section">
+                    <div class="tr">
+                        <span class="td" id="stat-hp"></span>
+                        <span class="td_tab"></span>
+                        <div class="progress1"><progress id="stat-hp-bar" value="75" max="100"></progress></div>
+                    </div>
 
-            <div class="tr">
-                <span class="td">Title:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-title"></span></span>
+                    <div class="tr">
+                        <span class="td" id="stat-mp"></span>
+                        <span class="td_tab"></span>
+                        <div class="progress2"><progress id="stat-mp-bar" value="75" max="100"></progress></div>
+                    </div>
+                </div>
+                <div class="character-info-section">
+                    <div class="tr">
+                        <span class="td_right" id="stat-strength"></span>
+                        <span class="td_tab"></span>
+                        <span class="td_right" id="stat-vitality"></span>
+                    </div>
+                    <div class="tr">
+                        <span class="td_right" id="stat-agility"></span>
+                        <span class="td_tab"></span>
+                        <span class="td_right" id="stat-intelligence"></span>
+                    </div>
+                    <div class="tr">
+                        <span class="td_right" id="stat-luck"></span>
+                    </div>
+                </div>
             </div>
+            <div id="skill-window">
+                <div class="menu-head">
+                    <h3 id="skill-weapon">Weapon</h3>
+                    <p class = "td_tab_short"></p>
+                    <h3 >|</h3>
+                    <p class = "td_tab_short"></p>
+                    <h3 id="skill-skills">Skills</h3>
+                </div>
+                <div  class="mCustomScrollbar menu-body" id="skill-body">
+                    
+                </div>
+                <div class="menu-foot" id="skill-foot">
+        
+                </div>
+                <!-- <h3>Skills</h3>
+                <div> 
+                    <div class="tr" id="stat-weapon-info"></div>
+                </div>
 
-            <div class="tr">
-                <span class="td">Gold:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-gold"></span></span>
-            </div>
-
-            <div class="tr">
-                <span class="td">HP:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-hp"></span>/<span id="stat-hp-max"></span></span>
-                <span class="td_tab"></span>
-                <div class="progress1"><progress id="stat-hp-bar" value="75" max="100"></progress></div>
-                <span class="td_tab"></span>
-            </div>
-
-            <div class="tr">
-                <span class="td">MP:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-mp"></span>/<span id="stat-mp-max"></span></span>
-                <span class="td" style="color:black;"></span>
-                <div class="progress2"><progress id="stat-mp-bar" value="75" max="100"></progress></div>
-            </div>
-            
-            <h3>Stats</h3>
-            <div class="tr">
-                <span class="td">Strength:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-strength"></span></span>
-            </div>
-
-            <div class="tr">
-                <span class="td">Vitality:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-vitality"></span></span>
-            </div>
-
-            <div class="tr">
-                <span class="td">Agility:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-agility"></span></span>
-            </div>
-
-            <div class="tr">
-                <span class="td">Intelligence:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-intelligence"></span></span>
-            </div>
-
-            <div class="tr">
-                <span class="td">Luck:</span>
-                <span class="td_tab"></span>
-                <span class="td"><span id="stat-luck"></span></span>
-            </div>
-
-            <h3>Weapon</h3>
-            <div class="tr" id="stat-weapon-info">
-                <span class="td" id="stat-weapon-name"></span>
-                <span class="td_tab_short"></span>
-                <span>-</span>
-                <span class="td_tab_short"></span>
-                <span>[</span>
-                <span class="td" id="stat-weapon-stats"></span>
-                <span>]</span>
-                <span class="td_tab_short"></span>
-                <span> (Range:</span>
-                <span class="td_tab_short"></span>
-                <span class= "td" id="stat-weapon-range"></span>
-                <span> )</span>
-            </div>
-
-            <h3>Skills</h3>
-            <div id="stat-skills" class="skills">
+                <div class="character-info-section" id="stat-skills" >
+                </div> -->
             </div>
 
             <h3>Controls</h3>

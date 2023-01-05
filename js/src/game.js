@@ -34,6 +34,7 @@
         this.menu.initInventory();
         this.menu.initStats();
         this.menu.initShop();
+        this.menu.initWeapon();
     };
 
     Game.prototype = {

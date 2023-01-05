@@ -212,7 +212,7 @@
             if(typeof color === 'string'){
                 style = ' style="color:' + color + '"';
             }
-            return '<strong' + style + '>' + str + '</strong>';
+            return '<span' + style + '>' + str + '</span>';
         }
 
     };

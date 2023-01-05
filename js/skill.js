@@ -81,7 +81,6 @@
             name: 'Pancake Torch',
             rank: 'B',
             description: 'Heals half of one\'s HP immediately',
-            tooltip: 'A cute pancake torch fights alongside you',
             selected: true,
             mpCost: 5,
             performEffect: function() {
@@ -92,8 +91,7 @@
         powerbuff_gorl: {
             name: 'Powerbuff Gorl',
             rank: 'B',
-            description: 'Increases strength stat by 1~10 points on this floor\n',
-            tooltip: 'Feeling lucky?',
+            description: 'Increases strength stat by 1~10',
             mpCost: 3,
             performEffect: function() {
                 this.game.player.statChange('strength', RL.Util.random(1,10));

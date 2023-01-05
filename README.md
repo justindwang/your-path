@@ -49,6 +49,7 @@ Todo:
 ### design more mobs/floors/skills/items
 ### implement classes/jobs
 
+- show item prices in shop
 - add stat allocation ui
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
@@ -64,3 +65,4 @@ Todo:
 - make crits stand out more
 - fix bug/feature? where you can push furniture onto items
 - add buffs
+- add weapon classes + sprites
