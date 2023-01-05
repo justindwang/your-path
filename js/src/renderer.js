@@ -92,14 +92,14 @@
         * @property tileSize
         * @type Number
         */
-        tileSize: 16,
+        tileSize: 24,
 
         /**
         * Font used to render tile characters.
         * @property font
         * @type String
         */
-        font: 'monospace',// "DejaVuSansMono",
+        font: 'FriendOrFoeTallBB',// "DejaVuSansMono",
 
         /**
         * Device pixel ratio for high dpi screens.

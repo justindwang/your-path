@@ -201,7 +201,7 @@
         },
         material: {
             group: 'material',
-            sprite: 'material',
+            // sprite: 'material',
             getStats: function(){
                 return 'Material';
             },
@@ -275,7 +275,7 @@
         // enemy weapons
         goo: makeWeapon({
             name: 'Goo',
-            sprite: 'weapon',
+            sprite: 'slime_goo',
             rank: 'F',
             stat1: 'Str',
             stat1Modifier: 1,
@@ -302,7 +302,7 @@
         }),
         kings_resent: makeWeapon({
             name: 'King\'s Resent',
-            sprite: 'weapon',
+            sprite: 'kings_resent',
             rank: 'C',
             stat1: 'Str',
             stat1Modifier: 10,
@@ -322,9 +322,9 @@
         }),
 
         // ranged weapons
-        rock: makeWeapon({
-            name: 'Rock',
-            sprite: 'weapon',
+        sharp_rock: makeWeapon({
+            name: 'Sharp Rock',
+            sprite: 'sharp_rock',
             rank: 'E',
             stat1: 'Str',
             stat1Modifier: 2,
@@ -337,18 +337,21 @@
         // material
         slime_goo: makeMaterial({
             name: 'Slime Goo',
+            sprite: 'slime_goo',
             rank: 'F',
             cost: 5,
         }),
 
         wolf_fur: makeMaterial({
             name: 'Wolf Fur',
+            sprite: 'wolf_fur',
             rank: 'F',
             cost: 5,
         }),
 
         coin_stash: makeMaterial({
             name: 'Coin Stash',
+            sprite: 'coin_stash',
             rank: 'E',
             cost: 200,
         }),
@@ -356,6 +359,7 @@
         // special items
         ascension_crystal: makeSpecialItem({
             name: 'Ascension Crystal',
+            sprite: 'ascension_crystal',
             rank: 'A',
             cost: 0,
             getStats: function(){
@@ -372,6 +376,7 @@
 
         descension_crystal: makeSpecialItem({
             name: 'Descension Crystal',
+            sprite: 'descension_crystal',
             rank: 'A',
             cost: 0,
             getStats: function(){
@@ -389,7 +394,7 @@
         // fillin rank items
         stinger: makeWeapon({
             name: 'Stinger',
-            sprite: 'weapon',
+            sprite: 'stinger',
             rank: 'D',
             stat1: 'Str',
             stat1Modifier: 5,
@@ -400,6 +405,7 @@
         }),
         hp_potion: makeHealingItem({
             name: 'HP Potion',
+            sprite: 'hp_potion',
             rank: 'C',
             healAmount: 20,
             cost: 1000,
@@ -411,7 +417,7 @@
         }),
         desolation: makeWeapon({
             name: 'Desolation',
-            sprite: 'weapon',
+            sprite: 'desolation',
             rank: 'B',
             stat1: 'Vit',
             stat1Modifier: 75,
@@ -422,7 +428,7 @@
         }),
         whip_of_fortune: makeWeapon({
             name: 'Whip of Fortune',
-            sprite: 'weapon',
+            sprite: 'whip_of_fortune',
             rank: 'A',
             stat1: 'Str',
             stat1Modifier: 100,
@@ -433,7 +439,7 @@
         }),
         barans_blades: makeWeapon({
             name: 'Baran\'s Blades',
-            sprite: 'weapon',
+            sprite: 'barans_blades',
             rank: 'S',
             stat1: 'Str',
             stat1Modifier: 220,
@@ -444,7 +450,7 @@
         }),
         excalibur: makeWeapon({
             name: 'Excalibur',
-            sprite: 'weapon',
+            sprite: 'excalibur',
             rank: 'S',
             stat1: 'Str',
             stat1Modifier: 400,
@@ -453,7 +459,7 @@
         }),
         heavens_arrow: makeWeapon({
             name: 'Heaven\'s Arrow',
-            sprite: 'weapon',
+            sprite: 'heavens_arrow',
             rank: 'S',
             stat1: 'Str',
             stat1Modifier: 50,

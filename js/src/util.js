@@ -280,10 +280,10 @@
 
         mapDamageToFontSize(numDigits){
             switch(numDigits){
-                case 1: return 16;
-                case 2: return 12;
-                case 3: return 10;
-                default: return 10;
+                case 1: return 24;
+                case 2: return 24;
+                case 3: return 24;
+                default: return 24;
             }
         },
 

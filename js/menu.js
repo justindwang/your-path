@@ -363,7 +363,7 @@
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                icon = RL.Util.mapGroupToIcon(inventory[i][0].group);
+                icon = '<img src="assets/sprites/' +  inventory[i][0].sprite + '.png"/>';
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -387,7 +387,7 @@
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                icon = RL.Util.mapGroupToIcon(inventory[i][0].group);
+                icon = '<img src="assets/sprites/' +  inventory[i][0].sprite + '.png"/>';
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -410,7 +410,7 @@
             var html = '';
             
             for(var i = 0; i< this.shop.length; i++){
-                icon = RL.Util.mapGroupToIcon(this.shop[i].group);
+                icon = '<img src="assets/sprites/' +  this.shop[i].sprite + '.png"/>'; 
                 switch(this.shop[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -436,7 +436,7 @@
             var html = '';
             
             for(var i = 0; i< this.shop.length; i++){
-                icon = RL.Util.mapGroupToIcon(this.shop[i].group);
+                icon = '<img src="assets/sprites/' +  this.shop[i].sprite + '.png"/>'; 
                 switch(this.shop[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
@@ -465,7 +465,7 @@
             var html = '';
             
             for(var i = 0; i<inventory.length; i++){
-                icon = RL.Util.mapGroupToIcon(inventory[i][0].group);
+                icon = '<img src="assets/sprites/' +  inventory[i][0].sprite + '.png"/>';
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;

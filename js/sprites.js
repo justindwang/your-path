@@ -95,6 +95,58 @@
             const rusty_dagger = new Image();
             rusty_dagger.src = 'assets/sprites/rusty_dagger.png';
             this.rusty_dagger = rusty_dagger;
+
+            const kings_resent = new Image();
+            kings_resent.src = 'assets/sprites/kings_resent.png';
+            this.kings_resent = kings_resent;
+
+            const sharp_rock = new Image();
+            sharp_rock.src = 'assets/sprites/sharp_rock.png';
+            this.sharp_rock = sharp_rock;
+
+            const stinger = new Image();
+            stinger.src = 'assets/sprites/stinger.png';
+            this.stinger = stinger;
+
+            const desolation = new Image();
+            desolation.src = 'assets/sprites/desolation.png';
+            this.desolation = desolation;
+
+            const whip_of_fortune = new Image();
+            whip_of_fortune.src = 'assets/sprites/whip_of_fortune.png';
+            this.whip_of_fortune = whip_of_fortune;
+
+            const barans_blades = new Image();
+            barans_blades.src = 'assets/sprites/barans_blades.png';
+            this.barans_blades = barans_blades;
+
+            const excalibur = new Image();
+            excalibur.src = 'assets/sprites/excalibur.png';
+            this.excalibur = excalibur;
+
+            const heavens_arrow = new Image();
+            heavens_arrow.src = 'assets/sprites/heavens_arrow.png';
+            this.heavens_arrow = heavens_arrow;
+
+            const ascension_crystal = new Image();
+            ascension_crystal.src = 'assets/sprites/ascension_crystal.png';
+            this.ascension_crystal = ascension_crystal;
+
+            const descension_crystal = new Image();
+            descension_crystal.src = 'assets/sprites/descension_crystal.png';
+            this.descension_crystal = descension_crystal;
+
+            const coin_stash = new Image();
+            coin_stash.src = 'assets/sprites/coin_stash.png';
+            this.coin_stash = coin_stash;
+
+            const wolf_fur = new Image();
+            wolf_fur.src = 'assets/sprites/wolf_fur.png';
+            this.wolf_fur = wolf_fur;
+
+            const slime_goo = new Image();
+            slime_goo.src = 'assets/sprites/slime_goo.png';
+            this.slime_goo = slime_goo;
         },
     };
     
