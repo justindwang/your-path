@@ -413,7 +413,7 @@
                 this.start();
             }
             else{
-                console.log('This is the last floor');
+                this.console.log('Cannot climb further - this is the last floor');
             }
         },
         generateCrateLoot: function(rates){

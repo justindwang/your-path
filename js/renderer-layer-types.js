@@ -220,7 +220,7 @@
                     return {
                         after: {
                             char: RL.Util.mapDamageTo3Digits(damage),
-                            color: 'rgba(190, 5, 25, 1)',
+                            color: RL.Util.randomColor('red'),
                             charStrokeWidth: 2,
                             fontSize: RL.Util.mapDamageToFontSize(this.game.player.strength.toString().length),
                             // charStrokeColor: 'rgba(250, 0, 0, 1)',

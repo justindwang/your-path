@@ -52,7 +52,6 @@ var rendererWidth = 10;
 RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
 
 RL.Util.loadColorBounds();
-console.log(RL.Util.randomColor('red'));
 
 // create the game instance
 var game = new RL.Game(mapHeight, mapWidth, rendererHeight, rendererWidth);

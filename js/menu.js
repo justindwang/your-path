@@ -59,6 +59,12 @@
             document.getElementById('skill-weapon').addEventListener('click', () => {this.renderWeapon()});
             document.getElementById('skill-skills').addEventListener('click', () => {this.renderSkills()});
 
+            document.getElementById('up-strength').addEventListener('click', () => {this.upStrength()});
+            document.getElementById('up-vitality').addEventListener('click', () => {this.upVitality()});
+            document.getElementById('up-agility').addEventListener('click', () => {this.upAgility()});
+            document.getElementById('up-intelligence').addEventListener('click', () => {this.upIntelligence()});
+            document.getElementById('up-luck').addEventListener('click', () => {this.upLuck()});
+
             this.addInventoryListeners();
             this.addShopListeners();
             this.addShopSortListeners();
@@ -139,6 +145,72 @@
             inventoryWindowEl.style.opacity = 0;
             shopWindowEl.style.opacity = 0;
             statsWindowEl.style.opacity = 1;
+        },
+
+        renderStatPoints: function(){
+            if(this.game.player.statPoints > 0){
+                let statPointsEl = document.getElementById('stat-points');
+                statPointsEl.innerHTML = '(Stat Points: ' + this.game.player.statPoints + ')';
+                this.displayStatPoints();
+            }
+            else
+                this.hideStatPoints();
+        },
+
+        displayStatPoints: function(){
+            let elements = document.querySelectorAll('.player-stat-item');
+            for (let element of elements) 
+                element.style.display = 'block';
+            let statPoints = document.getElementById('stat-points');
+            statPoints.style.display = 'block';
+        },
+
+        hideStatPoints: function(){
+            let elements = document.querySelectorAll('.player-stat-item');
+            for (let element of elements) 
+                element.style.display = 'none';
+            let statPoints = document.getElementById('stat-points');
+            statPoints.style.display = 'none';
+        },
+
+        upStrength: function(){
+            this.game.player.statPoints--;
+            this.game.player.strength++;
+            this.game.player.renderHtml();
+            this.game.console.logUsedStatPoint('strength');
+            this.renderStatPoints();
+        },
+
+        upVitality: function(){
+            this.game.player.statPoints--;
+            this.game.player.vitality++;
+            this.game.player.renderHtml();
+            this.game.console.logUsedStatPoint('vitality');
+            this.renderStatPoints();
+        },
+
+        upAgility: function(){
+            this.game.player.statPoints--;
+            this.game.player.agility++;
+            this.game.player.renderHtml();
+            this.game.console.logUsedStatPoint('agility');
+            this.renderStatPoints();
+        },
+
+        upIntelligence: function(){
+            this.game.player.statPoints--;
+            this.game.player.intelligence++;
+            this.game.player.renderHtml();
+            this.game.console.logUsedStatPoint('intelligence');
+            this.renderStatPoints();
+        },
+
+        upLuck: function(){
+            this.game.player.statPoints--;
+            this.game.player.luck++;
+            this.game.player.renderHtml();
+            this.game.console.logUsedStatPoint('luck');
+            this.renderStatPoints();
         },
         
         sortInventoryType: function(){
@@ -446,7 +518,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
 
-                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ​' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div><div class="menu-item-amount"><img src="assets/icons/gold.png"/><p>' + RL.Util.addCommas(this.shop[i].cost) + '</p></div></div>';
             }
             wrap.innerHTML = html;
             document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>';

@@ -38,7 +38,10 @@
             var playerName = this.wrap(this.game.player);
             level = this.wrapStr(level, RL.Util.COLORS.exp_green);
             this.log(playerName + ' grew to level ' + level);
-            this.log(playerName + '\'s stats grew');
+        },
+        logUsedStatPoint: function(stat){
+            var playerName = this.wrap(this.game.player);
+            this.log(playerName + '\'s '+ stat + ' increased by 1');
         },
         logAttack: function(source, weapon, target){
 
@@ -157,11 +160,11 @@
         },
 
         logAskConfirmUse: function(item){
-            this.log('Use ' + this.wrap(item) + '? (Click again to confirm.)');
+            this.log('Use ' + this.wrap(item) + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
         },
 
         logAskConfirmEquip: function(item){
-            this.log('Equip ' + this.wrap(item) + '? (Click again to confirm.)');
+            this.log('Equip ' + this.wrap(item) + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
         },
 
         logInspectMaterial: function(item){
@@ -190,11 +193,11 @@
         },
 
         logAskPurchase: function(item){
-            this.log('Purchase ' + this.wrap(item) + ' for '+ item.cost + ' gold? (Click again to confirm.)');
+            this.log('Purchase ' + this.wrap(item) + ' for '+ item.cost + ' gold? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
         },
 
         logAskSell: function(item){
-            this.log('Sell ' + this.wrap(item) + ' for '+ item.cost + ' gold? (Click again to confirm.)');
+            this.log('Sell ' + this.wrap(item) + ' for '+ item.cost + ' gold? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
         },
         logDodge: function(target, source){
             this.log(this.wrap(target) + ' dodged ' + this.wrap(source) + '\'s attack');

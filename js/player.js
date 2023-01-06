@@ -6,7 +6,7 @@
     var NewPlayer = function Player(game){
         proto.constructor.call(this, game);
 
-        this.weapon = new RL.Item(this.game, 'fists');
+        this.weapon = new RL.Item(this.game, 'heavens_arrow');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
         this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
@@ -46,6 +46,7 @@
         agility: 1,
         intelligence: 1,
         luck: 1,
+        statPoints: 0,
 
         weapon: null,
         inventory: null,
@@ -434,6 +435,8 @@
 
         gainExp: function(expGain){
             this.exp += expGain;
+
+            // leveled up
             if(this.exp >= this.expForNext){
                 this.exp -= this.expForNext;
                 this.level++;
@@ -452,7 +455,9 @@
                 this.intelligence++;
                 this.vitality++;
                 this.agility++;
+                this.statPoints++;
                 this.game.console.logLevelUp(this.level);
+                this.game.menu.renderStatPoints();
             }
         },
 

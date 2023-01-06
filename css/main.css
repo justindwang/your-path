@@ -2613,7 +2613,7 @@ pre[class*="language-"] {
   padding: 0 0 3px;
   color: #e5e5e5;
   font-size: 18px;
-  float: right;
+  text-align: right;
 }
 
 .td_center_head{
@@ -2635,6 +2635,12 @@ pre[class*="language-"] {
 .td_tab {
   display: table-cell;
   width: 20px;
+  color: #000000;
+}
+
+.td_tab_2 {
+  display: table-cell;
+  width: 10px;
   color: #000000;
 }
 
@@ -2907,3 +2913,6 @@ progress::-webkit-progress-bar {
 .weapon-icon { margin-left: 10px; background: rgba(87,83,83,0.25); width:50px; height:50px; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px;}
 .weapon-icon img{padding-bottom: 4px; width:80%; margin-left: 10%; margin-top: 10%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
 .character-info-section { padding: 3px 0 0 0; margin-top: 3px; border-top: 1px solid #333333;}
+.character-info-section .td_right img {margin-bottom: 3px; height:10px; width: 10px;}
+.player-stat-item {display:none}
+#stat-points {display: table-cell; padding: 0 0 3px; color: #797979; font-size: 18px; text-align: right; display:none; }

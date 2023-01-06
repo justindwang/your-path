@@ -46,13 +46,13 @@ A roguelike game for the browser written in js using [js-roguelike-skeleton](htt
 - added individual weapon/item sprites <br>
 - item prices are now displayed in the shop <br>
 - added David Merfield's random color generator <br>
+- added ui for allocatable stat points upon level up<br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 ### implement classes/jobs
 
-- add stat allocation ui
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
     - from stats page / achievements
@@ -69,3 +69,5 @@ Todo:
 - add buffs
 - add weapon classes
 - add quests
+- revamp tile mapping/generation
+- add more background tiles / materials to floors
