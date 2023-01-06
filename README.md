@@ -43,13 +43,15 @@ A roguelike game for the browser written in js using [js-roguelike-skeleton](htt
 - mp regeneration mechanic <br>
 - shop items are now randomly generated each floor <br>
 - added fast travel and special items <br>
+- added individual weapon/item sprites <br>
+- item prices are now displayed in the shop <br>
+- added David Merfield's random color generator <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 ### implement classes/jobs
 
-- show item prices in shop
 - add stat allocation ui
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
@@ -65,4 +67,5 @@ Todo:
 - make crits stand out more
 - fix bug/feature? where you can push furniture onto items
 - add buffs
-- add weapon classes + sprites
+- add weapon classes
+- add quests

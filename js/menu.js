@@ -420,8 +420,7 @@
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
-
-                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ​' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div></div>';
+                html += '<div class="menu-item" id="shop-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.shop[i].name + ' - ​' + this.shop[i].rank +'</span> <br> <span>' + this.shop[i].getStats() + '</span></h4></div><div class="menu-item-amount"><img src="assets/icons/gold.png"/><p>' + RL.Util.addCommas(this.shop[i].cost) + '</p></div></div>';
             }
             wrap.innerHTML = html;
             document.getElementById('shop-foot').innerHTML = '<p>Order by:</p><span id="shop-foot-type"> Type </span><p class = "td_tab_short"></p> <p>|</p><p class="td_tab_short"></p><span id="shop-foot-rarity">Rarity</span> <p class="td_tab_short"></p><p>|</p><p class="td_tab_short"></p><span id="shop-foot-name">Name </span>';

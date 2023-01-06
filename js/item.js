@@ -463,7 +463,7 @@
             rank: 'S',
             stat1: 'Str',
             stat1Modifier: 50,
-            range: 10,
+            range: 5,
             cost: 15000,
         }),
     };

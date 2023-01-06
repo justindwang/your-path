@@ -1,3 +1,4 @@
+
 (function(root) {
     'use strict';
 
@@ -224,8 +225,8 @@
                             fontSize: RL.Util.mapDamageToFontSize(this.game.player.strength.toString().length),
                             // charStrokeColor: 'rgba(250, 0, 0, 1)',
                             // color: 'rgba(255,255,255,0.5)',
-                            // offsetX: -0.1 * this.game.renderer.tileSize,
-                            // offsetY: -0.1 * this.game.renderer.tileSize
+                            offsetX: this.game.renderer.tileSize * (Math.random() * 0.6 - 0.3),
+                            offsetY: this.game.renderer.tileSize * (Math.random() * 0.6 - 0.3),
                         }
                     };
                 }

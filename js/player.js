@@ -6,7 +6,7 @@
     var NewPlayer = function Player(game){
         proto.constructor.call(this, game);
 
-        this.weapon = new RL.Item(this.game, 'heavens_arrow');
+        this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
         this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
@@ -41,7 +41,7 @@
         hpMax: 20,
         mp: 10,
         mpMax: 10,
-        strength: 100,
+        strength: 1,
         vitality: 1,
         agility: 1,
         intelligence: 1,

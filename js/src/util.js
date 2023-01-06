@@ -95,6 +95,8 @@
          */
         DIRECTIONS_TO_OFFSETS: DIRECTIONS_TO_OFFSETS,
 
+        colorDictionary: {},
+
         /**
         * Merges settings with default values.
         * @method mergeDefaults
@@ -181,6 +183,266 @@
             var dx = x2 - x1;
             var dy = y2 - y1;
             return Math.sqrt(dx*dx + dy*dy);
+        },
+
+        //color library
+        loadColorBounds () {
+
+            this.defineColor(
+              'monochrome',
+              null,
+              [[0,0],[100,0]]
+            );
+          
+            this.defineColor(
+              'red',
+              [-26,18],
+              [[20,100],[30,92],[40,89],[50,85],[60,78],[70,70],[80,60],[90,55],[100,50]]
+            );
+          
+            this.defineColor(
+              'orange',
+              [18,46],
+              [[20,100],[30,93],[40,88],[50,86],[60,85],[70,70],[100,70]]
+            );
+          
+            this.defineColor(
+              'yellow',
+              [46,62],
+              [[25,100],[40,94],[50,89],[60,86],[70,84],[80,82],[90,80],[100,75]]
+            );
+          
+            this.defineColor(
+              'green',
+              [62,178],
+              [[30,100],[40,90],[50,85],[60,81],[70,74],[80,64],[90,50],[100,40]]
+            );
+          
+            this.defineColor(
+              'blue',
+              [178, 257],
+              [[20,100],[30,86],[40,80],[50,74],[60,60],[70,52],[80,44],[90,39],[100,35]]
+            );
+          
+            this.defineColor(
+              'purple',
+              [257, 282],
+              [[20,100],[30,87],[40,79],[50,70],[60,65],[70,59],[80,52],[90,45],[100,42]]
+            );
+          
+            this.defineColor(
+              'pink',
+              [282, 334],
+              [[20,100],[30,90],[40,86],[60,84],[80,80],[90,75],[100,73]]
+            );
+          
+        },
+
+        defineColor (name, hueRange, lowerBounds) {
+
+            var sMin = lowerBounds[0][0],
+                sMax = lowerBounds[lowerBounds.length - 1][0],
+          
+                bMin = lowerBounds[lowerBounds.length - 1][1],
+                bMax = lowerBounds[0][1];
+          
+            this.colorDictionary[name] = {
+              hueRange: hueRange,
+              lowerBounds: lowerBounds,
+              saturationRange: [sMin, sMax],
+              brightnessRange: [bMin, bMax]
+            };
+          
+        },
+
+        randomColor :function(hue) {
+            var H,S,B;
+            H = this.pickHue(hue);
+            S = this.pickSaturation(H, hue);
+            B = this.pickBrightness(H, S, hue);
+          
+            // Then we return the HSB color in the desired format
+            return this.HSVtoHex([H,S,B]);
+        },
+
+        pickHue(hue) {
+            var hueRange = this.getHueRange(hue);
+
+            var h = this.randomWithin(hueRange);
+    
+            if (h < 0) 
+                h = 360 + h;
+            return h;
+        },
+
+        pickSaturation (hue, H) {
+
+            if (H === 'monochrome') 
+              return 0;
+            
+            var saturationRange = this.getSaturationRange(hue);
+          
+            var sMin = saturationRange[0],
+                sMax = saturationRange[1];
+        
+            return this.randomWithin([sMin, sMax]);
+        },
+
+        getSaturationRange (hue) {
+            return this.getColorInfo(hue).saturationRange;
+        },
+          
+        pickBrightness (H, S, hue) {
+            var bMin = this.getMinimumBrightness(H, S),
+                bMax = 100;
+          
+            return this.randomWithin([bMin, bMax]);
+        },
+
+        getMinimumBrightness(H, S) {
+            var lowerBounds = this.getColorInfo(H).lowerBounds;
+          
+            for (var i = 0; i < lowerBounds.length - 1; i++) {
+          
+              var s1 = lowerBounds[i][0],
+                  v1 = lowerBounds[i][1];
+          
+              var s2 = lowerBounds[i+1][0],
+                  v2 = lowerBounds[i+1][1];
+          
+              if (S >= s1 && S <= s2) {
+          
+                 var m = (v2 - v1)/(s2 - s1),
+                     b = v1 - m*s1;
+          
+                 return m*S + b;
+              }
+          
+            }
+          
+            return 0;
+        },
+
+        randomWithin (range) {
+              //generate random evenly destinct number from : https://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/
+              var golden_ratio = 0.618033988749895
+              var r=Math.random()
+              r += golden_ratio
+              r %= 1
+              return Math.floor(range[0] + r*(range[1] + 1 - range[0]));
+        },
+
+        getHueRange (colorInput) {
+
+            if (typeof parseInt(colorInput) === 'number') {
+          
+              var number = parseInt(colorInput);
+          
+              if (number < 360 && number > 0) {
+                return [number, number];
+              }
+          
+            }
+          
+            if (typeof colorInput === 'string') {
+          
+              if (this.colorDictionary[colorInput]) {
+                var color = this.colorDictionary[colorInput];
+                if (color.hueRange) {return color.hueRange;}
+              } else if (colorInput.match(/^#?([0-9A-F]{3}|[0-9A-F]{6})$/i)) {
+                var hue = this.HexToHSB(colorInput)[0];
+                return [ hue, hue ];
+              }
+            }
+          
+            return [0,360];
+          
+        },
+
+        getMinimumBrightness(H, S) {
+
+            var lowerBounds = this.getColorInfo(H).lowerBounds;
+          
+            for (var i = 0; i < lowerBounds.length - 1; i++) {
+          
+              var s1 = lowerBounds[i][0],
+                  v1 = lowerBounds[i][1];
+          
+              var s2 = lowerBounds[i+1][0],
+                  v2 = lowerBounds[i+1][1];
+          
+              if (S >= s1 && S <= s2) {
+          
+                 var m = (v2 - v1)/(s2 - s1),
+                     b = v1 - m*s1;
+          
+                 return m*S + b;
+              }
+          
+            }
+          
+            return 0;
+        },
+
+        getColorInfo (hue) {
+
+            // Maps red colors to make picking hue easier
+            if (hue >= 334 && hue <= 360) {
+              hue-= 360;
+            }
+          
+            for (var colorName in this.colorDictionary) {
+               var color = this.colorDictionary[colorName];
+               if (color.hueRange &&
+                   hue >= color.hueRange[0] &&
+                   hue <= color.hueRange[1]) {
+                  return this.colorDictionary[colorName];
+               }
+            } return 'Color not found';
+        },
+
+        HSVtoHex (hsv){
+            var rgb = this.HSVtoRGB(hsv);
+            function componentToHex(c) {
+                var hex = c.toString(16);
+                return hex.length == 1 ? '0' + hex : hex;
+            }
+            var hex = '#' + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
+            return hex;
+        },
+
+        HSVtoRGB (hsv) {
+            // this doesn't work for the values of 0 and 360
+            // here's the hacky fix
+            var h = hsv[0];
+            if (h === 0) {h = 1;}
+            if (h === 360) {h = 359;}
+          
+            // Rebase the h,s,v values
+            h = h/360;
+            var s = hsv[1]/100,
+                v = hsv[2]/100;
+          
+            var h_i = Math.floor(h*6),
+              f = h * 6 - h_i,
+              p = v * (1 - s),
+              q = v * (1 - f*s),
+              t = v * (1 - (1 - f)*s),
+              r = 256,
+              g = 256,
+              b = 256;
+          
+            switch(h_i) {
+              case 0: r = v; g = t; b = p;  break;
+              case 1: r = q; g = v; b = p;  break;
+              case 2: r = p; g = v; b = t;  break;
+              case 3: r = p; g = q; b = v;  break;
+              case 4: r = t; g = p; b = v;  break;
+              case 5: r = v; g = p; b = q;  break;
+            }
+          
+            var result = [Math.floor(r*255), Math.floor(g*255), Math.floor(b*255)];
+            return result;
         },
         
         /**
@@ -280,10 +542,10 @@
 
         mapDamageToFontSize(numDigits){
             switch(numDigits){
-                case 1: return 24;
-                case 2: return 24;
-                case 3: return 24;
-                default: return 24;
+                case 1: return 60;
+                case 2: return 60;
+                case 3: return 60;
+                default: return 60;
             }
         },
 

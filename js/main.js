@@ -46,10 +46,13 @@ var mapCharToType = {
 
 var mapHeight = 25;
 var mapWidth = 25;
-var rendererHeight = 25;
-var rendererWidth = 25;
+var rendererHeight = 10;
+var rendererWidth = 10;
 
 RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
+
+RL.Util.loadColorBounds();
+console.log(RL.Util.randomColor('red'));
 
 // create the game instance
 var game = new RL.Game(mapHeight, mapWidth, rendererHeight, rendererWidth);

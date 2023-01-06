@@ -499,8 +499,8 @@
                 RL.Actions.Performable.add(this, 'attack');
             },
             loot: {
-                nothing: 0.75,
-                rusty_dagger: 0.2,
+                nothing: 0.8,
+                rusty_dagger: 0.15,
                 coin_stash: 0.05
             },
         }),
