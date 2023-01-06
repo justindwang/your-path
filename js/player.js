@@ -10,7 +10,6 @@
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
         this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
-
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
         RL.Actions.Performable.add(this, 'push');
@@ -29,7 +28,7 @@
 
         name: 'rio',
         level: 1,
-        job: 'None',
+        job: null,
         title: 'None',
         
         exp: 0,
@@ -41,12 +40,20 @@
         hpMax: 20,
         mp: 10,
         mpMax: 10,
+
         strength: 1,
         vitality: 1,
         agility: 1,
         intelligence: 1,
         luck: 1,
+
         statPoints: 0,
+
+        strengthGrowth: 1,
+        vitalityGrowth: 1,
+        agilityGrowth: 1,
+        intelligenceGrowth: 1,
+        luckGrowth: 0,
 
         weapon: null,
         inventory: null,
@@ -451,10 +458,11 @@
                     this.hp = this.hpMax;
                 if(this.mp > this.mpMax)
                     this.mp = this.mpMax;
-                this.strength++;
-                this.intelligence++;
-                this.vitality++;
-                this.agility++;
+                this.strength += this.strengthGrowth;
+                this.intelligence += this.intelligenceGrowth;
+                this.vitality += this.vitalityGrowth;
+                this.agility += this.agilityGrowth;
+                this.luck += this.luckGrowth;
                 this.statPoints++;
                 this.game.console.logLevelUp(this.level);
                 this.game.menu.renderStatPoints();
@@ -550,7 +558,10 @@
         renderHtml: function(){
             this.nameEl.innerHTML = 'Name: ' + this.name;
             this.levelEl.innerHTML = 'Level: ' + this.level;
-            this.jobEl.innerHTML = 'Job: ' + this.job;
+            if(this.job)
+                this.jobEl.innerHTML = 'Job: ' + this.job.name;
+            else
+                this.jobEl.innerHTML = 'Job: None'
             this.titleEl.innerHTML = 'Title: ' + this.title;
             this.goldEl.innerHTML = 'Gold: ' + RL.Util.addCommas(this.gold);
 

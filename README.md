@@ -47,27 +47,24 @@ A roguelike game for the browser written in js using [js-roguelike-skeleton](htt
 - item prices are now displayed in the shop <br>
 - added David Merfield's random color generator <br>
 - added ui for allocatable stat points upon level up<br>
+- added code for base jobs <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
-### implement classes/jobs
-
+- implement game start / personalization UI (e.g. job/name selection)
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
     - from stats page / achievements
-- add multiplayer
-- revamp ui to show item/skill ranks and/or range
+- revamp item/skill descriptions ui
 - explore aoe damage
 - add bosses
 - add saving mechanic
-- add personalization ui (e.g. job/name selection)
-- explore rendering images instead of characters on canvas
-- handle post game over functionality/bugs
 - make crits stand out more
 - fix bug/feature? where you can push furniture onto items
 - add buffs
 - add weapon classes
 - add quests
+- add multiplayer
 - revamp tile mapping/generation
 - add more background tiles / materials to floors
