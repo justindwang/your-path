@@ -10,10 +10,13 @@
 </head>
 
 <body>
-    <div class="page container">
+    <div class="page container" id="start-menu">
+
+    </div>
+    <div class="page container" id="game">
         <div id="map-container" class="map-container"></div>
         <div class="stats-container">
-            <div id="status-window">
+            <div id="status-window" class="dark-background border-ui">
                 <h3>Status</h3>
                 <div class="character-info-section"> 
                     <div class="tr">
@@ -96,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div id="skill-window">
+            <div id="skill-window" class="dark-background border-ui">
                 <div class="menu-head">
                     <h3 class="ml-10" id="skill-weapon">Weapon</h3>
                     <p class = "td_tab_short"></p>
@@ -118,12 +121,12 @@
             </div>
         </div>
         <div id="page-right" class="page-right">
-            <div class="pr-inventory" id="pr-inventory">
+            <div class="pr-inventory dark-background" id="pr-inventory">
                 <img src="assets/icons/inventory.png"/>
                 <div class="pr-inventory-bar">
                     <p>Inventory</p>
                 </div>
-                <div id="inventory-window">
+                <div id="inventory-window" class="dark-background border-ui">
                     <div class="menu-head">
                         <h3>Your Items</h3>
                     </div>
@@ -138,12 +141,12 @@
             </div>
             
 
-            <div class="pr-shop" id="pr-shop">
+            <div class="pr-shop dark-background" id="pr-shop">
                 <img src="assets/icons/shop.png"/>
                 <div class="pr-shop-bar">
                     <p>Shop</p>
                 </div>
-                <div id="shop-window">
+                <div id="shop-window" class="dark-background border-ui">
                     <div class="menu-head">
                         <h3 id="shop-buy">For Sale</h3>
                         <p class = "td_tab_short"></p>
@@ -162,12 +165,12 @@
             
             
 
-            <div class="pr-stats" id="pr-stats">
+            <div class="pr-stats dark-background" id="pr-stats">
                 <img src="assets/icons/info.png"/>
                 <div class="pr-stats-bar">
                     <p>Stats</p>
                 </div>
-                <div id="stats-window">
+                <div id="stats-window" class="dark-background border-ui">
                     <div class="menu-head">
                         <h3 >All Stats</h3>
                     </div>
@@ -184,7 +187,7 @@
         </div>
         <div id="console-directions" class="console-container"></div>
         <div id="console-container" class="console-container"></div>
-        <hr>
+        <br>
         <p>
             WIP using  <a href="https://github.com/unstoppablecarl/js-roguelike-skeleton">js-roguelike-skeleton</a> - Font by Nate Piekos - Assets by Flaticon
         </p>

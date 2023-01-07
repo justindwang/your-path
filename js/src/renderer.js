@@ -15,7 +15,7 @@
         this.game = game;
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
-        this.canvas.className = canvasClassName || 'renderer';
+        this.canvas.className = canvasClassName || 'renderer border-ui';
         this.buffer = this.canvas.cloneNode();
         this.bufferCtx = this.buffer.getContext('2d');
         this.resize(width, height);

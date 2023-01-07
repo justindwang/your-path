@@ -773,9 +773,9 @@ pre code {
     width: 970px;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1215px) {
   .container {
-    width: 1170px;
+    width: 1185px;
   }
 }
 .container-fluid {
@@ -2845,11 +2845,13 @@ progress::-webkit-progress-bar {
   transform: translateY(-50%);
 }
 
+.margin-15 {margin: 10px}
+
 .dropdown-controls:hover .dropdown-controls-content {visibility: visible; opacity: 1;}
 
 /* UI on right */
 #page-right {float: left; width: auto; height: calc(100% - 50px); padding-top: 50px;}
-.pr-inventory{ height: 40px; width: 60px; background:rgba(160, 160, 160, 0.2); position: relative; left: 0; transition: width 0.3s ease;top: 0px} 
+.pr-inventory{ height: 40px; width: 60px;  position: relative; left: 0; transition: width 0.3s ease;top: 0px} 
 .pr-inventory img{height: 30px; margin-top: 5px; margin-left: 14px;}
 .pr-inventory-bar{position: absolute; right: 0; top: 0; height: 100%; width: 7px; background: #e5e5e5;}
 .pr-inventory-bar p{right: calc(100% + 10px); line-height: 40px; color: #e5e5e5; font-size: 20px; position: absolute; opacity: 0; transition: opacity 0.2s ease;}
@@ -2857,7 +2859,7 @@ progress::-webkit-progress-bar {
 .pr-inventory:hover .pr-inventory-bar p{opacity: 1;}
 .pr-inventory:click #inventory-window {opacity: 1;}
 
-.pr-shop{ height: 40px; width: 60px; background:rgba(160, 160, 160, 0.2); position: relative; left: 0; transition: width 0.3s ease;top: 10px} 
+.pr-shop{ height: 40px; width: 60px;  position: relative; left: 0; transition: width 0.3s ease;top: 10px} 
 .pr-shop img{height: 30px; margin-top: 5px; margin-left: 14px;}
 .pr-shop-bar{position: absolute; right: 0; top: 0; height: 100%; width: 7px; background: #e5e5e5;}
 .pr-shop-bar p{right: calc(100% + 30px); line-height: 40px; color: #e5e5e5; font-size: 20px; position: absolute; opacity: 0; transition: opacity 0.2s ease;}
@@ -2865,7 +2867,7 @@ progress::-webkit-progress-bar {
 .pr-shop:hover .pr-shop-bar p{opacity: 1;}
 .pr-shop:click #shop-window {opacity: 1;}
 
-.pr-stats{ height: 40px; width: 60px; background:rgba(160, 160, 160, 0.2); position: relative; left: 0; transition: width 0.3s ease;top: 20px} 
+.pr-stats{ height: 40px; width: 60px; position: relative; left: 0; transition: width 0.3s ease;top: 20px} 
 .pr-stats img{height: 30px; margin-top: 5px; margin-left: 14px;}
 .pr-stats-bar{position: absolute; right: 0; top: 0; height: 100%; width: 7px; background: #e5e5e5;}
 .pr-stats-bar p{right: calc(100% + 25px); line-height: 40px; color: #e5e5e5; font-size: 20px; position: absolute; opacity: 0; transition: opacity 0.2s ease;}
@@ -2873,7 +2875,7 @@ progress::-webkit-progress-bar {
 .pr-stats:hover .pr-stats-bar p{opacity: 1;}
 .pr-stats:click #stats-window {opacity: 1;}
 
-.menu-head {width: 100%; height: 40px; border-bottom: 1px solid rgba(255,255,255,0.2); box-sizing: border-box; }
+.menu-head {width: 100%; height: 40px; border-bottom: 1px solid #CEB38Bff; box-sizing: border-box; }
 .menu-head h3{margin-top: 3px; font-size: 24px; float: left; color:#e5e5e5; }
 .menu-head p {font-size: 24px; float: left; color:#e5e5e5; }
 .menu-head h3:nth-of-type(3){color: #ffffff33;}
@@ -2899,20 +2901,27 @@ progress::-webkit-progress-bar {
 
 
 /* Inventory window */
-#inventory-window { visibility: hidden; opacity: 0;background:#000; width: 300px; height: 400px; position: absolute; left: 130%; top: 340%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+#inventory-window { visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: 0%; top: 380%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
 /* Shop window */
-#shop-window { visibility: hidden; opacity: 0;background:#000; width: 300px; height: 400px; position: absolute; left: 130%; top: 225%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+#shop-window { visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: 0%; top: 255%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
 /* Stats window */
-#stats-window { visibility: hidden; opacity: 0; background:#000; width: 300px; height: 400px; position: absolute; left: 130%; top: 108%; margin-left: 0px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+#stats-window { visibility: hidden; opacity: 0;  width: 300px; height: 400px; position: absolute; left: 0%; top: 130%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
-#status-window { display: flex; flex-direction: column; align-items: center; border: 3px solid #fff; border-radius: 15px; padding-left: 15px; padding-right: 15px;padding-bottom: 15px; box-sizing: border-box; }
+#status-window {  display: flex; flex-direction: column; align-items: center; padding-left: 15px; padding-right: 15px;padding-bottom: 15px; box-sizing: border-box; }
 
-#skill-window {width: 215px; height: 255px; margin-top: 20px; border: 3px solid #fff; border-radius: 15px; padding: 15px; box-sizing: border-box; }
+#skill-window { width: 215px; height: 255px; margin-top: 20px; padding: 15px; box-sizing: border-box; }
 .weapon-icon { margin-left: 10px; background: rgba(87,83,83,0.25); width:50px; height:50px; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px;}
 .weapon-icon img{padding-bottom: 4px; width:80%; margin-left: 10%; margin-top: 10%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
-.character-info-section { padding: 3px 0 0 0; margin-top: 3px; border-top: 1px solid #333333;}
+.character-info-section { padding: 3px 0 0 0; margin-top: 3px; border-top: 1px solid #CEB38Bff;}
 .character-info-section .td_right img {margin-bottom: 3px; height:10px; width: 10px;}
 .player-stat-item {display:none}
 #stat-points {display: table-cell; padding: 0 0 3px; color: #797979; font-size: 18px; text-align: right; display:none; }
+
+#start-menu {display: none; margin-top: 50px; height: 720px; width: 1280px; background-size: contain; background-image: url("../assets/menu/backdrop.png");}
+#game { display: block; opacity: 1; transition: display 0s, opacity 0.5s linear;  background-size: cover; background-image: url("../assets/menu/test3.png");}
+
+.border-ui { border: 3px solid #e5e5e5; border-radius: 15px;}
+.border-ui-left{ border: 2px solid #e5e5e5; border-radius: 5px 0 0 5px; }
+.dark-background {background:#4A2F1Fff}
