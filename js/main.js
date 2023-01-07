@@ -55,11 +55,13 @@ RL.ValidTargets.prototype.typeSortPriority = [RL.Entity, RL.Furniture, RL.Item];
 
 RL.Util.loadColorBounds();
 
+
 // create the game instance
 var game = new RL.Game(mapHeight, mapWidth, rendererHeight, rendererWidth);
+console.log('yowtf');
 game.renderer.resize(game.rendererWidth, game.rendererHeight);
 game.renderer.layers = [
-   
+
     new RL.RendererLayer(game, 'map',       {draw: false,   mergeWithPrevLayer: false}),
     
     
@@ -73,7 +75,7 @@ game.renderer.layers = [
     
 ];
 
-game.input.addBindings(keyBindings);
+// game.input.addBindings(keyBindings);
 RL.Util.merge(game.player, statElements);
 game.player.renderHtml();
 game.menu.startListening();
@@ -91,6 +93,8 @@ window.onload = () => {
         this.game.game_update();
     }, 1000);
 };
+
+
 
 
 

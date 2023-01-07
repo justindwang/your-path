@@ -11,7 +11,17 @@
 
 <body>
     <div class="page container" id="start-menu">
-
+        <h1 class="pulse">Your Path</h1>
+        <div class="start-button pulse" id="start-button">
+            <span id="start-text">Start</span>
+            <svg id="start-arrow" width="21px" height="18px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+            <span id="start-name-prompt">Enter a name:</span>
+            <span id="start-class-prompt">Choose a class:</span>
+        </div>
+        <input type="text" id="name-input" />
     </div>
     <div class="page container" id="game">
         <div id="map-container" class="map-container"></div>

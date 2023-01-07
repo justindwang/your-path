@@ -65,9 +65,46 @@
             document.getElementById('up-intelligence').addEventListener('click', () => {this.upIntelligence()});
             document.getElementById('up-luck').addEventListener('click', () => {this.upLuck()});
 
+            document.getElementById('start-button').addEventListener('click', () => {this.startPressed()});
+            
+
             this.addInventoryListeners();
             this.addShopListeners();
             this.addShopSortListeners();
+        },
+
+        startPressed: function(){
+            let input = document.getElementById('name-input');
+            let start = document.getElementById('start-text');
+            let name = document.getElementById('start-name-prompt');
+
+            document.getElementById('start-arrow').style.display = 'none';
+            input.style.visibility = 'visible';
+            input.style.opacity = 1;
+            start.style.visibility = 'hidden';
+            start.style.opacity = 0;
+            name.style.visibility = 'visible';
+            name.style.opacity = 1;
+            input.addEventListener("keyup", ({key}) => {
+                if (key === "Enter") {
+                    // remove start button listener
+                    var old_element = document.getElementById("start-button");
+                    var new_element = old_element.cloneNode(true);
+                    old_element.parentNode.replaceChild(new_element, old_element);
+
+                    this.game.player.name = input.value;
+                    let name = document.getElementById('start-name-prompt');
+                    let _class = document.getElementById('start-class-prompt');
+                    let textbox = document.getElementById('name-input');
+
+                    name.style.visibility = 'hidden';
+                    name.style.opacity = 0;
+                    _class.style.visibility = 'visible';
+                    _class.style.opacity = 1;
+                    textbox.style.visibility = 'hidden';
+                    textbox.style.opacity = 0;
+                }
+            })
         },
 
         addInventoryListeners: function(){
@@ -439,7 +476,7 @@
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
-                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'B': color = '<span style="color: #85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
                     case 'D': color = '<span style="color:paleturquoise">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
@@ -463,7 +500,7 @@
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
-                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
                     case 'D': color = '<span style="color:paleturquoise">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
@@ -486,7 +523,7 @@
                 switch(this.shop[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
-                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
                     case 'D': color = '<span style="color:paleturquoise">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
@@ -511,7 +548,7 @@
                 switch(this.shop[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
-                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
                     case 'D': color = '<span style="color:paleturquoise">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
@@ -540,7 +577,7 @@
                 switch(inventory[i][0].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
-                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
                     case 'D': color = '<span style="color:paleturquoise">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
@@ -565,7 +602,7 @@
                 switch(this.stats[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
-                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
                     case 'D': color = '<span style="color:paleturquoise">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
@@ -587,7 +624,7 @@
                 switch(this.stats[i].rank){
                     case 'S': color = '<span style="color:brown">'; break;
                     case 'A': color = '<span style="color:orchid">'; break;
-                    case 'B': color = '<span style="color:darkolivegreen">'; break;
+                    case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
                     case 'D': color = '<span style="color:paleturquoise">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;

@@ -43,7 +43,7 @@
 
         S_brown: '#a52a2a',
         A_orchid: '#da70d6',
-        B_darkolivegreen: '#556b2f',
+        B_aero: '#85B9E1ff',
         C_cadetblue: '#5f9ea0',
         D_paleturquoise: '#afeeee',
         E_goldenrod: '#daa520',

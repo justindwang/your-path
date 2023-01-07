@@ -497,7 +497,7 @@
             switch(rank){
                 case 'S': return RL.Util.COLORS.S_brown;
                 case 'A': return RL.Util.COLORS.A_orchid;
-                case 'B': return RL.Util.COLORS.B_darkolivegreen;
+                case 'B': return RL.Util.COLORS.B_aero;
                 case 'C': return RL.Util.COLORS.C_cadetblue;
                 case 'D': return RL.Util.COLORS.D_paleturquoise;
                 case 'E': return RL.Util.COLORS.E_goldenrod;
