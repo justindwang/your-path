@@ -48,11 +48,12 @@ A roguelike game for the browser written in js using [js-roguelike-skeleton](htt
 - added David Merfield's random color generator <br>
 - added ui for allocatable stat points upon level up<br>
 - added code for base jobs <br>
+- added start menu with name/job selection <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
-- implement game start / personalization UI (e.g. job/name selection)
+
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
     - from stats page / achievements
@@ -68,3 +69,6 @@ Todo:
 - add multiplayer
 - revamp tile mapping/generation
 - add more background tiles / materials to floors
+- add attack animations
+- adjust damage calculations based on different stats/jobs
+- disable keyholds 

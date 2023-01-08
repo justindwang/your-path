@@ -96,6 +96,7 @@
                     let name = document.getElementById('start-name-prompt');
                     let _class = document.getElementById('start-class-prompt');
                     let textbox = document.getElementById('name-input');
+                    let select = document.getElementById('class-select');
 
                     name.style.visibility = 'hidden';
                     name.style.opacity = 0;
@@ -103,8 +104,31 @@
                     _class.style.opacity = 1;
                     textbox.style.visibility = 'hidden';
                     textbox.style.opacity = 0;
+                    select.style.visibility = 'visible';
+                    select.style.opacity = 1;
+                    document.getElementById('class-knight').addEventListener('click', () => {this.jobSelected('knight')});
+                    document.getElementById('class-knightess').addEventListener('click', () => {this.jobSelected('knightess')});
+                    document.getElementById('class-warrior').addEventListener('click', () => {this.jobSelected('warrior')});
+                    document.getElementById('class-warrioress').addEventListener('click', () => {this.jobSelected('warrioress')});
+                    document.getElementById('class-mage').addEventListener('click', () => {this.jobSelected('mage')});
+                    document.getElementById('class-sorceress').addEventListener('click', () => {this.jobSelected('sorceress')});
+                    document.getElementById('class-ranger').addEventListener('click', () => {this.jobSelected('ranger')});
+                    document.getElementById('class-archeress').addEventListener('click', () => {this.jobSelected('archeress')});
+                    document.getElementById('class-ninja').addEventListener('click', () => {this.jobSelected('ninja')});
+                    document.getElementById('class-kunoichi').addEventListener('click', () => {this.jobSelected('kunoichi')});
                 }
             })
+        },
+
+        jobSelected: function(job){
+            this.game.player.job = new RL.Job(this.game, job);
+            this.game.player.job.equipEffect();
+            this.game.load();
+            document.getElementById('start-menu').style.display = 'none';
+            let _game = document.getElementById('game');
+            _game.style.height = 'auto';
+            _game.style.opacity = 1;
+            _game.style.overflow = 'visible';
         },
 
         addInventoryListeners: function(){

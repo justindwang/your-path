@@ -58,7 +58,6 @@ RL.Util.loadColorBounds();
 
 // create the game instance
 var game = new RL.Game(mapHeight, mapWidth, rendererHeight, rendererWidth);
-console.log('yowtf');
 game.renderer.resize(game.rendererWidth, game.rendererHeight);
 game.renderer.layers = [
 
@@ -75,7 +74,6 @@ game.renderer.layers = [
     
 ];
 
-// game.input.addBindings(keyBindings);
 RL.Util.merge(game.player, statElements);
 game.player.renderHtml();
 game.menu.startListening();

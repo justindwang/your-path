@@ -36,9 +36,11 @@
         rendererHeight: null,
         rendererWidth: null,
 
-        paused: false,
+        started: false,
 
         game_update: function(){
+            if(!this.started)
+                return;
             if(!this.gameOver){
                 this.entityManager.update();
                 this.player.updateFov();
@@ -94,6 +96,26 @@
             }
             this.queueDraw = false;
             this.menu.renderStats();
+        },
+
+        // starts the game
+        load: function(){
+            var keyBindings = {
+                up: ['↑', 'W'],
+                down: ['↓', 'S'],
+                left: ['←', 'A'],
+                right: ['→', 'D'],
+                // close: ['C'],
+                open: ['O'],
+                attack: ['E'],
+                // ranged_attack: ['F'],
+                // cancel: ['ESC']
+                switch_skill: ['tab'],
+                use_skill: ['R'],
+            };
+            this.input.addBindings(keyBindings);
+            this.player.renderHtml();
+            this.started = true;
         },
 
         setMapSize: function(width, height){

@@ -2851,6 +2851,8 @@ progress::-webkit-progress-bar {
 
 .margin-15 {margin: 10px}
 
+.fade-in {opacity:0; visibility: 'hidden'; transition: visibility 0s, opacity 1.5s linear;}
+
 .dropdown-controls:hover .dropdown-controls-content {visibility: visible; opacity: 1;}
 
 /* UI on right */
@@ -2923,8 +2925,8 @@ progress::-webkit-progress-bar {
 .player-stat-item {display:none}
 #stat-points {display: table-cell; padding: 0 0 3px; color: #797979; font-size: 18px; text-align: right; display:none; }
 
-#start-menu {position:relative; display: block; margin-top: 50px; height: 720px; width: 1280px; background-size: contain; background-image: url("../assets/menu/backdrop.png");}
-#game { display: none; opacity: 0; transition: display 0s, opacity 0.5s linear;  background-size: cover; background-image: url("../assets/menu/test3.png");}
+#start-menu {position: relative; display: block; margin-top: 50px; height: 720px; width: 1280px; background-size: contain; background-image: url("../assets/menu/backdrop.png");}
+#game { overflow:auto; height: 0; opacity: 0; transition: height 0s, opacity 1.5s linear;;  background-size: cover; background-image: url("../assets/menu/test3.png"); }
 
 .border-ui { border: 3px solid #e5e5e5; border-radius: 15px;}
 .border-ui-left{ border: 2px solid #e5e5e5; border-radius: 5px 0 0 5px; }
@@ -2932,51 +2934,54 @@ progress::-webkit-progress-bar {
 
 #start-menu h1 {text-transform: none; font-size: 100px; position:absolute; left: 33%; top: 40%; font-family: 'Barkentina 1'; margin-left: auto; margin-right: auto;}
 
-.start-button { font-family: 'Barkentina 1'; color: #FFF; height: 60px; width: 205px; position: absolute; top: 63%; left: 43%; margin: auto; padding: 18px 22px; transition: all .5s ease; }
+.start-button { font-family: 'Barkentina 1'; color: #FFF; height: 60px; width: 205px; position: absolute; top: 60%; left: 43%; margin: auto; padding: 18px 22px; transition: all .5s ease; transition-duration: 0.5s;}
 .start-button:before { content: ""; position: absolute;top: 0; left: 0; display: block; border-radius: 28px; background: rgba(174,200,230,.5); width: 60px; height: 60px; transition: all .5s ease; }
 .start-button span { transition: visibility 0s, opacity 1.5s linear; text-transform: none; position: relative; font-size: 50px; line-height: 18px; letter-spacing: .05em; vertical-align: middle; }
 .start-button svg { position: relative; top: 0; margin-left: 15px; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke: #FFF; stroke-width: 2; transform: translateX(-5px); vertical-align: middle; transition: all .5s ease; }
 .start-button:hover:before { width: 100%; background:  rgba(174,200,230,.5) }
 .start-button:hover svg { transform: translateX(5px); }
 .start-button:active {  transform: translateY(10px); }
-#start-name-prompt {font-size: 25px; transition: visibility 0s, opacity 1.5s linear; visibility: hidden; opacity: 0; position:absolute; top: 38%; left:9%;}
-#start-class-prompt {font-size: 23px; transition: visibility 0s, opacity 1.5s linear; visibility: hidden; opacity: 0; position:absolute; top: 38%; left:9%;}
+#start-name-prompt {transition-duration: 1.5s; font-size: 25px; transition: visibility 0s, opacity 1.5s linear; visibility: hidden; opacity: 0; position:absolute; top: 38%; left:9%;}
+#start-class-prompt {transition-duration: 1.5s; font-size: 25px; transition: visibility 0s, opacity 1.5s linear; visibility: hidden; opacity: 0; position:absolute; top: 38%; left:9%;}
 
 .pulse{ text-shadow: 0 0 15px rgba(255,255,255,0); transform: scale(1); animation: pulse 2.5s infinite; }
 @keyframes pulse {
-	0% {
-		transform: scale(0.95);
-		text-shadow: 0 0 50px rgba(255,255,255,1);
-	}
-
-	65% {
-		transform: scale(1);
-		text-shadow: 0 0 30px rgba(255,255,255,00);
-	}
-
-	100% {
-		transform: scale(0.95);
-		text-shadow: 0 0 50px rgba(255,255,255,1);
-	}
+	0% { transform: scale(0.95);text-shadow: 0 0 50px rgba(255,255,255,1); }
+  65% { transform: scale(1); text-shadow: 0 0 30px rgba(255,255,255,00); }
+  100% { transform: scale(0.95); text-shadow: 0 0 50px rgba(255,255,255,1); }
 }
 
-#name-input {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: 75%;
-  left: 43%;
-  font-size: 30px;
-  font-family: 'Barkentina 1';
-  border-radius: 5px;
-  height: 40px; width: 200px;
-  transition: visibility 0s, opacity 1.5s linear;
+#name-input { z-index: 6; visibility: hidden; opacity: 0; position: absolute; top: 72%; left: 43%; font-size: 25px; font-family: 'Barkentina 1'; border-radius: 5px; height: 40px; width: 200px; transition: visibility 0s, opacity 1.5s linear; }
+
+input[type="text"] ,textarea{ outline: none; box-shadow: none !important; border: none; background-color: #C3D0E7bf; text-align: center; }
+
+.class-icon {
+  height: 100px; width: 100px;
+  background-color: rgba(174,200,230,.5);
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
+  position:relative;
+  transition: transform 0.2s ease-in-out, background-color 0.2s linear;
+}
+.class-icon img {height:96px; width: 96px; transition: opacity 0.2s linear;}
+.class-icon span {color: #FFF; height:100%; width: 100%; font-size: 19px; font-weight: 100;font-family: 'Barkentina 1'; text-transform: none; position:absolute; display: inline-block; top:40%; left:0; text-align: center; text-shadow: 0 0 10px rgba(255,255,255,0.5); visibility: hidden; opacity: 0; transition: visibility 0s, opacity 0.2s linear; }
+.class-icon:hover span{visibility: visible; opacity: 1;}
+.class-icon:hover {transform: scale(1.05); background-color: rgba(174,200,230,.25)}
+.class-icon:hover img {opacity: 0.5}
+
+
+.class-tr{
+  z-index: 2;
+  display: table-row;
+  width: auto;
+  height: auto;
 }
 
-input[type="text"] ,textarea{
-  outline: none;
-  box-shadow: none !important;
-  border: none;
-  background-color: #C3D0E7bf;
-  text-align: center;
+.class-td{
+  display: table-cell;
+  border-spacing: 10px;
 }
+.class-td:nth-of-type(1){margin-left: 0;}
+
+#class-row-1{position:absolute; left:28%; top: 69%}
+#class-row-2{position:absolute; left:28%; top: 85%}

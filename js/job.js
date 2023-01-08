@@ -49,8 +49,19 @@
 
     Job.Data = {
         // base classes
-        fighter: {
-            name: 'Fighter',
+        knight: {
+            name: 'Knight',
+            equipEffect: function() {
+                // give 'evade' skill to player - dodge next attack
+                this.game.player.strengthGrowth++;
+            },
+            unequipEffect: function(){
+                // remove 'evade' skill from player
+                this.game.player.strengthGrowth--;
+            },
+        },
+        Knightess: {
+            name: 'Knightess',
             equipEffect: function() {
                 // give 'evade' skill to player - dodge next attack
                 this.game.player.strengthGrowth++;
@@ -72,8 +83,31 @@
                 this.game.player.vitalityGrowth--;
             },
         },
+        warrioress: {
+            name: 'Warrioress',
+            equipEffect: function() {
+                // give 'smash' skill to player - aoe?
+                
+                this.game.player.vitalityGrowth++;
+            },
+            unequipEffect: function(){
+                // remove 'smash' skill from player
+                this.game.player.vitalityGrowth--;
+            },
+        },
         ranger: {
             name: 'Ranger',
+            equipEffect: function() {
+                // give 'far_shot' skill to player - extra range hit
+                this.game.player.luckGrowth++;
+            },
+            unequipEffect: function(){
+                // give 'far_shot' skill to player
+                this.game.player.luckGrowth--;
+            },
+        },
+        archeress: {
+            name: 'Archeress',
             equipEffect: function() {
                 // give 'far_shot' skill to player - extra range hit
                 this.game.player.luckGrowth++;
@@ -94,8 +128,30 @@
                 this.game.player.intelligenceGrowth--;
             },
         },
-        thief: {
-            name: 'Thief',
+        sorceress: {
+            name: 'Sorceress',
+            equipEffect: function() {
+                // give 'fireball' skill to player
+                this.game.player.intelligenceGrowth++;
+            },
+            unequipEffect: function(){
+                // give 'fireball' skill to player
+                this.game.player.intelligenceGrowth--;
+            },
+        },
+        ninja: {
+            name: 'Ninja',
+            equipEffect: function() {
+                // give 'backstab' skill to player - crits
+                this.game.player.agilityGrowth++;
+            },
+            unequipEffect: function(){
+                // give 'backstab' skill to player
+                this.game.player.agilityGrowth--;
+            },
+        },
+        kunoichi: {
+            name: 'Kunoichi',
             equipEffect: function() {
                 // give 'backstab' skill to player - crits
                 this.game.player.agilityGrowth++;
