@@ -568,7 +568,7 @@
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
                 console.log(inventory[i][0]);
-                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' - ​' + inventory[i][0].rank +'</span><br> <span>' + 'temp' + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
+                html += '<div class="menu-item" id="inventory-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + inventory[i][0].name + ' - ' + inventory[i][0].rank +'</span><br> <span>' + inventory[i][0].getStats() + '</span></h4></div><div class="menu-item-amount"><h4>x' + inventory[i][1] + '</h4></div></div>';
             }
             wrap.innerHTML = html;
         },
