@@ -57,6 +57,7 @@ Todo:
 - design skill learning mechanic 
     - purchasing runes: add skill from canvas/shop into inventory
     - from stats page / achievements
+- remove attack confirm
 - revamp item/skill descriptions ui
 - explore aoe damage
 - add bosses

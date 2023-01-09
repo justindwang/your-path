@@ -26,7 +26,7 @@
         consoleColor: '#00a185',
         charStrokeWidth: 3,
 
-        name: 'rio',
+        name: 'None',
         level: 1,
         job: null,
         title: 'None',
@@ -526,6 +526,9 @@
                 this.applyWeaponStats(item);
                 this.game.menu.renderWeapon();
             }
+            // else if (item.group == 'skill_scroll'){
+
+            // }
             else if(item.group == 'special'){
                 item.performUse();
             }

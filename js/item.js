@@ -154,6 +154,26 @@
                 return 'Recovers ' + this.healAmount + ' MP';
             },
         },
+        skill_scroll: {
+            group: 'skill_scroll',
+            attachTo: function(entity){
+                this.game.console.logAddToInventory(entity, this);
+                this.game.menu.addToInventory(this);
+                // RL.Util.arrFind(this.game.menu.stats, 'skill_scrolls_obtained').increment();
+            },
+            getConsoleName: function(){
+                return {
+                    name: this.name,
+                    rank: this.rank,
+                    stats: this.getStats(),
+                    color: this.color,
+                    sprite: this.sprite,
+                };
+            },
+            getStats: function(){
+                return 'Consumable';
+            },
+        },
         weapon: {
             group: 'weapon',
             attachTo: function(entity){
@@ -246,6 +266,9 @@
     };
     var makeSpecialItem = function(obj){
         return RL.Util.merge(obj, Defaults.special);
+    };
+    var makeSkillScroll = function(obj){
+        return RL.Util.merge(obj, Defaults.skill_scroll);
     };
 
     Item.Types = {
@@ -356,6 +379,49 @@
             cost: 200,
         }),
 
+        // skill scrolls
+        skill_scroll_f: makeSkillScroll({
+            name: 'Skill Scroll',
+            sprite: 'skill_scroll_f',
+            rank: 'F',
+            cost: 50,
+        }),
+        skill_scroll_e: makeSkillScroll({
+            name: 'Skill Scroll',
+            sprite: 'skill_scroll_e',
+            rank: 'E',
+            cost: 200,
+        }),
+        skill_scroll_d: makeSkillScroll({
+            name: 'Skill Scroll',
+            sprite: 'skill_scroll_d',
+            rank: 'D',
+            cost: 600,
+        }),
+        skill_scroll_c: makeSkillScroll({
+            name: 'Skill Scroll',
+            sprite: 'skill_scroll_c',
+            rank: 'C',
+            cost: 1200,
+        }),
+        skill_scroll_b: makeSkillScroll({
+            name: 'Skill Scroll',
+            sprite: 'skill_scroll_b',
+            rank: 'B',
+            cost: 2400,
+        }),
+        skill_scroll_a: makeSkillScroll({
+            name: 'Skill Scroll',
+            sprite: 'skill_scroll_a',
+            rank: 'A',
+            cost: 6000,
+        }),
+        skill_scroll_s: makeSkillScroll({
+            name: 'Skill Scroll',
+            sprite: 'skill_scroll_s',
+            rank: 'S',
+            cost: 12000,
+        }),
         // special items
         ascension_crystal: makeSpecialItem({
             name: 'Ascension Crystal',

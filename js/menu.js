@@ -502,7 +502,7 @@
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color: #85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
-                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'D': color = '<span style="color: #77DD77">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
@@ -526,7 +526,7 @@
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
-                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'D': color = '<span style="color: #77DD77">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
@@ -549,7 +549,7 @@
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
-                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'D': color = '<span style="color: #77DD77">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
@@ -574,7 +574,7 @@
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
-                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'D': color = '<span style="color: #77DD77">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
@@ -603,7 +603,7 @@
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
-                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'D': color = '<span style="color: #77DD77">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
@@ -628,7 +628,7 @@
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
-                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'D': color = '<span style="color: #77DD77">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }
@@ -650,7 +650,7 @@
                     case 'A': color = '<span style="color:orchid">'; break;
                     case 'B': color = '<span style="color:#85B9E1ff">'; break;
                     case 'C': color = '<span style="color:cadetblue">'; break;
-                    case 'D': color = '<span style="color:paleturquoise">'; break;
+                    case 'D': color = '<span style="color: #77DD77">'; break;
                     case 'E': color = '<span style="color:goldenrod">'; break;
                     case 'F': color = '<span style="color:peachpuff">'; break;
                 }

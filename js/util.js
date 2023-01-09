@@ -45,7 +45,7 @@
         A_orchid: '#da70d6',
         B_aero: '#85B9E1ff',
         C_cadetblue: '#5f9ea0',
-        D_paleturquoise: '#afeeee',
+        D_pastelgreen: '#77dd77',
         E_goldenrod: '#daa520',
         F_peachpuff: "#ffdab9",
 

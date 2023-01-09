@@ -150,7 +150,7 @@
             }
         },
         2: {
-            name: 'The Great Forest',
+            name: 'Verdant Forest',
             entities: {
                 '.': 0.649,
                 'm': 0.2,
@@ -162,7 +162,7 @@
             floorColor: RL.Util.COLORS.gray,
             floorBgColor: RL.Util.COLORS.forest_green,
             wallColor: RL.Util.COLORS.light_brown,
-            wallBgColor: RL.Util.COLORS.oak_brown,
+            wallBgColor: RL.Util.COLORS.oak_brown,  
             entityCharToType: {
                 w: 'wolf',},
             furnitureCharToType: {
@@ -179,7 +179,7 @@
             }
         },
         3: {
-            name: 'The Caverns',
+            name: 'Goblin Caverns',
             entities: {
                 '.': 0.443,
                 'g': 0.2,
@@ -214,6 +214,34 @@
                 C: 0.05
             }
         },
+        // 4: {name: 'Misty Lake'},
+        // 5: {name: 'Salty Flats'},
+        // 6: {name: 'Bamboo Woods'},
+        // 7: {name: 'Frozen Fields'},
+        // 8: {name: 'Crater of Fire'},
+        // 9: {name: 'Peaceful Pastures'},
+        // 10: {name: 'Sunken Marsh'},
+        // 11: {name: 'Forgotten City'},
+        // 12: {name: 'Sunset Shore'},
+        // 13: {name: 'Enchanted Garden'},
+        // 14: {name: 'Windswept Mesa'},
+        // 15: {name: 'Ocean\'s Edge'},
+        // 16: {name: 'Boulder Field'},
+        // 17: {name: 'Arid Wasteland'},
+        // 18: {name: 'Snowy Steppes'},
+        // 19: {name: 'Wildflower Woods'},
+        // 20: {name: 'Mythic Glade'},
+        // 21: {name: 'Serene Pond'},
+        // 22: {name: 'Stone Mountain'},
+        // 23: {name: 'Pine Hills'},
+        // 24: {name: 'Desolate Marsh'},
+        // 25: {name: 'Moonlit Path'},
+        // 26: {name: 'Fertile Fields'},
+        // 27: {name: 'Underground Lake'},
+        // 28: {name: 'Ancient Catacombs'},
+        // 29: {name: 'Shifting Sands'},
+        // 30: {name: 'Magma Chambers'},
+
     };
 
     root.RL.Floor = Floor;
