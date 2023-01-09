@@ -149,31 +149,31 @@
             this.slime_goo = slime_goo;
 
             const skill_scroll_f = new Image();
-            skill_scroll_f.src = 'assets/sprites/skill_scroll_f.png';
+            skill_scroll_f.src = 'assets/sprites/skill_scroll_F.png';
             this.skill_scroll_f = skill_scroll_f;
 
             const skill_scroll_e = new Image();
-            skill_scroll_e.src = 'assets/sprites/skill_scroll_e.png';
+            skill_scroll_e.src = 'assets/sprites/skill_scroll_E.png';
             this.skill_scroll_e = skill_scroll_e;
 
             const skill_scroll_d = new Image();
-            skill_scroll_d.src = 'assets/sprites/skill_scroll_d.png';
+            skill_scroll_d.src = 'assets/sprites/skill_scroll_D.png';
             this.skill_scroll_d = skill_scroll_d;
 
             const skill_scroll_c = new Image();
-            skill_scroll_c.src = 'assets/sprites/skill_scroll_c.png';
+            skill_scroll_c.src = 'assets/sprites/skill_scroll_C.png';
             this.skill_scroll_c = skill_scroll_c;
 
             const skill_scroll_b = new Image();
-            skill_scroll_b.src = 'assets/sprites/skill_scroll_b.png';
+            skill_scroll_b.src = 'assets/sprites/skill_scroll_B.png';
             this.skill_scroll_b = skill_scroll_b;
 
             const skill_scroll_a = new Image();
-            skill_scroll_a.src = 'assets/sprites/skill_scroll_a.png';
+            skill_scroll_a.src = 'assets/sprites/skill_scroll_A.png';
             this.skill_scroll_a = skill_scroll_a;
 
             const skill_scroll_s = new Image();
-            skill_scroll_s.src = 'assets/sprites/skill_scroll_s.png';
+            skill_scroll_s.src = 'assets/sprites/skill_scroll_S.png';
             this.skill_scroll_s = skill_scroll_s;
         },
     };

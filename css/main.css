@@ -2502,7 +2502,7 @@ tbody.collapse.in {
 }
 @font-face {
   font-family: 'FriendOrFoeTallBB';
-  src: url('../fonts/FriendOrFoeTallBB.woff') format('woff'), url('../fonts/FriendOrFoeTallBB.ttf') format('truetype');
+  src: url('../fonts/FriendOrFoeTallBB.otf');
 }
 @font-face {
   font-family: 'Barkentina 1';
