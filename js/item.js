@@ -380,25 +380,25 @@
         }),
 
         // skill scrolls
-        skill_scroll_f: makeSkillScroll({
+        skill_scroll_F: makeSkillScroll({
             name: 'Skill Scroll',
             sprite: 'skill_scroll_F',
             rank: 'F',
             cost: 50,
         }),
-        skill_scroll_e: makeSkillScroll({
+        skill_scroll_E: makeSkillScroll({
             name: 'Skill Scroll',
             sprite: 'skill_scroll_E',
             rank: 'E',
             cost: 200,
         }),
-        skill_scroll_d: makeSkillScroll({
+        skill_scroll_D: makeSkillScroll({
             name: 'Skill Scroll',
             sprite: 'skill_scroll_D',
             rank: 'D',
             cost: 600,
         }),
-        skill_scroll_c: makeSkillScroll({
+        skill_scroll_C: makeSkillScroll({
             name: 'Skill Scroll',
             sprite: 'skill_scroll_C',
             rank: 'C',
@@ -410,13 +410,13 @@
             rank: 'B',
             cost: 2400,
         }),
-        skill_scroll_a: makeSkillScroll({
+        skill_scroll_A: makeSkillScroll({
             name: 'Skill Scroll',
             sprite: 'skill_scroll_A',
             rank: 'A',
             cost: 6000,
         }),
-        skill_scroll_s: makeSkillScroll({
+        skill_scroll_S: makeSkillScroll({
             name: 'Skill Scroll',
             sprite: 'skill_scroll_S',
             rank: 'S',
