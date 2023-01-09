@@ -99,7 +99,7 @@
         * @property font
         * @type String
         */
-        font: 'FriendOrFoeTallBB',// "DejaVuSansMono",
+        font: 'Friend',// "DejaVuSansMono",
 
         /**
         * Device pixel ratio for high dpi screens.
