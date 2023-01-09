@@ -163,6 +163,22 @@
             this.log('Use ' + this.wrap(item) + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
         },
 
+        logMaxSkillSlots: function(item){
+            this.log(this.wrap(this.game.player) + ' has 0 skill slots left. Replace a skill with ' + this.wrap(item) + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
+        },
+        logReplaceSkillDescription(item, new_skill){
+            this.log(this.wrap(item) + ' contained ' + this.wrap(new_skill) + this.wrapStr(' (MP Cost: ' + new_skill.mpCost + '): ' + new_skill.description, '#797979'));
+            this.log('Select a skill to replace from the skill window ' + this.wrapStr('(or Esc to cancel)', '#797979'));
+        },
+        logDupeSkill: function(item, new_skill){
+            this.log(this.wrap(item) + ' contained duplicate skill ' + this.wrap(new_skill));
+        },
+        logLearnedSkill: function(new_skill){
+            this.log(this.wrap(this.game.player) + ' learned ' + this.wrap(new_skill));
+        },
+        logAskReplaceSkill: function(skill, new_skill){
+            this.log('Replace ' + this.wrap(skill) + ' with ' + this.wrap(new_skill)+ '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
+        },
         logAskConfirmEquip: function(item){
             this.log('Equip ' + this.wrap(item) + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
         },

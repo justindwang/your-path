@@ -110,8 +110,6 @@
                 attack: ['E'],
                 // ranged_attack: ['F'],
                 // cancel: ['ESC']
-                switch_skill: ['tab'],
-                use_skill: ['R'],
             };
             this.input.addBindings(keyBindings);
             this.player.renderHtml();
@@ -455,6 +453,14 @@
             var pool = this.getItemOfRank(rank);
             return RL.Util.selectRandomElement(pool);
         },
+        randomSkillOfRank: function(rank){
+            var pool = [];
+            for (const [key, value] of Object.entries(RL.Skill.Data)) {
+                if(value.rank == rank)
+                    pool.push(key);
+            }
+            return RL.Util.selectRandomElement(pool);
+        }
     };
     
     RL.Util.merge(NewGame.prototype, proto);

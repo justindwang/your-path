@@ -49,7 +49,6 @@
         color: null,
         description: null,
         tooltip: null,
-        selected: false,
         mpCost: null,
 
         getConsoleName: function(){
@@ -59,6 +58,7 @@
                 tooltip: this.tooltip,
                 color: this.color,
                 selected: this.selected,
+                rank: this.rank,
             };
         },
     };
@@ -81,7 +81,6 @@
             name: 'Pancake Torch',
             rank: 'B',
             description: 'Heals half of one\'s HP immediately',
-            selected: true,
             mpCost: 5,
             performEffect: function() {
                 this.game.player.heal(Math.floor(this.game.player.hpMax/2));
@@ -98,6 +97,47 @@
                 // this.game.player.strength += RL.Util.random(1,10);
             },
         },
+        test1: {
+            name: 'test1',
+            rank: 'B',
+            description: 'Increases strength stat by 1~10',
+            mpCost: 3,
+            performEffect: function() {
+                this.game.player.statChange('strength', RL.Util.random(1,10));
+                // this.game.player.strength += RL.Util.random(1,10);
+            },
+        },
+        test2: {
+            name: 'test2',
+            rank: 'B',
+            description: 'Increases strength stat by 1~10',
+            mpCost: 3,
+            performEffect: function() {
+                this.game.player.statChange('strength', RL.Util.random(1,10));
+                // this.game.player.strength += RL.Util.random(1,10);
+            },
+        },
+        test3: {
+            name: 'test3',
+            rank: 'B',
+            description: 'Increases strength stat by 1~10',
+            mpCost: 3,
+            performEffect: function() {
+                this.game.player.statChange('strength', RL.Util.random(1,10));
+                // this.game.player.strength += RL.Util.random(1,10);
+            },
+        },
+        test4: {
+            name: 'test4',
+            rank: 'B',
+            description: 'Increases strength stat by 1~10',
+            mpCost: 3,
+            performEffect: function() {
+                this.game.player.statChange('strength', RL.Util.random(1,10));
+                // this.game.player.strength += RL.Util.random(1,10);
+            },
+        },
+        
     };
 
     root.RL.Skill = Skill;

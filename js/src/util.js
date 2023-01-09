@@ -628,6 +628,15 @@
             }
             return false;
           },
+
+          arrFindType: function(arr, type){
+            for(var i = 0; i< arr.length; i++){
+              if (arr[i].type == type)
+                  return arr[i];
+            }
+            return false;
+          },
+
           arrFindInventory: function(arr, item){
             for(var i = 0; i< arr.length; i++){
                 if (arr[i][0].type == item.type)

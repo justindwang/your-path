@@ -25,6 +25,8 @@
         inventoryItemConfirmIndex: -1,
         shopItemConfirmIndex: -1,
         shopSellItemConfirmIndex: -1,
+        skillReplaceIndex: -1,
+        skillUseIndex: -1,
 
         buyOrSell: 'buy',
         weaponOrSkills: 'weapon',
@@ -164,6 +166,26 @@
             document.getElementById('shop-sell-foot-type').addEventListener('click', () => {this.sortShopSellType()});
             document.getElementById('shop-sell-foot-rarity').addEventListener('click', () => {this.sortShopSellRarity()});
             document.getElementById('shop-sell-foot-name').addEventListener('click', () => {this.sortShopSellName()});
+        },
+
+        addSkillReplaceListeners: function(new_skill){
+            var skills = this.game.player.skills;
+            for(let i = 0; i<skills.length; i++){
+                let old_element = document.getElementById('skill-' + i);
+                let new_element = old_element.cloneNode(true);
+                old_element.parentNode.replaceChild(new_element, old_element);
+                new_element.addEventListener('click', () => {this.skillReplaceClicked(i, new_skill)});
+            }
+        },
+
+        addSkillListeners(){
+            var skills = this.game.player.skills;
+            for(let i = 0; i<skills.length; i++){
+                let old_element = document.getElementById('skill-' + i);
+                let new_element = old_element.cloneNode(true);
+                old_element.parentNode.replaceChild(new_element, old_element);
+                new_element.addEventListener('click', () => {this.skillClicked(i)});
+            }
         },
 
         displayInventoryMenu: function(){
@@ -399,6 +421,12 @@
                     this.game.console.logAskConfirmUse(inventory[slotNum][0]);
                 else if (group == 'weapon')
                     this.game.console.logAskConfirmEquip(inventory[slotNum][0]);
+                else if(group == 'skill_scroll'){
+                    if(this.game.player.skills.length == this.game.player.skillSlots)
+                        this.game.console.logMaxSkillSlots(inventory[slotNum][0]);
+                    else
+                        this.game.console.logAskConfirmUse(inventory[slotNum][0]);
+                }
                 else
                     this.game.console.logInspectMaterial(inventory[slotNum][0]);
             }
@@ -446,11 +474,44 @@
                 this.game.console.logAskSell(item);
             }
         },
+
+        skillReplaceClicked: function(slotNum, new_skill){
+            var skill = this.game.player.skills[slotNum];
+            if (slotNum == this.skillReplaceIndex){
+                this.clearClickData();
+                // removing skill at slotNum
+                var skills = this.game.player.skills;
+                for(var i = 0; i< skills.length; i++){
+                    if (skills[i].type == skill.type)
+                        skills.splice(i, 1);
+                }
+                skills.push(new_skill);
+                this.game.console.logLearnedSkill(new_skill);
+                this.renderSkills();
+            }
+            else{
+                this.skillReplaceIndex = slotNum;
+                this.game.console.logAskReplaceSkill(skill, new_skill);
+            }
+        },
+        skillClicked: function(slotNum){
+            var skill = this.game.player.skills[slotNum];
+            if (slotNum == this.skillUseIndex){
+                this.clearClickData();
+                this.game.player.useSkill(slotNum);
+            }
+            else{
+                this.skillUseIndex = slotNum;
+                this.game.console.logAskConfirmUse(skill);
+            }
+        },
         
         clearClickData: function(){
             this.inventoryItemConfirmIndex = -1;
             this.shopItemConfirmIndex = -1;
             this.shopSellItemConfirmIndex = -1;
+            this.skillReplaceIndex = -1;
+            this.skillUseIndex = -1;
         },
 
         addToInventory: function(item){
@@ -691,21 +752,27 @@
             document.getElementById('skill-skills').style.color = '#e5e5e5';
             var wrap = document.getElementById('mCSB_1_container');
             var player = this.game.player;
-            
+            var color = '';
             var skillsHtml = '';
 
             for(var i = 0; i< player.skills.length; i++){
                 var skillConsoleName = player.skills[i].getConsoleName();
-                if(skillConsoleName.selected){
-                    skillsHtml += '<div class="tr"><div class="td_yellow">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
-                    skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark"></div></div>';
+                switch(skillConsoleName.rank){
+                    case 'S': color = 'style="color:brown"'; break;
+                    case 'A': color = 'style="color:orchid"'; break;
+                    case 'B': color = 'style="color: #85B9E1ff"'; break;
+                    case 'C': color = 'style="color:cadetblue"'; break;
+                    case 'D': color = 'style="color: #77DD77"'; break;
+                    case 'E': color = 'style="color:goldenrod"'; break;
+                    case 'F': color = 'style="color:peachpuff"'; break;
                 }
-                else{
-                    skillsHtml += '<div class="tr"><div class="td">' + skillConsoleName.name + '</div></div><div class="tr"><div class="td_dark">';
-                    skillsHtml += skillConsoleName.description + '</div></div><div class="tr"><div class="td_dark"></div></div>';
-                }
+                
+                skillsHtml += '<div class="skill-item" id="skill-' + i +'"><div class="tr"><div class="td"' + color + '>' + skillConsoleName.name + ' - ' + skillConsoleName.rank + '</div></div><div class="tr"><div class="td_dark">';
+                skillsHtml += skillConsoleName.description + '</div></div></div>';
+                
             }
             wrap.innerHTML = skillsHtml;
+            this.addSkillListeners();
         },
     };
 

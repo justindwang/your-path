@@ -49,14 +49,15 @@ A roguelike game for the browser written in js using [js-roguelike-skeleton](htt
 - added ui for allocatable stat points upon level up<br>
 - added code for base jobs <br>
 - added start menu with name/job selection <br>
+- added skill scroll item and skill learning/forgetting ui
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 
-- design skill learning mechanic 
-    - purchasing runes: add skill from canvas/shop into inventory
-    - from stats page / achievements
+- revamp skill ui (including mana cost)
+- implement general damaging skill method in player
+- fix controls display
 - remove attack confirm
 - revamp item/skill descriptions ui
 - explore aoe damage
@@ -73,3 +74,4 @@ Todo:
 - add attack animations
 - adjust damage calculations based on different stats/jobs
 - disable keyholds 
+- upgrade skills with dupes

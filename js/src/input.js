@@ -203,7 +203,7 @@
         'ENTER': 13,
         'PAUSE': 19,
         'CAPS': 20,
-        'ESC': 27,
+        'esc': 27,
         'space': 32,
         'PAGE_UP': 33,
         'PAGE_DOWN': 34,

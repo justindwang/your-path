@@ -8,8 +8,6 @@ var keyBindings = {
     attack: ['E'],
     // ranged_attack: ['F'],
     // cancel: ['ESC']
-    switch_skill: ['tab'],
-    use_skill: ['R'],
 };
 
 var statElements = {

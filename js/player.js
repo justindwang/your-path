@@ -9,7 +9,7 @@
         this.weapon = new RL.Item(this.game, 'heavens_arrow');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
+        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1], [new RL.Item(this.game, 'skill_scroll_b'),5]];
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
         RL.Actions.Performable.add(this, 'push');
@@ -57,6 +57,7 @@
 
         weapon: null,
         inventory: null,
+        skillSlots: 4,
         skills: null,
 
         nameEl: null,
@@ -113,12 +114,6 @@
                 return this.attack();
             }
 
-            if(action === 'switch_skill'){
-                return this.switchSkill();
-            }
-            if(action === 'use_skill'){
-                return this.useSkill();
-            }
             if(action === 'same_floor'){
                 if(this.game.map.get(this.x, this.y).name == 'Exit')
                     this.game.goToFloor(this.game.floor.number);
@@ -130,6 +125,12 @@
                 if(this.game.map.get(this.x, this.y).name == 'Exit')
                     this.game.goToFloor(this.game.floor.number + 1);
                 return true;
+            }
+            if(action === 'cancel_replace'){
+                this.game.menu.renderSkills();
+                this.game.input.removeBindings({cancel_replace: ['esc']});
+                let _console = this.game.console;
+                _console.log(_console.wrap(this.game.player) + ' did not learn the new skill');
             }
             return false;
         },
@@ -228,41 +229,16 @@
             return false;
         },
 
-        // action
-        switchSkill: function(){
-            for(var i = 0; i< this.skills.length; i++){
-                if(this.skills[i].selected){
-                    this.skills[i].selected = false;
-                    if(i == this.skills.length - 1){
-                        this.skills[0].selected = true;
-                        this.game.console.logSwitchSkill(this.skills[0]);
-                    }
-                    else{
-                        this.skills[i+1].selected = true;
-                        this.game.console.logSwitchSkill(this.skills[i+1]);
-                    }
-                    break;
-                }
+        useSkill: function(slotNum){
+            if(this.skills[slotNum].mpCost <= this.mp){
+                this.mp -= this.skills[slotNum].mpCost;
+                this.game.console.logUseSkill(this, this.skills[slotNum]);
+                RL.Util.arrFind(this.game.menu.stats, 'skills_used').increment();
+                this.skills[slotNum].performEffect();
+                this.renderHtml();
             }
-            if(this.game.menu.weaponOrSkills == 'skills')
-                this.game.menu.renderSkills();
-            return true;
-        },
-        useSkill: function(){
-            for(var i = 0; i< this.skills.length; i++){
-                if(this.skills[i].selected){
-                    if(this.skills[i].mpCost <= this.mp){
-                        this.mp -= this.skills[i].mpCost;
-                        this.game.console.logUseSkill(this, this.skills[i]);
-                        RL.Util.arrFind(this.game.menu.stats, 'skills_used').increment();
-                        this.skills[i].performEffect();
-                    }
-                    else{
-                        this.game.console.logCanNotUseSkill(this, this.skills[i]);
-                    }
-                    break;
-                }
-            }
+            else
+                this.game.console.logCanNotUseSkill(this, this.skills[slotNum]);
             return true;
         },
 
@@ -526,9 +502,29 @@
                 this.applyWeaponStats(item);
                 this.game.menu.renderWeapon();
             }
-            // else if (item.group == 'skill_scroll'){
-
-            // }
+            else if (item.group == 'skill_scroll'){
+                let new_skill = new RL.Skill(this.game, this.game.randomSkillOfRank(item.rank));
+                if(amount>1)
+                    this.inventory[slotNum][1]--;
+                else
+                    this.inventory.splice(slotNum, 1);
+                if(RL.Util.arrFindType(this.skills, new_skill.type)){
+                    this.game.console.logDupeSkill(item, new_skill);
+                    return;
+                }
+                if (this.skills.length < this.skillSlots){
+                    this.skills.push(new_skill);
+                    this.game.console.logLearnedSkill(new_skill);
+                    if(this.game.menu.weaponOrSkills == 'skills')
+                        this.game.menu.renderSkills();    
+                }
+                else{
+                    this.game.menu.renderSkills();
+                    this.game.console.logReplaceSkillDescription(item, new_skill);
+                    this.game.menu.addSkillReplaceListeners(new_skill);
+                    this.game.input.addBindings({cancel_replace: ['esc']});
+                }
+            }
             else if(item.group == 'special'){
                 item.performUse();
             }
