@@ -51,13 +51,12 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - added ui for allocatable stat points upon level up<br>
 - added code for base jobs <br>
 - added start menu with name/job selection <br>
-- added skill scroll item and skill learning/forgetting ui
+- added skill scroll item and skill learning/forgetting ui<br>
+- added mana costs to skill ui <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
-
-- revamp skill ui (including mana cost)
 - implement general damaging skill method in player
 - fix controls display
 - remove attack confirm

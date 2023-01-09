@@ -59,6 +59,7 @@
                 color: this.color,
                 selected: this.selected,
                 rank: this.rank,
+                mpCost: this.mpCost,
             };
         },
     };

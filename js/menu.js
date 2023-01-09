@@ -768,8 +768,7 @@
                     case 'F': color = 'style="color:peachpuff"'; break;
                 }
                 
-                skillsHtml += '<div class="skill-item" id="skill-' + i +'"><div class="tr"><div class="td"' + color + '>' + skillConsoleName.name + ' - ' + skillConsoleName.rank + '</div></div><div class="tr"><div class="td_dark">';
-                skillsHtml += skillConsoleName.description + '</div></div></div>';
+                skillsHtml += '<div class="skill-item" id="skill-' + i +'"><h4> <p ' + color + '>' + skillConsoleName.name + ' - ' + skillConsoleName.rank + '</p><p class="small">' + skillConsoleName.description + '</p></h4>'+ '<div class="skill-item-cost"><img src="assets/icons/mana.png"/><p>' + RL.Util.addCommas(skillConsoleName.mpCost) + '</p></div></div>';
                 
             }
             wrap.innerHTML = skillsHtml;
