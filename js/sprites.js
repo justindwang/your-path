@@ -148,33 +148,33 @@
             slime_goo.src = 'assets/sprites/slime_goo.png';
             this.slime_goo = slime_goo;
 
-            const skill_scroll_F = new Image();
-            skill_scroll_F.src = 'assets/sprites/skill_scroll_F.png';
-            this.skill_scroll_F = skill_scroll_F;
+            const skill_scrollF = new Image();
+            skill_scrollF.src = 'assets/sprites/skill_scrollF.png';
+            this.skill_scrollF = skill_scrollF;
 
-            const skill_scroll_E = new Image();
-            skill_scroll_E.src = 'assets/sprites/skill_scroll_E.png';
-            this.skill_scroll_E = skill_scroll_E;
+            const skill_scrollE = new Image();
+            skill_scrollE.src = 'assets/sprites/skill_scrollE.png';
+            this.skill_scrollE = skill_scrollE;
 
-            const skill_scroll_D = new Image();
-            skill_scroll_D.src = 'assets/sprites/skill_scroll_D.png';
-            this.skill_scroll_D = skill_scroll_D;
+            const skill_scrollD = new Image();
+            skill_scrollD.src = 'assets/sprites/skill_scrollD.png';
+            this.skill_scrollD = skill_scrollD;
 
-            const skill_scroll_C = new Image();
-            skill_scroll_C.src = 'assets/sprites/skill_scroll_C.png';
-            this.skill_scroll_C = skill_scroll_C;
+            const skill_scrollC = new Image();
+            skill_scrollC.src = 'assets/sprites/skill_scrollC.png';
+            this.skill_scrollC = skill_scrollC;
 
-            const skill_scroll_B = new Image();
-            skill_scroll_B.src = 'assets/sprites/skill_scroll_B.png';
-            this.skill_scroll_B = skill_scroll_B;
+            const skill_scrollB = new Image();
+            skill_scrollB.src = 'assets/sprites/skill_scrollB.png';
+            this.skill_scrollB = skill_scrollB;
 
-            const skill_scroll_A = new Image();
-            skill_scroll_A.src = 'assets/sprites/skill_scroll_A.png';
-            this.skill_scroll_A = skill_scroll_A;
+            const skill_scrollA = new Image();
+            skill_scrollA.src = 'assets/sprites/skill_scrollA.png';
+            this.skill_scrollA = skill_scrollA;
 
-            const skill_scroll_S = new Image();
-            skill_scroll_S.src = 'assets/sprites/skill_scroll_S.png';
-            this.skill_scroll_S = skill_scroll_S;
+            const skill_scrollS = new Image();
+            skill_scrollS.src = 'assets/sprites/skill_scrollS.png';
+            this.skill_scrollS = skill_scrollS;
         },
     };
     
