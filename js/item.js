@@ -382,43 +382,43 @@
         // skill scrolls
         skill_scroll_f: makeSkillScroll({
             name: 'Skill Scroll',
-            sprite: 'skill_scroll_f',
+            sprite: 'skill_scroll_F',
             rank: 'F',
             cost: 50,
         }),
         skill_scroll_e: makeSkillScroll({
             name: 'Skill Scroll',
-            sprite: 'skill_scroll_e',
+            sprite: 'skill_scroll_E',
             rank: 'E',
             cost: 200,
         }),
         skill_scroll_d: makeSkillScroll({
             name: 'Skill Scroll',
-            sprite: 'skill_scroll_d',
+            sprite: 'skill_scroll_D',
             rank: 'D',
             cost: 600,
         }),
         skill_scroll_c: makeSkillScroll({
             name: 'Skill Scroll',
-            sprite: 'skill_scroll_c',
+            sprite: 'skill_scroll_C',
             rank: 'C',
             cost: 1200,
         }),
         skill_scroll_b: makeSkillScroll({
             name: 'Skill Scroll',
-            sprite: 'skill_scroll_b',
+            sprite: 'skill_scroll_B',
             rank: 'B',
             cost: 2400,
         }),
         skill_scroll_a: makeSkillScroll({
             name: 'Skill Scroll',
-            sprite: 'skill_scroll_a',
+            sprite: 'skill_scroll_A',
             rank: 'A',
             cost: 6000,
         }),
         skill_scroll_s: makeSkillScroll({
             name: 'Skill Scroll',
-            sprite: 'skill_scroll_s',
+            sprite: 'skill_scroll_S',
             rank: 'S',
             cost: 12000,
         }),
@@ -436,7 +436,6 @@
                     this.game.goToFloor(this.game.floor.number + 1);
                 else
                     this.game.console.logNoEffect(this);
-                console.log('bro?');
             },
         }),
 
