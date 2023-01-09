@@ -404,7 +404,7 @@
             rank: 'C',
             cost: 1200,
         }),
-        skill_scroll_b: makeSkillScroll({
+        skill_scroll_B: makeSkillScroll({
             name: 'Skill Scroll',
             sprite: 'skill_scroll_B',
             rank: 'B',
