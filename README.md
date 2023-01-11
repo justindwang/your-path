@@ -64,6 +64,7 @@ Todo:
 - fix controls display
 - add job change/progression
 - revamp item/skill descriptions ui
+- fix damage numbers being cut off
 - add bosses
 - add saving mechanic
 - make crits stand out more
