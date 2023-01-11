@@ -350,7 +350,12 @@
                 var result = settings.result;
 
                 if(this == this.game.player){
-                    if (this.game.player.attemptDodge(source.strength)){
+                    if (this.attemptDodge(source.strength)){
+                        this.game.console.logDodge(this, source);
+                        return true;
+                    }
+                    if (this.dodgeNext > 0){
+                        this.dodgeNext-=1;
                         this.game.console.logDodge(this, source);
                         return true;
                     }

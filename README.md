@@ -53,15 +53,17 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - added start menu with name/job selection <br>
 - added skill scroll item and skill learning/forgetting ui<br>
 - added mana costs to skill ui <br>
+- added single target damaging skills <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
-- implement general damaging skill method in player
+- add aoe skills
+- remove open action
+- implement mp regen function
 - fix controls display
 - remove attack confirm
 - revamp item/skill descriptions ui
-- explore aoe damage
 - add bosses
 - add saving mechanic
 - make crits stand out more

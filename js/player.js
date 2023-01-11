@@ -82,6 +82,7 @@
         bleeds: true,
 
         highestFloor: 1,
+        dodgeNext: 0,
 
         getClass: function(){
             return 'player';
@@ -531,6 +532,23 @@
             this.renderHtml();
         },
 
+        learnSkill: function(new_skill){
+            if(RL.Util.arrFindType(this.skills, new_skill.type)){
+                return;
+            }
+            if (this.skills.length < this.skillSlots){
+                this.skills.push(new_skill);
+                if(this.game.menu.weaponOrSkills == 'skills')
+                    this.game.menu.renderSkills();    
+            }
+            else{
+                this.game.menu.renderSkills();
+                this.game.console.logReplaceSkillDescription(item, new_skill);
+                this.game.menu.addSkillReplaceListeners(new_skill);
+                this.game.input.addBindings({cancel_replace: ['esc']});
+            }
+        },
+
         hpGainFromVit: function(){
            return Math.floor(1234 * Math.tanh(0.001 * this.vitality));
         },
@@ -552,6 +570,75 @@
                 return false;
             var points = Math.floor(100 * (-0.00007*adjustedLuck*adjustedLuck + 0.017*adjustedLuck - 0.00177));
             return points >= RL.Util.random(1,100);
+        },
+
+        skillAttack: function(skill, damage, range){
+            
+            var validTargetsSettings = {
+                range: range,
+                limitToFov: true,
+                filter: function(target){
+                    return target.getClass() == 'entity';
+                }
+            };
+            var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
+            let actionTargets = new RL.ValidTargets(this.game, validTargetsFinder.getValidTargets());
+            if(!actionTargets.getCurrent()){
+                this.game.console.log('No targets are in range for '+ this.game.console.wrap(skill));
+                return false;
+            }
+            var target = actionTargets.getCurrent().value;
+            if(target.dead)
+                return false;
+
+            if(this.game.player.attemptCrit())
+                damage = Math.floor(2.5 * damage);
+            
+            target.takeDamage(damage);
+
+            var weapon = {
+                name: skill.name,
+                damage: damage
+            };
+            
+            this.game.console.logAttack(this, weapon, target);
+            if(target.dead){
+                var entity_x = target.x;
+                var entity_y = target.y;
+                var loot = target.generateLoot();
+                if (loot != 'nothing' && !this.game.itemManager.get(entity_x, entity_y)){
+                    loot = new RL.Item(this.game, loot);
+                    this.game.itemManager.add(entity_x, entity_y, loot);
+                }
+                this.game.entityManager.remove(target);
+                this.gainExp(this.exp);
+                RL.Util.arrFind(this.game.menu.stats, 'enemies_killed').increment();
+            }
+
+            var smash = {
+                source: this,
+                target: target,
+                type: 'attack',
+                targetX: target.x,
+                targetY: target.y,
+                sourceX: this.x,
+                sourceY: this.y
+            };
+
+            this.game.smashLayer.set(this.x, this.y, smash);
+            this.game.damageLayer.set(target.x, target.y, damage);
+
+            if(target.bleeds){
+                var splatter = damage / 10;
+                if(target.dead){
+                    splatter *= 1.5;
+                }
+                this.game.splatter(target.x, target.y, splatter);
+            }
+            this.game.renderer.draw();
+            this.game.smashLayer.reset();
+            this.game.damageLayer.reset();
+            return true; 
         },
 
         renderHtml: function(){

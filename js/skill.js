@@ -95,47 +95,52 @@
             mpCost: 3,
             performEffect: function() {
                 this.game.player.statChange('strength', RL.Util.random(1,10));
-                // this.game.player.strength += RL.Util.random(1,10);
             },
         },
-        test1: {
-            name: 'test1',
-            rank: 'B',
-            description: 'Increases strength stat by 1~10',
+        evade: {
+            name: 'Evade',
+            rank: 'F',
+            description: 'Dodges the next incoming attack',
             mpCost: 3,
             performEffect: function() {
-                this.game.player.statChange('strength', RL.Util.random(1,10));
-                // this.game.player.strength += RL.Util.random(1,10);
+                if(this.game.player.dodgeNext == 0)
+                    this.game.player.dodgeNext = 1;
             },
         },
-        test2: {
-            name: 'test2',
-            rank: 'B',
-            description: 'Increases strength stat by 1~10',
-            mpCost: 3,
+        smash: {
+            name: 'Smash',
+            rank: 'F',
+            description: 'Deal 180% Vit Damage (Range: 1)',
+            mpCost: 2,
             performEffect: function() {
-                this.game.player.statChange('strength', RL.Util.random(1,10));
-                // this.game.player.strength += RL.Util.random(1,10);
+                this.game.player.skillAttack(this, Math.ceil(this.game.player.vitality * 1.8), 1);
             },
         },
-        test3: {
-            name: 'test3',
-            rank: 'B',
-            description: 'Increases strength stat by 1~10',
-            mpCost: 3,
+        far_shot: {
+            name: 'Far Shot',
+            rank: 'F',
+            description: 'Deal 100% Luck Damage (Range: 4)',
+            mpCost: 2,
             performEffect: function() {
-                this.game.player.statChange('strength', RL.Util.random(1,10));
-                // this.game.player.strength += RL.Util.random(1,10);
+                this.game.player.skillAttack(this, this.game.player.luck, 4);
             },
         },
-        test4: {
-            name: 'test4',
-            rank: 'B',
-            description: 'Increases strength stat by 1~10',
-            mpCost: 3,
+        fireball: {
+            name: 'Fireball',
+            rank: 'F',
+            description: 'Deal 150% Int Damage (Range: 2)',
+            mpCost: 2,
             performEffect: function() {
-                this.game.player.statChange('strength', RL.Util.random(1,10));
-                // this.game.player.strength += RL.Util.random(1,10);
+                this.game.player.skillAttack(this, Math.ceil(this.game.player.intelligence * 1.5), 2);
+            },
+        },
+        backstab: {
+            name: 'Backstab',
+            rank: 'F',
+            description: 'Deal 200% Agi Damage (Range: 1)',
+            mpCost: 2,
+            performEffect: function() {
+                this.game.player.skillAttack(this, this.game.player.intelligence * 2, 1);
             },
         },
         
