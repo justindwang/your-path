@@ -23,10 +23,6 @@
             const material = new Image();
             material.src = 'assets/sprites/material.png';
             this.material = material;
-        
-            const weapon = new Image();
-            weapon.src = 'assets/sprites/weapon.png';
-            this.weapon = weapon;
 
             const bush = new Image();
             bush.src = 'assets/sprites/bush.png';
@@ -175,6 +171,26 @@
             const skill_scrollS = new Image();
             skill_scrollS.src = 'assets/sprites/skill_scrollS.png';
             this.skill_scrollS = skill_scrollS;
+
+            const wooden_sword = new Image();
+            wooden_sword.src = 'assets/sprites/wooden_sword.png';
+            this.wooden_sword = wooden_sword;
+
+            const wooden_shield = new Image();
+            wooden_shield.src = 'assets/sprites/wooden_shield.png';
+            this.wooden_shield = wooden_shield;
+
+            const javelin = new Image();
+            javelin.src = 'assets/sprites/javelin.png';
+            this.javelin = javelin;
+
+            const nails = new Image();
+            nails.src = 'assets/sprites/nails.png';
+            this.nails = nails;
+
+            const copper_dagger = new Image();
+            copper_dagger.src = 'assets/sprites/copper_dagger.png';
+            this.copper_dagger = copper_dagger;
         },
     };
     

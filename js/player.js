@@ -6,7 +6,7 @@
     var NewPlayer = function Player(game){
         proto.constructor.call(this, game);
 
-        this.weapon = new RL.Item(this.game, 'heavens_arrow');
+        this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
         this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
         this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1], [new RL.Item(this.game, 'skill_scrollB'),5]];

@@ -62,7 +62,7 @@ Todo:
 - remove open action
 - implement mp regen function
 - fix controls display
-- remove attack confirm
+- add job change/progression
 - revamp item/skill descriptions ui
 - add bosses
 - add saving mechanic

@@ -517,6 +517,7 @@
                 case 'Agi': return 'agility';
                 case 'Int': return 'intelligence';
                 case 'Vit': return 'vitality';
+                case 'Luck': return 'luck';
                 default: return 'error';
             }
         },

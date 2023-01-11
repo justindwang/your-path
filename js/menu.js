@@ -33,6 +33,11 @@
 
         generateShop: function(){
             let temp = [new RL.Item(this.game, 'tiny_hp_potion'), new RL.Item(this.game, 'tiny_mp_potion')];
+            temp.push(new RL.Item(this.game, 'copper_dagger'));
+            let f = new RL.Item(this.game, this.game.randomItemOfRank('F'));
+            while(f.group == 'healing' || f.group == 'mp_recovery' || f.type == 'fists')
+                f = new RL.Item(this.game, this.game.randomItemOfRank('F'));
+            temp.push(f);
             temp.push(new RL.Item(this.game, this.game.randomItemOfRank('E')));
             temp.push(new RL.Item(this.game, this.game.randomItemOfRank('D')));
             temp.push(new RL.Item(this.game, this.game.randomItemOfRank('C')));
