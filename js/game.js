@@ -105,11 +105,7 @@
                 down: ['↓', 'S'],
                 left: ['←', 'A'],
                 right: ['→', 'D'],
-                // close: ['C'],
-                open: ['O'],
                 attack: ['E'],
-                // ranged_attack: ['F'],
-                // cancel: ['ESC']
             };
             this.input.addBindings(keyBindings);
             this.player.renderHtml();

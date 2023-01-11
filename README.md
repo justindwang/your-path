@@ -54,12 +54,12 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - added skill scroll item and skill learning/forgetting ui<br>
 - added mana costs to skill ui <br>
 - added single target damaging skills <br>
+- removed open keybinding <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 - add aoe skills
-- remove open action
 - implement mp regen function
 - fix controls display
 - add job change/progression

@@ -8,8 +8,8 @@
 
         this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
-        this.skills = [new RL.Skill(this.game, 'pancake_torch'), new RL.Skill(this.game, 'powerbuff_gorl')];
-        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1], [new RL.Item(this.game, 'skill_scrollB'),5]];
+        this.skills = [];
+        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
         RL.Actions.Performable.add(this, 'push');
@@ -103,14 +103,6 @@
                 return this.move(action);
             }
 
-            if(action === 'close'){
-                return this.close();
-            }
-
-            if(action === 'open'){
-                return this.open();
-            }
-
             if(action === 'attack'){
                 return this.attack();
             }
@@ -194,18 +186,6 @@
                 return false;
             }
             return this.performAction('open', furniture);
-        },
-
-        // action
-        close: function(){
-            this.pendingActionName = 'close';
-            return this.actionAdjacentTargetSelect('close');
-        },
-
-        // action
-        open: function(){
-            this.pendingActionName = 'open';
-            return this.actionAdjacentTargetSelect('open');
         },
 
         attack: function(){
