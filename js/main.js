@@ -26,13 +26,11 @@ var statElements = {
     luckEl: document.getElementById('stat-luck'),
 };
 
-var controlsEL = document.getElementById('controls');
 var mapContainerEl = document.getElementById('map-container');
 var consoleContainerEl = document.getElementById('console-container');
 consoleContainerEl.classList.add('border-ui');
 consoleContainerEl.classList.add('dark-background');
 var consoleDirectionsEl = document.getElementById('console-directions');
-RL.Util.renderControlsHtml(controlsEL, keyBindings);
 
 var mapCharToType = {
     '#': 'wall',

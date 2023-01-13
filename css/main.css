@@ -2930,6 +2930,10 @@ progress::-webkit-progress-bar {
 .player-stat-item {display:none}
 #stat-points {display: table-cell; padding: 0 0 3px; color: #797979; font-size: 18px; text-align: right; display:none; }
 
+#controls-window { position: relative; margin-top: 15px; margin-bottom: 15px; width: 215px; height: 50px; padding: 10px; box-sizing: border-box;}
+#controls-window h3{position: absolute; top: 25%; font-size: 20px; margin: 0 0 0 10px; display: inline;}
+#controls-window span {position: absolute; left: 37%; color: #ffffff33; top: 25%}
+
 #start-menu {position: relative; display: block; margin-top: 50px; height: 720px; width: 1280px; background-size: contain; background-image: url("../assets/menu/backdrop.png");}
 #game { overflow:auto; height: 0; opacity: 0; transition: height 0s, opacity 1.5s linear;;  background-size: cover; background-image: url("../assets/menu/test3.png"); }
 

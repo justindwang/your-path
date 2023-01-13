@@ -568,6 +568,7 @@
                 return false;
             }
             var target = actionTargets.getCurrent().value;
+
             if(target.dead)
                 return false;
 
@@ -614,6 +615,228 @@
                     splatter *= 1.5;
                 }
                 this.game.splatter(target.x, target.y, splatter);
+            }
+            this.game.renderer.draw();
+            this.game.smashLayer.reset();
+            this.game.damageLayer.reset();
+            return true; 
+        },
+
+        aoeSkillAttack: function(skill, damage, range, aoe){
+            
+            var validTargetsSettings = {
+                range: range,
+                limitToFov: true,
+                filter: function(target){
+                    return target.getClass() == 'entity';
+                }
+            };
+            var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
+            let actionTargets = new RL.ValidTargets(this.game, validTargetsFinder.getValidTargets());
+            if(!actionTargets.getCurrent()){
+                this.game.console.log('No targets are in range for '+ this.game.console.wrap(skill));
+                return false;
+            }
+            var target = actionTargets.getCurrent().value;
+            var target_entry = actionTargets.getCurrent();
+            if(target.dead)
+                return false;
+
+            var aoeFinder = new RL.ValidTargetsFinder(this.game, target, {range:aoe, filter:function(obj){return obj.getClass()=='entity'}});
+            var aoe_targets = new RL.ValidTargets(this.game, aoeFinder.getValidTargets());
+            aoe_targets.targets.push(target_entry);
+            
+            var temp_damage = damage;
+
+            for (let i = 0; i < aoe_targets.targets.length; i++){
+                target = aoe_targets.targets[i].value;
+                if(this.game.player.attemptCrit())
+                    temp_damage = Math.floor(2.5 * damage);
+                target.takeDamage(damage);
+                var weapon = {
+                    name: skill.name,
+                    damage: damage
+                };
+                this.game.console.logAttack(this, weapon, target);
+                if(target.dead){
+                    var entity_x = target.x;
+                    var entity_y = target.y;
+                    var loot = target.generateLoot();
+                    if (loot != 'nothing' && !this.game.itemManager.get(entity_x, entity_y)){
+                        loot = new RL.Item(this.game, loot);
+                        this.game.itemManager.add(entity_x, entity_y, loot);
+                    }
+                    this.game.entityManager.remove(target);
+                    this.gainExp(this.exp);
+                    RL.Util.arrFind(this.game.menu.stats, 'enemies_killed').increment();
+                }
+                var smash = {
+                    source: this,
+                    target: target,
+                    type: 'attack',
+                    targetX: target.x,
+                    targetY: target.y,
+                    sourceX: this.x,
+                    sourceY: this.y
+                };
+    
+                this.game.smashLayer.set(this.x, this.y, smash);
+                this.game.damageLayer.set(target.x, target.y, damage);
+    
+                if(target.bleeds){
+                    var splatter = damage / 10;
+                    if(target.dead){
+                        splatter *= 1.5;
+                    }
+                    this.game.splatter(target.x, target.y, splatter);
+                }
+            }
+            this.game.renderer.draw();
+            this.game.smashLayer.reset();
+            this.game.damageLayer.reset();
+            return true; 
+        },
+
+        selfAoeSkillAttack: function(skill, damage, radius){
+            
+            var validTargetsSettings = {
+                range: radius,
+                limitToFov: true,
+                filter: function(target){
+                    return target.getClass() == 'entity' || target.getClass() == 'furniture';
+                }
+            };
+            var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
+            let actionTargets = new RL.ValidTargets(this.game, validTargetsFinder.getValidTargets());
+            if(!actionTargets.getCurrent()){
+                this.game.console.log('No targets are in range for '+ this.game.console.wrap(skill));
+                return false;
+            }
+
+            var aoeFinder = new RL.ValidTargetsFinder(this.game, this, {range:radius, filter:function(obj){return obj.getClass()=='entity' || obj.getClass()=='furniture'}});
+            var aoe_targets = new RL.ValidTargets(this.game, aoeFinder.getValidTargets());
+            
+            var temp_damage = damage;
+            var target = null;
+
+            for (let i = 0; i < aoe_targets.targets.length; i++){
+                target = aoe_targets.targets[i].value;
+                if(this.game.player.attemptCrit())
+                    temp_damage = Math.floor(2.5 * damage);
+                target.takeDamage(damage);
+                var weapon = {
+                    name: skill.name,
+                    damage: damage
+                };
+                this.game.console.logAttack(this, weapon, target);
+                if(target.dead){
+                    var entity_x = target.x;
+                    var entity_y = target.y;
+                    if (target.getClass() == 'entity'){
+                        var loot = target.generateLoot();
+                        if (loot != 'nothing' && !this.game.itemManager.get(entity_x, entity_y)){
+                            loot = new RL.Item(this.game, loot);
+                            this.game.itemManager.add(entity_x, entity_y, loot);
+                        }
+                        this.game.entityManager.remove(target);
+                        this.gainExp(target.exp);
+                        RL.Util.arrFind(this.game.menu.stats, 'enemies_killed').increment();
+                    }
+                    else if (target.getClass() == 'furniture'){
+                        this.game.furnitureManager.remove(target);
+                        RL.Util.arrFind(this.game.menu.stats, 'objects_destroyed').increment();
+                    }
+                }
+                var smash = {
+                    source: this,
+                    target: target,
+                    type: 'attack',
+                    targetX: target.x,
+                    targetY: target.y,
+                    sourceX: this.x,
+                    sourceY: this.y
+                };
+    
+                this.game.smashLayer.set(this.x, this.y, smash);
+                this.game.damageLayer.set(target.x, target.y, damage);
+    
+                if(target.bleeds){
+                    var splatter = damage / 10;
+                    if(target.dead){
+                        splatter *= 1.5;
+                    }
+                    this.game.splatter(target.x, target.y, splatter);
+                }
+            }
+            this.game.renderer.draw();
+            this.game.smashLayer.reset();
+            this.game.damageLayer.reset();
+            return true; 
+        },
+
+        multiSkillAttack: function(skill, damage, range, number){
+            
+            var validTargetsSettings = {
+                range: range,
+                limitToFov: true,
+                filter: function(target){
+                    return target.getClass() == 'entity';
+                }
+            };
+            var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
+            let actionTargets = new RL.ValidTargets(this.game, validTargetsFinder.getValidTargets());
+            if (actionTargets.targets.length > number)
+                actionTargets.targets = actionTargets.targets.slice(0, number);
+            if(!actionTargets.getCurrent()){
+                this.game.console.log('No targets are in range for '+ this.game.console.wrap(skill));
+                return false;
+            }
+            var target = null;
+            
+            var temp_damage = damage;
+
+            for (let i = 0; i < actionTargets.targets.length; i++){
+                target = actionTargets.targets[i].value;
+                if(this.game.player.attemptCrit())
+                    temp_damage = Math.floor(2.5 * damage);
+                target.takeDamage(damage);
+                var weapon = {
+                    name: skill.name,
+                    damage: damage
+                };
+                this.game.console.logAttack(this, weapon, target);
+                if(target.dead){
+                    var entity_x = target.x;
+                    var entity_y = target.y;
+                    var loot = target.generateLoot();
+                    if (loot != 'nothing' && !this.game.itemManager.get(entity_x, entity_y)){
+                        loot = new RL.Item(this.game, loot);
+                        this.game.itemManager.add(entity_x, entity_y, loot);
+                    }
+                    this.game.entityManager.remove(target);
+                    this.gainExp(this.exp);
+                    RL.Util.arrFind(this.game.menu.stats, 'enemies_killed').increment();
+                }
+                var smash = {
+                    source: this,
+                    target: target,
+                    type: 'attack',
+                    targetX: target.x,
+                    targetY: target.y,
+                    sourceX: this.x,
+                    sourceY: this.y
+                };
+    
+                this.game.smashLayer.set(this.x, this.y, smash);
+                this.game.damageLayer.set(target.x, target.y, damage);
+    
+                if(target.bleeds){
+                    var splatter = damage / 10;
+                    if(target.dead){
+                        splatter *= 1.5;
+                    }
+                    this.game.splatter(target.x, target.y, splatter);
+                }
             }
             this.game.renderer.draw();
             this.game.smashLayer.reset();

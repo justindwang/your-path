@@ -110,10 +110,10 @@
         smash: {
             name: 'Smash',
             rank: 'F',
-            description: 'Deal 180% Vit Damage (Range: 1)',
+            description: 'Deal 50% Vit Damage (Radius: 1)',
             mpCost: 2,
             performEffect: function() {
-                this.game.player.skillAttack(this, Math.ceil(this.game.player.vitality * 1.8), 1);
+                this.game.player.selfAoeSkillAttack(this, Math.ceil(this.game.player.vitality * 0.5), 1);
             },
         },
         far_shot: {
@@ -128,19 +128,19 @@
         fireball: {
             name: 'Fireball',
             rank: 'F',
-            description: 'Deal 150% Int Damage (Range: 2)',
+            description: 'Deal 100% Int Damage (Range: 2, Splash: 1)',
             mpCost: 2,
             performEffect: function() {
-                this.game.player.skillAttack(this, Math.ceil(this.game.player.intelligence * 1.5), 2);
+                this.game.player.aoeSkillAttack(this, Math.ceil(this.game.player.intelligence * 1.5), 2, 1);
             },
         },
         backstab: {
             name: 'Backstab',
             rank: 'F',
-            description: 'Deal 200% Agi Damage (Range: 1)',
+            description: 'Deal 150% Agi Damage (Range: 1)',
             mpCost: 2,
             performEffect: function() {
-                this.game.player.skillAttack(this, this.game.player.intelligence * 2, 1);
+                this.game.player.skillAttack(this, Math.ceil(this.game.player.agility * 1.2), 1);
             },
         },
         

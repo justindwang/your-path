@@ -55,14 +55,15 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - added mana costs to skill ui <br>
 - added single target damaging skills <br>
 - removed open keybinding <br>
+- added aoe and multi-target skills <br>
+- fix controls display <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
-- add aoe skills
-- implement mp regen function
-- fix controls display
+### balance the game bro
 - add job change/progression
+- add avatar selection menu
 - revamp item/skill descriptions ui
 - fix damage numbers being cut off
 - add bosses
