@@ -63,6 +63,7 @@ Todo:
 ### design more mobs/floors/skills/items
 ### balance the game bro
 - add job change/progression
+- add class specific skills eg. preschooler temper tantrum skill
 - add avatar selection menu
 - revamp item/skill descriptions ui
 - fix damage numbers being cut off
