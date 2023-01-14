@@ -34,12 +34,12 @@
         exp: 0,
         expForNext: 9,
 
-        gold: 0,
+        gold: 100000,
 
         hp: 20,
         hpMax: 20,
-        mp: 10,
-        mpMax: 10,
+        mp: 100,
+        mpMax: 100,
 
         strength: 1,
         vitality: 1,

@@ -82,7 +82,7 @@
             name: 'Pancake Torch',
             rank: 'B',
             description: 'Heals half of one\'s HP immediately',
-            mpCost: 5,
+            mpCost: 20,
             performEffect: function() {
                 this.game.player.heal(Math.floor(this.game.player.hpMax/2));
             },
@@ -92,7 +92,7 @@
             name: 'Powerbuff Gorl',
             rank: 'B',
             description: 'Increases strength stat by 1~10',
-            mpCost: 3,
+            mpCost: 20,
             performEffect: function() {
                 this.game.player.statChange('strength', RL.Util.random(1,10));
             },
@@ -142,6 +142,53 @@
             performEffect: function() {
                 this.game.player.skillAttack(this, Math.ceil(this.game.player.agility * 1.2), 1);
             },
+        },
+
+        // fillin spells to cover ranks
+        slice: {
+            name: 'Slice',
+            rank: 'E',
+            description: 'Deal 100% Agi and Str Damage (Range: 1)',
+            mpCost: 5,
+            performEffect: function() {
+                this.game.player.skillAttack(this, this.game.player.strength + this.game.player.agility, 1);
+            },
+        },
+        triple_shot: {
+            name: 'Triple Shot',
+            rank: 'D',
+            description: 'Deal 50% Luck Damage to 3 enemies (Range: 2)',
+            mpCost: 8,
+            performEffect: function() {
+                this.game.player.skillAttack(this, this.game.player.strength + this.game.player.agility, 1);
+            },
+        },
+        shockwave: {
+            name: 'Shockwave',
+            rank: 'C',
+            description: 'Deal 150% Vit Damage (Range: 3)',
+            mpCost: 12,
+            performEffect: function() {
+                this.game.player.selfAoeSkillAttack(this, Math.ceil(this.game.player.vitality * 1.5), 3);
+            },
+        },
+        lightning_bolt: {
+            name: 'Lightning Bolt',
+            rank: 'A',
+            description: 'Deal 200% Int Damage (Range: 3)',
+            mpCost: 30,
+            performEffect: function() {
+                this.game.player.skillAttack(this, Math.ceil(this.game.player.intelligence * 2), 3);
+            },
+        },
+        burst_blade: {
+            name: 'Burst Blade',
+            rank: 'S',
+            description: 'Deal 250% Str Damage (Range: 1)',
+            mpCost: 50,
+            performEffect: function() {
+                this.game.player.skillAttack(this, Math.ceil(this.game.player.strength * 2.5), 3);
+            }
         },
         
     };
