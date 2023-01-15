@@ -10,6 +10,7 @@
         this.applyWeaponStats(this.weapon);
         this.skills = [];
         this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
+        this.jobs = []
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
         RL.Actions.Performable.add(this, 'push');
@@ -32,7 +33,7 @@
         title: 'None',
         
         exp: 0,
-        expForNext: 9,
+        expForNext: 55,
 
         gold: 100000,
 
@@ -59,6 +60,8 @@
         inventory: null,
         skillSlots: 4,
         skills: null,
+
+        jobs: null,
 
         nameEl: null,
         levelEl: null,

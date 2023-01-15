@@ -69,7 +69,7 @@
         */
         y: null,
 
-        sprite: 'player',
+        sprite: null,
 
         /**
         * The background color the character displayed when rendering this player.

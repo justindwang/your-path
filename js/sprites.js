@@ -4,6 +4,46 @@
     var Sprites = {
 
         loadSprites: function() {
+            const knight = new Image();
+            knight.src = 'assets/icons/knight.png';
+            this.knight = knight;
+
+            const knightess = new Image();
+            knightess.src = 'assets/icons/knightess.png';
+            this.knightess = knightess;
+
+            const warrior = new Image();
+            warrior.src = 'assets/icons/warrior.png';
+            this.warrior = warrior;
+
+            const warrioress = new Image();
+            warrioress.src = 'assets/icons/warrioress.png';
+            this.warrioress = warrioress;
+
+            const mage = new Image();
+            mage.src = 'assets/icons/mage.png';
+            this.mage = mage;
+
+            const sorceress = new Image();
+            sorceress.src = 'assets/icons/sorceress.png';
+            this.sorceress = sorceress;
+
+            const ranger = new Image();
+            ranger.src = 'assets/icons/ranger.png';
+            this.ranger = ranger;
+
+            const archeress = new Image();
+            archeress.src = 'assets/icons/archeress.png';
+            this.archeress = archeress;
+
+            const ninja = new Image();
+            ninja.src = 'assets/icons/ninja.png';
+            this.ninja = ninja;
+
+            const kunoichi = new Image();
+            kunoichi.src = 'assets/icons/kunoichi.png';
+            this.kunoichi = kunoichi;
+
             const player = new Image();
             player.src = 'assets/sprites/boy.png';
             this.player = player;

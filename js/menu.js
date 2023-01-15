@@ -25,6 +25,7 @@
         inventoryItemConfirmIndex: -1,
         shopItemConfirmIndex: -1,
         shopSellItemConfirmIndex: -1,
+        jobsConfirmIndex: -1,
         skillReplaceIndex: -1,
         skillUseIndex: -1,
 
@@ -50,6 +51,7 @@
             document.getElementById('pr-inventory').addEventListener('click', this.displayInventoryMenu);
             document.getElementById('pr-shop').addEventListener('click', this.displayShopMenu);
             document.getElementById('pr-stats').addEventListener('click', this.displayStatsMenu);
+            document.getElementById('pr-jobs').addEventListener('click', this.displayJobsMenu);
 
             document.getElementById('inventory-foot-type').addEventListener('click', () => {this.sortInventoryType()});
             document.getElementById('inventory-foot-rarity').addEventListener('click', () => {this.sortInventoryRarity()});
@@ -58,6 +60,7 @@
             document.getElementById('stats-foot-type').addEventListener('click', () => {this.sortStatsType()});
             document.getElementById('stats-foot-rarity').addEventListener('click', () => {this.sortStatsRarity()});
             document.getElementById('stats-foot-name').addEventListener('click', () => {this.sortStatsName()});
+            document.getElementById('jobs-foot-name').addEventListener('click', () => {this.sortJobsName()});
 
             document.getElementById('shop-buy').addEventListener('click', () => {this.renderShop()});
             document.getElementById('shop-sell').addEventListener('click', () => {this.renderShopSell()});
@@ -77,6 +80,7 @@
             this.addInventoryListeners();
             this.addShopListeners();
             this.addShopSortListeners();
+            this.addJobsListeners();
         },
 
         startPressed: function(){
@@ -129,6 +133,7 @@
         jobSelected: function(job){
             this.game.player.job = new RL.Job(this.game, job);
             this.game.player.job.equipEffect();
+            this.game.renderer.draw();
             this.game.load();
             document.getElementById('start-menu').style.display = 'none';
             let _game = document.getElementById('game');
@@ -192,46 +197,80 @@
             }
         },
 
+        addJobsListeners: function(){
+            var jobs = this.game.player.jobs;
+            for(let i = 0; i<jobs.length; i++){
+                let item = document.getElementById('jobs-item-' + i);
+                item.addEventListener('click', () => {this.jobsItemClicked(i)});
+            }
+        },
+
         displayInventoryMenu: function(){
             var inventoryWindowEl = document.getElementById('inventory-window');
             var shopWindowEl = document.getElementById('shop-window');
             var statsWindowEl = document.getElementById('stats-window');
+            var jobsWindowEl = document.getElementById('jobs-window');
 
             inventoryWindowEl.style.visibility = 'visible';
             shopWindowEl.style.visibility = 'hidden';
             statsWindowEl.style.visibility = 'hidden';
+            jobsWindowEl.style.visibility = 'hidden';
 
             inventoryWindowEl.style.opacity = 1;
             shopWindowEl.style.opacity = 0;
             statsWindowEl.style.opacity = 0;
+            jobsWindowEl.style.opacity = 0;
         },
 
         displayShopMenu: function() {
             var inventoryWindowEl = document.getElementById('inventory-window');
             var shopWindowEl = document.getElementById('shop-window');
             var statsWindowEl = document.getElementById('stats-window');
+            var jobsWindowEl = document.getElementById('jobs-window');
 
             inventoryWindowEl.style.visibility = 'hidden';
             shopWindowEl.style.visibility = 'visible';
             statsWindowEl.style.visibility = 'hidden';
+            jobsWindowEl.style.visibility = 'hidden';
 
             inventoryWindowEl.style.opacity = 0;
             shopWindowEl.style.opacity = 1;
             statsWindowEl.style.opacity = 0;
+            jobsWindowEl.style.opacity = 0;
         },
 
         displayStatsMenu: function() {
             var inventoryWindowEl = document.getElementById('inventory-window');
             var shopWindowEl = document.getElementById('shop-window');
             var statsWindowEl = document.getElementById('stats-window');
+            var jobsWindowEl = document.getElementById('jobs-window');
 
             inventoryWindowEl.style.visibility = 'hidden';
             shopWindowEl.style.visibility = 'hidden';
             statsWindowEl.style.visibility = 'visible';
+            jobsWindowEl.style.visibility = 'hidden';
 
             inventoryWindowEl.style.opacity = 0;
             shopWindowEl.style.opacity = 0;
             statsWindowEl.style.opacity = 1;
+            jobsWindowEl.style.opacity = 0;
+        },
+
+        displayJobsMenu: function() {
+            var inventoryWindowEl = document.getElementById('inventory-window');
+            var shopWindowEl = document.getElementById('shop-window');
+            var statsWindowEl = document.getElementById('stats-window');
+            var jobsWindowEl = document.getElementById('jobs-window');
+
+            inventoryWindowEl.style.visibility = 'hidden';
+            shopWindowEl.style.visibility = 'hidden';
+            statsWindowEl.style.visibility = 'hidden';
+            jobsWindowEl.style.visibility = 'visible';
+
+            inventoryWindowEl.style.opacity = 0;
+            shopWindowEl.style.opacity = 0;
+            statsWindowEl.style.opacity = 0;
+            jobsWindowEl.style.opacity = 1;
         },
 
         renderStatPoints: function(){
@@ -408,6 +447,14 @@
             this.renderStats();
         },
 
+        sortJobsName: function(){
+            document.getElementById('jobs-foot-name').style.color = '#e5e5e5';
+
+            var toSort = this.game.player.jobs;
+            this.game.player.jobs = RL.Util.sortArrayOfObjects(toSort, 'name');
+            this.renderJobs();
+        },
+
         inventoryItemClicked: function(slotNum){
             var inventory = this.game.player.inventory;
             var group = inventory[slotNum][0].group;
@@ -509,6 +556,31 @@
                 this.game.console.logAskConfirmUse(skill);
             }
         },
+
+        jobsItemClicked: function(slotNum){
+            var job = this.game.player.jobs[slotNum];
+            if (slotNum == this.jobsConfirmIndex){
+                this.clearClickData();
+                var currJob = this.game.player.job;
+                var jobs = this.game.player.jobs;
+                for(var i = 0; i< jobs.length; i++){
+                    if (jobs[i].type == job.type)
+                        jobs.splice(i, 1);
+                }
+                jobs.push(currJob);
+                this.game.player.job = job;
+                currJob.unequipEffect();
+                job.equipEffect();
+                this.game.console.log('Switched job to ' + job.name);
+                this.renderJobs();
+                this.game.player.renderHtml();
+                this.game.renderer.draw();
+            }
+            else{
+                this.jobsConfirmIndex = slotNum;
+                this.game.console.logAskConfirmSwitch(job);
+            }
+        },
         
         clearClickData: function(){
             this.inventoryItemConfirmIndex = -1;
@@ -516,6 +588,7 @@
             this.shopSellItemConfirmIndex = -1;
             this.skillReplaceIndex = -1;
             this.skillUseIndex = -1;
+            this.jobsConfirmIndex = -1;
         },
 
         addToInventory: function(item){
@@ -722,6 +795,34 @@
                 html += '<div class="menu-item" id="stats-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + color + this.stats[i].name + ' - ​' + this.stats[i].rank +'</span> <br> <span>' + this.stats[i].getStats() + '</span></h4></div></div>';
             }
             wrap.innerHTML = html;
+        },
+
+        initJobs: function(){
+            var wrap = document.getElementById('jobs-body');
+            var jobs = this.game.player.jobs;
+            var icon = '';
+            var html = '';
+            
+            for(var i = 0; i<jobs.length; i++){
+                icon = '<img src="assets/icons/' +  jobs[i].sprite + '.png"/>';
+
+                html += '<div class="menu-item" id="jobs-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + jobs[i].name + '<br> <span style="color: #ffffff33;">' + jobs[i].description + '</span></h4></div></div>';
+            }
+            wrap.innerHTML = html;
+        },
+        renderJobs: function(){
+            var wrap = document.getElementById('mCSB_5_container');
+            var jobs = this.game.player.jobs;
+            var icon = '';
+            var html = '';
+            
+            for(var i = 0; i<jobs.length; i++){
+                icon = '<img src="assets/icons/' +  jobs[i].sprite + '.png"/>';
+
+                html += '<div class="menu-item" id="jobs-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + jobs[i].name + '<br> <span style="color: #ffffff33;">' + jobs[i].description + '</span></h4></div></div>';
+            }
+            wrap.innerHTML = html;
+            this.addJobsListeners();
         },
 
         initWeapon: function(){

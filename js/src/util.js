@@ -491,7 +491,7 @@
           },
         
         exptoNextLevel: function(level){
-            return Math.floor(5*((level+1)**3)/4 - 5*(level**3)/4);
+            return Math.floor(5*(level**3 + 10));
         },
         mapRankToColor: function(rank){
             switch(rank){

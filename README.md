@@ -57,14 +57,17 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - removed open keybinding <br>
 - added aoe and multi-target skills <br>
 - fix controls display <br>
+- added job change ui <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 ### balance the game bro
-- add job change/progression
+- add job change mechanic
+- add general skill methods to run after map generation (default void) and passives to run on game_update or player_update
 - add class specific skills eg. preschooler temper tantrum skill
 - add avatar selection menu
+- fix skill descriptions display (wrapping when there is scrollbar)
 - revamp item/skill descriptions ui
 - fix damage numbers being cut off
 - add bosses
