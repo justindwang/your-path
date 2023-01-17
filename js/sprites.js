@@ -44,9 +44,41 @@
             kunoichi.src = 'assets/icons/kunoichi.png';
             this.kunoichi = kunoichi;
 
-            const player = new Image();
-            player.src = 'assets/sprites/boy.png';
-            this.player = player;
+            const kendoka = new Image();
+            kendoka.src = 'assets/icons/kendoka.png';
+            this.kendoka = kendoka;
+
+            const ivory_reaper = new Image();
+            ivory_reaper.src = 'assets/icons/ivory_reaper.png';
+            this.ivory_reaper = ivory_reaper;
+
+            const flower_fighter = new Image();
+            flower_fighter.src = 'assets/icons/flower_fighter.png';
+            this.flower_fighter = flower_fighter;
+
+            const black_swordsman = new Image();
+            black_swordsman.src = 'assets/icons/black_swordsman.png';
+            this.black_swordsman = black_swordsman;
+
+            const archery_disciple = new Image();
+            archery_disciple.src = 'assets/icons/archery_disciple.png';
+            this.archery_disciple = archery_disciple;
+
+            const preschooler = new Image();
+            preschooler.src = 'assets/icons/preschooler.png';
+            this.preschooler = preschooler;
+
+            const kitsune = new Image();
+            kitsune.src = 'assets/icons/kitsune.png';
+            this.kitsune = kitsune;
+
+            const businessman = new Image();
+            businessman.src = 'assets/icons/businessman.png';
+            this.businessman = businessman;
+
+            const battle_maid = new Image();
+            battle_maid.src = 'assets/icons/battle_maid.png';
+            this.battle_maid = battle_maid;
         
             const crate = new Image();
             crate.src = 'assets/sprites/crate.png';
@@ -231,6 +263,10 @@
             const copper_dagger = new Image();
             copper_dagger.src = 'assets/sprites/copper_dagger.png';
             this.copper_dagger = copper_dagger;
+
+            const job_change_ticket = new Image();
+            job_change_ticket.src = 'assets/sprites/job_change_ticket.png';
+            this.job_change_ticket = job_change_ticket;
         },
     };
     

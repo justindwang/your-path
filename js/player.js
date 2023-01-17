@@ -10,7 +10,7 @@
         this.applyWeaponStats(this.weapon);
         this.skills = [];
         this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
-        this.jobs = []
+        this.jobs = [new RL.Job(this.game, 'kendoka'), new RL.Job(this.game, 'ivory_reaper'), new RL.Job(this.game, 'battle_maid'), new RL.Job(this.game, 'businessman'), new RL.Job(this.game, 'flower_fighter'), new RL.Job(this.game, 'preschooler'), new RL.Job(this.game, 'black_swordsman'), new RL.Job(this.game, 'archery_disciple')];
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
         RL.Actions.Performable.add(this, 'push');
@@ -35,12 +35,12 @@
         exp: 0,
         expForNext: 55,
 
-        gold: 100000,
+        gold: 0,
 
         hp: 20,
         hpMax: 20,
-        mp: 100,
-        mpMax: 100,
+        mp: 10,
+        mpMax: 10,
 
         strength: 1,
         vitality: 1,
@@ -405,7 +405,7 @@
 
             // leveled up
             if(this.exp >= this.expForNext){
-                this.exp -= this.expForNext;
+                this.exp = 0;
                 this.level++;
                 this.expForNext = RL.Util.exptoNextLevel(this.level);
                 var hpGain = this.hpGainFromVit();
@@ -509,6 +509,13 @@
                     this.game.input.addBindings({cancel_replace: ['esc']});
                 }
             }
+            else if (item.group == 'misc'){
+                item.performUse();
+                if(amount>1)
+                    this.inventory[slotNum][1]--;
+                else
+                    this.inventory.splice(slotNum, 1);
+            }
             else if(item.group == 'special'){
                 item.performUse();
             }
@@ -529,6 +536,15 @@
                 this.game.console.logReplaceSkillDescription(item, new_skill);
                 this.game.menu.addSkillReplaceListeners(new_skill);
                 this.game.input.addBindings({cancel_replace: ['esc']});
+            }
+        },
+
+        forgetSkill: function(skill){
+            for(var i = 0; i<this.skills.length; i++){
+                if(this.skills[i].type == skill){
+                    this.skills.splice(i, 1);
+                    return;
+                }
             }
         },
 
@@ -595,7 +611,7 @@
                     this.game.itemManager.add(entity_x, entity_y, loot);
                 }
                 this.game.entityManager.remove(target);
-                this.gainExp(this.exp);
+                this.gainExp(target.exp);
                 RL.Util.arrFind(this.game.menu.stats, 'enemies_killed').increment();
             }
 
@@ -670,7 +686,7 @@
                         this.game.itemManager.add(entity_x, entity_y, loot);
                     }
                     this.game.entityManager.remove(target);
-                    this.gainExp(this.exp);
+                    this.gainExp(target.exp);
                     RL.Util.arrFind(this.game.menu.stats, 'enemies_killed').increment();
                 }
                 var smash = {
@@ -706,7 +722,7 @@
                 range: radius,
                 limitToFov: true,
                 filter: function(target){
-                    return target.getClass() == 'entity' || target.getClass() == 'furniture';
+                    return target.getClass() == 'entity';
                 }
             };
             var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
@@ -716,7 +732,7 @@
                 return false;
             }
 
-            var aoeFinder = new RL.ValidTargetsFinder(this.game, this, {range:radius, filter:function(obj){return obj.getClass()=='entity' || obj.getClass()=='furniture'}});
+            var aoeFinder = new RL.ValidTargetsFinder(this.game, this, {range:radius, filter:function(obj){return obj.getClass()=='entity'}});
             var aoe_targets = new RL.ValidTargets(this.game, aoeFinder.getValidTargets());
             
             var temp_damage = damage;
@@ -870,6 +886,9 @@
             this.agilityEl.innerHTML = 'Agility: ' + this.agility;
             this.intelligenceEl.innerHTML = 'Intelligence: ' + this.intelligence;
             this.luckEl.innerHTML = 'Luck: ' + this.luck;
+
+            if(this.job)
+                document.getElementById('status-space-flex').style.width = RL.Util.mapLengthToFlexTd(this.job.type.length);
         },
 
         getConsoleName: function(){

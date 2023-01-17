@@ -35,7 +35,7 @@
         generateShop: function(){
             let temp = [new RL.Item(this.game, 'tiny_hp_potion'), new RL.Item(this.game, 'tiny_mp_potion')];
             let f = new RL.Item(this.game, this.game.randomItemOfRank('F'));
-            while(f.group == 'healing' || f.group == 'mp_recovery' || f.type == 'fists')
+            while(f.type == 'fists')
                 f = new RL.Item(this.game, this.game.randomItemOfRank('F'));
             temp.push(f);
             temp.push(new RL.Item(this.game, this.game.randomItemOfRank('E')));
@@ -44,6 +44,19 @@
             temp.push(new RL.Item(this.game, this.game.randomItemOfRank('B')));
             temp.push(new RL.Item(this.game, this.game.randomItemOfRank('A')));
             temp.push(new RL.Item(this.game, this.game.randomItemOfRank('S')));
+            temp.push(new RL.Item(this.game, 'skill_scrollF'));
+            temp.push(new RL.Item(this.game, 'skill_scrollE'));
+            if(this.game.floor.number >= 5)
+                temp.push(new RL.Item(this.game, 'skill_scrollD'));
+            if(this.game.floor.number >= 10)
+                temp.push(new RL.Item(this.game, 'skill_scrollC'));
+            if(this.game.floor.number >= 15)
+                temp.push(new RL.Item(this.game, 'skill_scrollB'));
+            if(this.game.floor.number >= 20)
+                temp.push(new RL.Item(this.game, 'skill_scrollA'));
+            if(this.game.floor.number >= 25)
+                temp.push(new RL.Item(this.game, 'skill_scrollS'));
+            temp.push(new RL.Item(this.game, 'job_change_ticket'));
             this.shop = temp;
         },
 
@@ -869,6 +882,7 @@
                     case 'D': color = 'style="color: #77DD77"'; break;
                     case 'E': color = 'style="color:goldenrod"'; break;
                     case 'F': color = 'style="color:peachpuff"'; break;
+                    case 'Unique': color = 'style="color: #50577A"'; break;
                 }
                 
                 skillsHtml += '<div class="skill-item" id="skill-' + i +'"><h4> <p ' + color + '>' + skillConsoleName.name + ' - ' + skillConsoleName.rank + '</p><p class="small">' + skillConsoleName.description + '</p></h4>'+ '<div class="skill-item-cost"><img src="assets/icons/mana.png"/><p>' + RL.Util.addCommas(skillConsoleName.mpCost) + '</p></div></div>';

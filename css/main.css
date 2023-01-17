@@ -2648,6 +2648,12 @@ pre[class*="language-"] {
   color: #000000;
 }
 
+.td_space{
+  display: table-cell;
+  width: 5px;
+  color: #000000;
+}
+
 .td_tab_medium {
   display: table-cell;
   width: 50px;
@@ -2860,6 +2866,8 @@ progress::-webkit-progress-bar {
 
 .dropdown-controls:hover .dropdown-controls-content {visibility: visible; opacity: 1;}
 
+#status-space-flex {width:50px; display: table-cell}
+
 /* UI on right */
 #page-right {position: relative; float: left; width: 150px; height: calc(100% - 50px); padding-top: 50px;}
 .pr-inventory{ height: 40px; width: 60px;  position: relative; left: 0; transition: width 0.3s ease;top: 0px} 
@@ -2901,8 +2909,8 @@ progress::-webkit-progress-bar {
 .menu-item::after, .inventory-item::before { box-sizing: border-box; border-radius: 3px; }
 
 .menu-item:not(:last-child) {margin-bottom: 10px;}
-.menu-item-icon {background: rgba(87,83,83,0.25); width:50px; height:100%; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px; float:left; }
-.menu-item-icon img{padding-bottom: 4px; width:60%; margin-left: 20%; margin-top: 20%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
+.menu-item-icon {background: rgba(87,83,83,0.25); width:50px; height:50px; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px; float:left; }
+.menu-item-icon img{ width:60%; height: 60%;margin-left: 20%; margin-top: 20%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
 .menu-item-info {width: calc(100%-75px); height: 100%; float:left}
 .menu-item-amount {width: auto; height: 100%; float: right;}
 .menu-item-amount img{float:left; width: 18px; height: 18px; margin-top: 14px; padding-right: 5px;}
@@ -2928,7 +2936,7 @@ progress::-webkit-progress-bar {
 /* Stats window */
 #stats-window { visibility: hidden; opacity: 0;  width: 300px; height: 400px; position: absolute; left: 0%; top: 130%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
-#status-window {  display: flex; flex-direction: column; align-items: center; padding-left: 15px; padding-right: 15px;padding-bottom: 15px; box-sizing: border-box; }
+#status-window { display: flex; flex-direction: column; align-items: center; padding-left: 15px; padding-right: 15px;padding-bottom: 15px; box-sizing: border-box; }
 
 #skill-window { width: 215px; height: 255px; margin-top: 20px; padding: 15px; box-sizing: border-box; }
 .weapon-icon { margin-left: 10px; background: rgba(87,83,83,0.25); width:50px; height:50px; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px;}

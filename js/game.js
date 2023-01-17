@@ -14,6 +14,12 @@
         this.rendererHeight = rendererHeight;
         this.rendererWidth = rendererWidth;
         this.floor = new RL.Floor(this, 1);
+        this.menu = new RL.Menu(this);
+        this.menu.initInventory();
+        this.menu.initStats();
+        this.menu.initShop();
+        this.menu.initWeapon();
+        this.menu.initJobs();
     };
 
     var newGamePrototype = {
@@ -412,6 +418,8 @@
 
         goToFloor: function(number){
             if(RL.Floor.Data[number]){
+                this.player.mp = this.player.mpMax;
+                this.player.renderHtml();
                 var y_n_exit = {
                     next_floor: ['Y'],
                     same_floor: ['N'],};
@@ -440,7 +448,7 @@
         getItemOfRank: function(rank){
             var pool = [];
             for (const [key, value] of Object.entries(RL.Item.Types)) {
-                if(value.rank == rank && value.group!='material' && value.group!='special')
+                if(value.rank == rank && value.group=='weapon')
                     pool.push(key);
             }
             return pool;
@@ -454,6 +462,13 @@
             for (const [key, value] of Object.entries(RL.Skill.Data)) {
                 if(value.rank == rank)
                     pool.push(key);
+            }
+            return RL.Util.selectRandomElement(pool);
+        },
+        randomJob: function(rank){
+            var pool = [];
+            for (const [key, value] of Object.entries(RL.Job.Data)) {
+                pool.push(key);
             }
             return RL.Util.selectRandomElement(pool);
         }

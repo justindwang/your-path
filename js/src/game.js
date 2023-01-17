@@ -30,12 +30,6 @@
 
         var el = this.renderer.canvas;
         this.mouse.startListening(el);
-        this.menu = new RL.Menu(this);
-        this.menu.initInventory();
-        this.menu.initStats();
-        this.menu.initShop();
-        this.menu.initWeapon();
-        this.menu.initJobs();
     };
 
     Game.prototype = {

@@ -58,13 +58,14 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - added aoe and multi-target skills <br>
 - fix controls display <br>
 - added job change ui <br>
+- added job change tickets <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 ### balance the game bro
-- add job change mechanic
 - add general skill methods to run after map generation (default void) and passives to run on game_update or player_update
+    - on hit passive effects to run on attack / skill usage (mana/life steal, chance to not consume mana etc)
 - add class specific skills eg. preschooler temper tantrum skill
 - add avatar selection menu
 - fix skill descriptions display (wrapping when there is scrollbar)

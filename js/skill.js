@@ -78,6 +78,91 @@
     * @static
     */
     Skill.Data = {
+        // class specific skills
+        zen_strike: {
+            name: 'Zen Strike',
+            rank: 'Unique',
+            description: 'Deal 100% Str Dmg (Radius: 2)',
+            mpCost: 10,
+            performEffect: function() {
+                this.game.player.selfAoeSkillAttack(this, this.game.player.strength, 2);
+            },
+        },
+        final_cut: {
+            name: 'Final Cut',
+            rank: 'Unique',
+            description: 'Deal 300% Str Dmg (Range: 1)',
+            mpCost: 50,
+            performEffect: function() {
+                this.game.player.skillAttack(this, this.game.player.strength * 3, 1);
+            },
+        },
+        photosynthesis: {
+            name: 'Photosynthesis',
+            rank: 'Unique',
+            description: 'Heals half of one\'s HP',
+            mpCost: 20,
+            performEffect: function() {
+                this.game.player.heal(Math.floor(this.game.player.hpMax/2));
+            },
+        },
+        evade: {
+            name: 'Evade',
+            rank: 'Unique',
+            description: 'Dodges the next attack',
+            mpCost: 5,
+            performEffect: function() {
+                if(this.game.player.dodgeNext == 0)
+                    this.game.player.dodgeNext = 1;
+            },
+        },
+        qi_shot: {
+            name: 'Qi Shot',
+            rank: 'Unique',
+            description: 'Deal 100% Luck Dmg (Range: 2, Targets: 2)',
+            mpCost: 10,
+            performEffect: function() {
+                this.game.player.multiSkillAttack(this, this.game.player.luck * 2, 2, 2);
+            },
+        },
+        temper_tantrum: {
+            name: 'Temper Tantrum',
+            rank: 'Unique',
+            description: 'Deal 1 to 50 Dmg (Radius: 2)',
+            mpCost: 5,
+            performEffect: function() {
+                this.game.player.selfAoeSkillAttack(this, RL.Util.random(1,50), 2);
+            },
+        },
+        foxfire: {
+            name: 'Foxfire',
+            rank: 'Unique',
+            description: 'Deal 150% Int Dmg (Range: 3, Targets: 5)',
+            mpCost: 20,
+            performEffect: function() {
+                this.game.player.multiSkillAttack(this, Math.ceil(this.game.player.intelligence * 1.5), 3, 5);
+            },
+        },
+        cash_flow: {
+            name: 'Cash Flow',
+            rank: 'Unique',
+            description: 'Obtain 1 to 100 gold',
+            mpCost: 10,
+            performEffect: function() {
+                var gold = RL.Util.random(1,100);
+                this.game.player.gold += gold;
+                this.game.console.log(this.game.console.wrap(this.game.player) + ' gained ' + gold + ' gold');
+            },
+        },
+        clean_finish: {
+            name: 'Clean Finish',
+            rank: 'Unique',
+            description: 'Deal 200% Agi Dmg (Range: 1)',
+            mpCost: 5,
+            performEffect: function() {
+                this.game.player.skillAttack(this, this.game.player.agility * 2, 1);
+            },
+        },
         pancake_torch: {
             name: 'Pancake Torch',
             rank: 'B',
@@ -97,55 +182,53 @@
                 this.game.player.statChange('strength', RL.Util.random(1,10));
             },
         },
-        evade: {
-            name: 'Evade',
+
+        // base skills
+        slash: {
+            name: 'Slash',
             rank: 'F',
-            description: 'Dodges the next incoming attack',
-            mpCost: 3,
+            description: 'Deal 12 Dmg (Range: 1)',
+            mpCost: 2,
             performEffect: function() {
-                if(this.game.player.dodgeNext == 0)
-                    this.game.player.dodgeNext = 1;
+                this.game.player.skillAttack(this, 12, 1);
             },
         },
         smash: {
             name: 'Smash',
             rank: 'F',
-            description: 'Deal 50% Vit Dmg (Radius: 1)',
+            description: 'Deal 5 Dmg (Radius: 1)',
             mpCost: 2,
             performEffect: function() {
-                this.game.player.selfAoeSkillAttack(this, Math.ceil(this.game.player.vitality * 0.5), 1);
+                this.game.player.selfAoeSkillAttack(this, 5, 1);
             },
         },
         far_shot: {
             name: 'Far Shot',
             rank: 'F',
-            description: 'Deal 100% Luck Dmg (Range: 4)',
+            description: 'Deal 5 Dmg (Range: 4)',
             mpCost: 2,
             performEffect: function() {
-                this.game.player.skillAttack(this, this.game.player.luck, 4);
+                this.game.player.skillAttack(this, 5, 4);
             },
         },
         fireball: {
             name: 'Fireball',
             rank: 'F',
-            description: 'Deal 100% Int Dmg (Range: 2, Splash: 1)',
+            description: 'Deal 8 Dmg (Range: 2, Splash: 1)',
             mpCost: 2,
             performEffect: function() {
-                this.game.player.aoeSkillAttack(this, Math.ceil(this.game.player.intelligence * 1.5), 2, 1);
+                this.game.player.aoeSkillAttack(this, 8, 2, 1);
             },
         },
         backstab: {
             name: 'Backstab',
             rank: 'F',
-            description: 'Deal 150% Agi Dmg (Range: 1)',
+            description: 'Deal 15 Dmg (Range: 1)',
             mpCost: 2,
             performEffect: function() {
-                this.game.player.skillAttack(this, Math.ceil(this.game.player.agility * 1.2), 1);
+                this.game.player.skillAttack(this, 15, 1);
             },
         },
-
-        // class specific skills
-
 
         // fillin spells to cover ranks
         slice: {
@@ -190,7 +273,7 @@
             description: 'Deal 250% Str Dmg (Range: 1)',
             mpCost: 50,
             performEffect: function() {
-                this.game.player.skillAttack(this, Math.ceil(this.game.player.strength * 2.5), 3);
+                this.game.player.skillAttack(this, Math.ceil(this.game.player.strength * 2.5), 1);
             }
         },
         

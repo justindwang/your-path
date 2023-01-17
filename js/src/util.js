@@ -491,7 +491,7 @@
           },
         
         exptoNextLevel: function(level){
-            return Math.floor(5*(level**3 + 10));
+            return Math.floor(2*(level**3 + 10));
         },
         mapRankToColor: function(rank){
             switch(rank){
@@ -502,6 +502,7 @@
                 case 'D': return RL.Util.COLORS.D_pastelgreen;
                 case 'E': return RL.Util.COLORS.E_goldenrod;
                 case 'F': return RL.Util.COLORS.F_peachpuff;
+                case 'Unique': return '#50577A';
                 default: return RL.Util.COLORS.F_peachpuff;
             }
         },
@@ -529,6 +530,14 @@
                 case 3: return 50;
                 default: return 50;
             }
+        },
+
+        mapLengthToFlexTd(length){
+          if(length > 10)
+            return '5px';
+          if(length > 6)
+            return '20px';
+          return '50px';
         },
 
         mapDamageTo3Digits: function(number){

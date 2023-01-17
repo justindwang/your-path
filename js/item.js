@@ -244,6 +244,16 @@
                 };
             },
         },
+        misc: {
+            group: 'misc',
+            getConsoleName: function(){
+                return {
+                    name: this.name,
+                    stats: this.getStats(),
+                    color: this.color
+                };
+            },
+        },
     };
 
     RL.Util.merge(Item.prototype, RL.Mixins.TileDraw);
@@ -269,6 +279,9 @@
     };
     var makeSkillScroll = function(obj){
         return RL.Util.merge(obj, Defaults.skill_scroll);
+    };
+    var makeMiscItem = function(obj){
+        return RL.Util.merge(obj, Defaults.misc);
     };
 
     Item.Types = {
@@ -486,6 +499,27 @@
             rank: 'S',
             cost: 12000,
         }),
+        // misc items
+        job_change_ticket: makeMiscItem({
+            name: 'Job Change Ticket',
+            sprite: 'job_change_ticket',
+            rank: 'S',
+            cost: '1000',
+            getStats: function(){
+                return 'Assigns a new job';
+            },
+            performUse: function(){
+                var newJob = new RL.Job(this.game, this.game.randomJob());
+                if (newJob.type == this.game.player.job.type || RL.Util.arrFindType(this.game.player.jobs, newJob.type)){
+                    this.game.console.log(newJob.name + ' was already in job list');
+                }
+                else{
+                    this.game.player.jobs.push(newJob);
+                    this.game.console.log('Added ' + newJob.name + ' to job list');
+                    this.game.menu.renderJobs();
+                }
+            },
+        }),
         // special items
         ascension_crystal: makeSpecialItem({
             name: 'Ascension Crystal',
@@ -516,7 +550,6 @@
                     this.game.goToFloor(this.game.floor.number - 1);
                 else
                     this.game.console.logNoEffect(this);
-                console.log('bro?');
             },
         }),
 
