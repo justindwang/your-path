@@ -4,6 +4,14 @@
     var Sprites = {
 
         loadSprites: function() {
+            const casual_hoodie = new Image();
+            casual_hoodie.src = 'assets/icons/casual_hoodie.png';
+            this.casual_hoodie = casual_hoodie;
+
+            const casual_blouse = new Image();
+            casual_blouse.src = 'assets/icons/casual_blouse.png';
+            this.casual_blouse = casual_blouse;
+
             const knight = new Image();
             knight.src = 'assets/icons/knight.png';
             this.knight = knight;
@@ -79,6 +87,10 @@
             const battle_maid = new Image();
             battle_maid.src = 'assets/icons/battle_maid.png';
             this.battle_maid = battle_maid;
+
+            const enchantress = new Image();
+            enchantress.src = 'assets/icons/enchantress.png';
+            this.enchantress = enchantress;
         
             const crate = new Image();
             crate.src = 'assets/sprites/crate.png';

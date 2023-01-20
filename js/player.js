@@ -8,9 +8,10 @@
 
         this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
-        this.skills = [];
-        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1]];
-        this.jobs = [new RL.Job(this.game, 'kendoka'), new RL.Job(this.game, 'ivory_reaper'), new RL.Job(this.game, 'battle_maid'), new RL.Job(this.game, 'businessman'), new RL.Job(this.game, 'flower_fighter'), new RL.Job(this.game, 'preschooler'), new RL.Job(this.game, 'black_swordsman'), new RL.Job(this.game, 'archery_disciple')];
+        this.skills = [new RL.Skill(this.game, 'intuition')];
+        this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1],[new RL.Item(this.game, 'job_change_ticket'), 5]];
+        this.jobs = [];
+        this.outfits = [new RL.Outfit(this.game, 'casual_hoodie'), new RL.Outfit(this.game, 'casual_blouse')];
         RL.Actions.Performable.add(this, 'open');
         RL.Actions.Performable.add(this, 'close');
         RL.Actions.Performable.add(this, 'push');
@@ -61,7 +62,8 @@
         skillSlots: 4,
         skills: null,
 
-        jobs: null,
+        jobs: [],
+        outfits: [],
 
         nameEl: null,
         levelEl: null,
@@ -214,6 +216,9 @@
         },
 
         useSkill: function(slotNum){
+            if(this.skills[slotNum].passive == true){
+                return;
+            }
             if(this.skills[slotNum].mpCost <= this.mp){
                 this.mp -= this.skills[slotNum].mpCost;
                 this.game.console.logUseSkill(this, this.skills[slotNum]);
@@ -790,6 +795,43 @@
             this.game.renderer.draw();
             this.game.smashLayer.reset();
             this.game.damageLayer.reset();
+            return true; 
+        },
+        skillStun: function(skill, duration, range){
+            
+            var validTargetsSettings = {
+                range: range,
+                limitToFov: true,
+                filter: function(target){
+                    return target.getClass() == 'entity';
+                }
+            };
+            var validTargetsFinder = new RL.ValidTargetsFinder(this.game, this, validTargetsSettings);
+            let actionTargets = new RL.ValidTargets(this.game, validTargetsFinder.getValidTargets());
+            if(!actionTargets.getCurrent()){
+                this.game.console.log('No targets are in range for '+ this.game.console.wrap(skill));
+                return false;
+            }
+            var target = actionTargets.getCurrent().value;
+
+            if(target.dead)
+                return false;
+
+            target.stunTurns = duration;
+
+            var smash = {
+                source: this,
+                target: target,
+                type: 'attack',
+                targetX: target.x,
+                targetY: target.y,
+                sourceX: this.x,
+                sourceY: this.y
+            };
+
+            this.game.smashLayer.set(this.x, this.y, smash);
+            this.game.renderer.draw();
+            this.game.smashLayer.reset();
             return true; 
         },
 

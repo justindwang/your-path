@@ -26,6 +26,7 @@
         shopItemConfirmIndex: -1,
         shopSellItemConfirmIndex: -1,
         jobsConfirmIndex: -1,
+        outfitsConfirmIndex: -1,
         skillReplaceIndex: -1,
         skillUseIndex: -1,
 
@@ -65,6 +66,7 @@
             document.getElementById('pr-shop').addEventListener('click', this.displayShopMenu);
             document.getElementById('pr-stats').addEventListener('click', this.displayStatsMenu);
             document.getElementById('pr-jobs').addEventListener('click', this.displayJobsMenu);
+            document.getElementById('pr-outfits').addEventListener('click', this.displayOutfitsMenu);
 
             document.getElementById('inventory-foot-type').addEventListener('click', () => {this.sortInventoryType()});
             document.getElementById('inventory-foot-rarity').addEventListener('click', () => {this.sortInventoryRarity()});
@@ -74,6 +76,7 @@
             document.getElementById('stats-foot-rarity').addEventListener('click', () => {this.sortStatsRarity()});
             document.getElementById('stats-foot-name').addEventListener('click', () => {this.sortStatsName()});
             document.getElementById('jobs-foot-name').addEventListener('click', () => {this.sortJobsName()});
+            document.getElementById('outfits-foot-name').addEventListener('click', () => {this.sortOutfitsName()});
 
             document.getElementById('shop-buy').addEventListener('click', () => {this.renderShop()});
             document.getElementById('shop-sell').addEventListener('click', () => {this.renderShopSell()});
@@ -94,6 +97,7 @@
             this.addShopListeners();
             this.addShopSortListeners();
             this.addJobsListeners();
+            this.addOutfitsListeners();
         },
 
         startPressed: function(){
@@ -146,6 +150,8 @@
         jobSelected: function(job){
             this.game.player.job = new RL.Job(this.game, job);
             this.game.player.job.equipEffect();
+            this.game.player.sprite = this.game.player.job.sprite;
+            this.game.player.outfit = new RL.Outfit(this.game, this.game.player.job.outfit);
             this.game.renderer.draw();
             this.game.load();
             document.getElementById('start-menu').style.display = 'none';
@@ -218,21 +224,32 @@
             }
         },
 
+        addOutfitsListeners: function(){
+            var outfits = this.game.player.outfits;
+            for(let i = 0; i<outfits.length; i++){
+                let item = document.getElementById('outfits-item-' + i);
+                item.addEventListener('click', () => {this.outfitsItemClicked(i)});
+            }
+        },
+
         displayInventoryMenu: function(){
             var inventoryWindowEl = document.getElementById('inventory-window');
             var shopWindowEl = document.getElementById('shop-window');
             var statsWindowEl = document.getElementById('stats-window');
             var jobsWindowEl = document.getElementById('jobs-window');
+            var outfitsWindowEl = document.getElementById('outfits-window');
 
             inventoryWindowEl.style.visibility = 'visible';
             shopWindowEl.style.visibility = 'hidden';
             statsWindowEl.style.visibility = 'hidden';
             jobsWindowEl.style.visibility = 'hidden';
+            outfitsWindowEl.style.visibility = 'hidden';
 
             inventoryWindowEl.style.opacity = 1;
             shopWindowEl.style.opacity = 0;
             statsWindowEl.style.opacity = 0;
             jobsWindowEl.style.opacity = 0;
+            outfitsWindowEl.style.opacity = 0;
         },
 
         displayShopMenu: function() {
@@ -240,16 +257,20 @@
             var shopWindowEl = document.getElementById('shop-window');
             var statsWindowEl = document.getElementById('stats-window');
             var jobsWindowEl = document.getElementById('jobs-window');
+            var outfitsWindowEl = document.getElementById('outfits-window');
 
             inventoryWindowEl.style.visibility = 'hidden';
             shopWindowEl.style.visibility = 'visible';
             statsWindowEl.style.visibility = 'hidden';
             jobsWindowEl.style.visibility = 'hidden';
+            outfitsWindowEl.style.visibility = 'hidden';
 
             inventoryWindowEl.style.opacity = 0;
             shopWindowEl.style.opacity = 1;
             statsWindowEl.style.opacity = 0;
             jobsWindowEl.style.opacity = 0;
+            outfitsWindowEl.style.opacity = 0;
+            outfitsWindowEl.style.opacity = 0;
         },
 
         displayStatsMenu: function() {
@@ -257,16 +278,19 @@
             var shopWindowEl = document.getElementById('shop-window');
             var statsWindowEl = document.getElementById('stats-window');
             var jobsWindowEl = document.getElementById('jobs-window');
+            var outfitsWindowEl = document.getElementById('outfits-window');
 
             inventoryWindowEl.style.visibility = 'hidden';
             shopWindowEl.style.visibility = 'hidden';
             statsWindowEl.style.visibility = 'visible';
             jobsWindowEl.style.visibility = 'hidden';
+            outfitsWindowEl.style.visibility = 'hidden';
 
             inventoryWindowEl.style.opacity = 0;
             shopWindowEl.style.opacity = 0;
             statsWindowEl.style.opacity = 1;
             jobsWindowEl.style.opacity = 0;
+            outfitsWindowEl.style.opacity = 0;
         },
 
         displayJobsMenu: function() {
@@ -274,16 +298,39 @@
             var shopWindowEl = document.getElementById('shop-window');
             var statsWindowEl = document.getElementById('stats-window');
             var jobsWindowEl = document.getElementById('jobs-window');
+            var outfitsWindowEl = document.getElementById('outfits-window');
 
             inventoryWindowEl.style.visibility = 'hidden';
             shopWindowEl.style.visibility = 'hidden';
             statsWindowEl.style.visibility = 'hidden';
             jobsWindowEl.style.visibility = 'visible';
+            outfitsWindowEl.style.visibility = 'hidden';
 
             inventoryWindowEl.style.opacity = 0;
             shopWindowEl.style.opacity = 0;
             statsWindowEl.style.opacity = 0;
             jobsWindowEl.style.opacity = 1;
+            outfitsWindowEl.style.opacity = 0;
+        },
+
+        displayOutfitsMenu: function() {
+            var inventoryWindowEl = document.getElementById('inventory-window');
+            var shopWindowEl = document.getElementById('shop-window');
+            var statsWindowEl = document.getElementById('stats-window');
+            var jobsWindowEl = document.getElementById('jobs-window');
+            var outfitsWindowEl = document.getElementById('outfits-window');
+
+            inventoryWindowEl.style.visibility = 'hidden';
+            shopWindowEl.style.visibility = 'hidden';
+            statsWindowEl.style.visibility = 'hidden';
+            jobsWindowEl.style.visibility = 'hidden';
+            outfitsWindowEl.style.visibility = 'visible';
+
+            inventoryWindowEl.style.opacity = 0;
+            shopWindowEl.style.opacity = 0;
+            statsWindowEl.style.opacity = 0;
+            jobsWindowEl.style.opacity = 0;
+            outfitsWindowEl.style.opacity = 1;
         },
 
         renderStatPoints: function(){
@@ -468,6 +515,14 @@
             this.renderJobs();
         },
 
+        sortOutfitsName: function(){
+            document.getElementById('outfits-foot-name').style.color = '#e5e5e5';
+
+            var toSort = this.game.player.outfits;
+            this.game.player.outfits = RL.Util.sortArrayOfObjects(toSort, 'name');
+            this.renderOutfits();
+        },
+
         inventoryItemClicked: function(slotNum){
             var inventory = this.game.player.inventory;
             var group = inventory[slotNum][0].group;
@@ -528,6 +583,7 @@
             if (slotNum == this.shopSellItemConfirmIndex){
                 this.clearClickData();
                 this.game.player.gold += item.cost;
+                RL.Util.arrFind(this.game.menu.stats, 'gold_earned').incrementBy(item.cost);
                 this.removeFromInventory(item);
                 this.game.console.logSoldItem(item);
                 this.game.player.renderHtml();
@@ -594,6 +650,29 @@
                 this.game.console.logAskConfirmSwitch(job);
             }
         },
+
+        outfitsItemClicked: function(slotNum){
+            var outfit = this.game.player.outfits[slotNum];
+            if (slotNum == this.outfitsConfirmIndex){
+                this.clearClickData();
+                var currOutfit = this.game.player.outfit;
+                var outfits = this.game.player.outfits;
+                for(var i = 0; i< outfits.length; i++){
+                    if (outfits[i].type == outfit.type)
+                        outfits.splice(i, 1);
+                }
+                outfits.push(currOutfit);
+                this.game.player.outfit = outfit;
+                this.game.player.sprite = outfit.sprite;
+                this.game.console.log('Switched outfit to ' + outfit.name);
+                this.renderOutfits();
+                this.game.renderer.draw();
+            }
+            else{
+                this.outfitsConfirmIndex = slotNum;
+                this.game.console.logAskConfirmSwitchOutfit(outfit);
+            }
+        },
         
         clearClickData: function(){
             this.inventoryItemConfirmIndex = -1;
@@ -602,6 +681,7 @@
             this.skillReplaceIndex = -1;
             this.skillUseIndex = -1;
             this.jobsConfirmIndex = -1;
+            this.outfitsConfirmIndex = -1;
         },
 
         addToInventory: function(item){
@@ -836,6 +916,33 @@
             }
             wrap.innerHTML = html;
             this.addJobsListeners();
+        },
+        initOutfits: function(){
+            var wrap = document.getElementById('outfits-body');
+            var outfits = this.game.player.outfits;
+            var icon = '';
+            var html = '';
+            
+            for(var i = 0; i<outfits.length; i++){
+                icon = '<img src="assets/icons/' +  outfits[i].sprite + '.png"/>';
+
+                html += '<div class="menu-item" id="outfits-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + outfits[i].name + '<br> <span style="color: #ffffff33;">' + outfits[i].description + '</span></h4></div></div>';
+            }
+            wrap.innerHTML = html;
+        },
+        renderOutfits: function(){
+            var wrap = document.getElementById('mCSB_6_container');
+            var outfits = this.game.player.outfits;
+            var icon = '';
+            var html = '';
+            
+            for(var i = 0; i<outfits.length; i++){
+                icon = '<img src="assets/icons/' +  outfits[i].sprite + '.png"/>';
+
+                html += '<div class="menu-item" id="outfits-item-'+ i + '"><div class="menu-item-icon">' + icon + '</div><div class="menu-item-info"><h4>' + outfits[i].name + '<br> <span style="color: #ffffff33;">' + outfits[i].description + '</span></h4></div></div>';
+            }
+            wrap.innerHTML = html;
+            this.addOutfitsListeners();
         },
 
         initWeapon: function(){

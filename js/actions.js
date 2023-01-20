@@ -366,6 +366,10 @@
                         finalDamage = Math.floor(2.5 * source.strength);
                     else
                         finalDamage = source.strength;
+                    for(var s = 0; s < this.game.player.skills.length; s++){
+                        this.game.player.skills[s].performOnHit();
+                        this.game.player.renderHtml();
+                    }
                 }
                 else
                     finalDamage = source.strength;

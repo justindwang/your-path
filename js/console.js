@@ -166,6 +166,9 @@
         logAskConfirmSwitch: function(job){
             this.log('Switch job to ' + job.name + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
         },
+        logAskConfirmSwitchOutfit: function(outfit){
+            this.log('Switch outfit to ' + outfit.name + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));
+        },
 
         logMaxSkillSlots: function(item){
             this.log(this.wrap(this.game.player) + ' has 0 skill slots left. Replace a skill with ' + this.wrap(item) + '? ' + this.wrapStr('(Click again to confirm.)', '#797979'));

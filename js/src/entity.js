@@ -118,6 +118,8 @@
         * @type bool
         */
         dead: false,
+        
+        stunTurns: 0,
 
         playerLastSeen: false,
 
@@ -326,7 +328,11 @@
              * @method update
              */
             _update: function() {
-
+                if (this.stunTurns > 0){
+                    this.stunTurns--;
+                    this.game.console.log(this.game.console.wrap(this) + ' is stunned');
+                    return true;
+                }
                 var stumbleChance = this.turnsSinceStumble / this.maxTurnsWithoutStumble;
                 if(this.turnsSinceStumble && Math.random() < stumbleChance) {
                     this.turnsSinceStumble = 0;
@@ -388,6 +394,11 @@
              * @method update
              */
             _update: function() {
+                if (this.stunTurns > 0){
+                    this.stunTurns--;
+                    this.game.console.log(this.game.console.wrap(this) + ' is stunned');
+                    return true;
+                }
                 var stumbleChance = this.turnsSinceStumble / this.maxTurnsWithoutStumble;
                 if(this.turnsSinceStumble && Math.random() < stumbleChance) {
                     this.turnsSinceStumble = 0;

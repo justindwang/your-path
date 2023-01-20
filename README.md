@@ -59,25 +59,28 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - fix controls display <br>
 - added job change ui <br>
 - added job change tickets <br>
+- added class specific skills <br>
+- added cc skill template <br>
+- added on hit passive skills <br>
+- added outfit selection menu <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 ### balance the game bro
-- add general skill methods to run after map generation (default void) and passives to run on game_update or player_update
-    - on hit passive effects to run on attack / skill usage (mana/life steal, chance to not consume mana etc)
-- add class specific skills eg. preschooler temper tantrum skill
-- add avatar selection menu
 - fix skill descriptions display (wrapping when there is scrollbar)
 - revamp item/skill descriptions ui
+- add tutorial
 - fix damage numbers being cut off
 - add bosses
 - add saving mechanic
+- add general skill methods to run after map generation (default void) and passives to run on game_update or player_update
 - make crits stand out more
 - fix bug/feature? where you can push furniture onto items
 - add buffs
 - add weapon classes
 - add quests
+- click to attack
 - add multiplayer
 - revamp tile mapping/generation
 - add more background tiles / materials to floors

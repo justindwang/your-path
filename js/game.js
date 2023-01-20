@@ -20,6 +20,7 @@
         this.menu.initShop();
         this.menu.initWeapon();
         this.menu.initJobs();
+        this.menu.initOutfits();
     };
 
     var newGamePrototype = {
@@ -217,8 +218,6 @@
                 return;
             }
 
-            // console.log('click', tile.x, tile.y);
-
             if(!this.player.fov.get(tile.x, tile.y)){
                 return;
             }
@@ -235,6 +234,7 @@
                     }
                 }
             }
+
 
             this.console.logTileInspect(tile, this.getObjectsAtPostion(tile.x, tile.y));
         },

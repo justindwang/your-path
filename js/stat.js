@@ -108,7 +108,12 @@
             name: 'Skills Used',
             group: 'misc',
             rank: 'E'
-        })
+        }),
+        gold_earned: makeCounterStat({
+            name: 'Gold Earned',
+            group: 'misc',
+            rank: 'E'
+        }),
     };
     
 

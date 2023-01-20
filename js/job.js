@@ -55,9 +55,9 @@
             name: 'Kendoka',
             sprite: 'kendoka',
             description: 'simple and steadfast',
+            outfit: 'keikogi',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'zen_strike'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('zen_strike');
@@ -67,9 +67,9 @@
             name: 'Ivory Reaper',
             sprite: 'ivory_reaper',
             description: 'ominous and menacing',
+            outfit: 'hooded_cloak',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'final_cut'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('final_cut');
@@ -79,9 +79,9 @@
             name: 'Flower Fighter',
             sprite: 'flower_fighter',
             description: 'graceful and vibrant',
+            outfit: 'floral_armor',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'photosynthesis'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('photosynthesis');
@@ -91,9 +91,9 @@
             name: 'Black Swordsman',
             sprite: 'black_swordsman',
             description: 'skilled and battle-tested',
+            outfit: 'midnight_cloak',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'evade'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('evade');
@@ -103,9 +103,9 @@
             name: 'Archery Disciple',
             sprite: 'archery_disciple',
             description: 'eager and sharp',
+            outfit: 'daopao',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'qi_shot'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('qi_shot');
@@ -115,9 +115,9 @@
             name: 'Preschooler',
             sprite: 'preschooler',
             description: 'playful and energetic',
+            outfit: 'tiny_dress',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'temper_tantrum'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('temper_tantrum');
@@ -127,9 +127,9 @@
             name: 'Kitsune',
             sprite: 'kitsune',
             description: 'mischievous and wise',
+            outfit: 'patterned_kimono',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'foxfire'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('foxfire');
@@ -139,9 +139,9 @@
             name: 'Businessman',
             sprite: 'businessman',
             description: 'hardworking and professional',
+            outfit: 'work_suit',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'cash_flow'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('cash_flow');
@@ -151,12 +151,24 @@
             name: 'Battle Maid',
             sprite: 'battle_maid',
             description: 'reliable and thorough',
+            outfit: 'lofty_dress',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'clean_finish'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
                 this.game.player.forgetSkill('clean_finish');
+            },
+        },
+        enchantress: {
+            name: 'Enchantress',
+            sprite: 'enchantress',
+            description: 'mystical and alluring',
+            outfit: 'autumn_dress',
+            equipEffect: function() {
+                this.game.player.learnSkill(new RL.Skill(this.game, 'embrace'));
+            },
+            unequipEffect: function(){
+                this.game.player.forgetSkill('embrace');
             },
         },
         
@@ -165,9 +177,9 @@
             name: 'Knight',
             sprite: 'knight',
             description: 'trustworthy and noble',
+            outfit: 'silver_armor',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'slash'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -176,9 +188,9 @@
             name: 'Knightess',
             sprite: 'knightess',
             description: 'fearless and gentle',
+            outfit: 'cobalt_armor',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'slash'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -187,9 +199,9 @@
             name: 'Warrior',
             sprite: 'warrior',
             description: 'cheerful and durable',
+            outfit: 'trusty_chainmail',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'smash'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -198,9 +210,9 @@
             name: 'Warrioress',
             sprite: 'warrioress',
             description: 'brave and dependable',
+            outfit: 'leather_chainmail',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'smash'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -209,9 +221,9 @@
             name: 'Ranger',
             sprite: 'ranger',
             description: 'keen and accurate',
+            outfit: 'green_rags',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'far_shot'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -220,9 +232,9 @@
             name: 'Archeress',
             sprite: 'archeress',
             description: 'swift and majestic',
+            outfit: 'flowy_rags',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'far_shot'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -231,9 +243,9 @@
             name: 'Mage',
             sprite: 'mage',
             description: 'witty and resourceful',
+            outfit: 'blue_robe',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'fireball'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -242,9 +254,9 @@
             name: 'Sorceress',
             sprite: 'sorceress',
             description: 'young and curious',
+            outfit: 'purple_robe',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'fireball'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -253,9 +265,9 @@
             name: 'Ninja',
             sprite: 'ninja',
             description: 'silent and deadly',
+            outfit: 'ninja_gear',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'backstab'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },
@@ -264,9 +276,9 @@
             name: 'Kunoichi',
             sprite: 'kunoichi',
             description: 'patient and agile',
+            outfit: 'black_haori',
             equipEffect: function() {
                 this.game.player.learnSkill(new RL.Skill(this.game, 'backstab'));
-                this.game.player.sprite = this.sprite;
             },
             unequipEffect: function(){
             },

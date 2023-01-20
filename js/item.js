@@ -515,8 +515,10 @@
                 }
                 else{
                     this.game.player.jobs.push(newJob);
+                    this.game.player.outfits.push(new RL.Outfit(this.game, newJob.outfit));
                     this.game.console.log('Added ' + newJob.name + ' to job list');
                     this.game.menu.renderJobs();
+                    this.game.menu.renderOutfits();
                 }
             },
         }),

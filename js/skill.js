@@ -51,6 +51,8 @@
         tooltip: null,
         mpCost: null,
 
+        passive: false,
+
         getConsoleName: function(){
             return {
                 name: this.name,
@@ -62,6 +64,7 @@
                 mpCost: this.mpCost,
             };
         },
+        performOnHit: function(){},
     };
 
     /**
@@ -163,6 +166,16 @@
                 this.game.player.skillAttack(this, this.game.player.agility * 2, 1);
             },
         },
+        embrace: {
+            name: 'Embrace',
+            rank: 'Unique',
+            description: 'Stuns an enemy for 3s (Range: 2)',
+            mpCost: 15,
+            performEffect: function() {
+                this.game.player.skillStun(this, 3, 2);
+            },
+        },
+        // test skills
         pancake_torch: {
             name: 'Pancake Torch',
             rank: 'B',
@@ -182,7 +195,50 @@
                 this.game.player.statChange('strength', RL.Util.random(1,10));
             },
         },
-
+        // on hit passives
+        salvage: {
+            name: 'Salvage',
+            rank: 'C',
+            description: 'Passive - Chance to heal on hit',
+            mpCost: 0,
+            passive: true,
+            performOnHit: function() {
+                if(RL.Util.random(0,1)==1){
+                    this.game.player.hp += 1;
+                    if(this.game.player.hp > this.game.player.hpMax)
+                        this.game.player.hp = this.game.player.hpMax;
+                    RL.Util.arrFind(this.game.menu.stats, 'hp_healed').incrementBy(1);
+                }
+            },
+        },
+        intuition: {
+            name: 'Intuition',
+            rank: 'C',
+            description: 'Passive - Chance to restore mp on hit',
+            mpCost: 0,
+            passive: true,
+            performOnHit: function() {
+                if(RL.Util.random(0,1)==1){
+                    this.game.player.mp += 1;
+                    if(this.game.player.mp > this.game.player.mpMax)
+                        this.game.player.mp = this.game.player.mpMax;
+                    RL.Util.arrFind(this.game.menu.stats, 'mp_restored').incrementBy(1);
+                }
+            },
+        },
+        golden_touch: {
+            name: 'Golden Touch',
+            rank: 'C',
+            description: 'Passive - Chance to earn gold on hit',
+            mpCost: 0,
+            passive: true,
+            performOnHit: function() {
+                if(RL.Util.random(0,1)==1){
+                    this.game.player.gold += 1;
+                    RL.Util.arrFind(this.game.menu.stats, 'gold_earned').incrementBy(1);
+                }
+            },
+        },
         // base skills
         slash: {
             name: 'Slash',

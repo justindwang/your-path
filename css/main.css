@@ -2878,25 +2878,32 @@ progress::-webkit-progress-bar {
 .pr-inventory:hover .pr-inventory-bar p{opacity: 1;}
 
 .pr-shop{ height: 40px; width: 60px;  position: relative; left: 0; transition: width 0.3s ease;top: 10px} 
-.pr-shop img{height: 30px; margin-top: 5px; margin-left: 14px;}
+.pr-shop img{height: 30px; margin-top: 5px; margin-left: 12px;}
 .pr-shop-bar{position: absolute; right: 0; top: 0; height: 100%; width: 7px; background: #e5e5e5;}
 .pr-shop-bar p{right: calc(100% + 30px); line-height: 40px; color: #e5e5e5; font-size: 20px; position: absolute; opacity: 0; transition: opacity 0.2s ease;}
 .pr-shop:hover {width: 130px;}
 .pr-shop:hover .pr-shop-bar p{opacity: 1;}
 
 .pr-stats{ height: 40px; width: 60px; position: relative; left: 0; transition: width 0.3s ease;top: 20px} 
-.pr-stats img{height: 30px; margin-top: 5px; margin-left: 14px;}
+.pr-stats img{height: 30px; margin-top: 5px; margin-left: 12px;}
 .pr-stats-bar{position: absolute; right: 0; top: 0; height: 100%; width: 7px; background: #e5e5e5;}
 .pr-stats-bar p{right: calc(100% + 25px); line-height: 40px; color: #e5e5e5; font-size: 20px; position: absolute; opacity: 0; transition: opacity 0.2s ease;}
 .pr-stats:hover {width: 130px;}
 .pr-stats:hover .pr-stats-bar p{opacity: 1;}
 
 .pr-jobs{ height: 40px; width: 60px; position: absolute; left: 100%; transition: width 0.3s ease; top: 50px} 
-.pr-jobs img{height: 30px; margin-top: 5px; margin-left: 14px;}
+.pr-jobs img{height: 30px; margin-top: 5px; margin-left: 12px;}
 .pr-jobs-bar{position: absolute; right: 0; top: 0; height: 100%; width: 7px; background: #e5e5e5;}
 .pr-jobs-bar p{right: calc(100% + 30px); line-height: 40px; color: #e5e5e5; font-size: 20px; position: absolute; opacity: 0; transition: opacity 0.2s ease;}
 .pr-jobs:hover {width: 130px;}
 .pr-jobs:hover .pr-jobs-bar p{opacity: 1;}
+
+.pr-outfits{ height: 40px; width: 60px; position: absolute; left: 100%; top: 100px; transition: width 0.3s ease;} 
+.pr-outfits img{height: 24px; margin-top: 7px; margin-left: 14px;}
+.pr-outfits-bar{position: absolute; right: 0; top: 0; height: 100%; width: 7px; background: #e5e5e5;}
+.pr-outfits-bar p{right: calc(100% + 20px); line-height: 40px; color: #e5e5e5; font-size: 20px; position: absolute; opacity: 0; transition: opacity 0.2s ease;}
+.pr-outfits:hover {width: 130px;}
+.pr-outfits:hover .pr-outfits-bar p{opacity: 1;}
 
 .menu-head {width: 100%; height: 40px; border-bottom: 1px solid #CEB38Bff; box-sizing: border-box; }
 .menu-head h3{margin-top: 3px; font-size: 24px; float: left; color:#e5e5e5; }
@@ -2929,6 +2936,9 @@ progress::-webkit-progress-bar {
 
 /* Jobs window */
 #jobs-window { visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: -150px; top: 380%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
+
+/* Outfits window */
+#outfits-window { visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: -150px; top: 255%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
 /* Shop window */
 #shop-window { visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: 0%; top: 255%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
