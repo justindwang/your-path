@@ -69,6 +69,7 @@ Todo:
 ### design more mobs/floors/skills/items
 ### balance the game bro
 - fix skill descriptions display (wrapping when there is scrollbar)
+- fix skill replace
 - revamp item/skill descriptions ui
 - add tutorial
 - fix damage numbers being cut off

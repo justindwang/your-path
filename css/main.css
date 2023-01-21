@@ -2678,8 +2678,14 @@ pre[class*="language-"] {
   margin-left: 10px;
 }
 
+.mt-3{
+  margin-top: 3px;
+  margin-bottom: 0px;
+  margin-right: 10px;
+}
+
 .small{
-  font-size: 14px;
+  font-size: 16px;
   color: #9a9090;
 }
 
@@ -2866,6 +2872,8 @@ progress::-webkit-progress-bar {
 
 .dropdown-controls:hover .dropdown-controls-content {visibility: visible; opacity: 1;}
 
+.nl {white-space: pre-line;}
+
 #status-space-flex {width:50px; display: table-cell}
 
 /* UI on right */
@@ -2931,6 +2939,7 @@ progress::-webkit-progress-bar {
 .menu-foot p:nth-of-type(3){color: rgba(255, 255, 255, 0.2);}
 .menu-foot p:nth-of-type(6){color: rgba(255, 255, 255, 0.2);}
 
+#skill-foot{display:none}
 /* Inventory window */
 #inventory-window { visibility: hidden; opacity: 0; width: 300px; height: 400px; position: absolute; left: 0%; top: 380%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
@@ -2950,7 +2959,9 @@ progress::-webkit-progress-bar {
 
 #skill-window { width: 215px; height: 255px; margin-top: 20px; padding: 15px; box-sizing: border-box; }
 .weapon-icon { margin-left: 10px; background: rgba(87,83,83,0.25); width:50px; height:50px; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px;}
-.weapon-icon img{padding-bottom: 4px; width:80%; margin-left: 10%; margin-top: 10%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
+.weapon-icon img{ width:80%; margin-left: 10%; margin-top: 10%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
+.skill-icon { margin-left: 10px; background: rgba(87,83,83,0.25); width:50px; height:50px; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px;}
+.skill-icon img{ width:80%; margin-left: 10%; margin-top: 10%; filter: drop-shadow(0 0 5px 3px rgba(255,255,255,0.5)); -webkit-filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));}
 .character-info-section { padding: 3px 0 0 0; margin-top: 3px; border-top: 1px solid #CEB38Bff;}
 .character-info-section .td_right img {margin-bottom: 3px; height:10px; width: 10px;}
 .player-stat-item {display:none}

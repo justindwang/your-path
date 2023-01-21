@@ -29,6 +29,7 @@
         outfitsConfirmIndex: -1,
         skillReplaceIndex: -1,
         skillUseIndex: -1,
+        skillIndex: 0,
 
         buyOrSell: 'buy',
         weaponOrSkills: 'weapon',
@@ -960,6 +961,7 @@
             this.weaponOrSkills = 'weapon';
             document.getElementById('skill-weapon').style.color = '#e5e5e5';
             document.getElementById('skill-skills').style.color = '#ffffff33';
+            document.getElementById('skill-foot').style.display = 'none';
             var wrap = document.getElementById('mCSB_1_container');
             var player = this.game.player;
             
@@ -974,29 +976,31 @@
             this.weaponOrSkills = 'skills';
             document.getElementById('skill-weapon').style.color = '#ffffff33';
             document.getElementById('skill-skills').style.color = '#e5e5e5';
+            document.getElementById('skill-foot').style.display = 'block';
             var wrap = document.getElementById('mCSB_1_container');
             var player = this.game.player;
             var color = '';
             var skillsHtml = '';
 
-            for(var i = 0; i< player.skills.length; i++){
-                var skillConsoleName = player.skills[i].getConsoleName();
-                switch(skillConsoleName.rank){
-                    case 'S': color = 'style="color:brown"'; break;
-                    case 'A': color = 'style="color:orchid"'; break;
-                    case 'B': color = 'style="color: #85B9E1ff"'; break;
-                    case 'C': color = 'style="color:cadetblue"'; break;
-                    case 'D': color = 'style="color: #77DD77"'; break;
-                    case 'E': color = 'style="color:goldenrod"'; break;
-                    case 'F': color = 'style="color:peachpuff"'; break;
-                    case 'Unique': color = 'style="color: #50577A"'; break;
-                }
-                
-                skillsHtml += '<div class="skill-item" id="skill-' + i +'"><h4> <p ' + color + '>' + skillConsoleName.name + ' - ' + skillConsoleName.rank + '</p><p class="small">' + skillConsoleName.description + '</p></h4>'+ '<div class="skill-item-cost"><img src="assets/icons/mana.png"/><p>' + RL.Util.addCommas(skillConsoleName.mpCost) + '</p></div></div>';
-                
+            if(this.game.player.skills.length==0)
+                return;
+            var skillConsoleName = player.skills[this.skillIndex].getConsoleName();
+            switch(skillConsoleName.rank){
+                case 'S': color = 'style="color:brown"'; break;
+                case 'A': color = 'style="color:orchid"'; break;
+                case 'B': color = 'style="color: #85B9E1ff"'; break;
+                case 'C': color = 'style="color:cadetblue"'; break;
+                case 'D': color = 'style="color: #77DD77"'; break;
+                case 'E': color = 'style="color:goldenrod"'; break;
+                case 'F': color = 'style="color:peachpuff"'; break;
+                case 'Unique': color = 'style="color: #50577A"'; break;
             }
+            
+            skillsHtml += '<div class="skill-icon"><img src="assets/icons/' + player.sprite + '.png"/></div><p class="ml-10 mt-3" style="margin-top: 10px;">[Name: ' + this.game.console.wrap(player.skills[this.skillIndex]) + ']</p><p class="ml-10 mt-3"> Skill Rank: '+ skillConsoleName.rank + '</p> ' + '<p class="ml-10 mt-3 small">' + skillConsoleName.description + '</p>';
+            //  id="skill-' + i +'"><h4> <p ' + color + '>' + skillConsoleName.name + ' - ' + skillConsoleName.rank + '</p><p class="small">' + skillConsoleName.description + '</p></h4>'+ '<div class="skill-item-cost"><img src="assets/icons/mana.png"/><p>' + RL.Util.addCommas(skillConsoleName.mpCost) + '</p></div></div>';
+            
             wrap.innerHTML = skillsHtml;
-            this.addSkillListeners();
+            // this.addSkillListeners();
         },
     };
 
