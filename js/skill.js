@@ -84,8 +84,9 @@
         // class specific skills
         zen_strike: {
             name: 'Zen Strike',
-            rank: 'Unique',
-            description: 'Deal 100% Str Dmg (Radius: 2)',
+            sprite: 'zen_strike',
+            rank: 'Unique',  
+            description: 'Deal 100% Strength damage in a 2 tile radius',
             mpCost: 10,
             performEffect: function() {
                 this.game.player.selfAoeSkillAttack(this, this.game.player.strength, 2);
@@ -93,8 +94,9 @@
         },
         final_cut: {
             name: 'Final Cut',
+            sprite: 'final_cut',
             rank: 'Unique',
-            description: 'Deal 300% Str Dmg (Range: 1)',
+            description: 'Deal 300% Strength damage to an enemy within 1 tile',
             mpCost: 50,
             performEffect: function() {
                 this.game.player.skillAttack(this, this.game.player.strength * 3, 1);
@@ -102,6 +104,7 @@
         },
         photosynthesis: {
             name: 'Photosynthesis',
+            sprite: 'photosynthesis',
             rank: 'Unique',
             description: 'Heals half of one\'s HP',
             mpCost: 20,
@@ -111,6 +114,7 @@
         },
         evade: {
             name: 'Evade',
+            sprite: 'evade',
             rank: 'Unique',
             description: 'Dodges the next attack',
             mpCost: 5,
@@ -121,17 +125,19 @@
         },
         qi_shot: {
             name: 'Qi Shot',
+            sprite: 'qi_shot',
             rank: 'Unique',
-            description: 'Deal 100% Luck Dmg (Range: 2, Targets: 2)',
+            description: 'Deal 100% Luck damage to 3 targets within 2 tiles',
             mpCost: 10,
             performEffect: function() {
-                this.game.player.multiSkillAttack(this, this.game.player.luck * 2, 2, 2);
+                this.game.player.multiSkillAttack(this, this.game.player.luck * 2, 2, 3);
             },
         },
         temper_tantrum: {
             name: 'Temper Tantrum',
+            sprite: 'temper_tantrum',
             rank: 'Unique',
-            description: 'Deal 1 to 50 Dmg (Radius: 2)',
+            description: 'Deal 1 to 50 damage in a 2 tile radius',
             mpCost: 5,
             performEffect: function() {
                 this.game.player.selfAoeSkillAttack(this, RL.Util.random(1,50), 2);
@@ -139,8 +145,9 @@
         },
         foxfire: {
             name: 'Foxfire',
+            sprite: 'evade',
             rank: 'Unique',
-            description: 'Deal 150% Int Dmg (Range: 3, Targets: 5)',
+            description: 'Deal 150% Intelligence damage to 5 targets within 3 tiles',
             mpCost: 20,
             performEffect: function() {
                 this.game.player.multiSkillAttack(this, Math.ceil(this.game.player.intelligence * 1.5), 3, 5);
@@ -148,6 +155,7 @@
         },
         cash_flow: {
             name: 'Cash Flow',
+            sprite: 'evade',
             rank: 'Unique',
             description: 'Obtain 1 to 100 gold',
             mpCost: 10,
@@ -159,8 +167,9 @@
         },
         clean_finish: {
             name: 'Clean Finish',
+            sprite: 'evade',
             rank: 'Unique',
-            description: 'Deal 200% Agi Dmg (Range: 1)',
+            description: 'Deal 200% Agility damage to an enemy within 1 tile',
             mpCost: 5,
             performEffect: function() {
                 this.game.player.skillAttack(this, this.game.player.agility * 2, 1);
@@ -168,8 +177,9 @@
         },
         embrace: {
             name: 'Embrace',
+            sprite: 'evade',
             rank: 'Unique',
-            description: 'Stuns an enemy for 3s (Range: 2)',
+            description: 'Stuns an enemy within 2 tiles for 3 seconds',
             mpCost: 15,
             performEffect: function() {
                 this.game.player.skillStun(this, 3, 2);
@@ -178,6 +188,7 @@
         // test skills
         pancake_torch: {
             name: 'Pancake Torch',
+            sprite: 'evade',
             rank: 'B',
             description: 'Heals half of one\'s HP immediately',
             mpCost: 20,
@@ -188,6 +199,7 @@
         },
         powerbuff_gorl: {
             name: 'Powerbuff Gorl',
+            sprite: 'evade',
             rank: 'B',
             description: 'Increases strength stat by 1~10',
             mpCost: 20,
@@ -198,8 +210,9 @@
         // on hit passives
         salvage: {
             name: 'Salvage',
+            sprite: 'evade',
             rank: 'C',
-            description: 'Passive - Chance to heal on hit',
+            description: 'Passive - Chance to heal 1 health on hit',
             mpCost: 0,
             passive: true,
             performOnHit: function() {
@@ -213,8 +226,9 @@
         },
         intuition: {
             name: 'Intuition',
+            sprite: 'evade',
             rank: 'C',
-            description: 'Passive - Chance to restore mp on hit',
+            description: 'Passive - Chance to restore 1 mp on hit',
             mpCost: 0,
             passive: true,
             performOnHit: function() {
@@ -228,8 +242,9 @@
         },
         golden_touch: {
             name: 'Golden Touch',
+            sprite: 'evade',
             rank: 'C',
-            description: 'Passive - Chance to earn gold on hit',
+            description: 'Passive - Chance to earn 1 gold on hit',
             mpCost: 0,
             passive: true,
             performOnHit: function() {
@@ -242,8 +257,9 @@
         // base skills
         slash: {
             name: 'Slash',
+            sprite: 'evade',
             rank: 'F',
-            description: 'Deal 12 Dmg (Range: 1)',
+            description: 'Deal 12 damage to an enemy within 1 tile',
             mpCost: 2,
             performEffect: function() {
                 this.game.player.skillAttack(this, 12, 1);
@@ -251,8 +267,9 @@
         },
         smash: {
             name: 'Smash',
+            sprite: 'evade',
             rank: 'F',
-            description: 'Deal 5 Dmg (Radius: 1)',
+            description: 'Deal 5 damage in a 1 tile radius',
             mpCost: 2,
             performEffect: function() {
                 this.game.player.selfAoeSkillAttack(this, 5, 1);
@@ -260,8 +277,9 @@
         },
         far_shot: {
             name: 'Far Shot',
+            sprite: 'evade',
             rank: 'F',
-            description: 'Deal 5 Dmg (Range: 4)',
+            description: 'Deal 5 damage to an enemy within 4 tiles',
             mpCost: 2,
             performEffect: function() {
                 this.game.player.skillAttack(this, 5, 4);
@@ -269,8 +287,9 @@
         },
         fireball: {
             name: 'Fireball',
+            sprite: 'evade',
             rank: 'F',
-            description: 'Deal 8 Dmg (Range: 2, Splash: 1)',
+            description: 'Deal 8 splash damage to enemies within 2 tiles',
             mpCost: 2,
             performEffect: function() {
                 this.game.player.aoeSkillAttack(this, 8, 2, 1);
@@ -278,8 +297,9 @@
         },
         backstab: {
             name: 'Backstab',
+            sprite: 'evade',
             rank: 'F',
-            description: 'Deal 15 Dmg (Range: 1)',
+            description: 'Deal 15 damage to an enemy within 1 tile',
             mpCost: 2,
             performEffect: function() {
                 this.game.player.skillAttack(this, 15, 1);
@@ -289,6 +309,7 @@
         // fillin spells to cover ranks
         slice: {
             name: 'Slice',
+            sprite: 'evade',
             rank: 'E',
             description: 'Deal 100% Agi and Str Dmg (Range: 1)',
             mpCost: 5,
@@ -298,6 +319,7 @@
         },
         triple_shot: {
             name: 'Triple Shot',
+            sprite: 'evade',
             rank: 'D',
             description: 'Deal 50% Luck Dmg (Range: 2, Targets: 3)',
             mpCost: 8,
@@ -316,6 +338,7 @@
         },
         lightning_bolt: {
             name: 'Lightning Bolt',
+            sprite: 'evade',
             rank: 'A',
             description: 'Deal 200% Int Dmg (Range: 3)',
             mpCost: 30,
@@ -325,6 +348,7 @@
         },
         burst_blade: {
             name: 'Burst Blade',
+            sprite: 'evade',
             rank: 'S',
             description: 'Deal 250% Str Dmg (Range: 1)',
             mpCost: 50,

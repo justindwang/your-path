@@ -113,6 +113,7 @@
                 left: ['←', 'A'],
                 right: ['→', 'D'],
                 attack: ['E'],
+                skill: ['R'],
             };
             this.input.addBindings(keyBindings);
             this.player.renderHtml();

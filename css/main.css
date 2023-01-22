@@ -2697,6 +2697,7 @@ pre[class*="language-"] {
     padding-top: 50px;
     float:left;
     margin: 0 20px 0 20px;
+    width: 215px;
 }
 
 .console-container {
@@ -2874,6 +2875,9 @@ progress::-webkit-progress-bar {
 
 .nl {white-space: pre-line;}
 
+#skill-foot-next:active { transform: translateY(2px); }
+#skill-foot-back:active { transform: translateY(2px); }
+
 #status-space-flex {width:50px; display: table-cell}
 
 /* UI on right */
@@ -2955,7 +2959,7 @@ progress::-webkit-progress-bar {
 /* Stats window */
 #stats-window { visibility: hidden; opacity: 0;  width: 300px; height: 400px; position: absolute; left: 0%; top: 130%; margin-left: 0px; padding: 15px; box-sizing: border-box; transition: visibility 0s, opacity 0.5s linear;}
 
-#status-window { display: flex; flex-direction: column; align-items: center; padding-left: 15px; padding-right: 15px;padding-bottom: 15px; box-sizing: border-box; }
+#status-window { width: 215px; display: flex; flex-direction: column; align-items: center; padding-left: 15px; padding-right: 15px;padding-bottom: 15px; box-sizing: border-box; }
 
 #skill-window { width: 215px; height: 255px; margin-top: 20px; padding: 15px; box-sizing: border-box; }
 .weapon-icon { margin-left: 10px; background: rgba(87,83,83,0.25); width:50px; height:50px; border: 2px solid #e5e5e5; box-sizing: border-box; border-radius: 10px;}
@@ -2967,9 +2971,9 @@ progress::-webkit-progress-bar {
 .player-stat-item {display:none}
 #stat-points {display: table-cell; padding: 0 0 3px; color: #797979; font-size: 18px; text-align: right; display:none; }
 
-#controls-window { position: relative; margin-top: 15px; margin-bottom: 15px; width: 215px; height: 50px; padding: 10px; box-sizing: border-box;}
+#controls-window { position: relative; margin-top: 15px; margin-bottom: 15px; width: 260px; height: 50px; padding: 10px; box-sizing: border-box;}
 #controls-window h3{position: absolute; top: 25%; font-size: 20px; margin: 0 0 0 10px; display: inline;}
-#controls-window span {position: absolute; left: 37%; color: #ffffff33; top: 25%}
+#controls-window span {position: absolute; left: 30%; color: #ffffff33; top: 25%}
 
 #start-menu {position: relative; display: block; margin-top: 50px; height: 720px; width: 1280px; background-size: contain; background-image: url("../assets/menu/backdrop.png");}
 #game { overflow:auto; height: 0; opacity: 0; transition: height 0s, opacity 1.5s linear;;  background-size: cover; background-image: url("../assets/menu/test3.png"); }

@@ -4,6 +4,7 @@
     var Sprites = {
 
         loadSprites: function() {
+            // outfits and classes
             const casual_hoodie = new Image();
             casual_hoodie.src = 'assets/icons/casual_hoodie.png';
             this.casual_hoodie = casual_hoodie;
@@ -92,6 +93,32 @@
             enchantress.src = 'assets/icons/enchantress.png';
             this.enchantress = enchantress;
         
+            // skills
+            const zen_strike = new Image();
+            zen_strike.src = 'assets/skills/zen_strike.png';
+            this.zen_strike = zen_strike;
+
+            const final_cut = new Image();
+            final_cut.src = 'assets/skills/final_cut.png';
+            this.final_cut = final_cut;
+
+            const photosynthesis = new Image();
+            photosynthesis.src = 'assets/skills/photosynthesis.png';
+            this.photosynthesis = photosynthesis;
+
+            const evade = new Image();
+            evade.src = 'assets/skills/evade.png';
+            this.evade = evade;
+
+            const qi_shot = new Image();
+            qi_shot.src = 'assets/skills/qi_shot.png';
+            this.qi_shot = qi_shot;
+
+            const temper_tantrum = new Image();
+            temper_tantrum.src = 'assets/skills/temper_tantrum.png';
+            this.temper_tantrum = temper_tantrum;
+
+            // items and furniture
             const crate = new Image();
             crate.src = 'assets/sprites/crate.png';
             this.crate = crate;

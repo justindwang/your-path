@@ -504,7 +504,7 @@
             name: 'Job Change Ticket',
             sprite: 'job_change_ticket',
             rank: 'S',
-            cost: '1000',
+            cost: 1000,
             getStats: function(){
                 return 'Assigns a new job';
             },

@@ -78,6 +78,8 @@
             document.getElementById('stats-foot-name').addEventListener('click', () => {this.sortStatsName()});
             document.getElementById('jobs-foot-name').addEventListener('click', () => {this.sortJobsName()});
             document.getElementById('outfits-foot-name').addEventListener('click', () => {this.sortOutfitsName()});
+            document.getElementById('skill-foot-next').addEventListener('click', () => {this.nextSkill()});
+            document.getElementById('skill-foot-back').addEventListener('click', () => {this.prevSkill()});
 
             document.getElementById('shop-buy').addEventListener('click', () => {this.renderShop()});
             document.getElementById('shop-sell').addEventListener('click', () => {this.renderShopSell()});
@@ -522,6 +524,20 @@
             var toSort = this.game.player.outfits;
             this.game.player.outfits = RL.Util.sortArrayOfObjects(toSort, 'name');
             this.renderOutfits();
+        },
+
+        nextSkill: function(){
+            this.skillIndex++;
+            if(this.skillIndex == this.game.player.skills.length)
+                this.skillIndex = 0;
+            this.renderSkills();
+        },
+
+        prevSkill: function(){
+            this.skillIndex--;
+            if(this.skillIndex == -1)
+                this.skillIndex = this.game.player.skills.length - 1;
+            this.renderSkills();
         },
 
         inventoryItemClicked: function(slotNum){
@@ -977,6 +993,9 @@
             document.getElementById('skill-weapon').style.color = '#ffffff33';
             document.getElementById('skill-skills').style.color = '#e5e5e5';
             document.getElementById('skill-foot').style.display = 'block';
+            var displayIndex = this.skillIndex + 1;
+            document.getElementById('skill-number').innerHTML = displayIndex + ' / ' + this.game.player.skills.length;
+
             var wrap = document.getElementById('mCSB_1_container');
             var player = this.game.player;
             var color = '';
@@ -996,11 +1015,9 @@
                 case 'Unique': color = 'style="color: #50577A"'; break;
             }
             
-            skillsHtml += '<div class="skill-icon"><img src="assets/icons/' + player.sprite + '.png"/></div><p class="ml-10 mt-3" style="margin-top: 10px;">[Name: ' + this.game.console.wrap(player.skills[this.skillIndex]) + ']</p><p class="ml-10 mt-3"> Skill Rank: '+ skillConsoleName.rank + '</p> ' + '<p class="ml-10 mt-3 small">' + skillConsoleName.description + '</p>';
-            //  id="skill-' + i +'"><h4> <p ' + color + '>' + skillConsoleName.name + ' - ' + skillConsoleName.rank + '</p><p class="small">' + skillConsoleName.description + '</p></h4>'+ '<div class="skill-item-cost"><img src="assets/icons/mana.png"/><p>' + RL.Util.addCommas(skillConsoleName.mpCost) + '</p></div></div>';
+            skillsHtml += '<div class="skill-icon"><img src="assets/skills/' + player.skills[this.skillIndex].sprite + '.png"/></div><p class="ml-10 mt-3" style="margin-top: 5px;">[Name: ' + this.game.console.wrap(player.skills[this.skillIndex]) + ']</p><p class="ml-10 mt-3"> Rank: '+ skillConsoleName.rank + '&nbsp;&nbsp;&nbsp;&nbsp; MP: ' + skillConsoleName.mpCost +'</p> ' + '<p class="ml-10 mt-3 small">' + skillConsoleName.description + '</p>';
             
             wrap.innerHTML = skillsHtml;
-            // this.addSkillListeners();
         },
     };
 

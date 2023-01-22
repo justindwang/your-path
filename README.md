@@ -63,12 +63,13 @@ Play the latest version [here](https://justindwang.github.io/your-path/)
 - added cc skill template <br>
 - added on hit passive skills <br>
 - added outfit selection menu <br>
+- changed skill ui to pages instead of list <br>
 </details>
 
 Todo:
 ### design more mobs/floors/skills/items
 ### balance the game bro
-- fix skill descriptions display (wrapping when there is scrollbar)
+
 - fix skill replace
 - revamp item/skill descriptions ui
 - add tutorial

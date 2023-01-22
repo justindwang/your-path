@@ -4,6 +4,7 @@ var keyBindings = {
     left: ['←', 'A'],
     right: ['→', 'D'],
     attack: ['E'],
+    skill: ['R'],
 };
 
 var statElements = {
