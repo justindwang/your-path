@@ -118,6 +118,34 @@
             temper_tantrum.src = 'assets/skills/temper_tantrum.png';
             this.temper_tantrum = temper_tantrum;
 
+            const foxfire = new Image();
+            foxfire.src = 'assets/skills/foxfire.png';
+            this.foxfire = foxfire;
+
+            const cash_flow = new Image();
+            cash_flow.src = 'assets/skills/cash_flow.png';
+            this.cash_flow = cash_flow;
+
+            const clean_finish = new Image();
+            clean_finish.src = 'assets/skills/clean_finish.png';
+            this.clean_finish = clean_finish;
+
+            const embrace = new Image();
+            embrace.src = 'assets/skills/embrace.png';
+            this.embrace = embrace;
+
+            const salvage = new Image();
+            salvage.src = 'assets/skills/salvage.png';
+            this.salvage = salvage;
+
+            const intuition = new Image();
+            intuition.src = 'assets/skills/intuition.png';
+            this.intuition = salvage;
+
+            const golden_touch = new Image();
+            golden_touch.src = 'assets/skills/golden_touch.png';
+            this.golden_touch = golden_touch;
+
             // items and furniture
             const crate = new Image();
             crate.src = 'assets/sprites/crate.png';

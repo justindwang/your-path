@@ -145,7 +145,7 @@
         },
         foxfire: {
             name: 'Foxfire',
-            sprite: 'evade',
+            sprite: 'foxfire',
             rank: 'Unique',
             description: 'Deal 150% Intelligence damage to 5 targets within 3 tiles',
             mpCost: 20,
@@ -155,7 +155,7 @@
         },
         cash_flow: {
             name: 'Cash Flow',
-            sprite: 'evade',
+            sprite: 'cash_flow',
             rank: 'Unique',
             description: 'Obtain 1 to 100 gold',
             mpCost: 10,
@@ -167,7 +167,7 @@
         },
         clean_finish: {
             name: 'Clean Finish',
-            sprite: 'evade',
+            sprite: 'clean_finish',
             rank: 'Unique',
             description: 'Deal 200% Agility damage to an enemy within 1 tile',
             mpCost: 5,
@@ -177,7 +177,7 @@
         },
         embrace: {
             name: 'Embrace',
-            sprite: 'evade',
+            sprite: 'embrace',
             rank: 'Unique',
             description: 'Stuns an enemy within 2 tiles for 3 seconds',
             mpCost: 15,
@@ -210,7 +210,7 @@
         // on hit passives
         salvage: {
             name: 'Salvage',
-            sprite: 'evade',
+            sprite: 'salvage',
             rank: 'C',
             description: 'Passive - Chance to heal 1 health on hit',
             mpCost: 0,
@@ -226,7 +226,7 @@
         },
         intuition: {
             name: 'Intuition',
-            sprite: 'evade',
+            sprite: 'intuition',
             rank: 'C',
             description: 'Passive - Chance to restore 1 mp on hit',
             mpCost: 0,
@@ -242,7 +242,7 @@
         },
         golden_touch: {
             name: 'Golden Touch',
-            sprite: 'evade',
+            sprite: 'golden_touch',
             rank: 'C',
             description: 'Passive - Chance to earn 1 gold on hit',
             mpCost: 0,

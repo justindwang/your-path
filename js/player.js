@@ -8,7 +8,7 @@
 
         this.weapon = new RL.Item(this.game, 'fists');
         this.applyWeaponStats(this.weapon);
-        this.skills = [new RL.Skill(this.game, 'temper_tantrum'), new RL.Skill(this.game, 'evade'), new RL.Skill(this.game, 'zen_strike'),];
+        this.skills = [new RL.Skill(this.game, 'golden_touch'), new RL.Skill(this.game, 'evade'), new RL.Skill(this.game, 'zen_strike'),];
         this.inventory = [[new RL.Item(this.game, 'ascension_crystal'),1], [new RL.Item(this.game, 'descension_crystal'),1],[new RL.Item(this.game, 'job_change_ticket'), 5]];
         this.jobs = [];
         this.outfits = [new RL.Outfit(this.game, 'casual_hoodie'), new RL.Outfit(this.game, 'casual_blouse')];
